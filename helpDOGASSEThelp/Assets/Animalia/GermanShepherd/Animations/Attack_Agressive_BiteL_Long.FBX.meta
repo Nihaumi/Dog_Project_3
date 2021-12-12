@@ -1,0 +1,198 @@
+fileFormatVersion: 2
+guid: de25aeffbe6725846a3851951ac18d08
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: RigChest
+    100004: RigHead
+    100006: RigJaw1
+    100008: RigLBLeg1
+    100010: RigLBLeg2
+    100012: RigLBLeg3
+    100014: RigLBLegAnkle
+    100016: RigLBLegDigit11
+    100018: RigLEar1
+    100020: RigLEye1
+    100022: RigLEyelid1
+    100024: RigLFLeg1
+    100026: RigLFLeg2
+    100028: RigLFLeg3
+    100030: RigLFLegAnkle
+    100032: RigLFLegCollarbone
+    100034: RigLFLegDigit11
+    100036: RigLShoulderBlade
+    100038: RigNeck1
+    100040: RigNeck2
+    100042: RigNeck3
+    100044: RigNeck4
+    100046: RigPelvis
+    100048: RigRBLeg1
+    100050: RigRBLeg2
+    100052: RigRBLeg3
+    100054: RigRBLegAnkle
+    100056: RigRBLegDigit11
+    100058: RigREar1
+    100060: RigREye1
+    100062: RigREyelid1
+    100064: RigRFLeg1
+    100066: RigRFLeg2
+    100068: RigRFLeg3
+    100070: RigRFLegAnkle
+    100072: RigRFLegCollarbone
+    100074: RigRFLegDigit11
+    100076: RigRoot
+    100078: RigRShoulderBlade
+    100080: RigSpine1
+    100082: RigSpine2
+    100084: RigSpine3
+    100086: RigTail1
+    100088: RigTail2
+    100090: RigTail3
+    100092: RigTail4
+    100094: RigTail5
+    100096: RigTail6
+    100098: RigTongue1
+    100100: RigTongue2
+    100102: RigTongue3
+    400000: //RootNode
+    400002: RigChest
+    400004: RigHead
+    400006: RigJaw1
+    400008: RigLBLeg1
+    400010: RigLBLeg2
+    400012: RigLBLeg3
+    400014: RigLBLegAnkle
+    400016: RigLBLegDigit11
+    400018: RigLEar1
+    400020: RigLEye1
+    400022: RigLEyelid1
+    400024: RigLFLeg1
+    400026: RigLFLeg2
+    400028: RigLFLeg3
+    400030: RigLFLegAnkle
+    400032: RigLFLegCollarbone
+    400034: RigLFLegDigit11
+    400036: RigLShoulderBlade
+    400038: RigNeck1
+    400040: RigNeck2
+    400042: RigNeck3
+    400044: RigNeck4
+    400046: RigPelvis
+    400048: RigRBLeg1
+    400050: RigRBLeg2
+    400052: RigRBLeg3
+    400054: RigRBLegAnkle
+    400056: RigRBLegDigit11
+    400058: RigREar1
+    400060: RigREye1
+    400062: RigREyelid1
+    400064: RigRFLeg1
+    400066: RigRFLeg2
+    400068: RigRFLeg3
+    400070: RigRFLegAnkle
+    400072: RigRFLegCollarbone
+    400074: RigRFLegDigit11
+    400076: RigRoot
+    400078: RigRShoulderBlade
+    400080: RigSpine1
+    400082: RigSpine2
+    400084: RigSpine3
+    400086: RigTail1
+    400088: RigTail2
+    400090: RigTail3
+    400092: RigTail4
+    400094: RigTail5
+    400096: RigTail6
+    400098: RigTongue1
+    400100: RigTongue2
+    400102: RigTongue3
+    7400000: Attack_Agressive_BiteL_Long
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: RigRoot
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f878bdd568efcea4b91d0f219ef65974,
+    type: 3}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
