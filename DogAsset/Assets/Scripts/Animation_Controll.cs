@@ -26,7 +26,7 @@ public class Animation_Controll : MonoBehaviour
 
         //play wanted animation
         animator.Play(new_state);
-        animation_duration = new_state.Length;
+       //animation_duration = new_state.Length;
 
         //set current state
         current_state = new_state;

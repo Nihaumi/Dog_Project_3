@@ -10,18 +10,45 @@ public class Dog_animations : MonoBehaviour
     const string dog_lying0 = "Lying_00";
     const string dog_walk_slow = "Loco_WalkSlow_Copy";
     const string dog_sitting = "Sitting_00";
-    const string dog_trans_stand_to_lying = "Trans_Stand_to_Lying";
+    const string dog_trans_stand_to_lying = "Trans_Stand_to_Lying_0";
     const string dog_trans_lying_to_stand = "Trans_Lying_to_Stand";
     const string dog_trans_sit_to_stand = "Trans_Sitting_to_Stand";
-    const string dog_trans_stand_to_sit = "Trans_Stand_to_Sitting";
+    const string dog_trans_stand_to_sit = "Trans_Stand_to_Sitting_0";
+    const string dog_trans_sit_to_walk = "Trans_Sitting_to_Stand_plus_walk";
+    const string dog_trans_lying_to_walk = "Trans_Lying_to_Stand_plus_walk";
 
-    // bool states
+    // bool states --> enum
     bool is_sitting = false;
     bool is_standing = true;
     bool is_walking = false;
     bool is_lying = false;
 
-    //othe script
+    enum Animation_state //is a class
+    {
+        sitting,
+        standing,
+        walking,
+        lying
+    };
+
+    Animation_state dog_state = Animation_state.standing;
+
+    //animation lists - to pick a random animation
+    List<string> dog_animation_list = new List<string>()
+    {
+        dog_lying0,
+        dog_sitting,
+        dog_stand0,
+        dog_stand1,
+        dog_trans_lying_to_stand,
+        dog_trans_sit_to_stand,
+        dog_trans_stand_to_lying,
+        dog_trans_stand_to_sit,
+        dog_walk_slow,
+    };
+    
+
+    //other script
     GameObject dog;
     Animation_Controll anim_controll;
 
@@ -38,89 +65,63 @@ public class Dog_animations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Sit
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if (is_sitting)
-            {
-                Debug.Log("already sitting");
-                return;
+        {   
+            switch(dog_state){
+                case Animation_state.standing:
+                    anim_controll.ChangeAnimationState(dog_trans_stand_to_sit);
+                    break;
+                case Animation_state.walking:
+                    anim_controll.ChangeAnimationState(dog_trans_stand_to_sit);
+                    break;
+                default:
+                    return;
             }
-            if(is_standing || is_walking)
-            {
-                Debug.Log("standing to sitting");
-                anim_controll.ChangeAnimationState(dog_trans_stand_to_sit);
-                //StartCoroutine(DogCommandWithWaitCoroutine(dog_sitting));
-                //anim_controll.ChangeAnimationState(dog_sitting);
-
-                SetBoolsToFalse();
-                is_sitting = true;
-            }
-
-
+            dog_state = Animation_state.sitting;    
         }
 
+        //Lay Down
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (is_lying)
+            switch (dog_state)
             {
-                Debug.Log("already laying");
-                return;
+                case Animation_state.standing:
+                    anim_controll.ChangeAnimationState(dog_trans_stand_to_lying);
+                    break;
+                case Animation_state.walking:
+                    anim_controll.ChangeAnimationState(dog_trans_stand_to_lying);
+                    break;
+                default:
+                    return; //leaves upfate function
             }
-            if (is_walking || is_standing)
-            {
-                anim_controll.ChangeAnimationState(dog_trans_stand_to_lying);
-                Debug.Log("lay down");
-
-                SetBoolsToFalse();
-                is_lying = true;
-            }
-
+            dog_state = Animation_state.lying;         
         }
 
+        //Walk
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (is_walking)
+            switch (dog_state)
             {
-                Debug.Log("already walking");
-                return;
+                case Animation_state.standing:
+                    anim_controll.ChangeAnimationState(dog_walk_slow);
+                    break;
+                case Animation_state.sitting:
+                    anim_controll.ChangeAnimationState(dog_trans_sit_to_walk);
+                    break;
+                case Animation_state.lying:
+                    anim_controll.ChangeAnimationState(dog_trans_lying_to_walk);
+                    break;
+                default:
+                    return;
             }
-            if (is_lying)
-            {
-                anim_controll.ChangeAnimationState(dog_trans_lying_to_stand);
-                StartCoroutine(DogCommandWithWaitCoroutine(dog_walk_slow));
-                Debug.Log("walk from ly");
+            dog_state = Animation_state.walking;
 
-                SetBoolsToFalse();
-                is_walking = true;
-            }
 
-            if (is_sitting)
-            {
-                anim_controll.ChangeAnimationState(dog_trans_sit_to_stand);
-                StartCoroutine(DogCommandWithWaitCoroutine(dog_walk_slow));
-                Debug.Log("walk from sit");
-
-                SetBoolsToFalse();
-                is_walking = true;
-            }
-
-            if (is_standing)
-            {
-                anim_controll.ChangeAnimationState(dog_walk_slow);
-
-                SetBoolsToFalse();
-                is_walking = true;
-            }
+           
         }
     }
 
-    void SetBoolsToFalse()
-    {
-        is_standing = false;
-        is_walking = false;
-        is_lying = false;
-        is_sitting = false;
-    }
     IEnumerator DogCommandWithWaitCoroutine(string new_state)
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
