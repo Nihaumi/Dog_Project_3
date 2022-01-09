@@ -310,7 +310,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &963194225
 GameObject:
@@ -323,6 +323,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -388,13 +389,45 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: -3.363}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 1.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1001 &1273678334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -405,7 +438,7 @@ PrefabInstance:
     - target: {fileID: 4676997951888904669, guid: e66076cfc0b8bcb43a610449e37b2bcb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4676997951888904669, guid: e66076cfc0b8bcb43a610449e37b2bcb,
         type: 3}
@@ -563,7 +596,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2144820945 stripped
 GameObject:
@@ -611,3 +644,91 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1273678334}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2144820951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144820945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4e50cf33580d30429a2b3915d811191, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stand_01: Stand_01
+  trans_lying_to_stand_01: Trans_Lying_to_Stand_01
+  trans_sitting_to_stand_01: Trans_Lying_to_Stand_01
+  trans_sleeping_to_lying_to_stand_01: Trans_Sleeping_to_Lying_to_Stand_01
+  stand_02: Stand_02
+  trans_lying_to_stand_02: Trans_Lying_to_Stand_02
+  trans_sitting_to_stand_02: Trans_Sitting_to_Stand_02
+  sit_00: Sitting_00
+  trans_stand_to_sit_00: Trans_Stand_to_Sitting_00
+  trans_walk_to_stand_to_sit_00: Trans_Walk_to_Stand_to_Sitting_00
+  sit_01: Sitting_01
+  trans_stand_to_sit_01: Trans_Stand_to_Sitting_01
+  trans_walk_to_stand_to_sit_01: Trans_Walk_to_Stand_to_Sitting_01
+  sit_02: Sitting_02
+  trans_stand_to_sit_02: Trans_Stand_to_Sitting_02
+  trans_walk_to_stand_to_sit_02: Trans_Walk_to_Stand_to_Sitting_02
+  lying_00: Lying_00
+  trans_stand_to_lying_00: Trans_Stand_to_Lying_00
+  trans_walk_to_stand_to_lying_00: Trans_Walk_to_Stand_to_Lying_00
+  trans_sleep_to_lying: Trans_Sleeping_to_Lying_00
+  lying_01: Lying_01
+  trans_stand_to_lying_01: Trans_Stand_to_Lying_00
+  trans_walk_to_stand_to_lying_01: Trans_Walk_to_Stand_to_Lying_00
+  lying_02: Lying_02
+  trans_stand_to_lying_02: Trans_Stand_to_Lying_00
+  trans_walk_to_stand_to_lying_02: Trans_Walk_to_Stand_to_Lying_00
+  sleep: Sleeping_01
+  trans_lying_to_sleep: Trans_Lying_to_Sleeping_01
+  trans_stand_to_lying_to_sleep: Trans_Stand_to_Lying__Sleeping_01
+  trans_walk_to_stand_to_lying_to_sleep: Trans_Walk_to_Stand_to_Lying_to_Sleeping_01
+  walk_slow: Loco_WalkSlow_Copy
+  trans_sit_to_stand_to_walk_slow: Trans_Sitting_to_Stand_plus_WalkSlow
+  trans_lying_to_stand_to_walk_slow: Trans_Lying_to_Stand_plus_WalkSlow
+  trans_sleep_to_lying_to_stand_to_walk_slow: Trans_Sleeping_to_Lying_to_Stand_plus_WalkSlow
+  walk_slow_L: Loco_WalkSlow_L
+  walk_slow_R: Loco_WalkSlow_R
+  seek: Loco_WalkSeek
+  trans_sit_to_stand_to_seek: Trans_Sitting_to_Stand_plus_seek
+  trans_lying_to_stand_to_seek: Trans_Lying_to_Stand_plus_seek
+  trans_sleep_to_lying_to_stand_to_seek: Trans_Sleeping_to_Lying_to_Stand_plus_seek
+  seek_L: Loco_WalkSlow_Seek_L
+  seek_R: Loco_WalkSlow_Seek_R
+  turn_left_seek: Trans_TurnL90_Seek
+  turn_right_seek: Trans_TurnR90_Seek
+  walk: Loco_Walk
+  trans_sit_to_stand_to_walk: Trans_Sitting_to_Stand_plus_Walk
+  trans_lying_to_stand_to_walk: Trans_Lying_to_Stand_plus_Walk
+  trans_sleep_to_lying_to_stand_to_walk: Trans_Sleeping_to_Lying_to_Stand_plus_Walk
+  walk_L: Loco_Walk_L
+  walk_R: Loco_Walk_R
+  turn_left_walk: Trans_TurnL90_Walk
+  turn_right_walk: Trans_TurnR90_Walk
+  trot: Loco_Trot
+  trans_sit_to_stand_to_trot: Trans_Sitting_to_Stand_plus_Trot
+  trans_lying_to_stand_to_trot: Trans_Lying_to_Stand_plus_Trot
+  trans_sleep_to_lying_to_stand_to_trot: Trans_Sleeping_to_Lying_to_Stand_plus_Trot
+  trot_L: Loco_Trot_L
+  trot_R: Loco_Trot_R
+  turn_left_trot: Trans_TurnL90_Trot
+  turn_right_trot: Trans_TurnR90_Trot
+  run: Loco_Run
+  trans_sit_to_stand_to_run: Trans_Sitting_to_Stand_plus_Run
+  trans_lying_to_stand_to_run: Trans_Lying_to_Stand_plus_Run
+  trans_sleep_to_lying_to_stand_to_run: Trans_Sleeping_to_Lying_to_Stand_plus_Run
+  run_L: Loco_Run_L
+  run_R: Loco_Run_R
+  aggressive_attack_bite_R_long: Agressive_01_Attack_BiteR_Long
+  aggressive_attack_bite_L_long: 'Agressive_01_Attack_BiteL_Long '
+  aggressive_attack_aggressive_bite_R_long: 'Agressive_01_Attack_Agressive_BiteL_Long '
+  list_standing: []
+  list_sitting: []
+  list_lying: []
+  list_walking: []
+  list_running: []
+  list_sleeping: []
+  list_to_aggressive: []
