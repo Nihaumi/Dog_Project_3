@@ -98,6 +98,8 @@ public class Animations : MonoBehaviour
     public List<string> list_walking = new List<string>();
 
     public List<string> list_sleeping = new List<string>();
+
+    public List<string> list_to_aggressive = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
@@ -140,6 +142,10 @@ public class Animations : MonoBehaviour
         list_walking.Add(trot);
         list_walking.Add(seek_L);
         list_walking.Add(seek_R);
+
+        list_to_aggressive.Add(aggressive_attack_aggressive_bite_R_long);
+        list_to_aggressive.Add(aggressive_attack_bite_L_long);
+        list_to_aggressive.Add(aggressive_attack_bite_R_long);
     }
 
 
