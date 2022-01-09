@@ -5,7 +5,6 @@ using UnityEngine;
 public class Animations : MonoBehaviour
 {
     //animations grouped as they are in the animator 
-
     //neutral/friendly
     //standing
     public   string stand_01 = "Stand_01";
@@ -88,11 +87,61 @@ public class Animations : MonoBehaviour
     public   string aggressive_attack_bite_L_long = "Agressive_01_Attack_BiteL_Long ";
     public   string aggressive_attack_aggressive_bite_R_long = "Agressive_01_Attack_Agressive_BiteL_Long ";
 
+
+    //animation lists - to pick a random animation
+    public List<string> list_standing = new List<string>();
+
+    public List<string> list_sitting = new List<string>();
+
+    public List<string> list_lying = new List<string>();
+
+    public List<string> list_walking = new List<string>();
+
+    public List<string> list_sleeping = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        //fill lists
+        list_standing.Add(trans_stand_to_lying_00);
+        list_standing.Add(trans_stand_to_sit_00);
+        list_standing.Add(walk);
+        list_standing.Add(trot);
+        list_standing.Add(walk_slow);
+        list_standing.Add(run);
+        list_standing.Add(seek);
+        list_standing.Add(turn_left_seek);
+        list_standing.Add(turn_right_seek);
+
+        list_sitting.Add(trans_sit_to_stand_to_walk_slow);
+        list_sitting.Add(trans_sit_to_stand_to_walk);
+        list_sitting.Add(trans_sit_to_stand_to_seek);
+        list_sitting.Add(trans_sit_to_stand_to_trot);
+        list_sitting.Add(trans_sit_to_stand_to_run);
+
+        list_lying.Add(trans_lying_to_stand_to_run);
+        list_lying.Add(trans_lying_to_stand_to_seek);
+        list_lying.Add(trans_lying_to_stand_to_trot);
+        list_lying.Add(trans_lying_to_stand_to_walk);
+        list_lying.Add(trans_lying_to_stand_to_walk_slow);
+        list_lying.Add(trans_lying_to_sleep);
+
+        list_sleeping.Add(trans_sleep_to_lying);
+        list_sleeping.Add(trans_sleeping_to_lying_to_stand_01);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_run);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_seek);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_trot);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk_slow);
+
+        list_walking.Add(run);
+        list_walking.Add(seek);
+        list_walking.Add(walk);
+        list_walking.Add(walk_slow);
+        list_walking.Add(trot);
+        list_walking.Add(seek_L);
+        list_walking.Add(seek_R);
     }
+
 
     // Update is called once per frame
     void Update()

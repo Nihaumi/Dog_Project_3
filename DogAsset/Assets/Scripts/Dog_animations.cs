@@ -15,16 +15,11 @@ public class Dog_animations : MonoBehaviour
         sitting,
         standing,
         walking,
-        lying
+        lying,
+        sleeping
     };
 
     Animation_state dog_state = Animation_state.standing;
-
-    //animation lists - to pick a random animation
-    List<string> dog_animation_list = new List<string>()
-    {
-    };
-    
 
     //other script
     GameObject dog;
@@ -40,7 +35,8 @@ public class Dog_animations : MonoBehaviour
         anim = dog.GetComponent<Animations>();
 
         anim_controll.current_state = anim.stand_01;
-    }
+
+      
 
     // Update is called once per frame
     void Update()
@@ -50,22 +46,22 @@ public class Dog_animations : MonoBehaviour
             switch (dog_state)
             {
                 case Animation_state.standing:
-                    dog_animation_list.Add(anim.trans_stand_to_lying_00);
-                    dog_animation_list.Add(anim.trans_stand_to_sit_00);
-                    dog_animation_list.Add(anim.walk);
-                    dog_animation_list.Add(anim.trot);
-                    dog_animation_list.Add(anim.walk_slow);
-                    dog_animation_list.Add(anim.run);
-                    dog_animation_list.Add(anim.seek);
-                    dog_animation_list.Add(anim.turn_left_seek);
-                    dog_animation_list.Add(anim.turn_right_seek);
-                    Debug.Log(dog_animation_list.Count);
+
+                    Debug.Log(anim.list_sitting.Count);
                     break;
                 case Animation_state.sitting:
+               
+                    Debug.Log(anim.list_sitting.Count);
                     break;
                 case Animation_state.lying:
+              
+                    Debug.Log(anim.list_lying.Count);
+                    break;
+                case Animation_state.sleeping:
+                    
                     break;
                 case Animation_state.walking:
+                    
                     break;
                 default:
                     return;
@@ -74,11 +70,12 @@ public class Dog_animations : MonoBehaviour
 
             }
         }
- 
+
         //Sit
         if (Input.GetKeyDown(KeyCode.Space))
-        {   
-            switch(dog_state){
+        {
+            switch (dog_state)
+            {
                 case Animation_state.standing:
                     anim_controll.ChangeAnimationState(anim.trans_stand_to_sit_00);
                     Debug.Log("stand to sit");
@@ -90,7 +87,7 @@ public class Dog_animations : MonoBehaviour
                 default:
                     return;
             }
-            dog_state = Animation_state.sitting;    
+            dog_state = Animation_state.sitting;
         }
 
         //Lay Down
@@ -109,7 +106,7 @@ public class Dog_animations : MonoBehaviour
                 default:
                     return; //leaves upfate function
             }
-            dog_state = Animation_state.lying;         
+            dog_state = Animation_state.lying;
         }
 
         //Walk
@@ -135,7 +132,7 @@ public class Dog_animations : MonoBehaviour
             dog_state = Animation_state.walking;
 
 
-           
+
         }
     }
 
