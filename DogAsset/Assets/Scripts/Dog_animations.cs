@@ -4,19 +4,6 @@ using UnityEngine;
 
 public class Dog_animations : MonoBehaviour
 {
-    //animation_states -- accesses the topmost layer of the animator
-    const string dog_stand0 = "Stand_00_Copy";
-    const string dog_stand1 = "Stand_01";
-    const string dog_lying0 = "Lying_00";
-    const string dog_walk_slow = "Loco_WalkSlow_Copy";
-    const string dog_sitting = "Sitting_00";
-    const string dog_trans_stand_to_lying = "Trans_Stand_to_Lying_0";
-    const string dog_trans_lying_to_stand = "Trans_Lying_to_Stand";
-    const string dog_trans_sit_to_stand = "Trans_Sitting_to_Stand";
-    const string dog_trans_stand_to_sit = "Trans_Stand_to_Sitting_0";
-    const string dog_trans_sit_to_walk = "Trans_Sitting_to_Stand_plus_walk";
-    const string dog_trans_lying_to_walk = "Trans_Lying_to_Stand_plus_walk";
-
     // bool states --> enum
     bool is_sitting = false;
     bool is_standing = true;
@@ -36,21 +23,13 @@ public class Dog_animations : MonoBehaviour
     //animation lists - to pick a random animation
     List<string> dog_animation_list = new List<string>()
     {
-        dog_lying0,
-        dog_sitting,
-        dog_stand0,
-        dog_stand1,
-        dog_trans_lying_to_stand,
-        dog_trans_sit_to_stand,
-        dog_trans_stand_to_lying,
-        dog_trans_stand_to_sit,
-        dog_walk_slow,
     };
     
 
     //other script
     GameObject dog;
     Animation_Controll anim_controll;
+    Animations anim;
 
     // Start is called before the first frame update
     void Start()
@@ -58,22 +37,55 @@ public class Dog_animations : MonoBehaviour
         //access anim controll scipt
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
+        anim = dog.GetComponent<Animations>();
 
-        anim_controll.current_state = dog_stand0;
+        anim_controll.current_state = anim.stand_01;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            switch (dog_state)
+            {
+                case Animation_state.standing:
+                    dog_animation_list.Add(anim.trans_stand_to_lying_00);
+                    dog_animation_list.Add(anim.trans_stand_to_sit_00);
+                    dog_animation_list.Add(anim.walk);
+                    dog_animation_list.Add(anim.trot);
+                    dog_animation_list.Add(anim.walk_slow);
+                    dog_animation_list.Add(anim.run);
+                    dog_animation_list.Add(anim.seek);
+                    dog_animation_list.Add(anim.turn_left_seek);
+                    dog_animation_list.Add(anim.turn_right_seek);
+                    Debug.Log(dog_animation_list.Count);
+                    break;
+                case Animation_state.sitting:
+                    break;
+                case Animation_state.lying:
+                    break;
+                case Animation_state.walking:
+                    break;
+                default:
+                    return;
+
+
+
+            }
+        }
+ 
         //Sit
         if (Input.GetKeyDown(KeyCode.Space))
         {   
             switch(dog_state){
                 case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(dog_trans_stand_to_sit);
+                    anim_controll.ChangeAnimationState(anim.trans_stand_to_sit_00);
+                    Debug.Log("stand to sit");
                     break;
                 case Animation_state.walking:
-                    anim_controll.ChangeAnimationState(dog_trans_stand_to_sit);
+                    anim_controll.ChangeAnimationState(anim.trans_stand_to_sit_00);
+                    Debug.Log("walk to sit");
                     break;
                 default:
                     return;
@@ -87,10 +99,12 @@ public class Dog_animations : MonoBehaviour
             switch (dog_state)
             {
                 case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(dog_trans_stand_to_lying);
+                    anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
+                    Debug.Log("lying to stand");
                     break;
                 case Animation_state.walking:
-                    anim_controll.ChangeAnimationState(dog_trans_stand_to_lying);
+                    anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
+                    Debug.Log("lying to walk");
                     break;
                 default:
                     return; //leaves upfate function
@@ -104,13 +118,16 @@ public class Dog_animations : MonoBehaviour
             switch (dog_state)
             {
                 case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(dog_walk_slow);
+                    anim_controll.ChangeAnimationState(anim.trans_lying_to_stand_to_walk);
+                    Debug.Log("stand to walk");
                     break;
                 case Animation_state.sitting:
-                    anim_controll.ChangeAnimationState(dog_trans_sit_to_walk);
+                    anim_controll.ChangeAnimationState(anim.trans_sit_to_stand_to_walk);
+                    Debug.Log("sit to walk");
                     break;
                 case Animation_state.lying:
-                    anim_controll.ChangeAnimationState(dog_trans_lying_to_walk);
+                    anim_controll.ChangeAnimationState(anim.trans_lying_to_stand_to_walk);
+                    Debug.Log("lying to walk");
                     break;
                 default:
                     return;
