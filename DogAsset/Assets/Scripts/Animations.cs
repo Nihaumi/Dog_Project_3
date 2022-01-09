@@ -122,17 +122,18 @@ public class Animations : MonoBehaviour
         //list_sitting.Add(trans_sit_to_stand_to_trot);
         //list_sitting.Add(trans_sit_to_stand_to_run);
 
+        list_running.Add(stand_02);
         list_running.Add(trans_lying_to_stand_to_seek);
         list_running.Add(trans_lying_to_stand_to_trot);
         list_running.Add(trans_lying_to_stand_to_walk);
         list_running.Add(trans_lying_to_stand_to_walk_slow);
 
+        list_lying.Add(trans_lying_to_sleep);
         //list_lying.Add(trans_lying_to_stand_to_run);
         list_lying.Add(trans_lying_to_stand_to_seek);
         //list_lying.Add(trans_lying_to_stand_to_trot);
         list_lying.Add(trans_lying_to_stand_to_walk);
         list_lying.Add(trans_lying_to_stand_to_walk_slow);
-        list_lying.Add(trans_lying_to_sleep);
 
         list_sleeping.Add(trans_sleep_to_lying);
         list_sleeping.Add(trans_sleeping_to_lying_to_stand_01);
@@ -142,6 +143,7 @@ public class Animations : MonoBehaviour
         list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk);
         list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk_slow);
 
+        list_walking.Add(stand_02);
         list_walking.Add(run);
         list_walking.Add(seek);
         list_walking.Add(walk);

@@ -60,7 +60,6 @@ public class Dog_animations : MonoBehaviour
         if (change_anim_timer <= 0)
         {
             change_anim_timer = ChooseRandomTimer();
-            Debug.Log("new timer " + change_anim_timer);
             SetLongTimer();
         }
     }
@@ -109,8 +108,6 @@ public class Dog_animations : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log("old state " + dog_state);
-        Debug.Log("rnd index " + random_index);
         return random_index;
     }
 
@@ -133,45 +130,80 @@ public class Dog_animations : MonoBehaviour
                     {
                         dog_state = Animation_state.sitting;
                     }
-                    /*if (random_index == 2)
-                    {
-                        dog_state = Animation_state.running;
-                        SetShortTimer();
-                    }*/
                     if (random_index > 1)
                     {
                         dog_state = Animation_state.walking;                        
                     }                    
-                    Debug.Log("entering");
-                    Debug.Log("new state " + dog_state);
                     break;
                 case Animation_state.sitting:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);                    
+                    dog_state = Animation_state.walking;
                     break;
                 case Animation_state.lying:
                     anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    if (random_index == 0)
+                    {
+                        dog_state = Animation_state.sleeping;
+                    }
+                    else
+                    {
+                        dog_state = Animation_state.walking;
+                    }
                     break;
                 case Animation_state.sleeping:
                     anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    if (random_index == 0)
+                    {
+                        dog_state = Animation_state.lying;
+                    }
+                    if (random_index == 1)
+                    {
+                        dog_state = Animation_state.standing;
+                    }
+                    else
+                    {
+                        dog_state = Animation_state.walking;
+                    }
                     break;
                 case Animation_state.walking:
                     anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    if (random_index == 0)
+                    {
+                        dog_state = Animation_state.standing;
+                    }
+                    if (random_index == 1)
+                    {
+                        dog_state = Animation_state.running;
+                    }
+                    else
+                    {
+                        dog_state = Animation_state.walking;
+                    }
                     break;
                 case Animation_state.running:
                     anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    if (random_index == 0)
+                    {
+                        dog_state = Animation_state.standing;
+                    }                    
+                    else
+                    {
+                        dog_state = Animation_state.walking;
+                    }
                     break;
                 default:
                     return;
             }
             ResetTimerFunction();
+            Debug.Log("new state " + dog_state);
         }
     }
 
-    IEnumerator DogCommandWithWaitCoroutine(string new_state)
+    /*IEnumerator DogCommandWithWaitCoroutine(string new_state)
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         yield return new WaitForSeconds(2);
         anim_controll.ChangeAnimationState(new_state);
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-    }
+    }*/
 }
