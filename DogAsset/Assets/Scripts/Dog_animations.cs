@@ -15,6 +15,7 @@ public class Dog_animations : MonoBehaviour
         sitting,
         standing,
         walking,
+        running,
         lying,
         sleeping,
         aggressiv
@@ -26,6 +27,8 @@ public class Dog_animations : MonoBehaviour
     int new_timer;
     int min_timer;
     int max_timer;
+   
+
 
     Animation_state dog_state = Animation_state.standing;
 
@@ -49,7 +52,6 @@ public class Dog_animations : MonoBehaviour
         change_anim_timer = starting_timer;
         min_timer = 5;
         max_timer = 10;
-
     }
 
     //Timer
@@ -58,14 +60,58 @@ public class Dog_animations : MonoBehaviour
         if (change_anim_timer <= 0)
         {
             change_anim_timer = ChooseRandomTimer();
-            Debug.Log(change_anim_timer);
+            Debug.Log("new timer " + change_anim_timer);
+            SetLongTimer();
         }
     }
-
     int ChooseRandomTimer()
     {
-        new_timer = Random.Range(min_timer,max_timer);
+        new_timer = Random.Range(min_timer, max_timer);
         return new_timer;
+    }
+
+    void SetShortTimer()
+    {
+        min_timer = 2;
+        max_timer = 3;
+    }
+
+    void SetLongTimer()
+    {
+        min_timer = 5;
+        max_timer = 10;
+    }
+
+    //choosing random index of animation lists
+    int random_index = 0;
+    int ChooseRandomIndex()
+    {
+        switch (dog_state)
+        {
+            case Animation_state.standing:
+                random_index = Random.Range(0, anim.list_standing.Count - 1);
+                break;
+            case Animation_state.sitting:
+                random_index = Random.Range(0, anim.list_sitting.Count - 1);
+                break;
+            case Animation_state.sleeping:
+                random_index = Random.Range(0, anim.list_sleeping.Count - 1);
+                break;
+            case Animation_state.walking:
+                random_index = Random.Range(0, anim.list_walking.Count - 1);
+                break;
+            case Animation_state.running:
+                random_index = Random.Range(0, anim.list_running.Count - 1);
+                break;
+            case Animation_state.lying:
+                random_index = Random.Range(0, anim.list_lying.Count - 1);
+                break;
+            default:
+                break;
+        }
+        Debug.Log("old state " + dog_state);
+        Debug.Log("rnd index " + random_index);
+        return random_index;
     }
 
     // Update is called once per frame
@@ -78,88 +124,46 @@ public class Dog_animations : MonoBehaviour
             switch (dog_state)
             {
                 case Animation_state.standing:
-
-                    Debug.Log(anim.list_standing.Count);
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    if(random_index == 0)
+                    {
+                        dog_state = Animation_state.lying;
+                    }
+                    if (random_index == 1)
+                    {
+                        dog_state = Animation_state.sitting;
+                    }
+                    /*if (random_index == 2)
+                    {
+                        dog_state = Animation_state.running;
+                        SetShortTimer();
+                    }*/
+                    if (random_index > 1)
+                    {
+                        dog_state = Animation_state.walking;                        
+                    }                    
+                    Debug.Log("entering");
+                    Debug.Log("new state " + dog_state);
                     break;
                 case Animation_state.sitting:
-
-                    Debug.Log(anim.list_sitting.Count);
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
                     break;
                 case Animation_state.lying:
-
-                    Debug.Log(anim.list_lying.Count);
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
                     break;
                 case Animation_state.sleeping:
-                    Debug.Log(anim.list_sleeping.Count);
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
                     break;
                 case Animation_state.walking:
-                    Debug.Log(anim.list_walking.Count);
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    break;
+                case Animation_state.running:
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
                     break;
                 default:
                     return;
             }
             ResetTimerFunction();
-        }
-
-        //Sit
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            switch (dog_state)
-            {
-                case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(anim.trans_stand_to_sit_00);
-                    Debug.Log("stand to sit");
-                    break;
-                case Animation_state.walking:
-                    anim_controll.ChangeAnimationState(anim.trans_stand_to_sit_00);
-                    Debug.Log("walk to sit");
-                    break;
-                default:
-                    return;
-            }
-            dog_state = Animation_state.sitting;
-        }
-
-        //Lay Down
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            switch (dog_state)
-            {
-                case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
-                    Debug.Log("lying to stand");
-                    break;
-                case Animation_state.walking:
-                    anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
-                    Debug.Log("lying to walk");
-                    break;
-                default:
-                    return; //leaves upfate function
-            }
-            dog_state = Animation_state.lying;
-        }
-
-        //Walk
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            switch (dog_state)
-            {
-                case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(anim.trans_lying_to_stand_to_walk);
-                    Debug.Log("stand to walk");
-                    break;
-                case Animation_state.sitting:
-                    anim_controll.ChangeAnimationState(anim.trans_sit_to_stand_to_walk);
-                    Debug.Log("sit to walk");
-                    break;
-                case Animation_state.lying:
-                    anim_controll.ChangeAnimationState(anim.trans_lying_to_stand_to_walk);
-                    Debug.Log("lying to walk");
-                    break;
-                default:
-                    return;
-            }
-            dog_state = Animation_state.walking;
         }
     }
 
