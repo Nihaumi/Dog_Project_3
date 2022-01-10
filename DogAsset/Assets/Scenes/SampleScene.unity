@@ -632,6 +632,18 @@ MonoBehaviour:
   current_state: 
   new_state: 
   animation_duration: 0
+--- !u!114 &2144820948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144820945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb07481b5e061ed4db66e59925b3bd8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &2144820949 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 4676997951879888445, guid: e66076cfc0b8bcb43a610449e37b2bcb,
@@ -732,3 +744,27 @@ MonoBehaviour:
   list_running: []
   list_sleeping: []
   list_to_aggressive: []
+--- !u!114 &2144820952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144820945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0747f01e6289741b81197d0166033e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2144820953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144820945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66d6d647b73c26c47bbd949bf1b636f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
