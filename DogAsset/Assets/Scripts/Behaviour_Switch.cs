@@ -13,6 +13,10 @@ public class Behaviour_Switch : MonoBehaviour
     //get Player
     GameObject player;
 
+    //distance to trigger behaviour
+    float dist;
+    float friendly_distance = 3.5f; 
+
 
 
     // Start is called before the first frame update
@@ -33,13 +37,23 @@ public class Behaviour_Switch : MonoBehaviour
 
     }
 
+    float GetDistanceToObject(GameObject obj)
+    {
+        dist = Vector3.Distance(obj.transform.position, transform.position);
+        return dist;
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (player)
+        GetDistanceToObject(player);
+        if(dist <= friendly_distance)
         {
-            float dist = Vector3.Distance(player.transform.position, transform.position);
-            Debug.Log("Distance is. " + dist);
+            Debug.Log("friendly");
+        }
+        if(dist > friendly_distance)
+        {
+            Debug.Log("neutral");
         }
     }
 }
