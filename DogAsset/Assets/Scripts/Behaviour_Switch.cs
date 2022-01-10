@@ -20,13 +20,12 @@ public class Behaviour_Switch : MonoBehaviour
     //behaviour states
     enum Behaviour_state
     {
+        initial,
         friendly,
         neutral,
-        agressive
+        agressive,
     }
     Behaviour_state dog_behaviour;
-    Behaviour_state current_behaviour;
-    Behaviour_state new_behaviour;
 
 
     // Start is called before the first frame update
@@ -42,17 +41,10 @@ public class Behaviour_Switch : MonoBehaviour
         agressive_script.enabled = false;
         neutral_script.enabled = false;
 
-        //get player
         player = GameObject.Find("Player");
 
-        if (dist <= friendly_distance)
-        {
-            current_behaviour = Behaviour_state.friendly;
-        }
-        else current_behaviour = Behaviour_state.neutral;
-
-        dog_behaviour = current_behaviour;
-
+        // is updated immediately on first call to Up
+        dog_behaviour = Behaviour_state.initial;
     }
 
     float GetDistanceToObject(GameObject obj)
@@ -69,20 +61,24 @@ public class Behaviour_Switch : MonoBehaviour
         GetDistanceToObject(player);
         if(dist <= friendly_distance)
         {
-            new_behaviour = Behaviour_state.friendly;
-            SwitchScripts();
-            Debug.Log("friendly");
+            SetBehaviour(Behaviour_state.friendly);
         }
         if(dist > friendly_distance)
         {
-            new_behaviour = Behaviour_state.neutral;
-            SwitchScripts();
-            Debug.Log("neutral");
+            SetBehaviour(Behaviour_state.neutral);
         }
     }
 
-    void SwitchScripts()
+    void SetBehaviour(Behaviour_state behaviour)
     {
+        if (behaviour == dog_behaviour)
+        {
+            return;
+        }
+
+        Debug.Log("Behaviour set to: " + behaviour);
+        dog_behaviour = behaviour;
+
         friendly_script.enabled = false;
         agressive_script.enabled = false;
         neutral_script.enabled = false;
