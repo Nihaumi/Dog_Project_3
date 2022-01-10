@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class Dog_animations : MonoBehaviour
 {
-    // bool states --> enum
-    bool is_sitting = false;
-    bool is_standing = true;
-    bool is_walking = false;
-    bool is_lying = false;
-
     enum Animation_state //is a class
     {
         sitting,
@@ -20,6 +14,7 @@ public class Dog_animations : MonoBehaviour
         sleeping,
         aggressiv
     };
+    Animation_state dog_state;
 
     //timer
     float change_anim_timer;
@@ -27,10 +22,6 @@ public class Dog_animations : MonoBehaviour
     int new_timer;
     int min_timer;
     int max_timer;
-   
-
-
-    Animation_state dog_state = Animation_state.standing;
 
     //other script
     GameObject dog;
@@ -47,6 +38,7 @@ public class Dog_animations : MonoBehaviour
 
         //state
         anim_controll.current_state = anim.stand_01;
+        dog_state = Animation_state.standing;
 
         //timer
         change_anim_timer = starting_timer;
@@ -122,7 +114,7 @@ public class Dog_animations : MonoBehaviour
             {
                 case Animation_state.standing:
                     anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
-                    if(random_index == 0)
+                    if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
                     }
@@ -132,11 +124,11 @@ public class Dog_animations : MonoBehaviour
                     }
                     if (random_index > 1)
                     {
-                        dog_state = Animation_state.walking;                        
-                    }                    
+                        dog_state = Animation_state.walking;
+                    }
                     break;
                 case Animation_state.sitting:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);                    
+                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
                     dog_state = Animation_state.walking;
                     break;
                 case Animation_state.lying:
@@ -185,7 +177,7 @@ public class Dog_animations : MonoBehaviour
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
-                    }                    
+                    }
                     else
                     {
                         dog_state = Animation_state.walking;
