@@ -30,10 +30,10 @@ public class Animations : MonoBehaviour
     public  string trans_walk_to_stand_to_lying_00 = "Trans_Walk_to_Stand_to_Lying_00";
     public  string trans_sleep_to_lying = "Trans_Sleeping_to_Lying_00";
     public  string lying_01 = "Lying_01";
-    public  string trans_stand_to_lying_01 = "Trans_Stand_to_Lying_00";
+    public  string trans_stand_to_lying_01 = "Trans_Stand_to_Lying_01";
     public  string trans_walk_to_stand_to_lying_01 = "Trans_Walk_to_Stand_to_Lying_00";
     public  string lying_02 = "Lying_02";
-    public  string trans_stand_to_lying_02 = "Trans_Stand_to_Lying_00";
+    public  string trans_stand_to_lying_02 = "Trans_Stand_to_Lying_02";
     public  string trans_walk_to_stand_to_lying_02 = "Trans_Walk_to_Stand_to_Lying_00";
     //sleeping
     public string sleep = "Sleeping_01";
@@ -48,7 +48,7 @@ public class Animations : MonoBehaviour
     public  string walk_slow_L = "Loco_WalkSlow_L";
     public  string walk_slow_R = "Loco_WalkSlow_R";
     //seek walk
-    public  string seek = "Loco_WalkSeek";
+    public  string seek = "Seek";
     public  string trans_sit_to_stand_to_seek = "Trans_Sitting_to_Stand_plus_seek";
     public  string trans_lying_to_stand_to_seek = "Trans_Lying_to_Stand_plus_seek";
     public  string trans_sleep_to_lying_to_stand_to_seek = "Trans_Sleeping_to_Lying_to_Stand_plus_seek";
@@ -143,14 +143,14 @@ public class Animations : MonoBehaviour
         list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk);
         list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk_slow);
 
-        list_walking.Add(stand_02);
-        list_walking.Add(run);
-        list_walking.Add(seek);
-        list_walking.Add(walk);
-        list_walking.Add(walk_slow);
-        list_walking.Add(trot);
-        list_walking.Add(seek_L);
-        list_walking.Add(seek_R);
+        list_walking.Add(stand_02);//0
+        list_walking.Add(run);//1
+        list_walking.Add(seek);//2
+        list_walking.Add(walk);//3
+        list_walking.Add(walk_slow);//4
+        list_walking.Add(trot);//5
+        list_walking.Add(seek_L);//6
+        list_walking.Add(seek_R);//7
 
         list_to_aggressive.Add(aggressive_attack_aggressive_bite_R_long);
         list_to_aggressive.Add(aggressive_attack_bite_L_long);

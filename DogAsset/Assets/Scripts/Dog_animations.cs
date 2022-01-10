@@ -75,32 +75,57 @@ public class Dog_animations : MonoBehaviour
 
     //choosing random index of animation lists
     int random_index = 0;
+    int list_length = 0;
     int ChooseRandomIndex()
     {
         switch (dog_state)
         {
             case Animation_state.standing:
                 random_index = Random.Range(0, anim.list_standing.Count - 1);
+                DisplayList(anim.list_standing);
+                Debug.Log("von standing  list");
                 break;
             case Animation_state.sitting:
                 random_index = Random.Range(0, anim.list_sitting.Count - 1);
+                DisplayList(anim.list_sitting);
+                Debug.Log("von SITTING  list");
                 break;
             case Animation_state.sleeping:
                 random_index = Random.Range(0, anim.list_sleeping.Count - 1);
+                DisplayList(anim.list_sleeping);
+                Debug.Log("von sLEEPING  list");
                 break;
             case Animation_state.walking:
                 random_index = Random.Range(0, anim.list_walking.Count - 1);
+                DisplayList(anim.list_walking);
+                Debug.Log("von WALKING  list");
                 break;
             case Animation_state.running:
                 random_index = Random.Range(0, anim.list_running.Count - 1);
+                DisplayList(anim.list_running);
+                Debug.Log("von running  list");
                 break;
             case Animation_state.lying:
                 random_index = Random.Range(0, anim.list_lying.Count - 1);
+                DisplayList(anim.list_lying);
+                Debug.Log("von lying  list");
                 break;
             default:
                 break;
         }
+        Debug.Log("index " + random_index);
         return random_index;
+    }
+
+    void DisplayList(List<string> list)
+    {
+        list_length = list.Count;
+        int i = 0;
+        while(i < list_length)
+        {
+           // Debug.Log("list item number: "+ i + "is" + list[i]);
+            i++;
+        }
     }
 
     // Update is called once per frame
@@ -110,10 +135,12 @@ public class Dog_animations : MonoBehaviour
 
         if (change_anim_timer <= 0)
         {
+            ChooseRandomIndex();
             switch (dog_state)
             {
                 case Animation_state.standing:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_standing[random_index]);
+                    Debug.Log("standinglist item at rndindex: " + random_index + "is:" + anim.list_standing[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
@@ -128,11 +155,13 @@ public class Dog_animations : MonoBehaviour
                     }
                     break;
                 case Animation_state.sitting:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_sitting[random_index]);
+                    Debug.Log("sitting list item at rndindex: " + random_index + "is:" + anim.list_sitting[random_index]);
                     dog_state = Animation_state.walking;
                     break;
                 case Animation_state.lying:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_lying[random_index]);
+                    Debug.Log("lying list item at rndindex: " + random_index + "is:" + anim.list_lying[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.sleeping;
@@ -143,7 +172,8 @@ public class Dog_animations : MonoBehaviour
                     }
                     break;
                 case Animation_state.sleeping:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_sleeping[random_index]);
+                    Debug.Log("sleeping list item at rndindex: " + random_index + "is:" + anim.list_sleeping[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
@@ -158,7 +188,8 @@ public class Dog_animations : MonoBehaviour
                     }
                     break;
                 case Animation_state.walking:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_walking[random_index]);
+                    Debug.Log("walking list item at rndindex: "+ random_index + "is:" + anim.list_walking[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
@@ -173,7 +204,8 @@ public class Dog_animations : MonoBehaviour
                     }
                     break;
                 case Animation_state.running:
-                    anim_controll.ChangeAnimationState(anim.list_standing[ChooseRandomIndex()]);
+                    anim_controll.ChangeAnimationState(anim.list_running[random_index]);
+                    Debug.Log("running list item at rndindex: " + random_index + "is:" + anim.list_running[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
