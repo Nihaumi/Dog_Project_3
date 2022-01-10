@@ -31,6 +31,8 @@ public class Neutral_Behaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("started now");
+
         //access anim controll scipt
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
@@ -128,6 +130,11 @@ public class Neutral_Behaviour : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        Debug.Log("is enabled now");
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -140,7 +147,7 @@ public class Neutral_Behaviour : MonoBehaviour
             {
                 case Animation_state.standing:
                     anim_controll.ChangeAnimationState(anim.list_standing[random_index]);
-                    //Debug.Log("standinglist item at rndindex: " + random_index + "is:" + anim.list_standing[random_index]);
+                    Debug.Log("standinglist item at rndindex: " + random_index + "is:" + anim.list_standing[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
