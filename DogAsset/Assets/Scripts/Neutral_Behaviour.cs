@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Neutral_Behaviour : MonoBehaviour
 {
-    enum Animation_state //is a class
+    //ENUM WAS HERE
+    public enum Animation_state //is a class
     {
         sitting,
         standing,
@@ -13,22 +14,29 @@ public class Neutral_Behaviour : MonoBehaviour
         lying,
         sleeping,
         aggressiv,
-        colliding
+        turning
     };
-    Animation_state dog_state;
+
+    public Animation_state dog_state;
 
     //timer
-    float change_anim_timer;
+    public float change_anim_timer;
     float starting_timer = 5f;
     int new_timer;
     int min_timer;
     int max_timer;
+    int turning_timer = 1;
 
     //other script
     GameObject dog;
     Animation_Controll anim_controll;
     Animations anim;
     Basic_Behaviour basic_behav;
+
+    private void Awake()
+    {
+        change_anim_timer = starting_timer;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +52,10 @@ public class Neutral_Behaviour : MonoBehaviour
         dog_state = Animation_state.standing;
 
         //timer
-        change_anim_timer = starting_timer;
+        if(dog_state == Animation_state.turning)
+        {
+            change_anim_timer = turning_timer;
+        }
         min_timer = 5;
         max_timer = 10;
     }
@@ -83,57 +94,52 @@ public class Neutral_Behaviour : MonoBehaviour
     {
         switch (dog_state)
         {
+            case Animation_state.turning:
+                break;
             case Animation_state.standing:
-                GetRandomIndexFromList(anim.list_standing);                
+                GetRandomIndexFromList(anim.list_standing);
                 DisplayList(anim.list_standing);
-                Debug.Log("von standing  list");
                 break;
             case Animation_state.sitting:
                 GetRandomIndexFromList(anim.list_sitting); ;
                 DisplayList(anim.list_sitting);
-                Debug.Log("von SITTING  list");
                 break;
             case Animation_state.sleeping:
                 GetRandomIndexFromList(anim.list_sleeping);
                 DisplayList(anim.list_sleeping);
-                Debug.Log("von sLEEPING  list");
                 break;
             case Animation_state.walking:
                 GetRandomIndexFromList(anim.list_walking);
                 DisplayList(anim.list_walking);
-                Debug.Log("von WALKING  list");
                 break;
             case Animation_state.running:
                 GetRandomIndexFromList(anim.list_running);
                 DisplayList(anim.list_running);
-                Debug.Log("von running  list");
                 break;
             case Animation_state.lying:
                 GetRandomIndexFromList(anim.list_lying);
                 DisplayList(anim.list_lying);
-                Debug.Log("von lying  list");
                 break;
-                
+
             default:
                 break;
         }
-        Debug.Log("index " + random_index);
+        //Debug.Log("index " + random_index);
 
         return random_index;
     }
     public void GetRandomIndexFromList(List<string> list)
     {
         random_index = Random.Range(0, list.Count - 1);
-        Debug.Log("index von function ist " + random_index);
     }
 
     void DisplayList(List<string> list)
     {
         list_length = list.Count;
         int i = 0;
-        while(i < list_length)
+        while (i < list_length)
         {
-           //Debug.Log("list item number: "+ i + "is" + list[i]);
+            //Debug.Log("list item number: "+ i + "is" + list[i]);
             i++;
         }
     }
@@ -148,6 +154,9 @@ public class Neutral_Behaviour : MonoBehaviour
             ChooseRandomIndex();
             switch (dog_state)
             {
+                case Animation_state.turning:
+                    Debug.Log("turning state reached");
+                    break;
                 case Animation_state.standing:
                     anim_controll.ChangeAnimationState(anim.list_standing[random_index]);
                     Debug.Log("standinglist item at rndindex: " + random_index + "is:" + anim.list_standing[random_index]);
@@ -199,7 +208,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.walking:
                     anim_controll.ChangeAnimationState(anim.list_walking[random_index]);
-                    Debug.Log("walking list item at rndindex: "+ random_index + "is:" + anim.list_walking[random_index]);
+                    Debug.Log("walking list item at rndindex: " + random_index + "is:" + anim.list_walking[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;

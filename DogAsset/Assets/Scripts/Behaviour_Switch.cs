@@ -9,23 +9,27 @@ public class Behaviour_Switch : MonoBehaviour
     Friendly_Behaviour friendly_script;
     Neutral_Behaviour neutral_script;
     Aggressive_Behaviour aggressive_script;
+    Basic_Behaviour basic_behav_script;
 
     //get Player
     GameObject player;
 
     //distance to trigger behaviour
     float dist;
-    float friendly_distance = 3.5f; 
+    float friendly_distance = 3.5f;
+
+    //script disabling
+    bool all_scripts_off;
 
     //behaviour states
-    enum Behaviour_state
+    public enum Behaviour_state
     {
         initial,
         friendly,
         neutral,
         aggressive,
     }
-    Behaviour_state dog_behaviour;
+    public Behaviour_state dog_behaviour;
 
 
     // Start is called before the first frame update
@@ -37,10 +41,13 @@ public class Behaviour_Switch : MonoBehaviour
         neutral_script = dog.GetComponent<Neutral_Behaviour>();
         aggressive_script = dog.GetComponent<Aggressive_Behaviour>();
 
+        //scripts
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
         neutral_script.enabled = false;
+        all_scripts_off = true;
 
+        //player
         player = GameObject.Find("Player");
 
         // is updated immediately on first call to Up
@@ -75,12 +82,20 @@ public class Behaviour_Switch : MonoBehaviour
 
     void SetBehaviour(Behaviour_state behaviour)
     {
+        if (neutral_script.dog_state == Neutral_Behaviour.Animation_state.turning && all_scripts_off)
+        {
+            EnableBehaviourScripts(behaviour);
+        }
+
         if (behaviour == dog_behaviour)
         {
             return;
         }
-
-        //Debug.Log("Behaviour set to: " + behaviour);
+        EnableBehaviourScripts(behaviour);
+    }
+    void EnableBehaviourScripts(Behaviour_state behaviour)
+    {
+        Debug.Log("Behaviour set to: " + behaviour);
         dog_behaviour = behaviour;
 
         DisableScripts();
@@ -97,6 +112,7 @@ public class Behaviour_Switch : MonoBehaviour
         {
             aggressive_script.enabled = true;
         }
+        all_scripts_off = false;
     }
 
     public void DisableScripts()
@@ -104,6 +120,7 @@ public class Behaviour_Switch : MonoBehaviour
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
         neutral_script.enabled = false;
+        all_scripts_off = true;
     }
 
 }
