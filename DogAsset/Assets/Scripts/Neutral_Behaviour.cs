@@ -12,7 +12,8 @@ public class Neutral_Behaviour : MonoBehaviour
         running,
         lying,
         sleeping,
-        aggressiv
+        aggressiv,
+        colliding
     };
     Animation_state dog_state;
 
@@ -80,41 +81,49 @@ public class Neutral_Behaviour : MonoBehaviour
     {
         switch (dog_state)
         {
+            case Animation_state.colliding:
+                GetRandomIndexFromList(anim.list_turn);
+                break;
             case Animation_state.standing:
-                random_index = Random.Range(0, anim.list_standing.Count - 1);
+                GetRandomIndexFromList(anim.list_standing);                
                 DisplayList(anim.list_standing);
                 //Debug.Log("von standing  list");
                 break;
             case Animation_state.sitting:
-                random_index = Random.Range(0, anim.list_sitting.Count - 1);
+                GetRandomIndexFromList(anim.list_sitting);
                 DisplayList(anim.list_sitting);
                 //Debug.Log("von SITTING  list");
                 break;
             case Animation_state.sleeping:
-                random_index = Random.Range(0, anim.list_sleeping.Count - 1);
+                GetRandomIndexFromList(anim.list_sleeping);
                 DisplayList(anim.list_sleeping);
                 //Debug.Log("von sLEEPING  list");
                 break;
             case Animation_state.walking:
-                random_index = Random.Range(0, anim.list_walking.Count - 1);
+                GetRandomIndexFromList(anim.list_walking);
                 DisplayList(anim.list_walking);
                 //Debug.Log("von WALKING  list");
                 break;
             case Animation_state.running:
-                random_index = Random.Range(0, anim.list_running.Count - 1);
+                GetRandomIndexFromList(anim.list_running);
                 DisplayList(anim.list_running);
                 //Debug.Log("von running  list");
                 break;
             case Animation_state.lying:
-                random_index = Random.Range(0, anim.list_lying.Count - 1);
+                GetRandomIndexFromList(anim.list_lying);
                 DisplayList(anim.list_lying);
                 //Debug.Log("von lying  list");
                 break;
+                
             default:
                 break;
         }
         //Debug.Log("index " + random_index);
         return random_index;
+    }
+    void GetRandomIndexFromList(List<string> list)
+    {
+        random_index = Random.Range(0, list.Count - 1);
     }
 
     void DisplayList(List<string> list)
@@ -123,7 +132,7 @@ public class Neutral_Behaviour : MonoBehaviour
         int i = 0;
         while(i < list_length)
         {
-           // //Debug.Log("list item number: "+ i + "is" + list[i]);
+           //Debug.Log("list item number: "+ i + "is" + list[i]);
             i++;
         }
     }

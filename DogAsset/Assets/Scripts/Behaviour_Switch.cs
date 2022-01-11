@@ -76,12 +76,10 @@ public class Behaviour_Switch : MonoBehaviour
             return;
         }
 
-        Debug.Log("Behaviour set to: " + behaviour);
+        //Debug.Log("Behaviour set to: " + behaviour);
         dog_behaviour = behaviour;
 
-        friendly_script.enabled = false;
-        aggressive_script.enabled = false;
-        neutral_script.enabled = false;
+        DisableScripts();
 
         if (dog_behaviour == Behaviour_state.friendly)
         {
@@ -96,4 +94,12 @@ public class Behaviour_Switch : MonoBehaviour
             aggressive_script.enabled = true;
         }
     }
+
+    public void DisableScripts()
+    {
+        friendly_script.enabled = false;
+        aggressive_script.enabled = false;
+        neutral_script.enabled = false;
+    }
+
 }

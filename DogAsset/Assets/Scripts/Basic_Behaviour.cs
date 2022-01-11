@@ -8,6 +8,10 @@ public class Basic_Behaviour : MonoBehaviour
     GameObject dog;
     Animation_Controll anim_controll;
     Animations anim;
+    Behaviour_Switch behav_switch;
+
+    //when colliding with other object
+    bool collided;
 
     // Start is called before the first frame update
     void Start()
@@ -16,6 +20,10 @@ public class Basic_Behaviour : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
+        behav_switch = dog.GetComponent<Behaviour_Switch>();
+
+        //collision
+        collided = false;
     }
 
     // Update is called once per frame
@@ -24,17 +32,21 @@ public class Basic_Behaviour : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if(collision.gameObject.tag == "Environment")
+
+        if (other.tag == "Environment")
         {
-            Debug.Log("collision detected");
+            Debug.Log("trigger");
+            collided = true;
+            anim_controll.ChangeAnimationState(anim.stand_01);
             anim_controll.ChangeAnimationState(anim.turn_left_seek);
         }
 
-        if (collision.gameObject.name == "Ground")
-        {
-            Debug.Log("collision with player");
-        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Debug.Log("trigger exit");
     }
 }
