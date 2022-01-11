@@ -31,8 +31,6 @@ public class Neutral_Behaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("started now");
-
         //access anim controll scipt
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
@@ -128,11 +126,6 @@ public class Neutral_Behaviour : MonoBehaviour
            // //Debug.Log("list item number: "+ i + "is" + list[i]);
             i++;
         }
-    }
-
-    private void OnEnable()
-    {
-        Debug.Log("is enabled now");
     }
 
     // Update is called once per frame

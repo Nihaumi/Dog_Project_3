@@ -8,7 +8,7 @@ public class Behaviour_Switch : MonoBehaviour
     GameObject dog;
     Friendly_Behaviour friendly_script;
     Neutral_Behaviour neutral_script;
-    Aggressive_Behaviour agressive_script;
+    Aggressive_Behaviour aggressive_script;
 
     //get Player
     GameObject player;
@@ -23,7 +23,7 @@ public class Behaviour_Switch : MonoBehaviour
         initial,
         friendly,
         neutral,
-        agressive,
+        aggressive,
     }
     Behaviour_state dog_behaviour;
 
@@ -35,10 +35,10 @@ public class Behaviour_Switch : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         friendly_script = dog.GetComponent<Friendly_Behaviour>();
         neutral_script = dog.GetComponent<Neutral_Behaviour>();
-        agressive_script = dog.GetComponent<Aggressive_Behaviour>();
+        aggressive_script = dog.GetComponent<Aggressive_Behaviour>();
 
         friendly_script.enabled = false;
-        agressive_script.enabled = false;
+        aggressive_script.enabled = false;
         neutral_script.enabled = false;
 
         player = GameObject.Find("Player");
@@ -80,7 +80,7 @@ public class Behaviour_Switch : MonoBehaviour
         dog_behaviour = behaviour;
 
         friendly_script.enabled = false;
-        agressive_script.enabled = false;
+        aggressive_script.enabled = false;
         neutral_script.enabled = false;
 
         if (dog_behaviour == Behaviour_state.friendly)
@@ -91,9 +91,9 @@ public class Behaviour_Switch : MonoBehaviour
         {
             neutral_script.enabled = true;
         }
-        if (dog_behaviour == Behaviour_state.agressive)
+        if (dog_behaviour == Behaviour_state.aggressive)
         {
-            agressive_script.enabled = true;
+            aggressive_script.enabled = true;
         }
     }
 }
