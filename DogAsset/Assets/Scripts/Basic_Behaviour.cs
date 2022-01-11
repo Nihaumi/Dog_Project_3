@@ -28,7 +28,7 @@ public class Basic_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -56,13 +56,13 @@ public class Basic_Behaviour : MonoBehaviour
     }
 
     IEnumerator DogCommandWithWaitCoroutine(string new_state)
-  {
-      Debug.Log("Started Coroutine at timestamp : " + Time.time);
-      behav_switch.DisableScripts();
-      //behav_switch.enabled = false;
-      yield return new WaitForSeconds(2);
-      anim_controll.ChangeAnimationState(new_state);
-      EnableScripts();
-      Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-  }
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        behav_switch.DisableScripts();
+        //behav_switch.enabled = false;
+        yield return new WaitForSeconds(2);
+        anim_controll.ChangeAnimationState(new_state);
+        EnableScripts();
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    }
 }
