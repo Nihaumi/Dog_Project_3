@@ -28,6 +28,7 @@ public class Neutral_Behaviour : MonoBehaviour
     GameObject dog;
     Animation_Controll anim_controll;
     Animations anim;
+    Basic_Behaviour basic_behav;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class Neutral_Behaviour : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
+        basic_behav = dog.GetComponent<Basic_Behaviour>();
 
         //state
         anim_controll.current_state = anim.stand_01;
@@ -81,49 +83,48 @@ public class Neutral_Behaviour : MonoBehaviour
     {
         switch (dog_state)
         {
-            case Animation_state.colliding:
-                GetRandomIndexFromList(anim.list_turn);
-                break;
             case Animation_state.standing:
                 GetRandomIndexFromList(anim.list_standing);                
                 DisplayList(anim.list_standing);
-                //Debug.Log("von standing  list");
+                Debug.Log("von standing  list");
                 break;
             case Animation_state.sitting:
-                GetRandomIndexFromList(anim.list_sitting);
+                GetRandomIndexFromList(anim.list_sitting); ;
                 DisplayList(anim.list_sitting);
-                //Debug.Log("von SITTING  list");
+                Debug.Log("von SITTING  list");
                 break;
             case Animation_state.sleeping:
                 GetRandomIndexFromList(anim.list_sleeping);
                 DisplayList(anim.list_sleeping);
-                //Debug.Log("von sLEEPING  list");
+                Debug.Log("von sLEEPING  list");
                 break;
             case Animation_state.walking:
                 GetRandomIndexFromList(anim.list_walking);
                 DisplayList(anim.list_walking);
-                //Debug.Log("von WALKING  list");
+                Debug.Log("von WALKING  list");
                 break;
             case Animation_state.running:
                 GetRandomIndexFromList(anim.list_running);
                 DisplayList(anim.list_running);
-                //Debug.Log("von running  list");
+                Debug.Log("von running  list");
                 break;
             case Animation_state.lying:
                 GetRandomIndexFromList(anim.list_lying);
                 DisplayList(anim.list_lying);
-                //Debug.Log("von lying  list");
+                Debug.Log("von lying  list");
                 break;
                 
             default:
                 break;
         }
-        //Debug.Log("index " + random_index);
+        Debug.Log("index " + random_index);
+
         return random_index;
     }
-    void GetRandomIndexFromList(List<string> list)
+    public void GetRandomIndexFromList(List<string> list)
     {
         random_index = Random.Range(0, list.Count - 1);
+        Debug.Log("index von function ist " + random_index);
     }
 
     void DisplayList(List<string> list)
@@ -165,12 +166,12 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.sitting:
                     anim_controll.ChangeAnimationState(anim.list_sitting[random_index]);
-                    //Debug.Log("sitting list item at rndindex: " + random_index + "is:" + anim.list_sitting[random_index]);
+                    Debug.Log("sitting list item at rndindex: " + random_index + "is:" + anim.list_sitting[random_index]);
                     dog_state = Animation_state.walking;
                     break;
                 case Animation_state.lying:
                     anim_controll.ChangeAnimationState(anim.list_lying[random_index]);
-                    //Debug.Log("lying list item at rndindex: " + random_index + "is:" + anim.list_lying[random_index]);
+                    Debug.Log("lying list item at rndindex: " + random_index + "is:" + anim.list_lying[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.sleeping;
@@ -182,7 +183,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.sleeping:
                     anim_controll.ChangeAnimationState(anim.list_sleeping[random_index]);
-                    //Debug.Log("sleeping list item at rndindex: " + random_index + "is:" + anim.list_sleeping[random_index]);
+                    Debug.Log("sleeping list item at rndindex: " + random_index + "is:" + anim.list_sleeping[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
@@ -198,7 +199,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.walking:
                     anim_controll.ChangeAnimationState(anim.list_walking[random_index]);
-                    //Debug.Log("walking list item at rndindex: "+ random_index + "is:" + anim.list_walking[random_index]);
+                    Debug.Log("walking list item at rndindex: "+ random_index + "is:" + anim.list_walking[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
@@ -214,7 +215,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.running:
                     anim_controll.ChangeAnimationState(anim.list_running[random_index]);
-                    //Debug.Log("running list item at rndindex: " + random_index + "is:" + anim.list_running[random_index]);
+                    Debug.Log("running list item at rndindex: " + random_index + "is:" + anim.list_running[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
@@ -228,15 +229,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     return;
             }
             ResetTimerFunction();
-            //Debug.Log("new state " + dog_state);
+            Debug.Log("new state " + dog_state);
         }
     }
-
-    /*IEnumerator DogCommandWithWaitCoroutine(string new_state)
-    {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
-        yield return new WaitForSeconds(2);
-        anim_controll.ChangeAnimationState(new_state);
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-    }*/
 }

@@ -9,9 +9,10 @@ public class Basic_Behaviour : MonoBehaviour
     Animation_Controll anim_controll;
     Animations anim;
     Behaviour_Switch behav_switch;
+    Neutral_Behaviour neutral_behav;
 
-    //when colliding with other object
-    bool collided;
+    //turning
+    int random_turn_index;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,7 @@ public class Basic_Behaviour : MonoBehaviour
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
         behav_switch = dog.GetComponent<Behaviour_Switch>();
-
-        //collision
-        collided = false;
+        neutral_behav = dog.GetComponent<Neutral_Behaviour>();
     }
 
     // Update is called once per frame
@@ -38,9 +37,10 @@ public class Basic_Behaviour : MonoBehaviour
         if (other.tag == "Environment")
         {
             Debug.Log("trigger");
-            collided = true;
-            anim_controll.ChangeAnimationState(anim.stand_01);
-            anim_controll.ChangeAnimationState(anim.turn_left_seek);
+            // neutral_behav.GetRandomIndexFromList(anim.list_turn);//gets random animation from turning list
+            anim_controll.ChangeAnimationState(anim.stand_02);
+            StartCoroutine(DogCommandWithWaitCoroutine(anim.turn_left_seek));
+
         }
 
     }
@@ -49,4 +49,20 @@ public class Basic_Behaviour : MonoBehaviour
     {
         Debug.Log("trigger exit");
     }
+    public void EnableScripts()
+    {
+        behav_switch.CheckDistance();
+        //behav_switch.enabled = true;
+    }
+
+    IEnumerator DogCommandWithWaitCoroutine(string new_state)
+  {
+      Debug.Log("Started Coroutine at timestamp : " + Time.time);
+      behav_switch.DisableScripts();
+      //behav_switch.enabled = false;
+      yield return new WaitForSeconds(2);
+      anim_controll.ChangeAnimationState(new_state);
+      EnableScripts();
+      Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+  }
 }

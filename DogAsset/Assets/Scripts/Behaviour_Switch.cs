@@ -59,11 +59,15 @@ public class Behaviour_Switch : MonoBehaviour
         //ruft wohl jeden frame switchscripts auf 
         //neutral scrioot kann nicht dinge tun, weil an aus an aus
         GetDistanceToObject(player);
-        if(dist <= friendly_distance)
+        CheckDistance();
+    }
+    public void CheckDistance()
+    {
+        if (dist <= friendly_distance)
         {
             SetBehaviour(Behaviour_state.friendly);
         }
-        if(dist > friendly_distance)
+        if (dist > friendly_distance)
         {
             SetBehaviour(Behaviour_state.neutral);
         }
