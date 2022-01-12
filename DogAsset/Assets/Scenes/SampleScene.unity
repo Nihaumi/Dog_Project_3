@@ -1763,6 +1763,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c8c4a940fc8ca478995345f897db25, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dog_state: 0
+  change_anim_timer: 0
 --- !u!114 &2144820947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1891,7 +1893,7 @@ MonoBehaviour:
   list_running: []
   list_sleeping: []
   list_to_aggressive: []
-  list_turn: []
+  list_turning: []
 --- !u!114 &2144820952
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,6 +1918,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d6d647b73c26c47bbd949bf1b636f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dog_behaviour: 0
 --- !u!65 &2144820956
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1927,8 +1930,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.14951494, y: 0.7372242, z: 1.0452086}
-  m_Center: {x: 0.0042383224, y: 0.365907, z: 0.19213599}
+  m_Size: {x: 0.14951494, y: 0.2840731, z: 0.49283266}
+  m_Center: {x: 0.0042383224, y: 0.59248257, z: 0.61235833}
 --- !u!114 &2144820957
 MonoBehaviour:
   m_ObjectHideFlags: 0

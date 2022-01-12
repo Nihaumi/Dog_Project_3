@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Basic_Behaviour : MonoBehaviour
+public class Collision_Behaviour : MonoBehaviour
 {
     //other script
     GameObject dog;
@@ -14,8 +14,7 @@ public class Basic_Behaviour : MonoBehaviour
 
     //turning
     int random_turn_index;
-
-
+    bool triggered = false;
 
     // Start is called before the first frame update
     void Start()
@@ -35,39 +34,48 @@ public class Basic_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        while (triggered)
+        {
+            neutral_behav.change_anim_timer = 5;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Environment")
         {
             Debug.Log("trigger");
             // neutral_behav.GetRandomIndexFromList(anim.list_turn);//gets random animation from turning list
-            anim_controll.ChangeAnimationState(anim.stand_02);
-            StartCoroutine(DogCommandWithWaitCoroutine(anim.turn_left_seek));
+            //anim_controll.ChangeAnimationState(anim.walk_slow_L);
+            //StartCoroutine(DogCommandWithWaitCoroutine(anim.turn_left_seek));
+            //behav_switch.DisableScripts();
             neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning;
+            neutral_behav.change_anim_timer = 0;
         }
 
     }
 
-    private void OnTriggerExit(Collider other)
+    void OnTriggerStay(Collider other)
     {
-        Debug.Log("behav state: " + behav_switch.dog_behaviour);
-        behav_switch.CheckDistance();
-        neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning;
-        neutral_behav.change_anim_timer = 1f;
-        Debug.Log("trigger exit");
+        triggered = true;
+        Debug.Log("triggred");
     }
 
-            
-    
+
+    private void OnTriggerExit(Collider other)
+    {
+        triggered = false;
+        Debug.Log("end of trigger");
+        neutral_behav.change_anim_timer = 1;
+        neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking;
+    }
+
+
+
 
     //wait for few seconds before playing next animation
     IEnumerator DogCommandWithWaitCoroutine(string new_state)
     {
-        behav_switch.DisableScripts();
         yield return new WaitForSeconds(2);
         anim_controll.ChangeAnimationState(new_state);
     }

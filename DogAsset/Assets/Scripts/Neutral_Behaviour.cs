@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Neutral_Behaviour : MonoBehaviour
 {
-    //ENUM WAS HERE
     public enum Animation_state //is a class
     {
         sitting,
@@ -31,7 +30,7 @@ public class Neutral_Behaviour : MonoBehaviour
     GameObject dog;
     Animation_Controll anim_controll;
     Animations anim;
-    Basic_Behaviour basic_behav;
+    Collision_Behaviour basic_behav;
 
     private void Awake()
     {
@@ -45,14 +44,14 @@ public class Neutral_Behaviour : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
-        basic_behav = dog.GetComponent<Basic_Behaviour>();
+        basic_behav = dog.GetComponent<Collision_Behaviour>();
 
         //state
         anim_controll.current_state = anim.stand_01;
         dog_state = Animation_state.standing;
 
         //timer
-        if(dog_state == Animation_state.turning)
+        if (dog_state == Animation_state.turning)
         {
             change_anim_timer = turning_timer;
         }
@@ -95,6 +94,7 @@ public class Neutral_Behaviour : MonoBehaviour
         switch (dog_state)
         {
             case Animation_state.turning:
+                GetRandomIndexFromList(anim.list_turning);
                 break;
             case Animation_state.standing:
                 GetRandomIndexFromList(anim.list_standing);
@@ -156,10 +156,30 @@ public class Neutral_Behaviour : MonoBehaviour
             {
                 case Animation_state.turning:
                     Debug.Log("turning state reached");
+                    if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk)
+                    {
+                        anim_controll.ChangeAnimationState(anim.walk_L);
+                    }
+                    if(anim_controll.current_state == anim.walk_slow || anim_controll.current_state == anim.trans_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sit_to_stand_to_walk_slow)
+                    {
+                        anim_controll.ChangeAnimationState(anim.walk_slow_L);
+                    }
+                    if (anim_controll.current_state == anim.seek || anim_controll.current_state == anim.trans_lying_to_stand_to_seek || anim_controll.current_state == anim.trans_sit_to_stand_to_seek)
+                    {
+                        anim_controll.ChangeAnimationState(anim.seek_L);
+                    }
+                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run
+                    {
+                        anim_controll.ChangeAnimationState(anim.run_L);
+                    }
+                    if (anim_controll.current_state == anim.trot || anim_controll.current_state == anim.trans_lying_to_stand_to_trot || anim_controll.current_state == anim.trans_sit_to_stand_to_trot)
+                    {
+                        anim_controll.ChangeAnimationState(anim.trot_L);
+                    }
                     break;
                 case Animation_state.standing:
                     anim_controll.ChangeAnimationState(anim.list_standing[random_index]);
-                    Debug.Log("standinglist item at rndindex: " + random_index + "is:" + anim.list_standing[random_index]);
+                    //Debug.Log("standinglist item at rndindex: " + random_index + "is:" + anim.list_standing[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
@@ -175,24 +195,24 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.sitting:
                     anim_controll.ChangeAnimationState(anim.list_sitting[random_index]);
-                    Debug.Log("sitting list item at rndindex: " + random_index + "is:" + anim.list_sitting[random_index]);
+                    //Debug.Log("sitting list item at rndindex: " + random_index + "is:" + anim.list_sitting[random_index]);
                     dog_state = Animation_state.walking;
                     break;
                 case Animation_state.lying:
                     anim_controll.ChangeAnimationState(anim.list_lying[random_index]);
-                    Debug.Log("lying list item at rndindex: " + random_index + "is:" + anim.list_lying[random_index]);
+                    //Debug.Log("lying list item at rndindex: " + random_index + "is:" + anim.list_lying[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.sleeping;
                     }
-                    else
+                    if(random_index > 0)
                     {
                         dog_state = Animation_state.walking;
                     }
                     break;
                 case Animation_state.sleeping:
                     anim_controll.ChangeAnimationState(anim.list_sleeping[random_index]);
-                    Debug.Log("sleeping list item at rndindex: " + random_index + "is:" + anim.list_sleeping[random_index]);
+                    //Debug.Log("sleeping list item at rndindex: " + random_index + "is:" + anim.list_sleeping[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.lying;
@@ -201,14 +221,14 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         dog_state = Animation_state.standing;
                     }
-                    else
+                    if(random_index >1)
                     {
                         dog_state = Animation_state.walking;
                     }
                     break;
                 case Animation_state.walking:
                     anim_controll.ChangeAnimationState(anim.list_walking[random_index]);
-                    Debug.Log("walking list item at rndindex: " + random_index + "is:" + anim.list_walking[random_index]);
+                    //Debug.Log("walking list item at rndindex: " + random_index + "is:" + anim.list_walking[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
@@ -224,12 +244,12 @@ public class Neutral_Behaviour : MonoBehaviour
                     break;
                 case Animation_state.running:
                     anim_controll.ChangeAnimationState(anim.list_running[random_index]);
-                    Debug.Log("running list item at rndindex: " + random_index + "is:" + anim.list_running[random_index]);
+                    //Debug.Log("running list item at rndindex: " + random_index + "is:" + anim.list_running[random_index]);
                     if (random_index == 0)
                     {
                         dog_state = Animation_state.standing;
                     }
-                    else
+                    if(random_index > 0)
                     {
                         dog_state = Animation_state.walking;
                     }
@@ -238,7 +258,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     return;
             }
             ResetTimerFunction();
-            Debug.Log("new state " + dog_state);
+            //Debug.Log("new state " + dog_state);
         }
     }
 }
