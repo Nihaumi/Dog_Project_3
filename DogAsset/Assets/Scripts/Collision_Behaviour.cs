@@ -17,7 +17,8 @@ public class Collision_Behaviour : MonoBehaviour
 
     //turning
     int random_turn_index;
-    bool triggered = false;
+    public bool triggered = false;
+    public bool collided = false;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,7 @@ public class Collision_Behaviour : MonoBehaviour
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
 
         //Animator
-        animator = gameObject.GetComponent<Animator>();
+        animator = dog.GetComponent<Animator>();
 
         //collisions
 
@@ -43,9 +44,9 @@ public class Collision_Behaviour : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Environment")
+        if (other.tag == "Environment")
         {
             Debug.Log("trigger");
             // neutral_behav.GetRandomIndexFromList(anim.list_turn);//gets random animation from turning list
@@ -54,19 +55,42 @@ public class Collision_Behaviour : MonoBehaviour
             //behav_switch.DisableScripts();
             neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning;
             neutral_behav.change_anim_timer = 0;
-            triggered = true;
+            //collided = true;
         }
 
     }
 
-    private void OnCollisionExit(Collision other)
+    private void OnTriggerExit(Collider other)
     {
-        triggered = false;
-        animator.SetTrigger("triggered");
+        collided = false;
+        //animator.SetTrigger("triggered");
         Debug.Log("end of trigger");
         //neutral_behav.change_anim_timer = 2;
-        neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking;
+        anim_controll.ChangeAnimationState(anim.walk);
+        //neutral_behav.change_anim_timer = 1;
     }
+
+  /*  private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Environment")
+        {
+            Debug.Log("collided");
+            collided = true;            
+            anim_controll.ChangeAnimationState(anim.turn_left_90_deg);
+        }
+
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        anim_controll.ChangeAnimationState(anim.turn_left_90_deg);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        collided = false;
+        Debug.Log("end of collision");
+    }*/
+
 
 
 

@@ -88,6 +88,8 @@ public class Animations : MonoBehaviour
     public string aggressive_attack_bite_L_long = "Agressive_01_Attack_BiteL_Long ";
     public string aggressive_attack_aggressive_bite_R_long = "Agressive_01_Attack_Agressive_BiteL_Long ";
 
+    //turn
+    public string turn_left_90_deg = "Trans_TurnL90";
 
     //animation lists - to pick a random animation
     public List<string> list_standing = new List<string>();
