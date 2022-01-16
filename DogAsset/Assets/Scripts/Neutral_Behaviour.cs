@@ -30,7 +30,7 @@ public class Neutral_Behaviour : MonoBehaviour
     GameObject dog;
     Animation_Controll anim_controll;
     Animations anim;
-    Collision_Behaviour basic_behav;
+    Collision_Behaviour collision_behav;
 
     private void Awake()
     {
@@ -44,7 +44,7 @@ public class Neutral_Behaviour : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
-        basic_behav = dog.GetComponent<Collision_Behaviour>();
+        collision_behav = dog.GetComponent<Collision_Behaviour>();
 
         //state
         anim_controll.current_state = anim.stand_01;
@@ -151,6 +151,7 @@ public class Neutral_Behaviour : MonoBehaviour
 
         if (change_anim_timer <= 0)
         {
+            collision_behav.animator.ResetTrigger("triggered");
             ChooseRandomIndex();
             switch (dog_state)
             {
@@ -168,7 +169,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         anim_controll.ChangeAnimationState(anim.seek_L);
                     }
-                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run
+                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run)
                     {
                         anim_controll.ChangeAnimationState(anim.run_L);
                     }

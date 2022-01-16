@@ -21,7 +21,7 @@ public class Animation_Controll : MonoBehaviour
     //play new animation (if its not already playing)
     public void ChangeAnimationState(string new_state)
     {
-        Debug.Log("new state: " + new_state + ", currenrt state: " + current_state);
+        Debug.Log("currenrt state: " + current_state + ", new state: " + new_state );
         //if same animation already plays, dont play it again
         if (current_state == new_state)
         {

@@ -12,6 +12,9 @@ public class Collision_Behaviour : MonoBehaviour
     Behaviour_Switch behav_switch;
     Neutral_Behaviour neutral_behav;
 
+    //Animator
+    public Animator animator;
+
     //turning
     int random_turn_index;
     bool triggered = false;
@@ -26,6 +29,9 @@ public class Collision_Behaviour : MonoBehaviour
         behav_switch = dog.GetComponent<Behaviour_Switch>();
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
 
+        //Animator
+        animator = gameObject.GetComponent<Animator>();
+
         //collisions
 
 
@@ -34,15 +40,12 @@ public class Collision_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        while (triggered)
-        {
-            neutral_behav.change_anim_timer = 5;
-        }
+
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.tag == "Environment")
+        if (other.gameObject.tag == "Environment")
         {
             Debug.Log("trigger");
             // neutral_behav.GetRandomIndexFromList(anim.list_turn);//gets random animation from turning list
@@ -51,22 +54,17 @@ public class Collision_Behaviour : MonoBehaviour
             //behav_switch.DisableScripts();
             neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning;
             neutral_behav.change_anim_timer = 0;
+            triggered = true;
         }
 
     }
 
-    void OnTriggerStay(Collider other)
-    {
-        triggered = true;
-        Debug.Log("triggred");
-    }
-
-
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision other)
     {
         triggered = false;
+        animator.SetTrigger("triggered");
         Debug.Log("end of trigger");
-        neutral_behav.change_anim_timer = 1;
+        //neutral_behav.change_anim_timer = 2;
         neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking;
     }
 
