@@ -82,7 +82,7 @@ public class Behaviour_Switch : MonoBehaviour
 
     void SetBehaviour(Behaviour_state behaviour)
     {
-        if (neutral_script.dog_state == Neutral_Behaviour.Animation_state.turning && all_scripts_off)
+        if (neutral_script.dog_state == Neutral_Behaviour.Animation_state.turning_left && all_scripts_off)
         {
             EnableBehaviourScripts(behaviour);
         }

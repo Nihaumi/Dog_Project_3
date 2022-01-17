@@ -13,7 +13,8 @@ public class Neutral_Behaviour : MonoBehaviour
         lying,
         sleeping,
         aggressiv,
-        turning,
+        turning_right,
+        turning_left,
         walking_after_turning
     };
 
@@ -93,9 +94,6 @@ public class Neutral_Behaviour : MonoBehaviour
             case Animation_state.walking_after_turning:
                 GetRandomIndexFromList(anim.list_walking_after_turning);
                 break;
-            case Animation_state.turning:
-                GetRandomIndexFromList(anim.list_turning);
-                break;
             case Animation_state.standing:
                 GetRandomIndexFromList(anim.list_standing);
                 DisplayList(anim.list_standing);
@@ -155,39 +153,68 @@ public class Neutral_Behaviour : MonoBehaviour
             ChooseRandomIndex();
             switch (dog_state)
             {
-                case Animation_state.turning:
-                    Debug.Log("turning state reached");
-                    if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk)
+                case Animation_state.turning_left:
+                    if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk || anim_controll.current_state == anim.walk_L)
                     {
-                        if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_walk);
-                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.walk_L);
+                       anim_controll.ChangeAnimationState(anim.walk_L);
 
                     }
-                    if (anim_controll.current_state == anim.walk_slow || anim_controll.current_state == anim.trans_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sit_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk_slow)
+                    if (anim_controll.current_state == anim.walk_slow || anim_controll.current_state == anim.trans_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sit_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.walk_slow_L)
                     {
-                        if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_walk);
-                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.walk_slow_L);
+                       anim_controll.ChangeAnimationState(anim.walk_slow_L);
 
 
                     }
-                    if (anim_controll.current_state == anim.seek || anim_controll.current_state == anim.trans_lying_to_stand_to_seek || anim_controll.current_state == anim.trans_sit_to_stand_to_seek || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_seek || anim_controll.current_state == anim.turn_right_seek || anim_controll.current_state == anim.turn_left_seek)
+                    if (anim_controll.current_state == anim.seek || anim_controll.current_state == anim.trans_lying_to_stand_to_seek || anim_controll.current_state == anim.trans_sit_to_stand_to_seek || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_seek || anim_controll.current_state == anim.turn_right_seek || anim_controll.current_state == anim.turn_left_seek || anim_controll.current_state == anim.seek_L)
                     {
-                        if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_seek);
-                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.seek_L);
+                       anim_controll.ChangeAnimationState(anim.seek_L);
 
 
                     }
-                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_run)
+                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_run || anim_controll.current_state == anim.run_L)
                     {
-                        if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_trot);
-                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.run_L);
+                       anim_controll.ChangeAnimationState(anim.run_L);
 
 
                     }
-                    if (anim_controll.current_state == anim.trot || anim_controll.current_state == anim.trans_lying_to_stand_to_trot || anim_controll.current_state == anim.trans_sit_to_stand_to_trot || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_trot)
+                    if (anim_controll.current_state == anim.trot || anim_controll.current_state == anim.trans_lying_to_stand_to_trot || anim_controll.current_state == anim.trans_sit_to_stand_to_trot || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_trot || anim_controll.current_state == anim.trot_L)
                     {
-                        if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_trot);
-                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.trot_L);
+                       anim_controll.ChangeAnimationState(anim.trot_L);
+
+
+                    }
+                    if (anim_controll.current_state == anim.turn_left_90_deg)
+                    {
+                        anim_controll.ChangeAnimationState(anim.turn_left_seek);
+                    }
+                    break;
+                case Animation_state.turning_right:
+                    if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk || anim_controll.current_state == anim.walk_R)
+                    {
+                       anim_controll.ChangeAnimationState(anim.walk_R);
+
+                    }
+                    if (anim_controll.current_state == anim.walk_slow || anim_controll.current_state == anim.trans_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sit_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.walk_slow_R)
+                    {
+                       anim_controll.ChangeAnimationState(anim.walk_slow_R);
+
+
+                    }
+                    if (anim_controll.current_state == anim.seek || anim_controll.current_state == anim.trans_lying_to_stand_to_seek || anim_controll.current_state == anim.trans_sit_to_stand_to_seek || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_seek || anim_controll.current_state == anim.turn_right_seek || anim_controll.current_state == anim.turn_left_seek || anim_controll.current_state == anim.seek_R)
+                    {
+                       anim_controll.ChangeAnimationState(anim.seek_R);
+
+
+                    }
+                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_run || anim_controll.current_state == anim.run_R)
+                    {
+                       anim_controll.ChangeAnimationState(anim.run_R);
+
+
+                    }
+                    if (anim_controll.current_state == anim.trot || anim_controll.current_state == anim.trans_lying_to_stand_to_trot || anim_controll.current_state == anim.trans_sit_to_stand_to_trot || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_trot || anim_controll.current_state == anim.trot_R)
+                    {
+                       anim_controll.ChangeAnimationState(anim.trot_R);
 
 
                     }

@@ -52,12 +52,12 @@ public class Collision_Behaviour : MonoBehaviour
     {
         if (other.tag == "Environment")
         {
-            Debug.Log("trigger");
+            //Debug.Log("trigger");
             // neutral_behav.GetRandomIndexFromList(anim.list_turn);//gets random animation from turning list
             //anim_controll.ChangeAnimationState(anim.walk_slow_L);
             //StartCoroutine(DogCommandWithWaitCoroutine(anim.turn_left_seek));
             //behav_switch.DisableScripts();
-            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning;
+            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning_left;
             neutral_behav.change_anim_timer = 0;
             //collided = true;
             triggered = true;
@@ -67,13 +67,16 @@ public class Collision_Behaviour : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        triggered = false;
-        //collided = false;
-        //animator.SetTrigger("triggered");
-        Debug.Log("end of trigger");
-        //neutral_behav.change_anim_timer = 2;
-        neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking_after_turning;
-        CalculateChangeAnimationTimer();
+        if (other.tag == "Environment")
+        {
+            triggered = false;
+            //collided = false;
+            //animator.SetTrigger("triggered");
+            //Debug.Log("end of trigger");
+            //neutral_behav.change_anim_timer = 2;
+            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking_after_turning;
+            CalculateChangeAnimationTimer();
+        }
     }
 
     void CalculateChangeAnimationTimer()
