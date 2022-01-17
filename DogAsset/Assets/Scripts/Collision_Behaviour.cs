@@ -20,6 +20,10 @@ public class Collision_Behaviour : MonoBehaviour
     public bool triggered = false;
     public bool collided = false;
 
+    //timer after turning
+    int min_time;
+    int max_time;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -56,43 +60,38 @@ public class Collision_Behaviour : MonoBehaviour
             neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning;
             neutral_behav.change_anim_timer = 0;
             //collided = true;
+            triggered = true;
         }
 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        collided = false;
+        triggered = false;
+        //collided = false;
         //animator.SetTrigger("triggered");
         Debug.Log("end of trigger");
         //neutral_behav.change_anim_timer = 2;
-        anim_controll.ChangeAnimationState(anim.walk);
-        //neutral_behav.change_anim_timer = 1;
+        neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking_after_turning;
+        CalculateChangeAnimationTimer();
     }
 
-  /*  private void OnCollisionEnter(Collision collision)
+    void CalculateChangeAnimationTimer()
     {
-        if (collision.gameObject.tag == "Environment")
+        if (anim_controll.current_state == anim.walk_slow_L)
         {
-            Debug.Log("collided");
-            collided = true;            
-            anim_controll.ChangeAnimationState(anim.turn_left_90_deg);
+            neutral_behav.change_anim_timer = 2;
         }
-
+        if(anim_controll.current_state == anim.trot_L)
+        {
+            neutral_behav.change_anim_timer = 0;
+        }
+        if(anim_controll.current_state != anim.walk_slow_L && anim_controll.current_state != anim.trot_L)
+        {
+            neutral_behav.change_anim_timer = 1;
+        }
+        max_time = min_time;
     }
-    private void OnCollisionStay(Collision collision)
-    {
-        anim_controll.ChangeAnimationState(anim.turn_left_90_deg);
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        collided = false;
-        Debug.Log("end of collision");
-    }*/
-
-
-
 
 
     //wait for few seconds before playing next animation

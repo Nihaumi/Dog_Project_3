@@ -13,18 +13,18 @@ public class Neutral_Behaviour : MonoBehaviour
         lying,
         sleeping,
         aggressiv,
-        turning
+        turning,
+        walking_after_turning
     };
 
     public Animation_state dog_state;
 
     //timer
     public float change_anim_timer;
-    float starting_timer = 5f;
+    int starting_timer = 2;
     int new_timer;
     int min_timer;
     int max_timer;
-    int turning_timer = 1;
 
     //other script
     public GameObject dog;
@@ -49,16 +49,12 @@ public class Neutral_Behaviour : MonoBehaviour
         collision_behav = dog_parent.GetComponent<Collision_Behaviour>();
 
         //state
-        anim_controll.current_state = anim.stand_01;
-        dog_state = Animation_state.standing;
+        anim_controll.current_state = anim.trot;
+        dog_state = Animation_state.walking;
 
         //timer
-        if (dog_state == Animation_state.turning)
-        {
-            change_anim_timer = turning_timer;
-        }
-        min_timer = 5;
-        max_timer = 10;
+        min_timer = starting_timer;
+        max_timer = min_timer;
     }
 
     //Timer
@@ -67,7 +63,6 @@ public class Neutral_Behaviour : MonoBehaviour
         if (change_anim_timer <= 0)
         {
             change_anim_timer = ChooseRandomTimer();
-            SetLongTimer();
         }
     }
     int ChooseRandomTimer()
@@ -76,10 +71,10 @@ public class Neutral_Behaviour : MonoBehaviour
         return new_timer;
     }
 
-    void SetShortTimer()
+    public void SetShortTimer(int min_time, int max_time)
     {
-        min_timer = 2;
-        max_timer = 3;
+        min_timer = min_time;
+        max_timer = max_time;
     }
 
     void SetLongTimer()
@@ -95,6 +90,9 @@ public class Neutral_Behaviour : MonoBehaviour
     {
         switch (dog_state)
         {
+            case Animation_state.walking_after_turning:
+                GetRandomIndexFromList(anim.list_walking_after_turning);
+                break;
             case Animation_state.turning:
                 GetRandomIndexFromList(anim.list_turning);
                 break;
@@ -159,45 +157,44 @@ public class Neutral_Behaviour : MonoBehaviour
             {
                 case Animation_state.turning:
                     Debug.Log("turning state reached");
-                    if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk)
+                    if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk)
                     {
                         if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_walk);
                         if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.walk_L);
 
                     }
-                    if (anim_controll.current_state == anim.walk_slow || anim_controll.current_state == anim.trans_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sit_to_stand_to_walk_slow)
+                    if (anim_controll.current_state == anim.walk_slow || anim_controll.current_state == anim.trans_lying_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sit_to_stand_to_walk_slow || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk_slow)
                     {
                         if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_walk);
                         if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.walk_slow_L);
 
-                    
+
                     }
-                    if (anim_controll.current_state == anim.seek || anim_controll.current_state == anim.trans_lying_to_stand_to_seek || anim_controll.current_state == anim.trans_sit_to_stand_to_seek)
+                    if (anim_controll.current_state == anim.seek || anim_controll.current_state == anim.trans_lying_to_stand_to_seek || anim_controll.current_state == anim.trans_sit_to_stand_to_seek || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_seek || anim_controll.current_state == anim.turn_right_seek || anim_controll.current_state == anim.turn_left_seek)
                     {
                         if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_seek);
-                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.seek_L); 
+                        if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.seek_L);
 
-                     
+
                     }
-                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run)
+                    if (anim_controll.current_state == anim.run || anim_controll.current_state == anim.trans_lying_to_stand_to_run || anim_controll.current_state == anim.trans_sit_to_stand_to_run || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_run)
                     {
                         if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_trot);
                         if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.run_L);
 
-               
+
                     }
-                    if (anim_controll.current_state == anim.trot || anim_controll.current_state == anim.trans_lying_to_stand_to_trot || anim_controll.current_state == anim.trans_sit_to_stand_to_trot)
+                    if (anim_controll.current_state == anim.trot || anim_controll.current_state == anim.trans_lying_to_stand_to_trot || anim_controll.current_state == anim.trans_sit_to_stand_to_trot || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_trot)
                     {
                         if (collision_behav.collided) anim_controll.ChangeAnimationState(anim.turn_left_trot);
                         if (collision_behav.triggered) anim_controll.ChangeAnimationState(anim.trot_L);
 
-                  
+
                     }
-                    if(anim_controll.current_state == anim.turn_left_90_deg)
+                    if (anim_controll.current_state == anim.turn_left_90_deg)
                     {
                         anim_controll.ChangeAnimationState(anim.turn_left_seek);
                     }
-                    anim_controll.ChangeAnimationState(anim.turn_left_90_deg);
                     break;
                 case Animation_state.standing:
                     anim_controll.ChangeAnimationState(anim.list_standing[random_index]);
@@ -214,11 +211,13 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         dog_state = Animation_state.walking;
                     }
+                    SetLongTimer();
                     break;
                 case Animation_state.sitting:
                     anim_controll.ChangeAnimationState(anim.list_sitting[random_index]);
                     //Debug.Log("sitting list item at rndindex: " + random_index + "is:" + anim.list_sitting[random_index]);
                     dog_state = Animation_state.walking;
+                    SetLongTimer();
                     break;
                 case Animation_state.lying:
                     anim_controll.ChangeAnimationState(anim.list_lying[random_index]);
@@ -231,6 +230,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         dog_state = Animation_state.walking;
                     }
+                    SetLongTimer();
                     break;
                 case Animation_state.sleeping:
                     anim_controll.ChangeAnimationState(anim.list_sleeping[random_index]);
@@ -247,6 +247,11 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         dog_state = Animation_state.walking;
                     }
+                    SetLongTimer();
+                    break;
+                case Animation_state.walking_after_turning:
+                    anim_controll.ChangeAnimationState(anim.list_walking_after_turning[random_index]);
+                    dog_state = Animation_state.walking;
                     break;
                 case Animation_state.walking:
                     anim_controll.ChangeAnimationState(anim.list_walking[random_index]);
@@ -255,26 +260,11 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         dog_state = Animation_state.standing;
                     }
-                    if (random_index == 1)
-                    {
-                        dog_state = Animation_state.running;
-                    }
                     else
                     {
                         dog_state = Animation_state.walking;
                     }
-                    break;
-                case Animation_state.running:
-                    anim_controll.ChangeAnimationState(anim.list_running[random_index]);
-                    //Debug.Log("running list item at rndindex: " + random_index + "is:" + anim.list_running[random_index]);
-                    if (random_index == 0)
-                    {
-                        dog_state = Animation_state.standing;
-                    }
-                    if (random_index > 0)
-                    {
-                        dog_state = Animation_state.walking;
-                    }
+                    SetLongTimer();
                     break;
                 default:
                     return;
