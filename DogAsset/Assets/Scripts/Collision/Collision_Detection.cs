@@ -5,6 +5,7 @@ using UnityEngine;
 public class Collision_Detection : MonoBehaviour
 {
     public bool collided;
+    public bool hit_corner;
 
     //cube that collided
     public GameObject side;
@@ -34,21 +35,28 @@ public class Collision_Detection : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.tag == "Environment")
+        if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
  
             collided = true;
             GetCollidedObject(this.gameObject);
             Debug.Log("COLLISION with cube: " + side.name);
+            if( collision.gameObject.tag == "Corner")
+            {
+                hit_corner = true;
+            }
         }
+
+
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Environment")
+        Debug.Log("EXIT collision");
+        if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
             collided = false;
-
+            hit_corner = false;
         }
     }
     public void GetCollidedObject(GameObject cube)

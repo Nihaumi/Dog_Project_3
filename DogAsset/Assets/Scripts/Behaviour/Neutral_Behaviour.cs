@@ -80,8 +80,8 @@ public class Neutral_Behaviour : MonoBehaviour
 
     void SetLongTimer()
     {
-        min_timer = 5;
-        max_timer = 10;
+        min_timer = 3;
+        max_timer = 7;
     }
 
     //choosing random index of animation lists
@@ -128,7 +128,7 @@ public class Neutral_Behaviour : MonoBehaviour
     }
     public void GetRandomIndexFromList(List<string> list)
     {
-        random_index = Random.Range(0, list.Count - 1);
+        random_index = Random.Range(0, list.Count);
     }
 
     void DisplayList(List<string> list)
