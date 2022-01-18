@@ -16,7 +16,7 @@ public class Turning_Direction_Handler : MonoBehaviour
     GameObject left_cube;
     GameObject right_cube;
 
-
+    public bool turn_90_deg;
     public bool turning;
 
     // Start is called before the first frame update
@@ -49,10 +49,10 @@ public class Turning_Direction_Handler : MonoBehaviour
         {
             StopTurning();
         }
-        if (neutral_behav.dog_state == Neutral_Behaviour.Animation_state.walking_after_turning)
+        /*if (neutral_behav.dog_state == Neutral_Behaviour.Animation_state.walking_after_turning)
         {
-
-        }
+            //neutral_behav.change_anim_timer = .3f;
+        }*/
     }
 
     void StopTurning()
@@ -63,24 +63,33 @@ public class Turning_Direction_Handler : MonoBehaviour
             //stop turning and continue walking
             ToggleTurning();
             SetAnimationState(Neutral_Behaviour.Animation_state.walking_after_turning);
-            SetAnimationTimerLower();
+            SetAnimationTimerLower(0.75f) ;
         }
     }
 
     //turn left opr right
     void SetTurningDirection()
     {
-        //left and right cube collide at the same time --> Turn left and set turning true
+        //if collision with corner turn 90 degrees left/right
         if (col_det_left.hit_corner)
         {
-            SetAnimationForCornerCollision(anim.turn_left_90_deg_R);
+            Debug.Log("CORNER left, turn RIGHT");
+            turn_90_deg = true;
+            SetAnimationState(Neutral_Behaviour.Animation_state.turning_right);
+            ToggleTurning();
+            SetAnimationTimerToZero();
             return;
         }
         if (col_det_right.hit_corner)
         {
-            SetAnimationForCornerCollision(anim.turn_left_90_deg_L);
+            Debug.Log("CORNER left, turn LEFT");
+            turn_90_deg = true;
+            SetAnimationState(Neutral_Behaviour.Animation_state.turning_left);
+            ToggleTurning();
+            SetAnimationTimerToZero();
             return;
         }
+        //left and right cube collide at the same time --> Turn left and set turning true
         if (col_det_right.collided && col_det_left.collided)
         {
             Debug.Log("BOTH --> Left");
@@ -114,20 +123,15 @@ public class Turning_Direction_Handler : MonoBehaviour
         neutral_behav.dog_state = state;
     }
 
-    //handles collisions with corners
-    void SetAnimationForCornerCollision(string animation)
-    {
-        anim_controller.ChangeAnimationState(animation);
-        neutral_behav.change_anim_timer = 3;
-    }
     void SetAnimationTimerToZero()
     {
         neutral_behav.change_anim_timer = 0;
     }
 
-    void SetAnimationTimerLower()
+    //enough time to walk away from edges and short enough to not turn infinetly
+    public void SetAnimationTimerLower(float time)
     {
-        neutral_behav.change_anim_timer = .75f;
+        neutral_behav.change_anim_timer = time;
     }
     void ToggleTurning()
     {
