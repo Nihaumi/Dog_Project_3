@@ -183,7 +183,7 @@ public class Neutral_Behaviour : MonoBehaviour
 
 
                     }
-                    if (anim_controll.current_state == anim.turn_left_90_deg)
+                    if (anim_controll.current_state == anim.turn_left_90_deg_L)
                     {
                         anim_controll.ChangeAnimationState(anim.turn_left_seek);
                     }
@@ -218,7 +218,7 @@ public class Neutral_Behaviour : MonoBehaviour
 
 
                     }
-                    if (anim_controll.current_state == anim.turn_left_90_deg)
+                    if (anim_controll.current_state == anim.turn_left_90_deg_L)
                     {
                         anim_controll.ChangeAnimationState(anim.turn_left_seek);
                     }
@@ -277,7 +277,22 @@ public class Neutral_Behaviour : MonoBehaviour
                     SetLongTimer();
                     break;
                 case Animation_state.walking_after_turning:
-                    anim_controll.ChangeAnimationState(anim.list_walking_after_turning[random_index]);
+                    if(anim_controll.current_state == anim.walk_slow_L || anim_controll.current_state == anim.walk_slow_R)
+                    {
+                        anim_controll.ChangeAnimationState(anim.walk_slow);
+                    }
+                    if (anim_controll.current_state == anim.walk_L|| anim_controll.current_state == anim.walk_R)
+                    {
+                        anim_controll.ChangeAnimationState(anim.walk);
+                    }
+                    if (anim_controll.current_state == anim.trot_L|| anim_controll.current_state == anim.trot_R)
+                    {
+                        anim_controll.ChangeAnimationState(anim.trot);
+                    }
+                    if (anim_controll.current_state == anim.seek_L || anim_controll.current_state == anim.seek_R)
+                    {
+                        anim_controll.ChangeAnimationState(anim.seek);
+                    }
                     dog_state = Animation_state.walking;
                     break;
                 case Animation_state.walking:

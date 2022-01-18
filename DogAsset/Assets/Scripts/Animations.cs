@@ -89,7 +89,8 @@ public class Animations : MonoBehaviour
     public string aggressive_attack_aggressive_bite_R_long = "Agressive_01_Attack_Agressive_BiteL_Long ";
 
     //turn
-    public string turn_left_90_deg = "Trans_TurnL90";
+    public string turn_left_90_deg_L = "Trans_TurnL90";
+    public string turn_left_90_deg_R = "Trans_TurnR90";
 
     //animation lists - to pick a random animation
     public List<string> list_standing = new List<string>();
@@ -105,6 +106,7 @@ public class Animations : MonoBehaviour
     public List<string> list_sleeping = new List<string>();
 
     public List<string> list_to_aggressive = new List<string>();
+
 
     public List<string> list_walking_after_turning = new List<string>();
 
@@ -155,8 +157,8 @@ public class Animations : MonoBehaviour
         list_walking.Add(walk);//3
         list_walking.Add(walk_slow);//4
         list_walking.Add(trot);//5
-        list_walking.Add(seek_L);//6
-        list_walking.Add(seek_R);//7
+        //list_walking.Add(seek_L);//6
+        //list_walking.Add(seek_R);//7
 
         list_walking_after_turning.Add(seek);
         list_walking_after_turning.Add(walk);

@@ -52,7 +52,7 @@ public class Collision_Detection : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("EXIT collision");
+        Debug.Log("EXIT collision with: " + collision.gameObject.name);
         if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
             collided = false;

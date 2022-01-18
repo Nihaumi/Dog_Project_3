@@ -70,11 +70,10 @@ public class Turning_Direction_Handler : MonoBehaviour
     //turn left opr right
     void SetTurningDirection()
     {
-        Debug.Log("entering set turning dir");
         //left and right cube collide at the same time --> Turn left and set turning true
         if (col_det_left.hit_corner || col_det_right.hit_corner)
         {
-            anim_controller.ChangeAnimationState(anim.turn_left_90_deg);
+            anim_controller.ChangeAnimationState(anim.turn_left_90_deg_L);
             neutral_behav.change_anim_timer = 3;
             return;
         }
