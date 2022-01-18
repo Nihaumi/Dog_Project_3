@@ -9,7 +9,6 @@ public class Behaviour_Switch : MonoBehaviour
     Friendly_Behaviour friendly_script;
     Neutral_Behaviour neutral_script;
     Aggressive_Behaviour aggressive_script;
-    Collision_Behaviour basic_behav_script;
 
     //get Player
     GameObject player;

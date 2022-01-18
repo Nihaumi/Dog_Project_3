@@ -32,7 +32,6 @@ public class Neutral_Behaviour : MonoBehaviour
     public GameObject dog_parent;
     Animation_Controll anim_controll;
     Animations anim;
-    public Collision_Behaviour collision_behav;
 
     private void Awake()
     {
@@ -47,10 +46,9 @@ public class Neutral_Behaviour : MonoBehaviour
         dog_parent = GameObject.Find("DOg");
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
-        collision_behav = dog_parent.GetComponent<Collision_Behaviour>();
 
         //state
-        anim_controll.current_state = anim.trot;
+        anim_controll.current_state = anim.walk;
         dog_state = Animation_state.walking;
 
         //timer

@@ -62,7 +62,7 @@ public class Turning_Direction_Handler : MonoBehaviour
         {
             //stop turning and continue walking
             ToggleTurning();
-            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.walking_after_turning;
+            SetAnimationState(Neutral_Behaviour.Animation_state.walking_after_turning);
             SetAnimationTimerLower();
         }
     }
@@ -71,17 +71,21 @@ public class Turning_Direction_Handler : MonoBehaviour
     void SetTurningDirection()
     {
         //left and right cube collide at the same time --> Turn left and set turning true
-        if (col_det_left.hit_corner || col_det_right.hit_corner)
+        if (col_det_left.hit_corner)
         {
-            anim_controller.ChangeAnimationState(anim.turn_left_90_deg_L);
-            neutral_behav.change_anim_timer = 3;
+            SetAnimationForCornerCollision(anim.turn_left_90_deg_R);
+            return;
+        }
+        if (col_det_right.hit_corner)
+        {
+            SetAnimationForCornerCollision(anim.turn_left_90_deg_L);
             return;
         }
         if (col_det_right.collided && col_det_left.collided)
         {
             Debug.Log("BOTH --> Left");
             ToggleTurning();
-            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning_left;
+            SetAnimationState(Neutral_Behaviour.Animation_state.turning_left);
             SetAnimationTimerToZero();
             return;
         }
@@ -89,7 +93,7 @@ public class Turning_Direction_Handler : MonoBehaviour
         if (col_det_left.collided)
         {
             Debug.Log("COLLIDED left. TURN right");
-            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning_right;
+            SetAnimationState(Neutral_Behaviour.Animation_state.turning_right);
             ToggleTurning();
             SetAnimationTimerToZero();
         }
@@ -97,13 +101,25 @@ public class Turning_Direction_Handler : MonoBehaviour
         if (col_det_right.collided)
         {
             Debug.Log("COLLIDED right. TURN left");
-            neutral_behav.dog_state = Neutral_Behaviour.Animation_state.turning_left;
+            SetAnimationState(Neutral_Behaviour.Animation_state.turning_left);
             ToggleTurning();
             SetAnimationTimerToZero();
         }
 
     }
 
+    //sets dog_state to an Animation state
+    void SetAnimationState(Neutral_Behaviour.Animation_state state)
+    {
+        neutral_behav.dog_state = state;
+    }
+
+    //handles collisions with corners
+    void SetAnimationForCornerCollision(string animation)
+    {
+        anim_controller.ChangeAnimationState(animation);
+        neutral_behav.change_anim_timer = 3;
+    }
     void SetAnimationTimerToZero()
     {
         neutral_behav.change_anim_timer = 0;
