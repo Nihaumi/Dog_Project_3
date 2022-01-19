@@ -52,11 +52,12 @@ public class Collision_Detection : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("EXIT collision with: " + collision.gameObject.name);
         if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
+            Debug.Log("EXIT collision with: " + collision.gameObject.name);
             collided = false;
             hit_corner = false;
+            turning_dir_handler.turn_90_deg = false;
         }
     }
     public void GetCollidedObject(GameObject cube)

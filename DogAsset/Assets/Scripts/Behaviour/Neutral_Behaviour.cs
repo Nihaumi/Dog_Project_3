@@ -156,6 +156,11 @@ public class Neutral_Behaviour : MonoBehaviour
             switch (dog_state)
             {
                 case Animation_state.turning_left:
+                    if (turn_dir_handler.turn_90_deg)
+                    {
+                        anim_controll.ChangeAnimationState(anim.turn_left_90_deg_L);
+                        break;
+                    }
                     if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk || anim_controll.current_state == anim.walk_L)
                     {
                         anim_controll.ChangeAnimationState(anim.walk_L);
@@ -184,12 +189,14 @@ public class Neutral_Behaviour : MonoBehaviour
                         anim_controll.ChangeAnimationState(anim.trot_L);
                         SetShortTimer(0.3f, 1);
                     }
-                    if (turn_dir_handler.turn_90_deg)
-                    {
-                        anim_controll.ChangeAnimationState(anim.turn_left_90_deg_L);
-                    }
                     break;
                 case Animation_state.turning_right:
+                    if (turn_dir_handler.turn_90_deg)
+                    {
+                        Debug.Log("KOMME REIN");
+                        anim_controll.ChangeAnimationState(anim.turn_left_90_deg_R);
+                        break;
+                    }
                     if (anim_controll.current_state == anim.walk || anim_controll.current_state == anim.trans_lying_to_stand_to_walk || anim_controll.current_state == anim.trans_sit_to_stand_to_walk || anim_controll.current_state == anim.trans_sleep_to_lying_to_stand_to_walk || anim_controll.current_state == anim.walk_R)
                     {
                         anim_controll.ChangeAnimationState(anim.walk_R);
@@ -217,11 +224,6 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         anim_controll.ChangeAnimationState(anim.trot_R);
                         SetShortTimer(0.3f, 1);
-                    }
-                    if (turn_dir_handler.turn_90_deg)
-                    {
-                        Debug.Log("KOMME REIN");
-                        anim_controll.ChangeAnimationState(anim.turn_left_90_deg_R);
                     }
                     break;
                 case Animation_state.standing:
@@ -282,7 +284,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         anim_controll.ChangeAnimationState(anim.walk_slow);
                     }
-                    if (anim_controll.current_state == anim.walk_L || anim_controll.current_state == anim.walk_R || anim_controll.current_state == anim.walk)
+                    if (anim_controll.current_state == anim.walk_L || anim_controll.current_state == anim.walk_R || anim_controll.current_state == anim.walk || anim_controll.current_state == anim.turn_left_90_deg_L || anim_controll.current_state == anim.turn_left_90_deg_L)
                     {
                         anim_controll.ChangeAnimationState(anim.walk);
                     }
@@ -305,7 +307,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         dog_state = Animation_state.standing;
                         SetLongTimer();
                     }
-                    if(random_index == 4)
+                    if (random_index == 4)
                     {
                         SetShortTimer(0.3f, 1);
                         dog_state = Animation_state.walking;
@@ -314,7 +316,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         dog_state = Animation_state.walking;
                         SetLongTimer();
-                    }                    
+                    }
                     break;
                 default:
                     return;
