@@ -60,8 +60,8 @@ public class Basic_Behaviour : MonoBehaviour
         turning_behav = dog.GetComponent<Turning_Behaviour>();
 
         //state
-        anim_controll.current_state = anim.walk;
-        dog_state = Animation_state.walking;
+        anim_controll.current_state = anim.stand_02;
+        dog_state = Animation_state.standing;
 
         //timer
         min_timer = starting_timer;

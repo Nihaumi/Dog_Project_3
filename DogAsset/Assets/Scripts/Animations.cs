@@ -116,13 +116,13 @@ public class Animations : MonoBehaviour
         //fill lists
         list_standing.Add(trans_stand_to_lying_00);//0
         list_standing.Add(trans_stand_to_sit_00);//1
-        //list_standing.Add(run);//2
-        list_standing.Add(walk);//3
-        //list_standing.Add(trot);//4
-        list_standing.Add(walk_slow);//5
-        list_standing.Add(seek);//6
-        list_standing.Add(turn_left_seek);//7
-        list_standing.Add(turn_right_seek);//8
+        list_standing.Add(walk_slow);//2
+        list_standing.Add(walk); //3
+        list_standing.Add(seek);//4
+        list_standing.Add(trot);//5
+        list_standing.Add(turn_left_seek);//6
+        list_standing.Add(turn_right_seek);//7
+                                           //list_standing.Add(run);
 
         list_sitting.Add(trans_sit_to_stand_to_walk_slow);
         list_sitting.Add(trans_sit_to_stand_to_walk);
@@ -152,13 +152,13 @@ public class Animations : MonoBehaviour
         list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk_slow);
 
         list_walking.Add(stand_02);//0
-        //list_walking.Add(run);//1
-        list_walking.Add(seek);//2
-        list_walking.Add(walk);//3
-        list_walking.Add(walk_slow);//4
-        list_walking.Add(trot);//5
-        //list_walking.Add(seek_L);//6
-        //list_walking.Add(seek_R);//7
+        list_walking.Add(walk_slow);//1
+        list_walking.Add(walk);//2
+        list_walking.Add(seek);//3
+        list_walking.Add(trot);//4
+                               //list_walking.Add(run);//5
+                               //list_walking.Add(seek_L);//6
+                               //list_walking.Add(seek_R);//7
 
         list_walking_after_turning.Add(seek);
         list_walking_after_turning.Add(walk);
