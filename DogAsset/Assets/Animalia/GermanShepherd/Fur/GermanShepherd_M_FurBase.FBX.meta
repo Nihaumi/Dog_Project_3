@@ -1,119 +1,341 @@
 fileFormatVersion: 2
 guid: ae46131efa44399488bc40291da7f22d
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: //RootNode
-    100002: GermanShepherd_M_FurBase
-    100004: RigChest
-    100006: RigHead
-    100008: RigJaw1
-    100010: RigLBLeg1
-    100012: RigLBLeg2
-    100014: RigLBLeg3
-    100016: RigLBLegAnkle
-    100018: RigLBLegDigit11
-    100020: RigLEar1
-    100022: RigLEye1
-    100024: RigLEyelid1
-    100026: RigLFLeg1
-    100028: RigLFLeg2
-    100030: RigLFLeg3
-    100032: RigLFLegAnkle
-    100034: RigLFLegCollarbone
-    100036: RigLFLegDigit11
-    100038: RigLShoulderBlade
-    100040: RigNeck1
-    100042: RigNeck2
-    100044: RigNeck3
-    100046: RigNeck4
-    100048: RigPelvis
-    100050: RigRBLeg1
-    100052: RigRBLeg2
-    100054: RigRBLeg3
-    100056: RigRBLegAnkle
-    100058: RigRBLegDigit11
-    100060: RigREar1
-    100062: RigREye1
-    100064: RigREyelid1
-    100066: RigRFLeg1
-    100068: RigRFLeg2
-    100070: RigRFLeg3
-    100072: RigRFLegAnkle
-    100074: RigRFLegCollarbone
-    100076: RigRFLegDigit11
-    100078: RigRoot
-    100080: RigRShoulderBlade
-    100082: RigSpine1
-    100084: RigSpine2
-    100086: RigSpine3
-    100088: RigTail1
-    100090: RigTail2
-    100092: RigTail3
-    100094: RigTail4
-    100096: RigTail5
-    100098: RigTail6
-    100100: RigTongue1
-    100102: RigTongue2
-    100104: RigTongue3
-    400000: //RootNode
-    400002: GermanShepherd_M_FurBase
-    400004: RigChest
-    400006: RigHead
-    400008: RigJaw1
-    400010: RigLBLeg1
-    400012: RigLBLeg2
-    400014: RigLBLeg3
-    400016: RigLBLegAnkle
-    400018: RigLBLegDigit11
-    400020: RigLEar1
-    400022: RigLEye1
-    400024: RigLEyelid1
-    400026: RigLFLeg1
-    400028: RigLFLeg2
-    400030: RigLFLeg3
-    400032: RigLFLegAnkle
-    400034: RigLFLegCollarbone
-    400036: RigLFLegDigit11
-    400038: RigLShoulderBlade
-    400040: RigNeck1
-    400042: RigNeck2
-    400044: RigNeck3
-    400046: RigNeck4
-    400048: RigPelvis
-    400050: RigRBLeg1
-    400052: RigRBLeg2
-    400054: RigRBLeg3
-    400056: RigRBLegAnkle
-    400058: RigRBLegDigit11
-    400060: RigREar1
-    400062: RigREye1
-    400064: RigREyelid1
-    400066: RigRFLeg1
-    400068: RigRFLeg2
-    400070: RigRFLeg3
-    400072: RigRFLegAnkle
-    400074: RigRFLegCollarbone
-    400076: RigRFLegDigit11
-    400078: RigRoot
-    400080: RigRShoulderBlade
-    400082: RigSpine1
-    400084: RigSpine2
-    400086: RigSpine3
-    400088: RigTail1
-    400090: RigTail2
-    400092: RigTail3
-    400094: RigTail4
-    400096: RigTail5
-    400098: RigTail6
-    400100: RigTongue1
-    400102: RigTongue2
-    400104: RigTongue3
-    2100000: GermanShepherd_Eye
-    2100002: GermanShepherd
-    4300000: GermanShepherd_M_FurBase
-    9500000: //RootNode
-    13700000: GermanShepherd_M_FurBase
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: GermanShepherd_M_FurBase
+  - first:
+      1: 100004
+    second: RigChest
+  - first:
+      1: 100006
+    second: RigHead
+  - first:
+      1: 100008
+    second: RigJaw1
+  - first:
+      1: 100010
+    second: RigLBLeg1
+  - first:
+      1: 100012
+    second: RigLBLeg2
+  - first:
+      1: 100014
+    second: RigLBLeg3
+  - first:
+      1: 100016
+    second: RigLBLegAnkle
+  - first:
+      1: 100018
+    second: RigLBLegDigit11
+  - first:
+      1: 100020
+    second: RigLEar1
+  - first:
+      1: 100022
+    second: RigLEye1
+  - first:
+      1: 100024
+    second: RigLEyelid1
+  - first:
+      1: 100026
+    second: RigLFLeg1
+  - first:
+      1: 100028
+    second: RigLFLeg2
+  - first:
+      1: 100030
+    second: RigLFLeg3
+  - first:
+      1: 100032
+    second: RigLFLegAnkle
+  - first:
+      1: 100034
+    second: RigLFLegCollarbone
+  - first:
+      1: 100036
+    second: RigLFLegDigit11
+  - first:
+      1: 100038
+    second: RigLShoulderBlade
+  - first:
+      1: 100040
+    second: RigNeck1
+  - first:
+      1: 100042
+    second: RigNeck2
+  - first:
+      1: 100044
+    second: RigNeck3
+  - first:
+      1: 100046
+    second: RigNeck4
+  - first:
+      1: 100048
+    second: RigPelvis
+  - first:
+      1: 100050
+    second: RigRBLeg1
+  - first:
+      1: 100052
+    second: RigRBLeg2
+  - first:
+      1: 100054
+    second: RigRBLeg3
+  - first:
+      1: 100056
+    second: RigRBLegAnkle
+  - first:
+      1: 100058
+    second: RigRBLegDigit11
+  - first:
+      1: 100060
+    second: RigREar1
+  - first:
+      1: 100062
+    second: RigREye1
+  - first:
+      1: 100064
+    second: RigREyelid1
+  - first:
+      1: 100066
+    second: RigRFLeg1
+  - first:
+      1: 100068
+    second: RigRFLeg2
+  - first:
+      1: 100070
+    second: RigRFLeg3
+  - first:
+      1: 100072
+    second: RigRFLegAnkle
+  - first:
+      1: 100074
+    second: RigRFLegCollarbone
+  - first:
+      1: 100076
+    second: RigRFLegDigit11
+  - first:
+      1: 100078
+    second: RigRoot
+  - first:
+      1: 100080
+    second: RigRShoulderBlade
+  - first:
+      1: 100082
+    second: RigSpine1
+  - first:
+      1: 100084
+    second: RigSpine2
+  - first:
+      1: 100086
+    second: RigSpine3
+  - first:
+      1: 100088
+    second: RigTail1
+  - first:
+      1: 100090
+    second: RigTail2
+  - first:
+      1: 100092
+    second: RigTail3
+  - first:
+      1: 100094
+    second: RigTail4
+  - first:
+      1: 100096
+    second: RigTail5
+  - first:
+      1: 100098
+    second: RigTail6
+  - first:
+      1: 100100
+    second: RigTongue1
+  - first:
+      1: 100102
+    second: RigTongue2
+  - first:
+      1: 100104
+    second: RigTongue3
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: GermanShepherd_M_FurBase
+  - first:
+      4: 400004
+    second: RigChest
+  - first:
+      4: 400006
+    second: RigHead
+  - first:
+      4: 400008
+    second: RigJaw1
+  - first:
+      4: 400010
+    second: RigLBLeg1
+  - first:
+      4: 400012
+    second: RigLBLeg2
+  - first:
+      4: 400014
+    second: RigLBLeg3
+  - first:
+      4: 400016
+    second: RigLBLegAnkle
+  - first:
+      4: 400018
+    second: RigLBLegDigit11
+  - first:
+      4: 400020
+    second: RigLEar1
+  - first:
+      4: 400022
+    second: RigLEye1
+  - first:
+      4: 400024
+    second: RigLEyelid1
+  - first:
+      4: 400026
+    second: RigLFLeg1
+  - first:
+      4: 400028
+    second: RigLFLeg2
+  - first:
+      4: 400030
+    second: RigLFLeg3
+  - first:
+      4: 400032
+    second: RigLFLegAnkle
+  - first:
+      4: 400034
+    second: RigLFLegCollarbone
+  - first:
+      4: 400036
+    second: RigLFLegDigit11
+  - first:
+      4: 400038
+    second: RigLShoulderBlade
+  - first:
+      4: 400040
+    second: RigNeck1
+  - first:
+      4: 400042
+    second: RigNeck2
+  - first:
+      4: 400044
+    second: RigNeck3
+  - first:
+      4: 400046
+    second: RigNeck4
+  - first:
+      4: 400048
+    second: RigPelvis
+  - first:
+      4: 400050
+    second: RigRBLeg1
+  - first:
+      4: 400052
+    second: RigRBLeg2
+  - first:
+      4: 400054
+    second: RigRBLeg3
+  - first:
+      4: 400056
+    second: RigRBLegAnkle
+  - first:
+      4: 400058
+    second: RigRBLegDigit11
+  - first:
+      4: 400060
+    second: RigREar1
+  - first:
+      4: 400062
+    second: RigREye1
+  - first:
+      4: 400064
+    second: RigREyelid1
+  - first:
+      4: 400066
+    second: RigRFLeg1
+  - first:
+      4: 400068
+    second: RigRFLeg2
+  - first:
+      4: 400070
+    second: RigRFLeg3
+  - first:
+      4: 400072
+    second: RigRFLegAnkle
+  - first:
+      4: 400074
+    second: RigRFLegCollarbone
+  - first:
+      4: 400076
+    second: RigRFLegDigit11
+  - first:
+      4: 400078
+    second: RigRoot
+  - first:
+      4: 400080
+    second: RigRShoulderBlade
+  - first:
+      4: 400082
+    second: RigSpine1
+  - first:
+      4: 400084
+    second: RigSpine2
+  - first:
+      4: 400086
+    second: RigSpine3
+  - first:
+      4: 400088
+    second: RigTail1
+  - first:
+      4: 400090
+    second: RigTail2
+  - first:
+      4: 400092
+    second: RigTail3
+  - first:
+      4: 400094
+    second: RigTail4
+  - first:
+      4: 400096
+    second: RigTail5
+  - first:
+      4: 400098
+    second: RigTail6
+  - first:
+      4: 400100
+    second: RigTongue1
+  - first:
+      4: 400102
+    second: RigTongue2
+  - first:
+      4: 400104
+    second: RigTongue3
+  - first:
+      21: 2100000
+    second: GermanShepherd_Eye
+  - first:
+      21: 2100002
+    second: GermanShepherd
+  - first:
+      43: 4300000
+    second: GermanShepherd_M_FurBase
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: GermanShepherd_M_FurBase
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -126,7 +348,7 @@ ModelImporter:
       name: GermanShepherd_Eye
     second: {fileID: 2100000, guid: 232133b2cf0391e4b8ed0b55557a9ce0, type: 2}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
     materialLocation: 1
@@ -159,25 +381,32 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 0.01
-    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -186,10 +415,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 0
-  copyAvatar: 1
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -199,14 +428,18 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: RigRoot
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: f878bdd568efcea4b91d0f219ef65974,
     type: 3}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 2
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

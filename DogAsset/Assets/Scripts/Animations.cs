@@ -6,11 +6,14 @@ public class Animations : MonoBehaviour
 {
     //animations grouped as they are in the animator 
     //neutral/friendly
+
+    public string blend_tree = "Blend_Tree";
+
     //standing
     public string stand_01 = "Stand_01";
     public string trans_lying_to_stand_01 = "Trans_Lying_to_Stand_01";
     public string trans_sitting_to_stand_01 = "Trans_Lying_to_Stand_01";
-    public string trans_sleeping_to_lying_to_stand_01 = "Trans_Sleeping_to_Lying_to_Stand_01";
+    public string trans_sleeping_to_lying_to_stand_02 = "Trans_Sleeping_to_Lying_to_Stand_02";
     public string stand_02 = "Stand_02";
     public string trans_lying_to_stand_02 = "Trans_Lying_to_Stand_02";
     public string trans_sitting_to_stand_02 = "Trans_Sitting_to_Stand_02";
@@ -120,14 +123,14 @@ public class Animations : MonoBehaviour
         list_standing.Add(walk); //3
         list_standing.Add(seek);//4
         list_standing.Add(trot);//5
-        list_standing.Add(turn_left_seek);//6
-        list_standing.Add(turn_right_seek);//7
+        //list_standing.Add(turn_left_seek);//6
+        //list_standing.Add(turn_right_seek);//7
                                            //list_standing.Add(run);
 
         list_sitting.Add(trans_sit_to_stand_to_walk_slow);
         list_sitting.Add(trans_sit_to_stand_to_walk);
         list_sitting.Add(trans_sit_to_stand_to_seek);
-        //list_sitting.Add(trans_sit_to_stand_to_trot);
+        list_sitting.Add(trans_sit_to_stand_to_trot);
         //list_sitting.Add(trans_sit_to_stand_to_run);
 
         list_running.Add(stand_02);
@@ -137,19 +140,21 @@ public class Animations : MonoBehaviour
         list_running.Add(trans_lying_to_stand_to_walk_slow);
 
         list_lying.Add(trans_lying_to_sleep);
-        //list_lying.Add(trans_lying_to_stand_to_run);
-        list_lying.Add(trans_lying_to_stand_to_seek);
-        //list_lying.Add(trans_lying_to_stand_to_trot);
-        list_lying.Add(trans_lying_to_stand_to_walk);
         list_lying.Add(trans_lying_to_stand_to_walk_slow);
+        list_lying.Add(trans_lying_to_stand_to_walk);
+        list_lying.Add(trans_lying_to_stand_to_seek);
+        list_lying.Add(trans_lying_to_stand_to_trot);
+        //list_lying.Add(trans_lying_to_stand_to_run);
 
         list_sleeping.Add(trans_sleep_to_lying);
-        list_sleeping.Add(trans_sleeping_to_lying_to_stand_01);
-        //list_sleeping.Add(trans_sleep_to_lying_to_stand_to_run);
-        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_seek);
-        //list_sleeping.Add(trans_sleep_to_lying_to_stand_to_trot);
-        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk);
+        list_sleeping.Add(trans_sleeping_to_lying_to_stand_02);
         list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk_slow);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_seek);
+        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_trot);
+        //list_sleeping.Add(trans_sleep_to_lying_to_stand_to_run);
+
+
 
         list_walking.Add(stand_02);//0
         list_walking.Add(walk_slow);//1

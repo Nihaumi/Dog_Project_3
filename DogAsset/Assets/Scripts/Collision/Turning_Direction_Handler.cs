@@ -66,10 +66,14 @@ public class Turning_Direction_Handler : MonoBehaviour
             SetAnimationTimerLower(0.75f) ;
         }
     }
-
+    //TODO: REMOVE TimerToZero
     //turn left opr right
     void SetTurningDirection()
     {
+        if(basic_behav.dog_state == Basic_Behaviour.Animation_state.standing && col_det_left.collided)
+        {
+            basic_behav.y_goal = basic_behav.walking_slow_value;
+        }
         //if collision with corner turn 90 degrees left/right
         if (col_det_left.hit_corner)
         {

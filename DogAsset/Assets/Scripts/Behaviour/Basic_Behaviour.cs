@@ -31,6 +31,7 @@ public class Basic_Behaviour : MonoBehaviour
     public GameObject dog;
     public GameObject dog_parent;
     public GameObject dir_manager;
+    public Animator animator;
     GameObject behav_manager;
     Animation_Controll anim_controll;
     Animations anim;
@@ -52,6 +53,7 @@ public class Basic_Behaviour : MonoBehaviour
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
         behav_manager = GameObject.Find("Behaviour_Manager");
+        animator = dog.GetComponent<Animator>();
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
@@ -67,6 +69,125 @@ public class Basic_Behaviour : MonoBehaviour
         min_timer = starting_timer;
         max_timer = min_timer;
     }
+
+    //coodinates in Blend Tree
+    public float x_axis = 0f;
+    public float y_axis = 0f;
+    public float x_goal = 0f;
+    public float y_goal = 0f;
+
+    public float x_acceleration = 3f;
+    public float turning_y_acceleration = 3f;
+    public float y_acceleration = 0.5f;
+    public float default_y_acceleration = 0.5f;
+
+    public float standing_value = 0;
+    public float walking_slow_value = 0.25f;
+    public float seek_value = 0.5f;
+    public float walking_value = 1f;
+    public float trot_value = 1.5f;
+
+
+    /*todo fo rblend tree:
+     * while loop with thresholds for each wakling state
+     * erstmal nur für: walkSlow, walk, seek, trot, run
+     * variablen für thresholds -> min y in while loop, x ist immer 0
+     * evtl in basic behaviour integrieren weil für alle gleich
+     * change animation state nicht gebraucht
+     * stop animation player????
+     * 
+     * reset  X und Y function
+     * Function mit thershold paramater
+    */
+
+    //Sets parameters in animator
+    public void SetBlendTreeParameters()
+    {
+        animator.SetFloat("X", x_axis);
+        animator.SetFloat("Y", y_axis);
+    }
+
+    public void ResetParameter()
+    {
+        x_axis = 0;
+        y_axis = 0;
+        y_goal = 0;
+        x_goal = 0;
+    }
+
+    //increases X axis until specific walking animation is reached
+    public void IncreaseXAxisToValue(float value)
+    {
+        if (x_axis < value)
+        {
+            x_axis += Time.deltaTime * x_acceleration;
+            x_axis = Mathf.Min(x_axis, value);
+
+        }
+    }
+    //decreases X axis until specific walking animation is reached
+    public void DecreaseXAxisToValue(float value)
+    {
+        if (x_axis > value)
+        {
+            x_axis -= Time.deltaTime * x_acceleration;
+            x_axis = Mathf.Max(x_axis, value);
+        }
+    }
+
+    //increases Y axis until specific walking animation is reached
+   public void IncreaseYAxisToValue(float value)
+    {
+        if (y_axis < value)
+        {
+
+            y_axis += Time.deltaTime * y_acceleration;
+            y_axis = Mathf.Min(y_axis, value);
+        }
+    }
+    //decreases Y axis until specific walking animation is reached
+    public void DecreaseYAxisToValue(float value)
+    {
+        if (y_axis > value)
+        {
+
+            y_axis -= Time.deltaTime * y_acceleration;
+            y_axis = Mathf.Max(y_axis, value);
+
+        }
+    }
+    public void TurnLeft()
+    {
+        if (y_goal != 0)
+        {
+            x_goal = -y_goal;
+            y_goal = 0;
+            x_axis = -y_axis;
+            y_axis = 0;
+        }
+    }
+    public void TurnRight()
+    {
+        if (y_goal != 0)
+        {
+            x_goal = y_goal;
+            y_goal = 0;
+            x_axis = y_axis;
+            y_axis = 0;
+        }
+    }
+    public void WalkForward()
+    {
+        if (x_goal != 0)
+        {
+            y_goal = Mathf.Abs(x_goal);
+            x_goal = 0;
+            y_axis = Mathf.Abs(x_axis);
+            x_axis = 0;
+        }
+    }
+
+
 
     //Timer
     void ResetTimerFunction()
@@ -156,15 +277,22 @@ public class Basic_Behaviour : MonoBehaviour
     void Update()
     {
         change_anim_timer = change_anim_timer - Time.deltaTime;
+        SetBlendTreeParameters();
+        IncreaseYAxisToValue(y_goal);
+        DecreaseYAxisToValue(y_goal);
+        IncreaseXAxisToValue(x_goal);
+        DecreaseXAxisToValue(x_goal);
+
 
         if (change_anim_timer <= 0)
         {
       
             ChooseRandomIndex();
 
-            //behaviours
             turning_behav.TurningBehaviour();
-            if (behav_switch.neutral_script.enabled)
+            //behaviours
+
+            if (behav_switch.neutral_script.enabled && !turning_behav.walking_after_turning_on)
             {
                 neutral_behav.NeutralBehaviour();
             }
