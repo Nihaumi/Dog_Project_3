@@ -35,6 +35,18 @@ public class Neutral_Behaviour : MonoBehaviour
     }
 
 
+    /* transitions von sit/lay/stand in den seek tree! mit trigger 
+    * makes it smoother
+    */
+    public void SetBoolForSeekBT()
+    {
+        animator.SetBool("go_seek", true);
+    }
+    public void SetBoolForWalkingBT()
+    {
+        animator.SetBool("go_seek", false);
+    }
+
     public void NeutralBehaviour()
     {
 
@@ -43,6 +55,7 @@ public class Neutral_Behaviour : MonoBehaviour
             case Basic_Behaviour.Animation_state.standing:
 
                 basic_behav.ResetParameter();
+                SetBoolForWalkingBT();
                 //Debug.Log("standinglist item at rndindex: " + basic_behav.random_index + "is:" + anim.list_standing[basic_behav.random_index]);
                 if (basic_behav.random_index == 0)
                 {
@@ -67,7 +80,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 4)
                     {
-                        anim_controll.ChangeAnimationState(anim.blend_tree_seek);
+                        anim_controll.ChangeAnimationState(anim.blend_tree);
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 5)
@@ -84,6 +97,7 @@ public class Neutral_Behaviour : MonoBehaviour
                 anim_controll.ChangeAnimationState(anim.trans_sitting_to_stand_02);
 
                 basic_behav.ResetParameter();
+                SetBoolForWalkingBT();
                 if (basic_behav.random_index == 0)
                 {
                     basic_behav.y_goal = basic_behav.walking_slow_value;
@@ -94,8 +108,8 @@ public class Neutral_Behaviour : MonoBehaviour
                 }
                 if (basic_behav.random_index == 2)
                 {
+                    SetBoolForSeekBT();
                     basic_behav.y_goal = basic_behav.seek_value;
-                    anim_controll.ChangeAnimationState(anim.blend_tree_seek);
                 }
                 if (basic_behav.random_index == 3)
                 {
@@ -119,6 +133,7 @@ public class Neutral_Behaviour : MonoBehaviour
                 else
                 {
                     anim_controll.ChangeAnimationState(anim.trans_lying_to_stand_02);
+                    SetBoolForWalkingBT();
                     if (basic_behav.random_index == 1)
                     {
                         basic_behav.y_goal = basic_behav.walking_slow_value;
@@ -129,7 +144,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 3)
                     {
-                        anim_controll.ChangeAnimationState(anim.blend_tree_seek);
+                        SetBoolForSeekBT();
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 4)
@@ -144,6 +159,7 @@ public class Neutral_Behaviour : MonoBehaviour
             case Basic_Behaviour.Animation_state.sleeping:
 
                 basic_behav.ResetParameter();
+                SetBoolForWalkingBT();
                 //Debug.Log("sleeping list item at rndindex: " + basic_behav.random_index + "is:" + anim.list_sleeping[basic_behav.random_index]);
                 if (basic_behav.random_index == 0)
                 {
@@ -170,7 +186,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 4)
                     {
-                        anim_controll.ChangeAnimationState(anim.blend_tree_seek);
+                        SetBoolForSeekBT();
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 5)
@@ -203,7 +219,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         {
                             SwitchToOrFromSeekingBehaviour(anim.blend_tree);
                         }
-                            basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = basic_behav.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
@@ -223,12 +239,21 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 4)
                     {
-                        if (anim_controll.current_state == anim.blend_tree_seek)
+                        if (turn_dir_handler.col_det_left_trot.trot_collider_touching_wall || turn_dir_handler.col_det_right_trot.trot_collider_touching_wall)
                         {
-                            SwitchToOrFromSeekingBehaviour(anim.blend_tree);
+                            Debug.Log("wanted to trot but was colliding");
+                            break;
                         }
-                        basic_behav.y_goal = basic_behav.trot_value;
-                        basic_behav.SetShortTimer(0.1f, 2f);
+                        else if (!turn_dir_handler.col_det_left_trot.trot_collider_touching_wall && !turn_dir_handler.col_det_right_trot.trot_collider_touching_wall)
+                        {
+                            if (anim_controll.current_state == anim.blend_tree_seek)
+                            {
+                                SwitchToOrFromSeekingBehaviour(anim.blend_tree);
+                            }
+                            basic_behav.y_goal = basic_behav.trot_value;
+                            basic_behav.SetShortTimer(0.1f, 1f);
+                        }
+
                     }
 
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
@@ -241,10 +266,20 @@ public class Neutral_Behaviour : MonoBehaviour
         }
 
     }
+
+
+    /*
+ * when seeking: current anim state = seeking BT
+ * from seeking to other walking state:
+ * decrease y value in seeking BT until 0
+ * change BT to bland tree 
+ * y value = chosen value
+ * 
+*/
     public void SwitchToOrFromSeekingBehaviour(string tree)
     {
         basic_behav.SetShortTimer(4, 5);
-        basic_behav.y_acceleration = 2;
+        //basic_behav.y_acceleration = 2;
         basic_behav.y_goal = basic_behav.standing_value;
         if (basic_behav.y_axis == basic_behav.standing_value)
         {
@@ -253,16 +288,9 @@ public class Neutral_Behaviour : MonoBehaviour
     }
 
     /*TODO:
-     * extra hitbox for trotting --> TUrning handle, turning behav, neutral(?)
+     * 
      * adjust timing for trotting
      */
 
-    /*TODO:
-     * when seeking: current anim state = seeking BT
-     * from seeking to other walking state:
-     * decrease y value in seeking BT until 0
-     * change BT to bland tree 
-     * y value = chosen value
-     * 
-    */
+
 }

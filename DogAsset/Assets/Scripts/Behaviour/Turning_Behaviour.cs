@@ -34,6 +34,10 @@ public class Turning_Behaviour : MonoBehaviour
 
     }
 
+    /*TODO:
+     * when turning make him turn shorter damit er keine 180 grad macht
+     */
+
     public bool walking_after_turning_on = false;
 
     public bool TurningBehaviour()
@@ -61,7 +65,8 @@ public class Turning_Behaviour : MonoBehaviour
                 if (basic_behav.y_goal == basic_behav.trot_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
-                    basic_behav.SetShortTimer(0.3f, 1);
+                    basic_behav.count++;
+                    basic_behav.SetShortTimer(0.3f, 0.6f);
                 }
                 basic_behav.TurnLeft();
                 break;
@@ -84,13 +89,17 @@ public class Turning_Behaviour : MonoBehaviour
                 if (basic_behav.y_goal == basic_behav.trot_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
-                    basic_behav.SetShortTimer(0.3f, 1);
+                    basic_behav.SetShortTimer(0.3f, 0.6f);
                 }
                 basic_behav.TurnRight();
                 break;
             case Basic_Behaviour.Animation_state.walking_after_turning:
                 basic_behav.SetLongTimer();
                 basic_behav.WalkForward();
+                if(Mathf.Abs(basic_behav.x_goal) == basic_behav.trot_value)
+                {
+                    basic_behav.SetShortTimer(0.2f, 0.5f);
+                }
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
                 walking_after_turning_on = true;
                 return walking_after_turning_on;

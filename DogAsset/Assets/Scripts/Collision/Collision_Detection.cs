@@ -7,6 +7,10 @@ public class Collision_Detection : MonoBehaviour
     public bool collided;
     public bool hit_corner;
 
+    public bool left_trot_touching = false;
+    public bool right_trot_touching = false;
+    public bool trot_collider_touching_wall = false;
+
     //cube that collided
     public GameObject side;
 
@@ -41,10 +45,21 @@ public class Collision_Detection : MonoBehaviour
 
         if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
+            if (gameObject.name == "left_trot")
+            {
+                left_trot_touching = true;
+            }
+            if(gameObject.name == "right_trot")
+            {
+                right_trot_touching = true;
+            }
+
             if (gameObject.name == "left_trot" || gameObject.name == "right_trot")
             {
-                if(basic_behav.y_goal == basic_behav.trot_value)
+                trot_collider_touching_wall = true;
+                if (basic_behav.y_goal == basic_behav.trot_value)
                 {
+
                     collided = true;
                     GetCollidedObject(this.gameObject);
                     Debug.Log("TROT COLLISION with cube: " + side.name);
@@ -54,7 +69,7 @@ public class Collision_Detection : MonoBehaviour
                     }
                 }
             }
-           else if(basic_behav.y_goal != basic_behav.trot_value && !collided)
+            else if (basic_behav.y_goal != basic_behav.trot_value && !collided)
             {
                 collided = true;
                 GetCollidedObject(this.gameObject);
@@ -73,12 +88,31 @@ public class Collision_Detection : MonoBehaviour
     {
         if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
+            CheckIfTrotsAreTouchingWalls();
+
             Debug.Log("EXIT collision with: " + collision.gameObject.name);
             collided = false;
             hit_corner = false;
             turning_dir_handler.turn_90_deg = false;
         }
     }
+
+    void CheckIfTrotsAreTouchingWalls()
+    {
+        if (gameObject.name == "left_trot")
+        {
+            left_trot_touching = false;
+        }
+        if (gameObject.name == "right_trot")
+        {
+            right_trot_touching = false;
+        }
+        if (!left_trot_touching && !right_trot_touching)
+        {
+            trot_collider_touching_wall = false;
+        }
+    }
+
     public void GetCollidedObject(GameObject cube)
     {
         side = cube;

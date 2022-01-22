@@ -7,8 +7,8 @@ public class Turning_Direction_Handler : MonoBehaviour
     //scripts
     Collision_Detection col_det_left;
     Collision_Detection col_det_right;
-    Collision_Detection col_det_left_trot;
-    Collision_Detection col_det_right_trot;
+    public Collision_Detection col_det_left_trot;
+    public Collision_Detection col_det_right_trot;
 
     Basic_Behaviour basic_behav;
     Animation_Controll anim_controller;
