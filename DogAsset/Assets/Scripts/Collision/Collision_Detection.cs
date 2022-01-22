@@ -12,16 +12,20 @@ public class Collision_Detection : MonoBehaviour
 
     //objects
     GameObject dir_manager;
+    GameObject dog;
 
     //scripts
     Turning_Direction_Handler turning_dir_handler;
+    Basic_Behaviour basic_behav;
 
     // Start is called before the first frame update
     void Start()
     {
         //obj & scripts
+        dog = GameObject.Find("GermanShepherd_Prefab");
         dir_manager = GameObject.Find("Direction_Manager");
         turning_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
+        basic_behav = dog.GetComponent<Basic_Behaviour>();
 
         collided = false;
     }
@@ -37,13 +41,28 @@ public class Collision_Detection : MonoBehaviour
 
         if (collision.gameObject.tag == "Environment" || collision.gameObject.tag == "Corner")
         {
- 
-            collided = true;
-            GetCollidedObject(this.gameObject);
-            Debug.Log("COLLISION with cube: " + side.name);
-            if( collision.gameObject.tag == "Corner")
+            if (gameObject.name == "left_trot" || gameObject.name == "right_trot")
             {
-                hit_corner = true;
+                if(basic_behav.y_goal == basic_behav.trot_value)
+                {
+                    collided = true;
+                    GetCollidedObject(this.gameObject);
+                    Debug.Log("TROT COLLISION with cube: " + side.name);
+                    if (collision.gameObject.tag == "Corner")
+                    {
+                        hit_corner = true;
+                    }
+                }
+            }
+           else if(basic_behav.y_goal != basic_behav.trot_value && !collided)
+            {
+                collided = true;
+                GetCollidedObject(this.gameObject);
+                Debug.Log("COLLISION with cube: " + side.name);
+                if (collision.gameObject.tag == "Corner")
+                {
+                    hit_corner = true;
+                }
             }
         }
 

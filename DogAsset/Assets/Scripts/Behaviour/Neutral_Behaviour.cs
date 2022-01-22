@@ -41,7 +41,7 @@ public class Neutral_Behaviour : MonoBehaviour
         switch (basic_behav.dog_state)
         {
             case Basic_Behaviour.Animation_state.standing:
-            
+
                 basic_behav.ResetParameter();
                 //Debug.Log("standinglist item at rndindex: " + basic_behav.random_index + "is:" + anim.list_standing[basic_behav.random_index]);
                 if (basic_behav.random_index == 0)
@@ -67,6 +67,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 4)
                     {
+                        anim_controll.ChangeAnimationState(anim.blend_tree_seek);
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 5)
@@ -94,6 +95,7 @@ public class Neutral_Behaviour : MonoBehaviour
                 if (basic_behav.random_index == 2)
                 {
                     basic_behav.y_goal = basic_behav.seek_value;
+                    anim_controll.ChangeAnimationState(anim.blend_tree_seek);
                 }
                 if (basic_behav.random_index == 3)
                 {
@@ -127,6 +129,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 3)
                     {
+                        anim_controll.ChangeAnimationState(anim.blend_tree_seek);
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 4)
@@ -167,6 +170,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 4)
                     {
+                        anim_controll.ChangeAnimationState(anim.blend_tree_seek);
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 5)
@@ -180,6 +184,10 @@ public class Neutral_Behaviour : MonoBehaviour
                 break;
             case Basic_Behaviour.Animation_state.walking:
 
+                if (anim_controll.current_state != anim.blend_tree)
+                {
+                    anim_controll.ChangeAnimationState(anim.blend_tree);
+                }
                 basic_behav.SetLongTimer();
                 if (basic_behav.random_index == 0)
                 {
@@ -191,24 +199,40 @@ public class Neutral_Behaviour : MonoBehaviour
                     //anim_controll.ChangeAnimationState(anim.blend_tree);
                     if (basic_behav.random_index == 1)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        if (anim_controll.current_state == anim.blend_tree_seek)
+                        {
+                            SwitchToOrFromSeekingBehaviour(anim.blend_tree);
+                        }
+                            basic_behav.y_goal = basic_behav.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
+                        if (anim_controll.current_state == anim.blend_tree_seek)
+                        {
+                            SwitchToOrFromSeekingBehaviour(anim.blend_tree);
+                        }
                         basic_behav.y_goal = basic_behav.walking_value;
                     }
                     if (basic_behav.random_index == 3)
                     {
+                        if (anim_controll.current_state != anim.blend_tree_seek)
+                        {
+                            SwitchToOrFromSeekingBehaviour(anim.blend_tree_seek);
+                        }
                         basic_behav.y_goal = basic_behav.seek_value;
                     }
                     if (basic_behav.random_index == 4)
                     {
+                        if (anim_controll.current_state == anim.blend_tree_seek)
+                        {
+                            SwitchToOrFromSeekingBehaviour(anim.blend_tree);
+                        }
                         basic_behav.y_goal = basic_behav.trot_value;
                         basic_behav.SetShortTimer(0.1f, 2f);
                     }
 
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
-                   
+
                 }
                 Debug.Log("walking list item at rndindex: " + basic_behav.random_index + "is:" + anim.list_walking[basic_behav.random_index]);
                 break;
@@ -217,4 +241,28 @@ public class Neutral_Behaviour : MonoBehaviour
         }
 
     }
+    public void SwitchToOrFromSeekingBehaviour(string tree)
+    {
+        basic_behav.SetShortTimer(4, 5);
+        basic_behav.y_acceleration = 2;
+        basic_behav.y_goal = basic_behav.standing_value;
+        if (basic_behav.y_axis == basic_behav.standing_value)
+        {
+            anim_controll.ChangeAnimationState(tree);
+        }
+    }
+
+    /*TODO:
+     * extra hitbox for trotting --> TUrning handle, turning behav, neutral(?)
+     * adjust timing for trotting
+     */
+
+    /*TODO:
+     * when seeking: current anim state = seeking BT
+     * from seeking to other walking state:
+     * decrease y value in seeking BT until 0
+     * change BT to bland tree 
+     * y value = chosen value
+     * 
+    */
 }

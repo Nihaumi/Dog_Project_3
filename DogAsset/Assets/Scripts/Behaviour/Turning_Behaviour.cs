@@ -44,26 +44,49 @@ public class Turning_Behaviour : MonoBehaviour
         {
             case Basic_Behaviour.Animation_state.turning_left:
 
-                Debug.Log("Lennart Log: TURN LEFT!");
-                basic_behav.TurnLeft();
+                Debug.Log("TURN LEFT!");
 
+                if (basic_behav.y_goal == basic_behav.walking_slow_value)
+                {
+                    anim_controll.ChangeAnimationState(anim.turn_walk_slow_tree);
+                }
+                if (basic_behav.y_goal == basic_behav.seek_value)
+                {
+                    anim_controll.ChangeAnimationState(anim.turn_seek_tree);
+                }
+                if (basic_behav.y_goal == basic_behav.walking_value)
+                {
+                    anim_controll.ChangeAnimationState(anim.turn_walk_tree);
+                }
                 if (basic_behav.y_goal == basic_behav.trot_value)
                 {
+                    anim_controll.ChangeAnimationState(anim.turn_trot_tree);
                     basic_behav.SetShortTimer(0.3f, 1);
-                    Debug.Log("running left");
                 }
-
+                basic_behav.TurnLeft();
                 break;
             case Basic_Behaviour.Animation_state.turning_right:
 
-                Debug.Log("Lennart Log: TURN RIGHT!");
-                basic_behav.TurnRight();
+                Debug.Log("TURN RIGHT!");
+
+                if (basic_behav.y_goal == basic_behav.walking_slow_value)
+                {
+                    anim_controll.ChangeAnimationState(anim.turn_walk_slow_tree);
+                }
+                if (basic_behav.y_goal == basic_behav.seek_value)
+                {
+                    anim_controll.ChangeAnimationState(anim.turn_seek_tree);
+                }
+                if (basic_behav.y_goal == basic_behav.walking_value)
+                {
+                    anim_controll.ChangeAnimationState(anim.turn_walk_tree);
+                }
                 if (basic_behav.y_goal == basic_behav.trot_value)
                 {
+                    anim_controll.ChangeAnimationState(anim.turn_trot_tree);
                     basic_behav.SetShortTimer(0.3f, 1);
-                    Debug.Log("running right");
                 }
-
+                basic_behav.TurnRight();
                 break;
             case Basic_Behaviour.Animation_state.walking_after_turning:
                 basic_behav.SetLongTimer();

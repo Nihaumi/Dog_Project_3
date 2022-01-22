@@ -7,7 +7,13 @@ public class Animations : MonoBehaviour
     //animations grouped as they are in the animator 
     //neutral/friendly
 
+    //blending trees
     public string blend_tree = "Blend_Tree";
+    public string turn_walk_slow_tree = "Blend_Tree_Turn_Walk_Slow";
+    public string turn_walk_tree = "Blend_Tree_Turn_Walk";
+    public string turn_seek_tree = "Blend_Tree_Turn_Seek";
+    public string turn_trot_tree = "Blend_Tree_Turn_Trot";
+    public string blend_tree_seek = "Blend_Tree_Seeking";
 
     //standing
     public string stand_01 = "Stand_01";
@@ -123,9 +129,9 @@ public class Animations : MonoBehaviour
         list_standing.Add(walk); //3
         list_standing.Add(seek);//4
         list_standing.Add(trot);//5
-        //list_standing.Add(turn_left_seek);//6
-        //list_standing.Add(turn_right_seek);//7
-                                           //list_standing.Add(run);
+                                //list_standing.Add(turn_left_seek);//6
+                                //list_standing.Add(turn_right_seek);//7
+                                //list_standing.Add(run);
 
         list_sitting.Add(trans_sit_to_stand_to_walk_slow);
         list_sitting.Add(trans_sit_to_stand_to_walk);

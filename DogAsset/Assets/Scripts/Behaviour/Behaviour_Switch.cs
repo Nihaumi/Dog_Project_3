@@ -16,8 +16,8 @@ public class Behaviour_Switch : MonoBehaviour
     GameObject player;
 
     //distance to trigger behaviour
-    float dist;
-    float friendly_distance = 3.5f;
+    public float dist;
+    public float friendly_distance = 0.5f;
 
     //script disabling
     bool all_scripts_off;
@@ -47,7 +47,7 @@ public class Behaviour_Switch : MonoBehaviour
         //set scripts
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
-        neutral_script.enabled = true;
+        neutral_script.enabled = false;
         all_scripts_off = true;
 
         //player
@@ -90,10 +90,10 @@ public class Behaviour_Switch : MonoBehaviour
     //
     void SetBehaviour(Behaviour_state behaviour)
     {
-        if (basic_script.dog_state == Basic_Behaviour.Animation_state.turning_left && all_scripts_off)
+        /*if (basic_script.dog_state == Basic_Behaviour.Animation_state.turning_left && all_scripts_off)
         {
             EnableBehaviourScripts(behaviour);
-        }
+        }*/
 
         if (behaviour == dog_behaviour)
         {

@@ -156,14 +156,25 @@ public class Basic_Behaviour : MonoBehaviour
 
         }
     }
+
+    /*TODO:
+     * on collision: set x and y goals to turning L/R
+     * change blending tree immediately according to current goals
+     * 
+     * afer collision: set x and y goals to walking forward
+     * change blend tree after goals reached
+     * 
+    */
+
+
     public void TurnLeft()
     {
         if (y_goal != 0)
         {
             x_goal = -y_goal;
             y_goal = 0;
-            x_axis = -y_axis;
-            y_axis = 0;
+            //x_axis = -y_axis;
+            //y_axis = 0;
         }
     }
     public void TurnRight()
@@ -172,8 +183,8 @@ public class Basic_Behaviour : MonoBehaviour
         {
             x_goal = y_goal;
             y_goal = 0;
-            x_axis = y_axis;
-            y_axis = 0;
+            //x_axis = y_axis;
+            //y_axis = 0;
         }
     }
     public void WalkForward()
@@ -182,8 +193,8 @@ public class Basic_Behaviour : MonoBehaviour
         {
             y_goal = Mathf.Abs(x_goal);
             x_goal = 0;
-            y_axis = Mathf.Abs(x_axis);
-            x_axis = 0;
+            //y_axis = Mathf.Abs(x_axis);
+            //x_axis = 0;
         }
     }
 
