@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations.Rigging;
 
 public class LookAt : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class LookAt : MonoBehaviour
     Basic_Behaviour basic_behav;
     Neutral_Behaviour neutral_behav;
     // Start is called before the first frame update
+
+    MultiAimConstraint neck_aim;
+    public Transform doggy;
+    
     void Start()
     {
         //access anim controll scipt
@@ -28,23 +33,20 @@ public class LookAt : MonoBehaviour
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
         basic_behav = dog.GetComponent<Basic_Behaviour>();
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
+        neck_aim = GetComponent<MultiAimConstraint>();
+
     }
 
-    //needed for the look at part
-    public Transform target;
-    Vector3 target_position;
-    void GetTargetPosition(Transform target)
-    {
-        target_position = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.y);
-    }
 
 
     // Update is called once per frame
     void Update()
     {
-        //look at 
-        GetTargetPosition(target);
-        transform.LookAt(target_position);
-
+        Debug.Log("SOURCE OBJ");
+       if (true)
+        {
+            neck_aim.data.sourceObjects.SetTransform(0, dog.transform);
+        }
     }
+
 }
