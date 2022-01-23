@@ -42,7 +42,7 @@ public class LookAt : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("SOURCE OBJ");
+
        if (true)
         {
             neck_aim.data.sourceObjects.SetTransform(0, dog.transform);

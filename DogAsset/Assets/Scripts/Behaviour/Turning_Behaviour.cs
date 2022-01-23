@@ -65,7 +65,7 @@ public class Turning_Behaviour : MonoBehaviour
                 if (basic_behav.y_goal == basic_behav.trot_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
-                    basic_behav.count++;
+
                     basic_behav.SetShortTimer(0.3f, 0.6f);
                 }
                 basic_behav.TurnLeft();

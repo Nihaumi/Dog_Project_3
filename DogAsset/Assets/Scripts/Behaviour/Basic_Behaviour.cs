@@ -302,9 +302,8 @@ public class Basic_Behaviour : MonoBehaviour
 
 
 
-            //turning_behav.TurningBehaviour();
-//nicht so lange trotten
-            HitTheBreaks();
+            turning_behav.TurningBehaviour();
+
             //behaviours
 
             if (behav_switch.neutral_script.enabled && !turning_behav.walking_after_turning_on)
@@ -320,12 +319,5 @@ public class Basic_Behaviour : MonoBehaviour
             //Debug.Log("new state " + dog_state);
         }
     }
-    public int count = 0;
-    void HitTheBreaks()
-    {
-        if (count > 100){
-            y_goal = walking_value;
-            count = 0;
-        }
-    }
+
 }
