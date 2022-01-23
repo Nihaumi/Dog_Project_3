@@ -127,7 +127,7 @@ public class Behaviour_Switch : MonoBehaviour
     {
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
-        //neutral_script.enabled = false;
+        neutral_script.enabled = false;
         all_scripts_off = true;
     }
 

@@ -161,7 +161,7 @@ public class Turning_Direction_Handler : MonoBehaviour
         basic_behav.dog_state = state;
     }
 
-    void SetAnimationTimerToZero()
+    public void SetAnimationTimerToZero()
     {
         basic_behav.change_anim_timer = 0;
     }

@@ -5,7 +5,25 @@ using UnityEngine;
 public class Animations : MonoBehaviour
 {
     //animations grouped as they are in the animator 
-    //neutral/friendly
+
+
+    //friendly
+    public string friendly_blend_tree = "friendly_tree";
+    public string friendly_trans_sleep_to_stand = "Trans_Sleeping_to_Lying_to_Stand_02_friendly";
+    public string friendly_trans_sleep_to_lying = " Trans_Sleeping_to_Lying_friendly";
+    public string friendly_trans_lying_to_stand = "Trans_Lying_to_Stand_02_friendly";
+    public string friendly_trans_sitting_to_stand = "Trans_Sitting_to_Stand_02_friendly";
+    public string friendly_trans_stand_to_sitting = "Trans_Stand_to_Sitting_00 1";
+    public string friendly_trans_stand_to_lying = "Trans_Stand_to_Lying_00";
+    public string friendly_turn_after_sitting = "friendly_turn_after_touching";
+    public string friendly_lying = "Lying_00";
+    public string friendly_stand = "Stand_00";
+    public string friendly_sitting = "Sitting_00";
+
+
+
+    //neutral
+    //
 
     //blending trees
     public string blend_tree = "Blend_Tree";
@@ -16,6 +34,7 @@ public class Animations : MonoBehaviour
     public string blend_tree_seek = "Blend_Tree_Seeking";
 
     //standing
+    public string stand_00 = "Stand_00";
     public string stand_01 = "Stand_01";
     public string trans_lying_to_stand_01 = "Trans_Lying_to_Stand_01";
     public string trans_sitting_to_stand_01 = "Trans_Lying_to_Stand_01";
@@ -116,12 +135,59 @@ public class Animations : MonoBehaviour
 
     public List<string> list_to_aggressive = new List<string>();
 
-
     public List<string> list_walking_after_turning = new List<string>();
+
+    //friendly
+
+    public List<string> friendly_list_sitting = new List<string>();
+
+    public List<string> friendly_list_lying = new List<string>();
+
+    public List<string> friendly_list_sleeping = new List<string>();
+
+
+    public List<string> friendly_list_standing = new List<string>();
+
+    public List<string> friendly_list_walking = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
+        //fill friendly list
+        //siting
+        friendly_list_sitting.Add(friendly_trans_sitting_to_stand);
+        friendly_list_sitting.Add(walk_slow);
+        friendly_list_sitting.Add(walk);
+
+        //lying
+        friendly_list_lying.Add(trans_lying_to_sleep);
+        friendly_list_lying.Add(friendly_trans_lying_to_stand);
+        friendly_list_lying.Add(walk_slow);//walkSlow
+        friendly_list_lying.Add(walk);//walk
+
+        //sleeping
+        friendly_list_sleeping.Add(friendly_trans_sleep_to_lying);
+        friendly_list_sleeping.Add(friendly_trans_sleep_to_stand);
+        friendly_list_sleeping.Add(walk_slow);//walkSlow
+        friendly_list_sleeping.Add(walk);//walk
+
+        //standing
+        friendly_list_standing.Add(friendly_trans_stand_to_lying);
+        friendly_list_standing.Add(friendly_trans_stand_to_sitting);
+        friendly_list_standing.Add(walk_slow);//walkSlow
+        friendly_list_standing.Add(walk);//walk
+
+
+        //walking
+        friendly_list_walking.Add(stand_00);
+        friendly_list_walking.Add(walk_slow);//walkSlow
+        friendly_list_walking.Add(walk);//walk
+
+
+
+
+
+
         //fill lists
         list_standing.Add(trans_stand_to_lying_00);//0
         list_standing.Add(trans_stand_to_sit_00);//1

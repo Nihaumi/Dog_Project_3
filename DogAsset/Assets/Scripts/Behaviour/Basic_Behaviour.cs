@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Animations.Rigging;
 public class Basic_Behaviour : MonoBehaviour
 {
     public enum Animation_state //is a class
@@ -29,6 +29,7 @@ public class Basic_Behaviour : MonoBehaviour
 
     //other script
     public GameObject dog;
+    public GameObject player;
     public GameObject dog_parent;
     public GameObject dir_manager;
     public Animator animator;
@@ -37,8 +38,10 @@ public class Basic_Behaviour : MonoBehaviour
     Animations anim;
     Turning_Direction_Handler turn_dir_handler;
     Neutral_Behaviour neutral_behav;
+    Friendly_Behaviour friendly_behav;
     Behaviour_Switch behav_switch;
     Turning_Behaviour turning_behav;
+    PlayerInteraction playerInteraction;
 
     private void Awake()
     {
@@ -50,6 +53,7 @@ public class Basic_Behaviour : MonoBehaviour
     {
         //access anim controll scipt
         dog = GameObject.Find("GermanShepherd_Prefab");
+        player = GameObject.FindGameObjectWithTag("Player");
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
         behav_manager = GameObject.Find("Behaviour_Manager");
@@ -58,8 +62,10 @@ public class Basic_Behaviour : MonoBehaviour
         anim = dog.GetComponent<Animations>();
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
+        friendly_behav = dog.GetComponent<Friendly_Behaviour>();
         behav_switch = behav_manager.GetComponent<Behaviour_Switch>();
         turning_behav = dog.GetComponent<Turning_Behaviour>();
+        playerInteraction = player.GetComponent<PlayerInteraction>();
 
         //state
         anim_controll.current_state = anim.stand_02;
@@ -68,6 +74,21 @@ public class Basic_Behaviour : MonoBehaviour
         //timer
         min_timer = starting_timer;
         max_timer = min_timer;
+
+        //rig layer obj
+        neck = GameObject.Find("Neck3Aim");
+        head = GameObject.Find("Head aim");
+        right_eye = GameObject.Find("EyeRight Aim");
+        left_eye = GameObject.Find("EyeLeft Aim");
+
+        
+
+        //multi aim constraints
+        neck_constraint = neck.GetComponent<MultiAimConstraint>();
+        head_constraint = head.GetComponent<MultiAimConstraint>();
+        right_eye_constraint = right_eye.GetComponent<MultiAimConstraint>();
+        left_eye_constraint = left_eye.GetComponent<MultiAimConstraint>();
+
     }
 
     //coodinates in Blend Tree
@@ -87,18 +108,24 @@ public class Basic_Behaviour : MonoBehaviour
     public float walking_value = 1f;
     public float trot_value = 1.5f;
 
+    //constraint gedöns
+    GameObject neck;
+    GameObject head;
+    GameObject left_eye;
+    GameObject right_eye;
 
-    /*todo fo rblend tree:
-     * while loop with thresholds for each wakling state
-     * erstmal nur für: walkSlow, walk, seek, trot, run
-     * variablen für thresholds -> min y in while loop, x ist immer 0
-     * evtl in basic behaviour integrieren weil für alle gleich
-     * change animation state nicht gebraucht
-     * stop animation player????
-     * 
-     * reset  X und Y function
-     * Function mit thershold paramater
-    */
+
+    //contraint components
+    public MultiAimConstraint neck_constraint;
+    public MultiAimConstraint head_constraint;
+    public MultiAimConstraint left_eye_constraint;
+    public MultiAimConstraint right_eye_constraint;
+
+    //hands distance und so
+    public float hand_close = 1f;
+    public float dist_left_hand_to_dog;
+    public float dist_right_hand_to_dog;
+
 
     //Sets parameters in animator
     public void SetBlendTreeParameters()
@@ -136,7 +163,7 @@ public class Basic_Behaviour : MonoBehaviour
     }
 
     //increases Y axis until specific walking animation is reached
-   public void IncreaseYAxisToValue(float value)
+    public void IncreaseYAxisToValue(float value)
     {
         if (y_axis < value)
         {
@@ -237,28 +264,63 @@ public class Basic_Behaviour : MonoBehaviour
                 GetRandomIndexFromList(anim.list_walking_after_turning);
                 break;
             case Animation_state.standing:
-                GetRandomIndexFromList(anim.list_standing);
-                DisplayList(anim.list_standing);
+                if (behav_switch.friendly_script.enabled)
+                {
+                    GetRandomIndexFromList(anim.friendly_list_standing);
+                }
+                else
+                {
+                    GetRandomIndexFromList(anim.list_standing);
+                    DisplayList(anim.list_standing);
+                }
                 break;
             case Animation_state.sitting:
-                GetRandomIndexFromList(anim.list_sitting); ;
-                DisplayList(anim.list_sitting);
+                if (behav_switch.friendly_script.enabled)
+                {
+                    GetRandomIndexFromList(anim.friendly_list_sitting);
+                }
+                else
+                {
+                    GetRandomIndexFromList(anim.list_sitting); ;
+                    DisplayList(anim.list_sitting);
+                }
                 break;
             case Animation_state.sleeping:
-                GetRandomIndexFromList(anim.list_sleeping);
-                DisplayList(anim.list_sleeping);
+                if (behav_switch.friendly_script.enabled)
+                {
+                    GetRandomIndexFromList(anim.friendly_list_sleeping);
+                }
+                else
+                {
+                    GetRandomIndexFromList(anim.list_sleeping);
+                    DisplayList(anim.list_sleeping);
+                }
                 break;
             case Animation_state.walking:
-                GetRandomIndexFromList(anim.list_walking);
-                DisplayList(anim.list_walking);
+                if (behav_switch.friendly_script.enabled)
+                {
+                    GetRandomIndexFromList(anim.friendly_list_walking);
+                }
+                else
+                {
+                    GetRandomIndexFromList(anim.list_walking);
+                    DisplayList(anim.list_walking);
+                }
                 break;
             case Animation_state.running:
                 GetRandomIndexFromList(anim.list_running);
                 DisplayList(anim.list_running);
                 break;
             case Animation_state.lying:
-                GetRandomIndexFromList(anim.list_lying);
-                DisplayList(anim.list_lying);
+                if (behav_switch.friendly_script.enabled)
+                {
+                    GetRandomIndexFromList(anim.friendly_list_lying);
+                }
+                else
+                {
+                    GetRandomIndexFromList(anim.list_lying);
+                    DisplayList(anim.list_lying);
+                }
                 break;
 
             default:
@@ -284,6 +346,99 @@ public class Basic_Behaviour : MonoBehaviour
         }
     }
 
+    //follow hand/head of player
+    public void SetFollowObject()
+    {
+        if (!friendly_behav.enabled)
+        {
+            SetWeightConstraint(neck_constraint, 3);
+            SetWeightConstraint(head_constraint, 3);
+            SetWeightConstraint(right_eye_constraint, 3);
+            SetWeightConstraint(left_eye_constraint, 3);
+        }
+        else if (!playerInteraction.AreHandsMoving())
+        {   //look at Head and away from left and right Hand
+            SetWeightConstraint(neck_constraint, 2);
+            SetWeightConstraint(head_constraint, 2);
+            SetWeightConstraint(right_eye_constraint, 2);
+            SetWeightConstraint(left_eye_constraint, 2);
+        }
+        else if (dist_left_hand_to_dog < dist_right_hand_to_dog)
+        {   //look at left Hand and away from Head and right Hand
+            SetWeightConstraint(neck_constraint, 1);
+            SetWeightConstraint(head_constraint, 1);
+            SetWeightConstraint(right_eye_constraint, 1);
+            SetWeightConstraint(left_eye_constraint, 1);
+
+            Debug.Log("TRACK LEFT");
+        }
+        else if (dist_right_hand_to_dog < dist_left_hand_to_dog)
+        {   //look at right Hand and away from Head and left Hand
+            SetWeightConstraint(neck_constraint, 0);
+            SetWeightConstraint(head_constraint, 0);
+            SetWeightConstraint(right_eye_constraint, 0);
+            SetWeightConstraint(left_eye_constraint, 0);
+
+            Debug.Log("TRACK RIGHT");
+        }
+    }
+
+    //TODO: Maybe changerate variable
+    //focus: 0 -> right, 1 -> left, 2 -> head
+    public void SetWeightConstraint(MultiAimConstraint constraint, int focus)
+    {
+        var a = constraint.data.sourceObjects;
+        float curent_weight_right = a.GetWeight(0); //rightHand
+        float curent_weight_left = a.GetWeight(1); //leftHand
+        float curent_weight_head = a.GetWeight(2); //head
+
+        float weight_change_rate = 1f;
+        float weight_update_right = 0, weight_update_left = 0, weight_update_head = 0;
+
+        switch (focus)
+        {
+            case 0:
+                weight_update_right = curent_weight_right + weight_change_rate * Time.deltaTime;
+                weight_update_right = Mathf.Min(weight_update_right, 1);
+                weight_update_left = curent_weight_left - weight_change_rate * Time.deltaTime;
+                weight_update_left = Mathf.Max(weight_update_left, 0);
+                weight_update_head = curent_weight_head - weight_change_rate * Time.deltaTime;
+                weight_update_head = Mathf.Max(weight_update_head, 0);
+                break;
+            case 1:
+                weight_update_right = curent_weight_right - weight_change_rate * Time.deltaTime;
+                weight_update_right = Mathf.Max(weight_update_right, 0);
+                weight_update_left = curent_weight_left + weight_change_rate * Time.deltaTime;
+                weight_update_left = Mathf.Min(weight_update_left, 1);
+                weight_update_head = curent_weight_head - weight_change_rate * Time.deltaTime;
+                weight_update_head = Mathf.Max(weight_update_head, 0);
+                break;
+            case 2:
+                weight_update_right = curent_weight_right - weight_change_rate * Time.deltaTime;
+                weight_update_right = Mathf.Max(weight_update_right, 0);
+                weight_update_left = curent_weight_left - weight_change_rate * Time.deltaTime;
+                weight_update_left = Mathf.Max(weight_update_left, 0);
+                weight_update_head = curent_weight_head + weight_change_rate * Time.deltaTime;
+                weight_update_head = Mathf.Min(weight_update_head, 1);
+                break;
+            case 3:
+                weight_update_right = curent_weight_right - weight_change_rate * Time.deltaTime;
+                weight_update_right = Mathf.Max(weight_update_right, 0);
+                weight_update_left = curent_weight_left - weight_change_rate * Time.deltaTime;
+                weight_update_left = Mathf.Max(weight_update_left, 0);
+                weight_update_head = curent_weight_head - weight_change_rate * Time.deltaTime;
+                weight_update_head = Mathf.Max(weight_update_head, 0);
+                break;
+            default:
+                Debug.Log("BRUH WTF");
+                break;
+        }
+        a.SetWeight(0, weight_update_right);
+        a.SetWeight(1, weight_update_left);
+        a.SetWeight(2, weight_update_head);
+        constraint.data.sourceObjects = a;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -294,10 +449,11 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
+        SetFollowObject();
 
         if (change_anim_timer <= 0)
         {
-      
+
             ChooseRandomIndex();
 
 
@@ -312,7 +468,7 @@ public class Basic_Behaviour : MonoBehaviour
             }
             if (behav_switch.friendly_script.enabled)
             {
-
+                friendly_behav.FriendlyBehaviour();
             }
 
             ResetTimerFunction();
