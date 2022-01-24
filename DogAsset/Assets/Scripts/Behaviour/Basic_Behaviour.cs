@@ -83,7 +83,7 @@ public class Basic_Behaviour : MonoBehaviour
         right_eye = GameObject.Find("EyeRight Aim");
         left_eye = GameObject.Find("EyeLeft Aim");
 
-        
+
 
         //multi aim constraints
         neck_constraint = neck.GetComponent<MultiAimConstraint>();
@@ -247,7 +247,6 @@ public class Basic_Behaviour : MonoBehaviour
 
     //choosing random index of animation lists
     public int random_index = 0;
-    int list_length = 0;
     int ChooseRandomIndex()
     {
         switch (dog_state)
@@ -272,7 +271,7 @@ public class Basic_Behaviour : MonoBehaviour
                 }
                 else
                 {
-                    GetRandomIndexFromList(anim.list_sitting); 
+                    GetRandomIndexFromList(anim.list_sitting);
                 }
                 break;
             case Animation_state.sleeping:
@@ -425,6 +424,10 @@ public class Basic_Behaviour : MonoBehaviour
         DecreaseXAxisToValue(x_goal);
 
         SetFollowObject();
+        if (behav_switch.aggressive_script.enabled)
+        {
+            agg_behav.MoveToPositionAndFacePlayer();
+        }
 
         if (change_anim_timer <= 0)
         {

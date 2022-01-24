@@ -11,6 +11,7 @@ public class Behaviour_Switch : MonoBehaviour
     public Neutral_Behaviour neutral_script;
     public Basic_Behaviour basic_script;
     public Aggressive_Behaviour aggressive_script;
+    Turning_Behaviour turning_behav;
 
     //get Player
     GameObject player;
@@ -19,8 +20,9 @@ public class Behaviour_Switch : MonoBehaviour
     public float dist;
     public float friendly_distance = 0.5f;
 
-    //script disabling
-    bool all_scripts_off;
+    [SerializeField] bool friendly;
+    [SerializeField] bool agressive;
+    [SerializeField] bool neutral;
 
     //behaviour states
     public enum Behaviour_state
@@ -43,12 +45,12 @@ public class Behaviour_Switch : MonoBehaviour
         neutral_script = dog.GetComponent<Neutral_Behaviour>();
         basic_script = dog.GetComponent<Basic_Behaviour>();
         aggressive_script = dog.GetComponent<Aggressive_Behaviour>();
+        turning_behav = dog.GetComponent<Turning_Behaviour>();
 
         //set scripts
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
         neutral_script.enabled = false;
-        all_scripts_off = true;
 
         //player
         player = GameObject.FindGameObjectWithTag("Player");
@@ -70,7 +72,25 @@ public class Behaviour_Switch : MonoBehaviour
         if (player)
         {
             GetDistanceToObject(player, dog);
-            CheckDistance();
+            //CheckDistance();
+        }
+        if (friendly)
+        {
+            DisableScripts();
+            turning_behav.enabled = true;
+            friendly_script.enabled = true;
+        }
+        else if (neutral)
+        {
+            DisableScripts();
+            turning_behav.enabled = true;
+            neutral_script.enabled = true;
+        }
+        else if (agressive)
+        {
+            DisableScripts();
+            turning_behav.enabled = false;
+            aggressive_script.enabled = true;
         }
     }
 
@@ -87,14 +107,8 @@ public class Behaviour_Switch : MonoBehaviour
         }
     }
 
-    //
     void SetBehaviour(Behaviour_state behaviour)
     {
-        /*if (basic_script.dog_state == Basic_Behaviour.Animation_state.turning_left && all_scripts_off)
-        {
-            EnableBehaviourScripts(behaviour);
-        }*/
-
         if (behaviour == dog_behaviour)
         {
             return;
@@ -120,7 +134,6 @@ public class Behaviour_Switch : MonoBehaviour
         {
             aggressive_script.enabled = true;
         }
-        all_scripts_off = false;
     }
 
     public void DisableScripts()
@@ -128,7 +141,6 @@ public class Behaviour_Switch : MonoBehaviour
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
         neutral_script.enabled = false;
-        all_scripts_off = true;
     }
 
 }
