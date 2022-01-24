@@ -20,10 +20,20 @@ public class Animations : MonoBehaviour
     public string friendly_stand = "Stand_00";
     public string friendly_sitting = "Sitting_00";
 
+    //aggressive
+    public string aggresive_blend_tree = "Aggressive_BT";
+    public string trans_agg_to_stand = "Trans_Agressive_to_Stand";
+    public string trans_stand_to_agg = "Trans_Stand_to_Agressive";
+    public string stand_agg = "Stand_02A";
+    public string aggressive = "Agressive_01";
+    public string bite_L = "Attack_BiteL_Long";
+    public string bite_R = "Attack_BiteR_Long";
+    public string agg_trans_sleep_to_stand = "agg_trans_sleep_to_stand";
+    public string agg_trans_lying_to_stand = "agg_trans_lying_to_stand";
+    public string agg_trans_sit_to_stand = "agg_trans_sit_to_stand";
 
 
     //neutral
-    //
 
     //blending trees
     public string blend_tree = "Blend_Tree";
@@ -111,11 +121,6 @@ public class Animations : MonoBehaviour
     public string run_L = "Loco_Run_L";
     public string run_R = "Loco_Run_R";
 
-    //aggressive
-    public string aggressive_attack_bite_R_long = "Agressive_01_Attack_BiteR_Long";
-    public string aggressive_attack_bite_L_long = "Agressive_01_Attack_BiteL_Long ";
-    public string aggressive_attack_aggressive_bite_R_long = "Agressive_01_Attack_Agressive_BiteL_Long ";
-
     //turn
     public string turn_left_90_deg_L = "Trans_TurnL90";
     public string turn_left_90_deg_R = "Trans_TurnR90";
@@ -133,8 +138,6 @@ public class Animations : MonoBehaviour
 
     public List<string> list_sleeping = new List<string>();
 
-    public List<string> list_to_aggressive = new List<string>();
-
     public List<string> list_walking_after_turning = new List<string>();
 
     //friendly
@@ -150,9 +153,17 @@ public class Animations : MonoBehaviour
 
     public List<string> friendly_list_walking = new List<string>();
 
+    //aggressive
+    public List<string> agg_list = new List<string>();
+
     // Start is called before the first frame update
     void Start()
     {
+        //agg list
+        agg_list.Add("0");
+        agg_list.Add("1");
+        agg_list.Add("2");
+
         //fill friendly list
         //siting
         friendly_list_sitting.Add(friendly_trans_sitting_to_stand);
@@ -182,10 +193,6 @@ public class Animations : MonoBehaviour
         friendly_list_walking.Add(stand_00);
         friendly_list_walking.Add(walk_slow);//walkSlow
         friendly_list_walking.Add(walk);//walk
-
-
-
-
 
 
         //fill lists
@@ -241,10 +248,6 @@ public class Animations : MonoBehaviour
         list_walking_after_turning.Add(walk);
         list_walking_after_turning.Add(walk_slow);
         list_walking_after_turning.Add(trot);
-
-        list_to_aggressive.Add(aggressive_attack_aggressive_bite_R_long);
-        list_to_aggressive.Add(aggressive_attack_bite_L_long);
-        list_to_aggressive.Add(aggressive_attack_bite_R_long);
     }
 
 

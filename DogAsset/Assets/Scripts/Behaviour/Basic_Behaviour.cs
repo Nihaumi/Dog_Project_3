@@ -42,6 +42,7 @@ public class Basic_Behaviour : MonoBehaviour
     Behaviour_Switch behav_switch;
     Turning_Behaviour turning_behav;
     PlayerInteraction playerInteraction;
+    Aggressive_Behaviour agg_behav;
 
     private void Awake()
     {
@@ -66,6 +67,7 @@ public class Basic_Behaviour : MonoBehaviour
         behav_switch = behav_manager.GetComponent<Behaviour_Switch>();
         turning_behav = dog.GetComponent<Turning_Behaviour>();
         playerInteraction = player.GetComponent<PlayerInteraction>();
+        agg_behav = dog.GetComponent<Aggressive_Behaviour>();
 
         //state
         anim_controll.current_state = anim.stand_02;
@@ -184,16 +186,6 @@ public class Basic_Behaviour : MonoBehaviour
         }
     }
 
-    /*TODO:
-     * on collision: set x and y goals to turning L/R
-     * change blending tree immediately according to current goals
-     * 
-     * afer collision: set x and y goals to walking forward
-     * change blend tree after goals reached
-     * 
-    */
-
-
     public void TurnLeft()
     {
         if (y_goal != 0)
@@ -271,7 +263,6 @@ public class Basic_Behaviour : MonoBehaviour
                 else
                 {
                     GetRandomIndexFromList(anim.list_standing);
-                    DisplayList(anim.list_standing);
                 }
                 break;
             case Animation_state.sitting:
@@ -281,8 +272,7 @@ public class Basic_Behaviour : MonoBehaviour
                 }
                 else
                 {
-                    GetRandomIndexFromList(anim.list_sitting); ;
-                    DisplayList(anim.list_sitting);
+                    GetRandomIndexFromList(anim.list_sitting); 
                 }
                 break;
             case Animation_state.sleeping:
@@ -293,7 +283,6 @@ public class Basic_Behaviour : MonoBehaviour
                 else
                 {
                     GetRandomIndexFromList(anim.list_sleeping);
-                    DisplayList(anim.list_sleeping);
                 }
                 break;
             case Animation_state.walking:
@@ -304,12 +293,10 @@ public class Basic_Behaviour : MonoBehaviour
                 else
                 {
                     GetRandomIndexFromList(anim.list_walking);
-                    DisplayList(anim.list_walking);
                 }
                 break;
             case Animation_state.running:
                 GetRandomIndexFromList(anim.list_running);
-                DisplayList(anim.list_running);
                 break;
             case Animation_state.lying:
                 if (behav_switch.friendly_script.enabled)
@@ -319,10 +306,11 @@ public class Basic_Behaviour : MonoBehaviour
                 else
                 {
                     GetRandomIndexFromList(anim.list_lying);
-                    DisplayList(anim.list_lying);
                 }
                 break;
-
+            case Animation_state.aggressiv:
+                GetRandomIndexFromList(anim.agg_list);
+                break;
             default:
                 break;
         }
@@ -334,18 +322,6 @@ public class Basic_Behaviour : MonoBehaviour
     {
         random_index = Random.Range(0, list.Count);
     }
-
-    void DisplayList(List<string> list)
-    {
-        list_length = list.Count;
-        int i = 0;
-        while (i < list_length)
-        {
-            //Debug.Log("list item number: "+ i + "is" + list[i]);
-            i++;
-        }
-    }
-
     //follow hand/head of player
     public void SetFollowObject()
     {
@@ -430,7 +406,6 @@ public class Basic_Behaviour : MonoBehaviour
                 weight_update_head = Mathf.Max(weight_update_head, 0);
                 break;
             default:
-                Debug.Log("BRUH WTF");
                 break;
         }
         a.SetWeight(0, weight_update_right);
@@ -453,24 +428,21 @@ public class Basic_Behaviour : MonoBehaviour
 
         if (change_anim_timer <= 0)
         {
-
             ChooseRandomIndex();
-
-
-
             turning_behav.TurningBehaviour();
-
             //behaviours
-
             if (behav_switch.neutral_script.enabled && !turning_behav.walking_after_turning_on)
             {
                 neutral_behav.NeutralBehaviour();
             }
-            if (behav_switch.friendly_script.enabled)
+            else if (behav_switch.friendly_script.enabled)
             {
                 friendly_behav.FriendlyBehaviour();
             }
-
+            else if (behav_switch.aggressive_script.enabled)
+            {
+                agg_behav.AggressiveBehaviour();
+            }
             ResetTimerFunction();
             //Debug.Log("new state " + dog_state);
         }

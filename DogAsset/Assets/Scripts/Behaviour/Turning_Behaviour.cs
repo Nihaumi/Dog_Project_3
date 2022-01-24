@@ -8,11 +8,13 @@ public class Turning_Behaviour : MonoBehaviour
     public GameObject dog;
     public GameObject dog_parent;
     public GameObject dir_manager;
+    public GameObject dog_sound_manager;
+
     Animation_Controll anim_controll;
     Animations anim;
     Turning_Direction_Handler turn_dir_handler;
     Basic_Behaviour basic_behav;
-
+    Audio_Sources dog_audio;
 
 
     // Start is called before the first frame update
@@ -22,10 +24,12 @@ public class Turning_Behaviour : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
+        dog_sound_manager = GameObject.Find("Dog_sound_manager");
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
         basic_behav = dog.GetComponent<Basic_Behaviour>();
+        dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
     }
 
     // Update is called once per frame
@@ -49,6 +53,8 @@ public class Turning_Behaviour : MonoBehaviour
             case Basic_Behaviour.Animation_state.turning_left:
 
                 Debug.Log("TURN LEFT!");
+                //audio
+                dog_audio.StopAllSounds();
 
                 if (basic_behav.y_goal == basic_behav.walking_slow_value)
                 {
@@ -65,13 +71,14 @@ public class Turning_Behaviour : MonoBehaviour
                 if (basic_behav.y_goal == basic_behav.trot_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
-
+                    dog_audio.panting.Play();
                     basic_behav.SetShortTimer(0.3f, 0.6f);
                 }
                 basic_behav.TurnLeft();
                 break;
             case Basic_Behaviour.Animation_state.turning_right:
-
+                //audio
+                dog_audio.StopAllSounds();
                 Debug.Log("TURN RIGHT!");
 
                 if (basic_behav.y_goal == basic_behav.walking_slow_value)
@@ -90,15 +97,20 @@ public class Turning_Behaviour : MonoBehaviour
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
                     basic_behav.SetShortTimer(0.3f, 0.6f);
+                    dog_audio.panting.Play();
                 }
                 basic_behav.TurnRight();
                 break;
             case Basic_Behaviour.Animation_state.walking_after_turning:
+                //audio
+                dog_audio.StopAllSounds();
+
                 basic_behav.SetLongTimer();
                 basic_behav.WalkForward();
                 if(Mathf.Abs(basic_behav.x_goal) == basic_behav.trot_value)
                 {
                     basic_behav.SetShortTimer(0.2f, 0.5f);
+                    dog_audio.panting.Play();
                 }
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
                 walking_after_turning_on = true;

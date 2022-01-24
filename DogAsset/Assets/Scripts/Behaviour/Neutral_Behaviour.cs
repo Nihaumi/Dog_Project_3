@@ -9,11 +9,13 @@ public class Neutral_Behaviour : MonoBehaviour
     public GameObject dog_parent;
     public GameObject dir_manager;
     public Animator animator;
+    public GameObject dog_sound_manager;
+
     Animation_Controll anim_controll;
     Animations anim;
     Turning_Direction_Handler turn_dir_handler;
     Basic_Behaviour basic_behav;
-
+    Audio_Sources dog_audio;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +23,13 @@ public class Neutral_Behaviour : MonoBehaviour
         dog = GameObject.Find("GermanShepherd_Prefab");
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
+        dog_sound_manager = GameObject.Find("Dog_sound_manager");
         animator = dog.GetComponent<Animator>();
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
         basic_behav = dog.GetComponent<Basic_Behaviour>();
+        dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
     }
 
     // Update is called once per frame
@@ -49,10 +53,12 @@ public class Neutral_Behaviour : MonoBehaviour
 
     public void NeutralBehaviour()
     {
-
         switch (basic_behav.dog_state)
         {
             case Basic_Behaviour.Animation_state.standing:
+                //audio
+                dog_audio.StopAllSounds();
+
 
                 basic_behav.ResetParameter();
                 SetBoolForWalkingBT();
@@ -61,6 +67,7 @@ public class Neutral_Behaviour : MonoBehaviour
                 {
                     anim_controll.ChangeAnimationState(anim.list_standing[basic_behav.random_index]);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
+                    dog_audio.panting_calm.Play();
                 }
                 if (basic_behav.random_index == 1)
                 {
@@ -82,6 +89,9 @@ public class Neutral_Behaviour : MonoBehaviour
                     {
                         anim_controll.ChangeAnimationState(anim.blend_tree);
                         basic_behav.y_goal = basic_behav.seek_value;
+                        //audio
+                        dog_audio.StopAllSounds();
+                        dog_audio.panting.Play();
                     }
                     if (basic_behav.random_index == 5)
                     {
@@ -93,8 +103,11 @@ public class Neutral_Behaviour : MonoBehaviour
                 basic_behav.SetLongTimer();
                 Debug.Log("standing list item at rndindex: " + basic_behav.random_index + "is:" + anim.list_standing[basic_behav.random_index]);
                 break;
+
             case Basic_Behaviour.Animation_state.sitting:
                 anim_controll.ChangeAnimationState(anim.trans_sitting_to_stand_02);
+                //audio
+                dog_audio.StopAllSounds();
 
                 basic_behav.ResetParameter();
                 SetBoolForWalkingBT();
@@ -114,6 +127,9 @@ public class Neutral_Behaviour : MonoBehaviour
                 if (basic_behav.random_index == 3)
                 {
                     basic_behav.y_goal = basic_behav.trot_value;
+                    //audio
+                    dog_audio.StopAllSounds();
+                    dog_audio.panting.Play();
                 }
                 //SetBlendTreeParameters();
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
@@ -122,6 +138,8 @@ public class Neutral_Behaviour : MonoBehaviour
                 Debug.Log("sitting list item at rndindex: " + basic_behav.random_index + "is:" + anim.list_sitting[basic_behav.random_index]);
                 break;
             case Basic_Behaviour.Animation_state.lying:
+                //audio
+                dog_audio.StopAllSounds();
 
                 basic_behav.ResetParameter();
                 //Debug.Log("lying list item at rndindex: " + basic_behav.random_index + "is:" + anim.list_lying[basic_behav.random_index]);
@@ -150,6 +168,9 @@ public class Neutral_Behaviour : MonoBehaviour
                     if (basic_behav.random_index == 4)
                     {
                         basic_behav.y_goal = basic_behav.trot_value;
+                        //audio
+                        dog_audio.StopAllSounds();
+                        dog_audio.panting.Play();
                     }
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
                 }
@@ -166,6 +187,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     anim_controll.ChangeAnimationState(anim.list_sleeping[basic_behav.random_index]);
 
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
+                    dog_audio.panting_calm.Play();
                 }
                 else if (basic_behav.random_index == 1)
                 {
@@ -192,13 +214,19 @@ public class Neutral_Behaviour : MonoBehaviour
                     if (basic_behav.random_index == 5)
                     {
                         basic_behav.y_goal = basic_behav.trot_value;
+                        //audio
+                        dog_audio.StopAllSounds();
+                        dog_audio.panting.Play();
                     }
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
                 }
                 basic_behav.SetLongTimer();
                 Debug.Log("sleeping list item at rndindex: " + basic_behav.random_index + "is:" + anim.list_sleeping[basic_behav.random_index]);
                 break;
+
             case Basic_Behaviour.Animation_state.walking:
+                //audio
+                dog_audio.StopAllSounds();
 
                 if (anim_controll.current_state != anim.blend_tree)
                 {
@@ -239,6 +267,9 @@ public class Neutral_Behaviour : MonoBehaviour
                     }
                     if (basic_behav.random_index == 4)
                     {
+                        //audio
+                        dog_audio.StopAllSounds();
+                        dog_audio.panting.Play();
                         if (turn_dir_handler.col_det_left_trot.trot_collider_touching_wall || turn_dir_handler.col_det_right_trot.trot_collider_touching_wall)
                         {
                             Debug.Log("wanted to trot but was colliding");
