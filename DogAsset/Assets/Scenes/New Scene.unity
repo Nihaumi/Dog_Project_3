@@ -1574,7 +1574,14 @@ MonoBehaviour:
   friendly: 0
   agressive: 0
   neutral: 0
+  friendly_timer: 60
+  agressive_timer: 30
+  neutral_timer: 60
+  friendly_time: 80
+  agressive_time: 15
+  neutral_time: 80
   dog_behaviour: 0
+  friendly_has_been_visited: 0
 --- !u!4 &541499026
 Transform:
   m_ObjectHideFlags: 0
@@ -2858,9 +2865,11 @@ MonoBehaviour:
   dist_left_hand_to_dog: 0
   dist_right_hand_to_dog: 0
   random_index: 0
+  rotation: {x: 0, y: 0, z: 0, w: 0}
   speed: 1
   current_position: {x: 0, y: 0, z: 0}
   target_pos: {x: 0, y: 0, z: 0}
+  turning_in_place: 0
 --- !u!114 &1045705199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3076,6 +3085,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   facing_player: 0
   dist_to_target: 0
+  dist_to_player: 0
 --- !u!114 &1045705207
 MonoBehaviour:
   m_ObjectHideFlags: 0

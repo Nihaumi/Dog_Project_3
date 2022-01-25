@@ -92,7 +92,7 @@ public class Aggressive_Behaviour : MonoBehaviour
                 {
                     Debug.Log("Walk To POS");
                     basic_behav.TurnToTarget(basic_behav.agg_position);
-                    StartCoroutine(basic_behav.WaitBeforeWalkingTowards());
+                    StartCoroutine(basic_behav.WaitBeforeWalkingTowards(basic_behav.agg_position));
                 }
                 else
                 {
@@ -104,26 +104,10 @@ public class Aggressive_Behaviour : MonoBehaviour
 
         }
     }
-    public bool turning_in_place;
-    public void TurnInPlace()
-    {
-        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-        basic_behav.x_goal = -1;
-        basic_behav.x_axis = -1;
-        basic_behav.y_goal = 0;
-        turning_in_place = true; //wo false
-    }
-    public void Walk()
-    {
-        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-        basic_behav.x_goal = 0;
-        basic_behav.y_goal = 1;
-        turning_in_place = false;
-    }
 
     IEnumerator WaitBeforeAggro()
     {
-        turning_in_place = false;
+        basic_behav.turning_in_place = false;
         anim_controll.ChangeAnimationState(anim.stand_agg);
         yield return new WaitForSeconds(4);
         facing_player = true;

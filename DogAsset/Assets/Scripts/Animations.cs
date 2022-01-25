@@ -19,6 +19,7 @@ public class Animations : MonoBehaviour
     public string friendly_lying = "Lying_00";
     public string friendly_stand = "Stand_00";
     public string friendly_sitting = "Sitting_00";
+    public string friendly_sit_to_turn_walk = "friendly_sit_to_turn_to_walk";
 
     //aggressive
     public string aggresive_blend_tree = "Aggressive_BT";

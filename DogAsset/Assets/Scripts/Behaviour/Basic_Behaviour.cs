@@ -15,7 +15,8 @@ public class Basic_Behaviour : MonoBehaviour
         aggressiv,
         turning_right,
         turning_left,
-        walking_after_turning
+        walking_after_turning,
+        friendly_walking
     };
 
     public Animation_state dog_state;
@@ -42,7 +43,7 @@ public class Basic_Behaviour : MonoBehaviour
     Friendly_Behaviour friendly_behav;
     Behaviour_Switch behav_switch;
     Turning_Behaviour turning_behav;
-    PlayerInteraction playerInteraction;
+    PlayerInteraction player_interaction;
     Aggressive_Behaviour agg_behav;
 
     private void Awake()
@@ -67,7 +68,7 @@ public class Basic_Behaviour : MonoBehaviour
         friendly_behav = dog.GetComponent<Friendly_Behaviour>();
         behav_switch = behav_manager.GetComponent<Behaviour_Switch>();
         turning_behav = dog.GetComponent<Turning_Behaviour>();
-        playerInteraction = player.GetComponent<PlayerInteraction>();
+        player_interaction = player.GetComponent<PlayerInteraction>();
         agg_behav = dog.GetComponent<Aggressive_Behaviour>();
 
         //state
@@ -330,7 +331,7 @@ public class Basic_Behaviour : MonoBehaviour
             SetWeightConstraint(right_eye_constraint, 3);
             SetWeightConstraint(left_eye_constraint, 3);
         }
-        else if (!playerInteraction.AreHandsMoving())
+        else if (!player_interaction.AreHandsMoving())
         {   //look at Head and away from left and right Hand
             SetWeightConstraint(neck_constraint, 2);
             SetWeightConstraint(head_constraint, 2);
@@ -414,30 +415,43 @@ public class Basic_Behaviour : MonoBehaviour
     //TODO: FIX WHACKNESS
     //turning towrads target object
     Vector3 direction;
-    Quaternion rotation;
+    public Quaternion rotation;
     public float speed = 1;
     public Vector3 current_position;
     public Vector3 target_pos;
+    public bool turning_in_place;
     public void TurnToTarget(GameObject target)
     {
         direction = target.transform.position - dog.transform.position;
         rotation = Quaternion.LookRotation(direction);
         dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
-        if (!agg_behav.turning_in_place)
+        if (!turning_in_place)
         {
-            agg_behav.TurnInPlace();
+            TurnInPlace();
         }
     }
     //walking towards
-    public IEnumerator WaitBeforeWalkingTowards()
+    public IEnumerator WaitBeforeWalkingTowards(GameObject target)
     {
         yield return new WaitForSeconds(3);
-        if (dog.transform.rotation == rotation)
-        {
-            agg_behav.Walk();
-            dog.transform.position = Vector3.MoveTowards(current_position, agg_position.transform.position, Time.deltaTime * speed);
-        }
 
+        x_goal = walking_value;
+        y_acceleration = turning_y_acceleration;
+        WalkForward();
+        dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
+
+
+    }
+    public void TurnInPlace()
+    {
+        if (anim_controll.current_state != anim.aggresive_blend_tree)
+        {
+            anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+            y_goal = walking_value;
+        }
+        TurnLeft();
+        y_acceleration = turning_y_acceleration;
+        turning_in_place = true; //wo false setzen
     }
     // Update is called once per frame
     void Update()
@@ -449,12 +463,27 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
-        //walk towards
+        //aggressive
         target_pos = agg_position.transform.position;
         current_position = dog.transform.position;
         agg_behav.dist_to_target = Vector3.Distance(dog.transform.position, agg_position.transform.position);
         agg_behav.dist_to_player = Vector3.Distance(dog.transform.position, player.transform.position);
         agg_behav.StopAgression();
+
+        //friendly
+        if (behav_switch.friendly_script.enabled)
+        {
+            Debug.Log("IS THIS THING ON?!");
+            if (y_goal == trot_value)
+            {
+                y_goal = walking_slow_value;
+            }
+            player_interaction.IsCloseToLeftHand();
+            player_interaction.IsCloseToRightHand();
+            player_interaction.AreHandsMoving();
+            friendly_behav.ApproachPlayer();
+        }
+
 
         SetFollowObject();
         if (behav_switch.aggressive_script.enabled)
@@ -474,10 +503,12 @@ public class Basic_Behaviour : MonoBehaviour
             }
             else if (behav_switch.friendly_script.enabled)
             {
+                turning_in_place = false;
                 friendly_behav.FriendlyBehaviour();
             }
             else if (behav_switch.aggressive_script.enabled)
             {
+                turning_in_place = false;
                 agg_behav.AggressiveBehaviour();
             }
             ResetTimerFunction();

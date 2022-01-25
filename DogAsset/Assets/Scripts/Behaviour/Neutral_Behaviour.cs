@@ -55,6 +55,12 @@ public class Neutral_Behaviour : MonoBehaviour
     {
         switch (basic_behav.dog_state)
         {
+            case Basic_Behaviour.Animation_state.friendly_walking:
+                anim_controll.ChangeAnimationState(anim.friendly_blend_tree);
+                basic_behav.WalkForward();
+                basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
+                break;
+
             case Basic_Behaviour.Animation_state.standing:
                 //audio
                 dog_audio.StopAllSounds();
