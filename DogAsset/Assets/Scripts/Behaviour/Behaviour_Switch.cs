@@ -23,6 +23,13 @@ public class Behaviour_Switch : MonoBehaviour
     [SerializeField] bool friendly;
     [SerializeField] bool agressive;
     [SerializeField] bool neutral;
+    [SerializeField] float friendly_timer;
+    [SerializeField] float agressive_timer;
+    [SerializeField] float neutral_timer;
+    [SerializeField] float friendly_time = 60f;
+    [SerializeField] float agressive_time = 60f;
+    [SerializeField] float neutral_time = 30f;
+
 
     //behaviour states
     public enum Behaviour_state
@@ -48,15 +55,16 @@ public class Behaviour_Switch : MonoBehaviour
         turning_behav = dog.GetComponent<Turning_Behaviour>();
 
         //set scripts
-        friendly_script.enabled = false;
-        aggressive_script.enabled = false;
-        neutral_script.enabled = false;
+        DisableScripts();
+        //neutral = true;
 
         //player
         player = GameObject.FindGameObjectWithTag("Player");
 
         // is updated immediately on first call to Up
         dog_behaviour = Behaviour_state.initial;
+
+        ResetTimers();
     }
 
     float GetDistanceToObject(GameObject obj_1, GameObject obj_2)
@@ -64,7 +72,13 @@ public class Behaviour_Switch : MonoBehaviour
         dist = Vector3.Distance(obj_1.transform.position, obj_2.transform.position);
         return dist;
     }
-
+   void  ResetTimers()
+    {
+        friendly_timer = friendly_time;
+        neutral_timer = neutral_time;
+        agressive_timer = agressive_time;
+    }
+  
     // Update is called once per frame
     void Update()
     {
@@ -79,61 +93,65 @@ public class Behaviour_Switch : MonoBehaviour
             DisableScripts();
             turning_behav.enabled = true;
             friendly_script.enabled = true;
+            friendly_timer = friendly_timer - Time.deltaTime * 1;
         }
         else if (neutral)
         {
             DisableScripts();
             turning_behav.enabled = true;
             neutral_script.enabled = true;
+            neutral_timer = neutral_timer - Time.deltaTime * 1;
         }
         else if (agressive)
         {
             DisableScripts();
             turning_behav.enabled = false;
             aggressive_script.enabled = true;
+            agressive_timer = agressive_timer - Time.deltaTime * 1;
+        }
+        ChangeBehavioursOnZero();
+    }
+
+    [SerializeField] bool friendly_has_been_visited = false;
+
+    void ChangeBehavioursOnZero()
+    {
+        if (friendly_timer <= 0)
+        {
+            SetScriptsFalse();
+            DisableScripts();
+            ResetTimers();
+            friendly_has_been_visited = true;
+            neutral = true;
+        }
+        if (neutral_timer <= 0)
+        {
+            SetScriptsFalse();
+            DisableScripts();
+            ResetTimers();
+            if(!friendly_has_been_visited)
+            {
+                friendly = true;
+            }
+            else
+            {
+                agressive = true;
+            }
+        }
+        if (agressive_timer <= 0)
+        {
+            SetScriptsFalse();
+            DisableScripts();
+            ResetTimers();
+            neutral = true;
         }
     }
 
-    //switch between behaviours states according to distance
-    public void CheckDistance()
+    void SetScriptsFalse()
     {
-        if (dist <= friendly_distance)
-        {
-            SetBehaviour(Behaviour_state.friendly);
-        }
-        if (dist > friendly_distance)
-        {
-            SetBehaviour(Behaviour_state.neutral);
-        }
-    }
-
-    void SetBehaviour(Behaviour_state behaviour)
-    {
-        if (behaviour == dog_behaviour)
-        {
-            return;
-        }
-        EnableBehaviourScripts(behaviour);
-    }
-    void EnableBehaviourScripts(Behaviour_state behaviour)
-    {
-        Debug.Log("Behaviour set to: " + behaviour);
-        dog_behaviour = behaviour;
-
-        DisableScripts();
-
-        if (dog_behaviour == Behaviour_state.friendly)
-        {
-            friendly_script.enabled = true;
-        }
-        if (dog_behaviour == Behaviour_state.neutral)
-        {
-            neutral_script.enabled = true;
-        }
-        if (dog_behaviour == Behaviour_state.aggressive)
-        {
-            aggressive_script.enabled = true;
-        }
+        agressive = false;
+        neutral = false;
+        friendly = false;
     }
 
     public void DisableScripts()

@@ -32,6 +32,7 @@ public class Basic_Behaviour : MonoBehaviour
     public GameObject player;
     public GameObject dog_parent;
     public GameObject dir_manager;
+    public GameObject agg_position;
     public Animator animator;
     GameObject behav_manager;
     Animation_Controll anim_controll;
@@ -83,7 +84,8 @@ public class Basic_Behaviour : MonoBehaviour
         right_eye = GameObject.Find("EyeRight Aim");
         left_eye = GameObject.Find("EyeLeft Aim");
 
-
+        //aggtression position
+        agg_position = GameObject.Find("agg_position");
 
         //multi aim constraints
         neck_constraint = neck.GetComponent<MultiAimConstraint>();
@@ -185,7 +187,6 @@ public class Basic_Behaviour : MonoBehaviour
 
         }
     }
-
     public void TurnLeft()
     {
         if (y_goal != 0)
@@ -216,8 +217,6 @@ public class Basic_Behaviour : MonoBehaviour
             //x_axis = 0;
         }
     }
-
-
 
     //Timer
     void ResetTimerFunction()
@@ -412,7 +411,34 @@ public class Basic_Behaviour : MonoBehaviour
         a.SetWeight(2, weight_update_head);
         constraint.data.sourceObjects = a;
     }
+    //TODO: FIX WHACKNESS
+    //turning towrads target object
+    Vector3 direction;
+    Quaternion rotation;
+    public float speed = 1;
+    public Vector3 current_position;
+    public Vector3 target_pos;
+    public void TurnToTarget(GameObject target)
+    {
+        direction = target.transform.position - dog.transform.position;
+        rotation = Quaternion.LookRotation(direction);
+        dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+        if (!agg_behav.turning_in_place)
+        {
+            agg_behav.TurnInPlace();
+        }
+    }
+    //walking towards
+    public IEnumerator WaitBeforeWalkingTowards()
+    {
+        yield return new WaitForSeconds(3);
+        if (dog.transform.rotation == rotation)
+        {
+            agg_behav.Walk();
+            dog.transform.position = Vector3.MoveTowards(current_position, agg_position.transform.position, Time.deltaTime * speed);
+        }
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -423,9 +449,17 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
+        //walk towards
+        target_pos = agg_position.transform.position;
+        current_position = dog.transform.position;
+        agg_behav.dist_to_target = Vector3.Distance(dog.transform.position, agg_position.transform.position);
+        agg_behav.dist_to_player = Vector3.Distance(dog.transform.position, player.transform.position);
+        agg_behav.StopAgression();
+
         SetFollowObject();
         if (behav_switch.aggressive_script.enabled)
         {
+
             agg_behav.MoveToPositionAndFacePlayer();
         }
 

@@ -19,7 +19,7 @@ public class Aggressive_Behaviour : MonoBehaviour
     PlayerInteraction player_interaction;
     Audio_Sources dog_audio;
 
-    GameObject target_position;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +40,7 @@ public class Aggressive_Behaviour : MonoBehaviour
         player_interaction = player.GetComponent<PlayerInteraction>();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
 
-        target_position = GameObject.Find("agg_position");
+
 
     }
     // Update is called once per frame
@@ -53,11 +53,7 @@ public class Aggressive_Behaviour : MonoBehaviour
     bool is_aggressive = false;
     public bool facing_player = false;
 
-    public Vector3 current_position;
-    public Vector3 target_pos;
-    public float speed = 1;
-    Vector3 direction;
-    Quaternion rotation;
+
     public float dist_to_target;
 
     /*turn in direction of green cube ( aggression position) and move there while walking animation plays
@@ -67,67 +63,87 @@ public class Aggressive_Behaviour : MonoBehaviour
      */
     /*TODO
      * animations are snappy
-     * turning towrads cube works very well,  not for towrads player
+     * FIX WEIRD TURNING BEHAVIOUR
      * make head rigging look in camera
-     * work on if position not yet reached part (||true)
+     * work on if position not yet reached part 
      */
     public void MoveToPositionAndFacePlayer()
     {
-        target_pos = target_position.transform.position;
-        current_position = dog.transform.position;
-        dist_to_target = Vector3.Distance(dog.transform.position, target_position.transform.position);
+
 
         Debug.Log("entering MOVING POS");
         if (!facing_player)
         {
             Debug.Log("not facing player");
-            //turn towards player
+            //check if dog is on position
             if (dist_to_target < 1)
             {
                 Debug.Log("POS REACHED, TURNING");
                 //rotate towards player
-                TurnToTarget(player);
+                basic_behav.TurnToTarget(player);
+
                 StartCoroutine(WaitBeforeAggro());
 
             }
+            //if dog is not on position, switch animation to walking, then turn towards and walk to position
             else
             {
-                Debug.Log("POS NOT reached");
-                if (anim_controll.current_state == anim.stand_agg || true)
+                if (anim_controll.current_state == anim.blend_tree && basic_behav.y_goal == basic_behav.walking_value)
+                {
+                    Debug.Log("Walk To POS");
+                    basic_behav.TurnToTarget(basic_behav.agg_position);
+                    StartCoroutine(basic_behav.WaitBeforeWalkingTowards());
+                }
+                else
                 {
                     Debug.Log("Switching TREE");
                     anim_controll.ChangeAnimationState(anim.blend_tree);
                     basic_behav.y_goal = basic_behav.walking_value;
                 }
-                if (anim_controll.current_state == anim.blend_tree && basic_behav.y_goal == basic_behav.walking_value)
-                {
-                    Debug.Log("Walk To POS");
-                    TurnToTarget(target_position);
-                    StartCoroutine(WaitBeforeWalkingTowards());
-                }
             }
 
         }
     }
-    IEnumerator WaitBeforeAggro()
+    public bool turning_in_place;
+    public void TurnInPlace()
     {
-        yield return new WaitForSeconds(5);
-        anim_controll.ChangeAnimationState(anim.stand_agg);
-        yield return new WaitForSeconds(2);
-        facing_player = true;
+        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+        basic_behav.x_goal = -1;
+        basic_behav.x_axis = -1;
+        basic_behav.y_goal = 0;
+        turning_in_place = true; //wo false
     }
-    IEnumerator WaitBeforeWalkingTowards()
+    public void Walk()
     {
-        yield return new WaitForSeconds(3);
-        dog.transform.position = Vector3.MoveTowards(current_position, target_position.transform.position, Time.deltaTime * speed);
+        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+        basic_behav.x_goal = 0;
+        basic_behav.y_goal = 1;
+        turning_in_place = false;
     }
 
-    void TurnToTarget(GameObject target)
+    IEnumerator WaitBeforeAggro()
     {
-        direction = target.transform.position - dog.transform.position;
-        rotation = Quaternion.LookRotation(direction);
-        dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+        turning_in_place = false;
+        anim_controll.ChangeAnimationState(anim.stand_agg);
+        yield return new WaitForSeconds(4);
+        facing_player = true;
     }
+    public float dist_to_player;
+    public void StopAgression()
+    {
+        if (facing_player)
+        {
+
+            if (dist_to_player < 4f)
+            {
+                anim_controll.ChangeAnimationState(anim.trans_agg_to_stand);
+                basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                facing_player = false;
+                //tell behav switch to switch to neutral/friendly
+            }
+        }
+    }
+
 
     public void AggressiveBehaviour()
     {
