@@ -50,7 +50,7 @@ public class PlayerInteraction : MonoBehaviour
 
     public float IsCloseToLeftHand()
     {
-       basic_behav.dist_left_hand_to_dog = Vector3.Distance(hand_left.transform.position, dog.transform.position);
+        basic_behav.dist_left_hand_to_dog = Vector3.Distance(hand_left.transform.position, dog.transform.position);
         return basic_behav.dist_left_hand_to_dog;
     }
     public float IsCloseToRightHand()

@@ -177,6 +177,7 @@ public class Basic_Behaviour : MonoBehaviour
             y_axis = Mathf.Min(y_axis, value);
         }
     }
+
     //decreases Y axis until specific walking animation is reached
     public void DecreaseYAxisToValue(float value)
     {
@@ -188,6 +189,7 @@ public class Basic_Behaviour : MonoBehaviour
 
         }
     }
+
     public void TurnLeft()
     {
         if (y_goal != 0)
@@ -198,6 +200,7 @@ public class Basic_Behaviour : MonoBehaviour
             //y_axis = 0;
         }
     }
+
     public void TurnRight()
     {
         if (y_goal != 0)
@@ -208,6 +211,7 @@ public class Basic_Behaviour : MonoBehaviour
             //y_axis = 0;
         }
     }
+
     public void WalkForward()
     {
         if (x_goal != 0)
@@ -227,6 +231,7 @@ public class Basic_Behaviour : MonoBehaviour
             change_anim_timer = ChooseRandomTimer();
         }
     }
+
     int ChooseRandomTimer()
     {
         new_timer = Random.Range(min_timer, max_timer);
@@ -317,10 +322,12 @@ public class Basic_Behaviour : MonoBehaviour
 
         return random_index;
     }
+
     public void GetRandomIndexFromList(List<string> list)
     {
         random_index = Random.Range(0, list.Count);
     }
+
     //follow hand/head of player
     public void SetFollowObject()
     {
@@ -412,6 +419,7 @@ public class Basic_Behaviour : MonoBehaviour
         a.SetWeight(2, weight_update_head);
         constraint.data.sourceObjects = a;
     }
+
     //TODO: FIX WHACKNESS
     //turning towrads target object
     Vector3 direction;
@@ -419,7 +427,7 @@ public class Basic_Behaviour : MonoBehaviour
     public float speed = 1;
     public Vector3 current_position;
     public Vector3 target_pos;
-    public bool turning_in_place;
+    public bool turning_in_place = false;
     public void TurnToTarget(GameObject target)
     {
         direction = target.transform.position - dog.transform.position;
@@ -430,49 +438,58 @@ public class Basic_Behaviour : MonoBehaviour
             TurnInPlace();
         }
     }
+
     //walking towards
     public IEnumerator WaitBeforeWalkingTowards(GameObject target)
     {
         yield return new WaitForSeconds(3);
-
+        Debug.Log("WALK BITCH");
         x_goal = walking_value;
         y_acceleration = turning_y_acceleration;
         WalkForward();
         dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
-
-
     }
+
     public void TurnInPlace()
     {
+        Debug.Log("turning in place");
         if (anim_controll.current_state != anim.aggresive_blend_tree)
         {
             anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
             y_goal = walking_value;
         }
         TurnLeft();
-        y_acceleration = turning_y_acceleration;
         turning_in_place = true; //wo false setzen
     }
+
     // Update is called once per frame
     void Update()
     {
         change_anim_timer = change_anim_timer - Time.deltaTime;
+
+        //Blend Tree Animation
         SetBlendTreeParameters();
         IncreaseYAxisToValue(y_goal);
         DecreaseYAxisToValue(y_goal);
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
-        //aggressive
-        target_pos = agg_position.transform.position;
-        current_position = dog.transform.position;
-        agg_behav.dist_to_target = Vector3.Distance(dog.transform.position, agg_position.transform.position);
-        agg_behav.dist_to_player = Vector3.Distance(dog.transform.position, player.transform.position);
-        agg_behav.StopAgression();
 
-        //friendly
-        if (behav_switch.friendly_script.enabled)
-        {
+        current_position = dog.transform.position;
+
+        //Behaviour
+        if (behav_switch.aggressive_script.enabled)
+        {//aggressive
+            target_pos = agg_position.transform.position;
+            agg_behav.dist_to_target = Vector3.Distance(dog.transform.position, agg_position.transform.position);
+            agg_behav.dist_to_player = Vector3.Distance(dog.transform.position, player.transform.position);
+            agg_behav.StopAgression();
+
+            agg_behav.MoveToPositionAndFacePlayer();
+        }
+        else if (behav_switch.friendly_script.enabled)
+        {//friendly
+            SetFollowObject();
             Debug.Log("IS THIS THING ON?!");
             if (y_goal == trot_value)
             {
@@ -484,14 +501,7 @@ public class Basic_Behaviour : MonoBehaviour
             friendly_behav.ApproachPlayer();
         }
 
-
-        SetFollowObject();
-        if (behav_switch.aggressive_script.enabled)
-        {
-
-            agg_behav.MoveToPositionAndFacePlayer();
-        }
-
+        //Change Animation on Timer depending on Behaviour
         if (change_anim_timer <= 0)
         {
             ChooseRandomIndex();
@@ -503,12 +513,10 @@ public class Basic_Behaviour : MonoBehaviour
             }
             else if (behav_switch.friendly_script.enabled)
             {
-                turning_in_place = false;
                 friendly_behav.FriendlyBehaviour();
             }
             else if (behav_switch.aggressive_script.enabled)
             {
-                turning_in_place = false;
                 agg_behav.AggressiveBehaviour();
             }
             ResetTimerFunction();

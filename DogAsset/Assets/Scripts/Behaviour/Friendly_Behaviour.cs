@@ -49,17 +49,38 @@ public class Friendly_Behaviour : MonoBehaviour
     }
 
     public float touching_player_timer;
+
+
+    /*
+    *   false if dog to far away from player
+    *   true if dog sits down near the player
+    */
     public bool escape_chance_on;
+
+    /*
+    *   If we touch the player AND we turned = true
+    *   NO FALSE STATE OTHER THAN START
+    */
     public bool facing_player;
+
+
+    /*
+    *   On Start: friendly = false
+    *   On "first" animation change in FriendlyBehaviour: friendly = true 
+    */
+    public bool friendly;
+
     // Update is called once per frame
     void Update()
     {
         Debug.Log("IS THIS THING ON?!");
+        //stop trotting
         if (basic_behav.y_goal == basic_behav.trot_value)
         {
             basic_behav.y_goal = basic_behav.walking_slow_value;
         }
 
+        //maybe in own update
         player_interaction.IsCloseToLeftHand();
         player_interaction.IsCloseToRightHand();
         player_interaction.AreHandsMoving();
@@ -93,14 +114,24 @@ public class Friendly_Behaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         Debug.Log("FACING player, WALKING TO IT");
-        StartCoroutine(basic_behav.WaitBeforeWalkingTowards(player_target));
+        if (!started_walking && !facing_player)
+        {
+            Debug.Log("start walking");
+            StartCoroutine(basic_behav.WaitBeforeWalkingTowards(player_target));
+            started_walking = true;
+        }
         if (TouchingPlayer())
         {
             Debug.Log("TOUCHING");
             facing_player = true;
+            started_walking = false;
         }
     }
+    public bool started_walking = false;
 
+    /*
+     *
+     */
     public void ApproachPlayer()
     {
         Debug.Log("HElooooooooo");
@@ -112,27 +143,27 @@ public class Friendly_Behaviour : MonoBehaviour
         }
         if (TouchingPlayer() && facing_player)
         {
-            //if (!escape_chance_on)
-
-            Debug.Log("PANTING: " + dog_audio.panting_calm.isPlaying);
-            basic_behav.SetShortTimer(10, 15);
-            basic_behav.y_goal = basic_behav.standing_value;
-            basic_behav.x_axis = basic_behav.standing_value;
-            basic_behav.y_acceleration = 4;
-            dog_audio.StopAllSounds();
+            if (!escape_chance_on)
+            {
+                Debug.Log("PANTING: " + dog_audio.panting_calm.isPlaying);
+                basic_behav.y_goal = basic_behav.standing_value;
+                basic_behav.x_axis = basic_behav.standing_value;
+                basic_behav.y_acceleration = 4;
+                dog_audio.StopAllSounds();
+            }
             //audio
             if (anim_controll.current_state == anim.sit_00 && !dog_audio.panting_calm.isPlaying)
             {
                 dog_audio.StopAllSounds();
                 dog_audio.panting_calm.Play();
-                escape_chance_on = true;
             }
-            if (basic_behav.y_axis == basic_behav.standing_value && basic_behav.dog_state != Basic_Behaviour.Animation_state.sitting)
+            if (basic_behav.y_axis == basic_behav.standing_value && !escape_chance_on)
             {
                 basic_behav.y_acceleration = basic_behav.default_y_acceleration;
                 anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
-
-                basic_behav.dog_state = Basic_Behaviour.Animation_state.sitting;
+                basic_behav.change_anim_timer = 10;
+                basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
+                escape_chance_on = true;
             }
 
             Debug.Log("touching player");
@@ -168,8 +199,15 @@ public class Friendly_Behaviour : MonoBehaviour
      */
     public float dist_to_player;
     public bool touching_player_timer_started = false;
+
+    /*
+    *   Calculates the distance between the player and the dog.
+    *       returns true if dog is inside a radius <goal_dist_to_player>
+    *       resets escape_chance_on to false if dog is not inside a radius of <goal_dist_to_player> * 1.1.
+    */
     bool TouchingPlayer()
     {
+        double goal_dist_to_player = 1.5f;
         /* if (touching_player_timer_started)
          {
              touching_player_timer -= Time.deltaTime;
@@ -186,27 +224,33 @@ public class Friendly_Behaviour : MonoBehaviour
          }*/
 
         dist_to_player = Vector3.Distance(player.transform.position, dog.transform.position);
-        if (dist_to_player < 3.3f)
+        if (dist_to_player < goal_dist_to_player)
         {
             touching_player_timer = 10;
             touching_player_timer_started = true;
             return true;
         }
-        else
+        else if (dist_to_player > goal_dist_to_player * 1.1)
         {
             escape_chance_on = false;
-
         }
         return false;
     }
+
+    //returns false;
     bool TouchingHand()
     {
         return false;
     }
-    public bool friendly;
+
+    /*
+    *   Changes the dog behaviour between standing, sitting, lying, sleeping and walking.
+    *       Also changes the x and y goals.
+    *       sets friendly
+    */
     public void FriendlyBehaviour()
     {
-        if (!facing_player)
+        if (!facing_player && !started_walking)
         {
             Debug.Log("So are you gonna do itHUH");
             switch (basic_behav.dog_state)
@@ -216,6 +260,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     dog_audio.StopAllSounds();
                     friendly = true;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(10, 15);
                     break;
                 case Basic_Behaviour.Animation_state.sitting:
                     dog_audio.StopAllSounds();
@@ -252,17 +297,15 @@ public class Friendly_Behaviour : MonoBehaviour
         if (facing_player && escape_chance_on)
         {
             dog_audio.StopAllSounds();
-            anim_controll.ChangeAnimationState(anim.friendly_sit_to_turn_walk);
-            basic_behav.y_goal = basic_behav.walking_slow_value;
-            basic_behav.TurnLeft();
-            basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
-
             switch (basic_behav.dog_state)
             {
                 case Basic_Behaviour.Animation_state.friendly_walking:
-                    anim_controll.ChangeAnimationState(anim.friendly_blend_tree);
-                    basic_behav.WalkForward();
+                    anim_controll.ChangeAnimationState(anim.friendly_sit_to_turn_walk);
+                    basic_behav.y_goal = basic_behav.walking_slow_value;
+                    basic_behav.TurnRight();
+                    //basic_behav.WalkForward();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
+                    basic_behav.SetShortTimer(5, 5);
                     break;
                 case Basic_Behaviour.Animation_state.standing:
 
@@ -394,6 +437,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     if (anim_controll.current_state != anim.friendly_blend_tree)
                     {
                         anim_controll.ChangeAnimationState(anim.friendly_blend_tree);
+                        basic_behav.WalkForward();
                     }
                     basic_behav.SetLongTimer();
                     if (basic_behav.random_index == 0)
