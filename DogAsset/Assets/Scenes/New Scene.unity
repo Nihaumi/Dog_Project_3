@@ -1572,13 +1572,13 @@ MonoBehaviour:
   dist: 0
   friendly_distance: 4
   friendly: 0
-  agressive: 1
-  neutral: 0
+  agressive: 0
+  neutral: 1
   friendly_timer: 60
   agressive_timer: 30
   neutral_timer: 100
   friendly_time: 80
-  agressive_time: 15
+  agressive_time: 40
   neutral_time: 80
   dog_behaviour: 0
   friendly_has_been_visited: 0
