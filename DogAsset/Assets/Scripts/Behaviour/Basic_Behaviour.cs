@@ -80,7 +80,10 @@ public class Basic_Behaviour : MonoBehaviour
         max_timer = min_timer;
 
         //rig layer obj
-        neck = GameObject.Find("Neck3Aim");
+        neck_1 = GameObject.Find("NeckAim1");
+        neck_2 = GameObject.Find("NeckAim2");
+        neck_3 = GameObject.Find("NeckAim3");
+        neck_4 = GameObject.Find("NeckAim4");
         head = GameObject.Find("Head aim");
         right_eye = GameObject.Find("EyeRight Aim");
         left_eye = GameObject.Find("EyeLeft Aim");
@@ -89,7 +92,10 @@ public class Basic_Behaviour : MonoBehaviour
         agg_position = GameObject.Find("agg_position");
 
         //multi aim constraints
-        neck_constraint = neck.GetComponent<MultiAimConstraint>();
+        neck_constraint_1 = neck_1.GetComponent<MultiAimConstraint>();
+        neck_constraint_2 = neck_2.GetComponent<MultiAimConstraint>();
+        neck_constraint_3 = neck_3.GetComponent<MultiAimConstraint>();
+        neck_constraint_4 = neck_4.GetComponent<MultiAimConstraint>();
         head_constraint = head.GetComponent<MultiAimConstraint>();
         right_eye_constraint = right_eye.GetComponent<MultiAimConstraint>();
         left_eye_constraint = left_eye.GetComponent<MultiAimConstraint>();
@@ -114,14 +120,20 @@ public class Basic_Behaviour : MonoBehaviour
     public float trot_value = 1.5f;
 
     //constraint gedöns
-    GameObject neck;
+    GameObject neck_4;
+    GameObject neck_3;
+    GameObject neck_2;
+    GameObject neck_1;
     GameObject head;
     GameObject left_eye;
     GameObject right_eye;
 
 
     //contraint components
-    public MultiAimConstraint neck_constraint;
+    public MultiAimConstraint neck_constraint_1;
+    public MultiAimConstraint neck_constraint_2;
+    public MultiAimConstraint neck_constraint_3;
+    public MultiAimConstraint neck_constraint_4;
     public MultiAimConstraint head_constraint;
     public MultiAimConstraint left_eye_constraint;
     public MultiAimConstraint right_eye_constraint;
@@ -331,44 +343,101 @@ public class Basic_Behaviour : MonoBehaviour
     //follow hand/head of player
     public void SetFollowObject()
     {
+
+        int focus = 3;
+
         if (!friendly_behav.enabled)
         {
-            SetWeightConstraint(neck_constraint, 3);
-            SetWeightConstraint(head_constraint, 3);
-            SetWeightConstraint(right_eye_constraint, 3);
-            SetWeightConstraint(left_eye_constraint, 3);
+            focus = 3;
         }
         else if (!player_interaction.AreHandsMoving())
         {   //look at Head and away from left and right Hand
-            SetWeightConstraint(neck_constraint, 2);
-            SetWeightConstraint(head_constraint, 2);
-            SetWeightConstraint(right_eye_constraint, 2);
-            SetWeightConstraint(left_eye_constraint, 2);
+            focus = 2;
         }
         else if (dist_left_hand_to_dog < dist_right_hand_to_dog)
         {   //look at left Hand and away from Head and right Hand
-            SetWeightConstraint(neck_constraint, 1);
-            SetWeightConstraint(head_constraint, 1);
-            SetWeightConstraint(right_eye_constraint, 1);
-            SetWeightConstraint(left_eye_constraint, 1);
+            focus = 1;
 
             Debug.Log("TRACK LEFT");
         }
         else if (dist_right_hand_to_dog < dist_left_hand_to_dog)
         {   //look at right Hand and away from Head and left Hand
-            SetWeightConstraint(neck_constraint, 0);
-            SetWeightConstraint(head_constraint, 0);
-            SetWeightConstraint(right_eye_constraint, 0);
-            SetWeightConstraint(left_eye_constraint, 0);
+            focus = 0;
 
             Debug.Log("TRACK RIGHT");
         }
+        SetWeightConstraint(neck_constraint_1, focus);
+        SetWeightConstraint(neck_constraint_2, focus);
+        SetWeightConstraint(neck_constraint_3, focus);
+        SetWeightConstraint(head_constraint, focus);
+        SetWeightConstraint(right_eye_constraint, focus);
+        SetWeightConstraint(left_eye_constraint, focus);
+    }
+
+    /*TODO
+     * create function or integrate into setweight constraints:
+     * change the rig min max values and y offsets
+     * if(player HINTER dog) weight 0 ODER BESSER turn around nach left/right je nachdem zu welcher seite, werte wie geradeaus po constraint
+     * else if ( player left of dog) min max werte pro constraint, positives offset pro constraint
+     * else if( player right of dog) min max werte pro constraint, negatives offset pro constraint
+     * else if(player geradeaus fom dog) min max pro constraint, offset 0
+     */
+
+    int GetPlayerOffset()
+    {
+        int focus_2 = 0;
+        float behind_dog = 0f;
+        float before_dog = 1f;
+        float beside_dog = 0.6f;
+        Vector3 player_pos_local = dog.transform.InverseTransformPoint(player.transform.position);
+        if (player_pos_local.z < behind_dog)
+        {
+            focus_2 = 0;
+            Debug.Log("BEHIND");
+        }
+        if (player_pos_local.z > before_dog)
+        {
+            focus_2 = 0;
+            if (player_pos_local.x < -beside_dog && player_pos_local.x > beside_dog)
+            {
+                focus_2 = 0;
+                Debug.Log("STRAIGHT");
+            }
+            if (player_pos_local.x < -beside_dog)
+            {
+                focus_2 = 0;
+                Debug.Log("LEFT");
+            }
+            if (player_pos_local.x > beside_dog)
+            {
+                focus_2 = 0;
+                Debug.Log("RIGHT");
+            }
+        }
+        else
+        {
+            if (player_pos_local.x < 0)
+            {
+                focus_2 = 0;
+                Debug.Log("CLOSE L");
+            }
+            if (player_pos_local.x > 0)
+            {
+                focus_2 = 0;
+                Debug.Log("CLOSE R");
+            }
+        }
+
+        Debug.Log("player position " + player_pos_local);
+
+        return focus_2;
     }
 
     //TODO: Maybe changerate variable
-    //focus: 0 -> right, 1 -> left, 2 -> head
+    //focus: 0 -> right, 1 -> left, 2 -> head, 3 -> alle aus
     public void SetWeightConstraint(MultiAimConstraint constraint, int focus)
     {
+        var b = constraint.data.offset;
         var a = constraint.data.sourceObjects;
         float curent_weight_right = a.GetWeight(0); //rightHand
         float curent_weight_left = a.GetWeight(1); //leftHand
@@ -414,7 +483,6 @@ public class Basic_Behaviour : MonoBehaviour
             default:
                 break;
         }
-        a.SetWeight(0, weight_update_right);
         a.SetWeight(1, weight_update_left);
         a.SetWeight(2, weight_update_head);
         constraint.data.sourceObjects = a;
@@ -498,7 +566,8 @@ public class Basic_Behaviour : MonoBehaviour
             player_interaction.IsCloseToLeftHand();
             player_interaction.IsCloseToRightHand();
             player_interaction.AreHandsMoving();
-            friendly_behav.ApproachPlayer();
+            //TODO uncomment
+            //friendly_behav.ApproachPlayer();
         }
 
         //Change Animation on Timer depending on Behaviour
@@ -512,8 +581,9 @@ public class Basic_Behaviour : MonoBehaviour
                 neutral_behav.NeutralBehaviour();
             }
             else if (behav_switch.friendly_script.enabled)
-            {
-                friendly_behav.FriendlyBehaviour();
+            {//TODO uncomment
+                //friendly_behav.FriendlyBehaviour();
+                GetPlayerOffset();
             }
             else if (behav_switch.aggressive_script.enabled)
             {
