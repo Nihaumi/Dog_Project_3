@@ -15,12 +15,12 @@ D:/Uni/BA HUNDE/UNITY/Dog_Project_Git/Dog_Project_3/DogAsset
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-62658
+63440
 Successfully changed project path to: D:/Uni/BA HUNDE/UNITY/Dog_Project_Git/Dog_Project_3/DogAsset
 D:/Uni/BA HUNDE/UNITY/Dog_Project_Git/Dog_Project_3/DogAsset
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 58.43 ms, found 6 plugins.
-Preloading 1 native plugins for Editor in 0.63 ms.
+Refreshing native plugins compatible for Editor in 61.83 ms, found 6 plugins.
+Preloading 1 native plugins for Editor in 0.59 ms.
 Initialize engine version: 2020.3.12f1 (b3b2c6512326)
 [Subsystems] Discovering subsystems at path D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path D:/Uni/BA HUNDE/UNITY/Dog_Project_Git/Dog_Project_3/DogAsset/Assets
@@ -37,28 +37,28 @@ Initialize mono
 Mono path[0] = 'D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/Managed'
 Mono path[1] = 'D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56552
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56100
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
 Register platform support module: D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
 Register platform support module: D:/Gaming/Programme/UnityStuff/2020.3.12f1/Editor/Data/PlaybackEngines/LinuxStandaloneSupport/UnityEditor.LinuxStandalone.Extensions.dll
-Registered in 0.000920 seconds.
+Registered in 0.000976 seconds.
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 53.38 ms, found 6 plugins.
-Preloading 1 native plugins for Editor in 0.02 ms.
+Refreshing native plugins compatible for Editor in 55.93 ms, found 6 plugins.
+Preloading 1 native plugins for Editor in 0.04 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  0.890 seconds
+- Completed reload, in  0.985 seconds
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.003065 seconds.
+Registered in 0.003307 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for LinuxStandalone target not found
 Native extension for WindowsStandalone target not found
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 55.32 ms, found 6 plugins.
+Refreshing native plugins compatible for Editor in 56.94 ms, found 6 plugins.
 Preloading 1 native plugins for Editor in 0.03 ms.
 [XR] OculusXRPlugin: registering subsystems
 [XR] Unable to register display lifecyle provider: [1]
@@ -66,21 +66,21 @@ Preloading 1 native plugins for Editor in 0.03 ms.
 [XR] Unable to register input lifecyle provider: [1]
 [XR] OVRP version 1.67.0
 Mono: successfully reloaded assembly
-- Completed reload, in  1.062 seconds
+- Completed reload, in  1.213 seconds
 Platform modules already initialized, skipping
 ========================================================================
 Worker process is ready to serve import requests
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
 Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
-Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
-Refreshing native plugins compatible for Editor in 1.51 ms, found 6 plugins.
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.03 seconds
+Refreshing native plugins compatible for Editor in 1.21 ms, found 6 plugins.
 Preloading 1 native plugins for Editor in 0.04 ms.
-Unloading 3847 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 181.8 MB.
-System memory in use after: 182.1 MB.
+Unloading 3759 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 202.4 MB.
+System memory in use after: 202.6 MB.
 
-Unloading 46 unused Assets to reduce memory usage. Loaded Objects now: 4280.
-Total: 2.470300 ms (FindLiveObjects: 0.281500 ms CreateObjectMapping: 0.082800 ms MarkObjects: 2.029100 ms  DeleteObjects: 0.076000 ms)
+Unloading 46 unused Assets to reduce memory usage. Loaded Objects now: 4207.
+Total: 2.258900 ms (FindLiveObjects: 0.253900 ms CreateObjectMapping: 0.079600 ms MarkObjects: 1.858700 ms  DeleteObjects: 0.066100 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
@@ -94,1784 +94,308 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/DreamForestTree/demoUIcanvas.prefab
-  artifactKey: Guid(01a5a386ebfa7284dbbb737167f06b9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/demoUIcanvas.prefab using Guid(01a5a386ebfa7284dbbb737167f06b9d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e70b0022c4d4b24afae3e9094d612418') in 0.040255 seconds 
-  Import took 0.044657 seconds .
+  path: Assets/Conifers [BOTD]/Render Pipeline Support
+  artifactKey: Guid(bf28865a6e5fab64c84db5fa4c2f7cae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support using Guid(bf28865a6e5fab64c84db5fa4c2f7cae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4c0b3aecd7822a49360c33695e9a048d') in 0.007628 seconds 
+  Import took 0.011812 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 12.715979 seconds.
-  path: Assets/DreamForestTree/DemoScene.unity
-  artifactKey: Guid(6dc68697d72e283438f1cd3bd3441279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/DemoScene.unity using Guid(6dc68697d72e283438f1cd3bd3441279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afcf3c1ff1343be6a3075bfd9d9bb924') in 0.004228 seconds 
-  Import took 0.008529 seconds .
+  Time since last request: 3.069999 seconds.
+  path: Assets/Conifers [BOTD]/Conifers [BOTD] URP Readme.txt
+  artifactKey: Guid(1488c255586882840834c45e0c575cad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Conifers [BOTD] URP Readme.txt using Guid(1488c255586882840834c45e0c575cad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '971901e61e644633c8437be6eb20d794') in 0.021583 seconds 
+  Import took 0.045553 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.017920 seconds.
-  path: Assets/DreamForestTree/DemoScene.unity
-  artifactKey: Guid(6dc68697d72e283438f1cd3bd3441279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/DemoScene.unity using Guid(6dc68697d72e283438f1cd3bd3441279) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'afcf3c1ff1343be6a3075bfd9d9bb924') in 0.001095 seconds 
-  Import took 0.004435 seconds .
+  Time since last request: 28.917509 seconds.
+  path: Assets/Conifers [BOTD]/Conifers [BOTD] URP.unitypackage
+  artifactKey: Guid(2b43184afc73ac64d9bfb74962236298) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Conifers [BOTD] URP.unitypackage using Guid(2b43184afc73ac64d9bfb74962236298) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3f08bced899aecbcee39a3968d92fd7') in 0.016667 seconds 
+  Import took 0.021020 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.008272 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for LinuxStandalone target not found
+Native extension for WindowsStandalone target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 0.88 ms, found 6 plugins.
+Preloading 1 native plugins for Editor in 0.03 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  0.805 seconds
+Platform modules already initialized, skipping
+Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
+Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
+Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
+Refreshing native plugins compatible for Editor in 0.94 ms, found 6 plugins.
+Preloading 1 native plugins for Editor in 0.03 ms.
+Unloading 3589 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 191.1 MB.
+System memory in use after: 190.9 MB.
+
+Unloading 45 unused Assets to reduce memory usage. Loaded Objects now: 4217.
+Total: 2.419900 ms (FindLiveObjects: 0.271300 ms CreateObjectMapping: 0.100100 ms MarkObjects: 1.868800 ms  DeleteObjects: 0.178900 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 80.970680 seconds.
+  path: Assets/Conifers [BOTD]/Getting started.txt
+  artifactKey: Guid(d52d4e51716964284a2205981add7f73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Getting started.txt using Guid(d52d4e51716964284a2205981add7f73) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '775e6943c0146f710ba28c10cf6e7331') in 0.023031 seconds 
+  Import took 0.036829 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 9.163818 seconds.
-  path: Assets/DreamForestTree/ReadMe.txt
-  artifactKey: Guid(66e34890637161a4bafaffdbc2de2d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/ReadMe.txt using Guid(66e34890637161a4bafaffdbc2de2d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41ec016df34d0f56ef2edf3fb2324dc7') in 0.007239 seconds 
-  Import took 0.011364 seconds .
+  Time since last request: 117.801519 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources
+  artifactKey: Guid(a159082cb7e8e402c8240da353f7fcd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources using Guid(a159082cb7e8e402c8240da353f7fcd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5866249298eb734ea7666a28e17b22bd') in 0.004431 seconds 
+  Import took 0.009346 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.017830 seconds.
-  path: Assets/DreamForestTree/ReadMe.txt
-  artifactKey: Guid(66e34890637161a4bafaffdbc2de2d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/ReadMe.txt using Guid(66e34890637161a4bafaffdbc2de2d4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41ec016df34d0f56ef2edf3fb2324dc7') in 0.001107 seconds 
-  Import took 0.004463 seconds .
+  Time since last request: 3.180157 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Textures
+  artifactKey: Guid(f993ff6b3f7074c0db7fba22ea30ef30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Textures using Guid(f993ff6b3f7074c0db7fba22ea30ef30) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e9d2ab19369d041c7b7adc8eca12cbd') in 0.004114 seconds 
+  Import took 0.008338 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 85.758447 seconds.
-  path: Assets/DreamForestTree/Materials
-  artifactKey: Guid(c44efdc47fb5d874eb3d547a71949d5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials using Guid(c44efdc47fb5d874eb3d547a71949d5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c3cbf748559ac56ada09c5170117495e') in 0.003334 seconds 
-  Import took 0.007541 seconds .
+  Time since last request: 4.928450 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes
+  artifactKey: Guid(8c66f7071480b4af7a6085012e3ee89e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes using Guid(8c66f7071480b4af7a6085012e3ee89e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b713f1f9d8df9b20bfc256787f19c3f8') in 0.004699 seconds 
+  Import took 0.010792 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.063918 seconds.
-  path: Assets/DreamForestTree/Materials/bark 1.mat
-  artifactKey: Guid(6b7f736d12caf9240b8e9b479342a281) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/bark 1.mat using Guid(6b7f736d12caf9240b8e9b479342a281) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8fbe640788a412dd2439f4175169b2c6') in 0.731171 seconds 
-  Import took 0.735842 seconds .
+  Time since last request: 8.042674 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Bare LOD1.asset
+  artifactKey: Guid(c6029981137bd4653b2149d26518cf28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Bare LOD1.asset using Guid(c6029981137bd4653b2149d26518cf28) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e49a1a4083149222f690ec6bf242b1d0') in 0.090019 seconds 
+  Import took 0.105503 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/DreamForestTree/Materials/bark 2.mat
-  artifactKey: Guid(cf69de7e1b41130409b70635b3e8092b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/bark 2.mat using Guid(cf69de7e1b41130409b70635b3e8092b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '17c9c59ade49d93716855082eea7c4d4') in 0.457392 seconds 
-  Import took 0.461177 seconds .
+  Time since last request: 1.857204 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Bare LOD0.asset
+  artifactKey: Guid(e35c83466d09544088eaf0d3fa826b0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Bare LOD0.asset using Guid(e35c83466d09544088eaf0d3fa826b0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6f9bac3aec5d97e7d5210d4a79099dd') in 0.011470 seconds 
+  Import took 0.035951 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000149 seconds.
-  path: Assets/DreamForestTree/Materials/leaf.mat
-  artifactKey: Guid(d4d7f49b9b732ca4584a061ff1e07bac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/leaf.mat using Guid(d4d7f49b9b732ca4584a061ff1e07bac) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2515450e798f0777f77541d35b3e20ed') in 0.575132 seconds 
-  Import took 0.579135 seconds .
+  Time since last request: 0.610224 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Medium LOD0.asset
+  artifactKey: Guid(8edab6f6d01b34b44bc0dc2a7ff8ea7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Medium LOD0.asset using Guid(8edab6f6d01b34b44bc0dc2a7ff8ea7d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c5c975a0470d92826c459561163a6e3') in 0.010745 seconds 
+  Import took 0.032335 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000129 seconds.
-  path: Assets/DreamForestTree/Materials/ClearSky.mat
-  artifactKey: Guid(6413a54c29d866642ac7511f59760dd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/ClearSky.mat using Guid(6413a54c29d866642ac7511f59760dd5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c918e3f8838d8e16b926521ec642d84c') in 0.141244 seconds 
-  Import took 0.148279 seconds .
+  Time since last request: 0.602543 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Small LOD0.asset
+  artifactKey: Guid(aaf76b55071db41b0bde5e2ebb830601) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Small LOD0.asset using Guid(aaf76b55071db41b0bde5e2ebb830601) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1aaf7b07022422f14aae286a93c1dd0d') in 0.009388 seconds 
+  Import took 0.017389 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000134 seconds.
-  path: Assets/DreamForestTree/Materials/terrain.mat
-  artifactKey: Guid(e3694e4eb82c06d4b8309907deac269a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/terrain.mat using Guid(e3694e4eb82c06d4b8309907deac269a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'efe3e1d81b734177be239387bf65766a') in 0.015781 seconds 
-  Import took 0.020007 seconds .
+  Time since last request: 0.674549 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Small LOD1.asset
+  artifactKey: Guid(f048d29a147474044b8fa98675c66ced) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Small LOD1.asset using Guid(f048d29a147474044b8fa98675c66ced) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e1f12fd1f2b7299d6a3e459d75bd2cc') in 0.015144 seconds 
+  Import took 0.019608 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000131 seconds.
-  path: Assets/DreamForestTree/Materials/bush 1.mat
-  artifactKey: Guid(fc65f1438bd63264788c8a5bbb97ddce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/bush 1.mat using Guid(fc65f1438bd63264788c8a5bbb97ddce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4346271550599341252e8eb4407050e5') in 0.162591 seconds 
-  Import took 0.166709 seconds .
+  Time since last request: 0.954464 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Tall LOD0.asset
+  artifactKey: Guid(92c53119942ac4923b00037455001238) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Tall LOD0.asset using Guid(92c53119942ac4923b00037455001238) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd0f39c8713c58e17db3b570a2f9b7fe6') in 0.016318 seconds 
+  Import took 0.030164 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/DreamForestTree/Materials/ClearSky.psd
-  artifactKey: Guid(89e2b7f3280404641834397619c38df4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/ClearSky.psd using Guid(89e2b7f3280404641834397619c38df4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '237fe62cf4ee3ba620bbd85ca9f1bf1f') in 0.132985 seconds 
-  Import took 0.139900 seconds .
+  Time since last request: 0.555857 seconds.
+  path: Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Tall LOD1.asset
+  artifactKey: Guid(07ec567d1ba5c4f178bbc3f291f0d315) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Shared Sources/Meshes/SM Conifer Tall LOD1.asset using Guid(07ec567d1ba5c4f178bbc3f291f0d315) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60fefd0678abcc2f7498a043cd283d9d') in 0.027376 seconds 
+  Import took 0.031798 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000142 seconds.
-  path: Assets/DreamForestTree/Materials/bush 2.mat
-  artifactKey: Guid(032ad1b94e27e1041a630e9862184942) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Materials/bush 2.mat using Guid(032ad1b94e27e1041a630e9862184942) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2628f8a7af506df9dfb404d837187fa') in 0.140759 seconds 
-  Import took 0.145204 seconds .
+  Time since last request: 25.571424 seconds.
+  path: Assets/GrassFlowers/Demo
+  artifactKey: Guid(90a98d1ca0ff3f34b817aee6ee27e766) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GrassFlowers/Demo using Guid(90a98d1ca0ff3f34b817aee6ee27e766) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2788272244d534a24ae49a7088ddd0a6') in 0.015661 seconds 
+  Import took 0.036709 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.271509 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 1.psd
-  artifactKey: Guid(2e590fb718397d345898d3466a34f388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 1.psd using Guid(2e590fb718397d345898d3466a34f388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05cdcdc6205c564ef44932286d9e8925') in 0.248290 seconds 
-  Import took 0.252818 seconds .
+  Time since last request: 5.528725 seconds.
+  path: Assets/GrassFlowers/Demo/DemoGrassFlowers.unity
+  artifactKey: Guid(679e28dd92e786342b7944447228f70c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GrassFlowers/Demo/DemoGrassFlowers.unity using Guid(679e28dd92e786342b7944447228f70c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '14b2c2fb7f8b91a0bb5e44af02426abf') in 0.004540 seconds 
+  Import took 0.009446 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000134 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 1 N.psd
-  artifactKey: Guid(a5884e30377ed0a45a18cca3365b29b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 1 N.psd using Guid(a5884e30377ed0a45a18cca3365b29b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38fc8d011c7a7b6ec658332ee4fa2417') in 0.241330 seconds 
-  Import took 0.245493 seconds .
+  Time since last request: 113.575930 seconds.
+  path: Assets/GrassFlowers
+  artifactKey: Guid(2625bf9e57caad646a60f132584d4c5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GrassFlowers using Guid(2625bf9e57caad646a60f132584d4c5e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '819f8d80a13f9179ad3e8d5011f5aa19') in 0.004195 seconds 
+  Import took 0.025185 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000125 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 1.psd
-  artifactKey: Guid(2e590fb718397d345898d3466a34f388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 1.psd using Guid(2e590fb718397d345898d3466a34f388) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05cdcdc6205c564ef44932286d9e8925') in 0.232958 seconds 
-  Import took 0.236714 seconds .
+  Time since last request: 1.554223 seconds.
+  path: Assets/New Terrain.asset
+  artifactKey: Guid(5cfae634ccf2c9245bc00a19654616d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/New Terrain.asset using Guid(5cfae634ccf2c9245bc00a19654616d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '309c1262b1c9f0a431c82041f966caea') in 0.035779 seconds 
+  Import took 0.055639 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000125 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 1 N.psd
-  artifactKey: Guid(a5884e30377ed0a45a18cca3365b29b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 1 N.psd using Guid(a5884e30377ed0a45a18cca3365b29b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38fc8d011c7a7b6ec658332ee4fa2417') in 0.230142 seconds 
-  Import took 0.233920 seconds .
+  Time since last request: 4.669223 seconds.
+  path: Assets/Material/New Material.mat
+  artifactKey: Guid(260cc29c1256bb046bd5f9df763d43d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Material/New Material.mat using Guid(260cc29c1256bb046bd5f9df763d43d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2d13619cb33a55048a6a4b444e0401d0') in 0.219389 seconds 
+  Import took 0.231360 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 45.965593 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 1.psd
-  artifactKey: Guid(08060bf4d821c1645a56abe8468767ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 1.psd using Guid(08060bf4d821c1645a56abe8468767ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4d1b65a872508f709618e63526926cf') in 0.066506 seconds 
-  Import took 0.071035 seconds .
+  Time since last request: 11.056598 seconds.
+  path: Assets/Material/Terrain.mat
+  artifactKey: Guid(e95e4c3fe6055b543a63f9a94bfc8c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Material/Terrain.mat using Guid(e95e4c3fe6055b543a63f9a94bfc8c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b37bed10042329ee39f4f2c206d8c5c1') in 0.055200 seconds 
+  Import took 0.059916 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 30.509844 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/URP/Demo URP/Simple Material.mat
+  artifactKey: Guid(41f50f4c8e22d11458d7f694899589b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/URP/Demo URP/Simple Material.mat using Guid(41f50f4c8e22d11458d7f694899589b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '259f461dac291781311572b688cc7770') in 0.009184 seconds 
+  Import took 0.043034 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.410227 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Small_BillboardMaterial URP.mat
+  artifactKey: Guid(1662a52a9e5e8df46aacf023d9253a62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Small_BillboardMaterial URP.mat using Guid(1662a52a9e5e8df46aacf023d9253a62) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5bbbd8b4d244e1a0e022c16c6e2d21bf') in 0.530722 seconds 
+  Import took 0.535059 seconds .
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000120 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 1 N.psd
-  artifactKey: Guid(f82d96428e90b43469cb932848ed0ddd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 1 N.psd using Guid(f82d96428e90b43469cb932848ed0ddd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c921a3951f54f4f22f1c59209f9a0cb9') in 0.043721 seconds 
-  Import took 0.047489 seconds .
+  path: Assets/Animalia/GermanShepherd/Materials/GermanShepherd_Eye_Material.mat
+  artifactKey: Guid(232133b2cf0391e4b8ed0b55557a9ce0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Animalia/GermanShepherd/Materials/GermanShepherd_Eye_Material.mat using Guid(232133b2cf0391e4b8ed0b55557a9ce0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ffbb5ffcf2453dabb4802bf65d137af5') in 0.007191 seconds 
+  Import took 0.010643 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000141 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 1 S.psd
-  artifactKey: Guid(908f959504263cc4baee36682cfffed5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 1 S.psd using Guid(908f959504263cc4baee36682cfffed5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'de9a0a6536b5ed372a80fde63ba9e52f') in 0.042818 seconds 
-  Import took 0.046694 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000124 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 1 Trans.psd
-  artifactKey: Guid(6ec4b90faa42dbb4ca3bb84792382cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 1 Trans.psd using Guid(6ec4b90faa42dbb4ca3bb84792382cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a2e15d046698fcc5ef8010f7e99af2fe') in 0.039722 seconds 
-  Import took 0.043629 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 15.135833 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 2.psd
-  artifactKey: Guid(1a3df453886534b47a4f53833e187bea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 2.psd using Guid(1a3df453886534b47a4f53833e187bea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2dee29d3a4532ef4296c94ef4734869') in 0.236157 seconds 
-  Import took 0.240763 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 2 N.psd
-  artifactKey: Guid(f08221096a97744419c55f1266293ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 2 N.psd using Guid(f08221096a97744419c55f1266293ae5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5abee35c32fb0a33d544815f78e9d2d8') in 0.231649 seconds 
-  Import took 0.235419 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000135 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/Bark 2.psd
-  artifactKey: Guid(1a3df453886534b47a4f53833e187bea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/Bark 2.psd using Guid(1a3df453886534b47a4f53833e187bea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2dee29d3a4532ef4296c94ef4734869') in 0.228925 seconds 
-  Import took 0.233026 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 33.937405 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 2.psd
-  artifactKey: Guid(e5764d649f4d5aa44bd1364aaff46b6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 2.psd using Guid(e5764d649f4d5aa44bd1364aaff46b6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d4d2c68a37631dacb55cc3d0e7aa011') in 0.048482 seconds 
-  Import took 0.053159 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 2 N.psd
-  artifactKey: Guid(215001c2d9f8acd43bc9dde11084b783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 2 N.psd using Guid(215001c2d9f8acd43bc9dde11084b783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '651c1422f0ba5fba75615bc672e8f8be') in 0.035877 seconds 
-  Import took 0.040077 seconds .
+  Time since last request: 0.000110 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_billboard_material.mat
+  artifactKey: Guid(6da1894adda584f759ccf5e4d9ada5bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_billboard_material.mat using Guid(6da1894adda584f759ccf5e4d9ada5bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cfe222ff8bcbbe4976f628920b22bea1') in 0.011980 seconds 
+  Import took 0.029421 seconds .
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000125 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 2 S.psd
-  artifactKey: Guid(bd93a1579d87dc64ba43f463ee7bd608) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 2 S.psd using Guid(bd93a1579d87dc64ba43f463ee7bd608) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e5210ca0f40beae64fc2ad1da1ca52d') in 0.032587 seconds 
-  Import took 0.036574 seconds .
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Tall_BillboardMaterial.mat
+  artifactKey: Guid(cb64c4536ee5b445783c428f4a53af1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Tall_BillboardMaterial.mat using Guid(cb64c4536ee5b445783c428f4a53af1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8bf6109db80d4339f39c04e96c6ba00') in 0.209213 seconds 
+  Import took 0.213197 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000136 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 2 N.psd
-  artifactKey: Guid(215001c2d9f8acd43bc9dde11084b783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 2 N.psd using Guid(215001c2d9f8acd43bc9dde11084b783) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '651c1422f0ba5fba75615bc672e8f8be') in 0.035820 seconds 
-  Import took 0.039759 seconds .
+  Time since last request: 0.000114 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Tall_BillboardMaterial URP.mat
+  artifactKey: Guid(5ccd81bf9cc255147acdcd4672ca6131) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Tall_BillboardMaterial URP.mat using Guid(5ccd81bf9cc255147acdcd4672ca6131) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3b8f449c67cdb6e2d37e4f3e13f968b8') in 0.087500 seconds 
+  Import took 0.097092 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.413137 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Bare_BillboardMaterial.mat
+  artifactKey: Guid(be7cd6e9ad58a462a91b1cae7694ef4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Bare_BillboardMaterial.mat using Guid(be7cd6e9ad58a462a91b1cae7694ef4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e524a4b75e1787fba8652086c651d87') in 0.181162 seconds 
+  Import took 0.198084 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000132 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Medium_BillboardMaterial URP.mat
+  artifactKey: Guid(e8137420066e19e49918858253d3351d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Medium_BillboardMaterial URP.mat using Guid(e8137420066e19e49918858253d3351d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6cafbd5e4a1cdd2fe5a68bb74fdb35c4') in 0.150909 seconds 
+  Import took 0.154592 seconds .
 
 ========================================================================
 Received Import Request.
   Time since last request: 0.000121 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 2 Trans.psd
-  artifactKey: Guid(cbce07d5b59481a41b637d95986cba1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 2 Trans.psd using Guid(cbce07d5b59481a41b637d95986cba1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18ca113d0bc39356dae11a4bb9410799') in 0.034117 seconds 
-  Import took 0.038398 seconds .
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Medium_BillboardMaterial.mat
+  artifactKey: Guid(fc87aa03e15b04f0e881cbf7847f77c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Medium_BillboardMaterial.mat using Guid(fc87aa03e15b04f0e881cbf7847f77c4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'be9eec8cf0f506fe36cc486d7771d20c') in 0.089302 seconds 
+  Import took 0.092888 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001305 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/bush 2 Trans.psd
-  artifactKey: Guid(cbce07d5b59481a41b637d95986cba1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/bush 2 Trans.psd using Guid(cbce07d5b59481a41b637d95986cba1a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '18ca113d0bc39356dae11a4bb9410799') in 0.031103 seconds 
-  Import took 0.035020 seconds .
+  Time since last request: 0.000118 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Bare_BillboardMaterial URP.mat
+  artifactKey: Guid(897bdf047dc9593458f436831015b15d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/URP/Sources URP/Billboards URP/Conifer Bare_BillboardMaterial URP.mat using Guid(897bdf047dc9593458f436831015b15d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd5a2ad548e062384484437be5b73825') in 0.087994 seconds 
+  Import took 0.091610 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 6.793088 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/leaf 1.psd
-  artifactKey: Guid(082423fd67faa4d428593cd66c527605) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/leaf 1.psd using Guid(082423fd67faa4d428593cd66c527605) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51cf5e016575e1ce80ef6c583c63123e') in 0.164393 seconds 
-  Import took 0.168877 seconds .
+  Time since last request: 0.000127 seconds.
+  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Small_BillboardMaterial.mat
+  artifactKey: Guid(fba25871281c3416cbb4faf8edfb3a1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/Sources/Billboards/Conifer Small_BillboardMaterial.mat using Guid(fba25871281c3416cbb4faf8edfb3a1c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a685ef002fa7733f1d51bb8a3382e732') in 0.101752 seconds 
+  Import took 0.114544 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000122 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/leaf 1 Trans.psd
-  artifactKey: Guid(22e112fe5cfb2fd4b9ee61071aba8f13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/leaf 1 Trans.psd using Guid(22e112fe5cfb2fd4b9ee61071aba8f13) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c853008b04d6e206e594b18cedfc5c3e') in 0.114734 seconds 
-  Import took 0.118609 seconds .
+  Time since last request: 114.622141 seconds.
+  path: Assets/Material/Terrain.mat
+  artifactKey: Guid(e95e4c3fe6055b543a63f9a94bfc8c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Material/Terrain.mat using Guid(e95e4c3fe6055b543a63f9a94bfc8c66) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2be3b15bf5fe15d69b6acbbd29c7997f') in 0.356087 seconds 
+  Import took 0.375330 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/leaf 1 N.psd
-  artifactKey: Guid(52018f42316484847b13573625186936) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/leaf 1 N.psd using Guid(52018f42316484847b13573625186936) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cc7288d0f7706e0fa7ecc4e6fcf0dbfd') in 0.120899 seconds 
-  Import took 0.124830 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000163 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/leaf 1 S.psd
-  artifactKey: Guid(b283b0034983bb145a53587c35d25f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/leaf 1 S.psd using Guid(b283b0034983bb145a53587c35d25f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56eb217c1598f199d8cdbe67edd46385') in 0.115692 seconds 
-  Import took 0.119639 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000835 seconds.
-  path: Assets/DreamForestTree/Textures/Trees/leaf 1 S.psd
-  artifactKey: Guid(b283b0034983bb145a53587c35d25f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/Textures/Trees/leaf 1 S.psd using Guid(b283b0034983bb145a53587c35d25f9c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '56eb217c1598f199d8cdbe67edd46385') in 0.111283 seconds 
-  Import took 0.115097 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 127.989529 seconds.
-  path: Assets/DreamForestTree/TreesModels/RedWood 4_Textures/diffuse.png
-  artifactKey: Guid(e7a7357d3fd35034e9089d4f7ba3cf1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/TreesModels/RedWood 4_Textures/diffuse.png using Guid(e7a7357d3fd35034e9089d4f7ba3cf1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6c75b2f830cf91b7678e6356cc1bc813') in 0.096027 seconds 
-  Import took 0.100471 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/DreamForestTree/TreesModels/RedWood 4_Textures/translucency_gloss.png
-  artifactKey: Guid(8c9c8b17841ed5947bbf1f42913b022c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/TreesModels/RedWood 4_Textures/translucency_gloss.png using Guid(8c9c8b17841ed5947bbf1f42913b022c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8da5a56923ac2917223bc35960f1a855') in 0.067809 seconds 
-  Import took 0.071639 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/DreamForestTree/TreesModels/RedWood 4_Textures/normal_specular.png
-  artifactKey: Guid(b7429637edcfb4f49b54df9fba8a26ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/TreesModels/RedWood 4_Textures/normal_specular.png using Guid(b7429637edcfb4f49b54df9fba8a26ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02b06f8fb26da247038815bccac74dbc') in 0.059045 seconds 
-  Import took 0.063041 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.015378 seconds.
-  path: Assets/DreamForestTree/TreesModels/RedWood 4_Textures/normal_specular.png
-  artifactKey: Guid(b7429637edcfb4f49b54df9fba8a26ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/TreesModels/RedWood 4_Textures/normal_specular.png using Guid(b7429637edcfb4f49b54df9fba8a26ce) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '02b06f8fb26da247038815bccac74dbc') in 0.054399 seconds 
-  Import took 0.058714 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 95.752934 seconds.
-  path: Assets/DreamForestTree
-  artifactKey: Guid(75ff4642479ebd04d8c4bda9263851f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree using Guid(75ff4642479ebd04d8c4bda9263851f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a23f84090b06a80d4bc786eb19b31e36') in 0.004140 seconds 
-  Import took 0.008407 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000598 seconds.
-  path: Assets/DreamForestTree
-  artifactKey: Guid(75ff4642479ebd04d8c4bda9263851f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree using Guid(75ff4642479ebd04d8c4bda9263851f8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a23f84090b06a80d4bc786eb19b31e36') in 0.001004 seconds 
-  Import took 0.004511 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.147682 seconds.
-  path: Assets/DreamForestTree/_URP patch
-  artifactKey: Guid(ded27981d853f0c4886230e4b2ae33fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/_URP patch using Guid(ded27981d853f0c4886230e4b2ae33fb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5f8263ee144787ca508a2388eacc269') in 0.003353 seconds 
-  Import took 0.007629 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 2.236373 seconds.
-  path: Assets/DreamForestTree/_URP patch/Install.txt
-  artifactKey: Guid(9474d84e4b0af09479dc028efabd91b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/_URP patch/Install.txt using Guid(9474d84e4b0af09479dc028efabd91b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc267414e162dc71779c0e73e508cd92') in 0.004128 seconds 
-  Import took 0.008836 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000205 seconds.
-  path: Assets/DreamForestTree/_URP patch/Install.txt
-  artifactKey: Guid(9474d84e4b0af09479dc028efabd91b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/_URP patch/Install.txt using Guid(9474d84e4b0af09479dc028efabd91b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc267414e162dc71779c0e73e508cd92') in 0.001280 seconds 
-  Import took 0.004745 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 8.105091 seconds.
-  path: Assets/DreamForestTree/_URP patch/DreamTreesURP.unitypackage
-  artifactKey: Guid(8b423b7c84e33ba4aa567507d8e849f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/DreamForestTree/_URP patch/DreamTreesURP.unitypackage using Guid(8b423b7c84e33ba4aa567507d8e849f0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '942621a3ecb9070301861470628315b7') in 0.005232 seconds 
-  Import took 0.009689 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 83.998418 seconds.
+  Time since last request: 7.163781 seconds.
   path: Assets/Scenes/New Scene.unity
   artifactKey: Guid(cd022e2eb567f374fb54c72844582b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/New Scene.unity using Guid(cd022e2eb567f374fb54c72844582b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff6d2e972eb5ae5a87dee438c322ca53') in 0.003853 seconds 
-  Import took 0.008167 seconds .
+Start importing Assets/Scenes/New Scene.unity using Guid(cd022e2eb567f374fb54c72844582b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2d83d9c2ec6ac0757348eaacacd76cf') in 0.003935 seconds 
+  Import took 0.008108 seconds .
 
 ========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003310 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.02 ms, found 6 plugins.
-Preloading 1 native plugins for Editor in 0.04 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.928 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
-Refreshing native plugins compatible for Editor in 0.86 ms, found 6 plugins.
-Preloading 1 native plugins for Editor in 0.03 ms.
-Unloading 3576 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 189.3 MB.
-System memory in use after: 189.6 MB.
-
-Unloading 42 unused Assets to reduce memory usage. Loaded Objects now: 4379.
-Total: 2.322400 ms (FindLiveObjects: 0.258300 ms CreateObjectMapping: 0.090100 ms MarkObjects: 1.950700 ms  DeleteObjects: 0.022600 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.003725 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for LinuxStandalone target not found
-Native extension for WindowsStandalone target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 0.87 ms, found 6 plugins.
-Preloading 1 native plugins for Editor in 0.03 ms.
-Mono: successfully reloaded assembly
-- Completed reload, in  0.882 seconds
-Platform modules already initialized, skipping
-Switching build target platform(19) subTarget(0) extendedPlatform(0) -> platform(13) subTarget(524294) extendedPlatform(0)
-Shader 'Universal Render Pipeline/Particles/Lit': fallback shader 'Universal Render Pipeline/Particles/SimpleLit' not found
-Shader 'Oculus/OVRMRCameraFrameLit': fallback shader 'Alpha-Diffuse' not found
-Refreshing native plugins compatible for Editor in 0.95 ms, found 6 plugins.
-Preloading 1 native plugins for Editor in 0.03 ms.
-Unloading 3588 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 206.7 MB.
-System memory in use after: 190.6 MB.
-
-Unloading 48 unused Assets to reduce memory usage. Loaded Objects now: 4388.
-Total: 3.749500 ms (FindLiveObjects: 0.241700 ms CreateObjectMapping: 0.104000 ms MarkObjects: 2.101700 ms  DeleteObjects: 1.301300 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:framework-win-MediaFoundation: 216162199b28c13a410421893ffa2e32 -> 
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 1841.526541 seconds.
-  path: Assets/ADG_Textures/ground_vol1
-  artifactKey: Guid(feb862146f8ee684c998cb438859dafb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1 using Guid(feb862146f8ee684c998cb438859dafb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b851fea1d27f16c3fa43ffc4edb46f89') in 0.008090 seconds 
-  Import took 0.012872 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 348.324457 seconds.
-  path: Assets/GrassFlowers/Textures/Ground/Grass01_BigUV.png
-  artifactKey: Guid(38bb15d6b378aff46b461e248592d1da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/Ground/Grass01_BigUV.png using Guid(38bb15d6b378aff46b461e248592d1da) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25e1477928c5d138b72bad930b45d49f') in 1.038802 seconds 
-  Import took 1.043947 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 316.698809 seconds.
-  path: Assets/_TerrainAutoUpgrade/layer_Grass01_BigUVd261c09ae55ba1e3.terrainlayer
-  artifactKey: Guid(a34d3e2b5194dc84cb765725a149c5ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/_TerrainAutoUpgrade/layer_Grass01_BigUVd261c09ae55ba1e3.terrainlayer using Guid(a34d3e2b5194dc84cb765725a149c5ed) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f290c9b81caf76a5c1779c810eec3165') in 1.005636 seconds 
-  Import took 1.034488 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 19.869199 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/aa.png
-  artifactKey: Guid(5c06354455999f94ea26114e261dde6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/aa.png using Guid(5c06354455999f94ea26114e261dde6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '229ecb1b660ab33978e3cb081d7252b5') in 0.036156 seconds 
-  Import took 0.047128 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Branches_Normal combined.tif
-  artifactKey: Guid(d7dcdeeae2a5d4c6f8e5328e09728b47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Branches_Normal combined.tif using Guid(d7dcdeeae2a5d4c6f8e5328e09728b47) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a29818ebd2a482c9f391c36fa3f560fd') in 0.073766 seconds 
-  Import took 0.092719 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Trunk [Normal] [AO] [Specular].psd
-  artifactKey: Guid(cc724252428df448db5a10316678900b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Trunk [Normal] [AO] [Specular].psd using Guid(cc724252428df448db5a10316678900b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1c093529cfa2c4e9d8cd00088e9bba96') in 0.267667 seconds 
-  Import took 0.306950 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000110 seconds.
-  path: Assets/Oculus/SampleFramework/Core/DebugUI/Textures/button9slice.png
-  artifactKey: Guid(eec623c29607b1447ac4dc6de3cdda6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Core/DebugUI/Textures/button9slice.png using Guid(eec623c29607b1447ac4dc6de3cdda6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd112924c180be8cfd31b39312959f3cb') in 0.047319 seconds 
-  Import took 0.071980 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000102 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/concrete_01_dif.png
-  artifactKey: Guid(453b8044c69c747e1b23cc9b28cfca6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/concrete_01_dif.png using Guid(453b8044c69c747e1b23cc9b28cfca6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '079e151dd12dab8cf8c4ad28fbdf42a1') in 0.264591 seconds 
-  Import took 0.268391 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/concrete_01_nml.png
-  artifactKey: Guid(701403c147f7e4788b7fa79df53cc543) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/concrete_01_nml.png using Guid(701403c147f7e4788b7fa79df53cc543) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b6383a09b232f2573ce07f10826464c5') in 0.281000 seconds 
-  Import took 0.284667 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000130 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/ColorWheel.png
-  artifactKey: Guid(5515134bbb0515545a347aafbba91666) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/ColorWheel.png using Guid(5515134bbb0515545a347aafbba91666) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba9953306e499280c38fe616ac7ffd8c') in 0.032453 seconds 
-  Import took 0.045711 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Branches [Trans] [Smoothness].psd
-  artifactKey: Guid(ca6a46a4d37514e00ae826202bad794e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Branches [Trans] [Smoothness].psd using Guid(ca6a46a4d37514e00ae826202bad794e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f5b92cd624f12395d2e47d75eccc75b6') in 0.064829 seconds 
-  Import took 0.078157 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/Bones_4_Normal.png
-  artifactKey: Guid(993187984dceb904d928d67ddf198b0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/Bones_4_Normal.png using Guid(993187984dceb904d928d67ddf198b0c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cacde3925f0641f6382be6d1c14cd6fe') in 1.088336 seconds 
-  Import took 1.092549 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/Bones_4_BaseColor.png
-  artifactKey: Guid(8dc8fb6457b29c548be1a9394cd242a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/Bones_4_BaseColor.png using Guid(8dc8fb6457b29c548be1a9394cd242a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1da6d8b4d94059b11ceae10590f988cc') in 0.965589 seconds 
-  Import took 1.009516 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000111 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/CH.png
-  artifactKey: Guid(5e6531e8f56b42547b8d2ddf7a7363d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/CH.png using Guid(5e6531e8f56b42547b8d2ddf7a7363d1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30457382c97ec775c51a8f1430377d13') in 0.049900 seconds 
-  Import took 0.054752 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000234 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/concrete_01_msm.png
-  artifactKey: Guid(822a095e7cc3f4cce8b355ce5d46f26a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/concrete_01_msm.png using Guid(822a095e7cc3f4cce8b355ce5d46f26a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51e85fe42b1805903cf9269e2a7868ba') in 0.082684 seconds 
-  Import took 0.088294 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000160 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Trunk [Albedo] [Smoothness].tif
-  artifactKey: Guid(802f5539a44734bfcacbe5243d44edf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer Trunk [Albedo] [Smoothness].tif using Guid(802f5539a44734bfcacbe5243d44edf1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6d6ac9b9616184229b6f3d8b839a1253') in 0.074854 seconds 
-  Import took 0.079990 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000166 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/skybox/bottom.jpg
-  artifactKey: Guid(7cbf94c9a4e2f4272810594d615faa56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/skybox/bottom.jpg using Guid(7cbf94c9a4e2f4272810594d615faa56) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '19e9924b807c90d45ae8137b07d07fbc') in 0.026837 seconds 
-  Import took 0.051987 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000124 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer x Stump [Normal] [AO] [Specular].tif
-  artifactKey: Guid(7292f645408434cb896aaee2fd9c2a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer x Stump [Normal] [AO] [Specular].tif using Guid(7292f645408434cb896aaee2fd9c2a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '20415d2e5c009755fd269803a6b0ad31') in 0.241426 seconds 
-  Import took 0.249805 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer  Branches [Albedo] [Smoothness].tif
-  artifactKey: Guid(5597dc21a8aed4e7ba2c0f93dc4b1d98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer  Branches [Albedo] [Smoothness].tif using Guid(5597dc21a8aed4e7ba2c0f93dc4b1d98) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '669b602f582d5b6dd91aa2c770547f08') in 0.218071 seconds 
-  Import took 0.221868 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000132 seconds.
-  path: Assets/Oculus/SampleFramework/Core/DebugUI/Textures/button.png
-  artifactKey: Guid(749615b78f067c442b8275980b7ed7c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Core/DebugUI/Textures/button.png using Guid(749615b78f067c442b8275980b7ed7c8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a16300b910a93165ec8756993a543544') in 0.013407 seconds 
-  Import took 0.025247 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/aa.png
-  artifactKey: Guid(5c06354455999f94ea26114e261dde6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/aa.png using Guid(5c06354455999f94ea26114e261dde6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '229ecb1b660ab33978e3cb081d7252b5') in 0.008332 seconds 
-  Import took 0.012560 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000129 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer x Stump [Albedo] [Smoothness].tif
-  artifactKey: Guid(d7e1060759db04260bbeb12bc11664bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/BODT Conifer x Stump [Albedo] [Smoothness].tif using Guid(d7e1060759db04260bbeb12bc11664bd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b89e00ec044d69c249bacdd84241cd04') in 0.068154 seconds 
-  Import took 0.072770 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000133 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/StartScene/Textures/BlackCubemap.png
-  artifactKey: Guid(b40a1cb5f1124ec489cc1e7a533e46e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/StartScene/Textures/BlackCubemap.png using Guid(b40a1cb5f1124ec489cc1e7a533e46e6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a35fe7ee6fc3836d3bb80f575c05469a') in 0.025305 seconds 
-  Import took 0.039464 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 23.647206 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Bare/Conifer Bare [Albedo].png
-  artifactKey: Guid(812b636c9bcef4b8aa194e3f6c9128e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Bare/Conifer Bare [Albedo].png using Guid(812b636c9bcef4b8aa194e3f6c9128e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4ae7704faa6397d0178bedec30a1f72') in 0.060241 seconds 
-  Import took 0.064611 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Tall/Conifer Tall  [Normal] [Trans] [Smoothness].png
-  artifactKey: Guid(8563448672a814173927f49bd00c2988) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Tall/Conifer Tall  [Normal] [Trans] [Smoothness].png using Guid(8563448672a814173927f49bd00c2988) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '757276c21cb504f6fe96c760428188c8') in 0.036378 seconds 
-  Import took 0.040043 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000112 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Tall/Conifer Tall [Albedo].png
-  artifactKey: Guid(d7ffe1fa944f34298b984303aca8ae36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Tall/Conifer Tall [Albedo].png using Guid(d7ffe1fa944f34298b984303aca8ae36) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9f996118cad19ee35c71ca99e94a9eae') in 0.055004 seconds 
-  Import took 0.069855 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000124 seconds.
-  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_ao_trans_smoothness.psd
-  artifactKey: Guid(46de76019358942b7b0dd6b41a2ae40a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_ao_trans_smoothness.psd using Guid(46de76019358942b7b0dd6b41a2ae40a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '618c8f6f1dca299e88916fb60286fda7') in 0.007733 seconds 
-  Import took 0.016506 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_normal_spec.psd
-  artifactKey: Guid(9a7c47bf0d59240a68e9d9fd692f632b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_normal_spec.psd using Guid(9a7c47bf0d59240a68e9d9fd692f632b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4e3bfebca107da5de471c8a0ff327361') in 0.005927 seconds 
-  Import took 0.009514 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000108 seconds.
-  path: Assets/Oculus/Voice/Lib/Wit.ai/Resources/continue-with-fb.png
-  artifactKey: Guid(2ed0be21c4a8bce4fadffab71d5b6e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Voice/Lib/Wit.ai/Resources/continue-with-fb.png using Guid(2ed0be21c4a8bce4fadffab71d5b6e85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1631daa1b390175133a49443443bc33') in 0.013605 seconds 
-  Import took 0.017220 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000110 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Bare/Conifer Bare [Albedo].png
-  artifactKey: Guid(812b636c9bcef4b8aa194e3f6c9128e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Bare/Conifer Bare [Albedo].png using Guid(812b636c9bcef4b8aa194e3f6c9128e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a4ae7704faa6397d0178bedec30a1f72') in 0.058701 seconds 
-  Import took 0.062670 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000109 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/DD.png
-  artifactKey: Guid(ffbd7db31d3ad6e4a97a2f312babdcb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/DD.png using Guid(ffbd7db31d3ad6e4a97a2f312babdcb6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '043015862feeafd930011596fb83a149') in 0.036845 seconds 
-  Import took 0.040565 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/DistanceGrab/Materials/CubeTex.png
-  artifactKey: Guid(da225b0c7f6a4e04899586c942121e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/DistanceGrab/Materials/CubeTex.png using Guid(da225b0c7f6a4e04899586c942121e17) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7a5279a8ead13090fe8ef17755ee60a') in 0.058275 seconds 
-  Import took 0.062006 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000109 seconds.
-  path: Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_normal_spec_ao.psd
-  artifactKey: Guid(37fe0b5bbca93450593b8790186bf777) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Render Pipeline Support/Built-in RP/CTI Runtime Components/Default Components/Resources/CTI_default_normal_spec_ao.psd using Guid(37fe0b5bbca93450593b8790186bf777) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '385a67db19634146d5c28467dba97e6b') in 0.005293 seconds 
-  Import took 0.020065 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Bare/Conifer Bare [Normal] [Trans] [Smoothness].png
-  artifactKey: Guid(a88058accae174b14b3aac765ff6bd72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Bare/Conifer Bare [Normal] [Trans] [Smoothness].png using Guid(a88058accae174b14b3aac765ff6bd72) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a574752eabeee543b31a0b59a7b3223') in 0.034706 seconds 
-  Import took 0.038560 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Medium/Conifer Medium [Normal] [Trans] [Smoothness].png
-  artifactKey: Guid(a04078cc622984be682e2d4cfe2a4626) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Medium/Conifer Medium [Normal] [Trans] [Smoothness].png using Guid(a04078cc622984be682e2d4cfe2a4626) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea8a60930583c60df06ffc1692430abf') in 0.037878 seconds 
-  Import took 0.049916 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Medium/Conifer Medium [Albedo].png
-  artifactKey: Guid(5f07a52da52e24af1b58f7c3f631068c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Medium/Conifer Medium [Albedo].png using Guid(5f07a52da52e24af1b58f7c3f631068c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f64b9a2c152787fa06f35b561a5b38f3') in 0.053735 seconds 
-  Import took 0.057118 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Small/Conifer Small [Albedo].png
-  artifactKey: Guid(1cf8efa437ce542e3a933a95bf4708b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Small/Conifer Small [Albedo].png using Guid(1cf8efa437ce542e3a933a95bf4708b4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6eb15a6344748816a2b4f3b57e85a8d7') in 0.054841 seconds 
-  Import took 0.061045 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/Oculus/Spatializer/scenes/Standard Assets/Character Controllers/Sources/PrototypeCharacter/Textures/constructor_diffuse.png
-  artifactKey: Guid(97b050d43ac7c4d2b9f6cbb587650761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Spatializer/scenes/Standard Assets/Character Controllers/Sources/PrototypeCharacter/Textures/constructor_diffuse.png using Guid(97b050d43ac7c4d2b9f6cbb587650761) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f35b7eb6d339df5e1c7c1aa0e15998d') in 0.072635 seconds 
-  Import took 0.084234 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000141 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Small/Conifer Small [Normal] [Trans] [Smoothness].png
-  artifactKey: Guid(6774adab402874d14b5f931ea7cc3386) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Small/Conifer Small [Normal] [Trans] [Smoothness].png using Guid(6774adab402874d14b5f931ea7cc3386) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a658adfc0dfef65f19206470c210860a') in 0.045129 seconds 
-  Import took 0.054099 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Medium/Conifer Medium [Albedo].png
-  artifactKey: Guid(5f07a52da52e24af1b58f7c3f631068c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Conifers [BOTD]/Shared Sources/Textures/Billboards/Billboard Medium/Conifer Medium [Albedo].png using Guid(5f07a52da52e24af1b58f7c3f631068c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f64b9a2c152787fa06f35b561a5b38f3') in 0.055335 seconds 
-  Import took 0.058995 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000110 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/SharedAssets/Textures/CubeTex.png
-  artifactKey: Guid(3e3e0ea18d891114cb286c873e03af91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/SharedAssets/Textures/CubeTex.png using Guid(3e3e0ea18d891114cb286c873e03af91) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd608b546b854177a32da486843894e6') in 0.015719 seconds 
-  Import took 0.019502 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000101 seconds.
-  path: Assets/Oculus/SampleFramework/Core/DebugUI/Textures/dialog.png
-  artifactKey: Guid(fd7cf88ee9b05f94f84bd7686a9669a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Core/DebugUI/Textures/dialog.png using Guid(fd7cf88ee9b05f94f84bd7686a9669a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '231263c015333d9c711d206f81dbc521') in 0.036773 seconds 
-  Import took 0.040421 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.831712 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/E.png
-  artifactKey: Guid(29a06a0eefee1b542a7c286f1689ffab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/E.png using Guid(29a06a0eefee1b542a7c286f1689ffab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd7760cd8b566e607559e4e4c9aca153c') in 0.029820 seconds 
-  Import took 0.034140 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000112 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/EdgeGlow.tga
-  artifactKey: Guid(fb7fa0fc41f43754b862769848783352) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/EdgeGlow.tga using Guid(fb7fa0fc41f43754b862769848783352) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c6b630e13e4e9e613d71c55584a770e') in 0.013322 seconds 
-  Import took 0.027591 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000124 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_normal_256.png
-  artifactKey: Guid(93a54b3b63bcc6d49b16f6bdb655b940) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_normal_256.png using Guid(93a54b3b63bcc6d49b16f6bdb655b940) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a3f5a155cb1066312015049b83629c10') in 0.039163 seconds 
-  Import took 0.043069 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/EdgeGlow.tga
-  artifactKey: Guid(fb7fa0fc41f43754b862769848783352) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/EdgeGlow.tga using Guid(fb7fa0fc41f43754b862769848783352) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c6b630e13e4e9e613d71c55584a770e') in 0.007732 seconds 
-  Import took 0.011790 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_2048.png
-  artifactKey: Guid(b3e87b1024f5fa8408d004b398e7b0c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_2048.png using Guid(b3e87b1024f5fa8408d004b398e7b0c0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b39ee92cd45f6db3277d44e830d173c8') in 0.116095 seconds 
-  Import took 0.120700 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_256.png
-  artifactKey: Guid(7d8da3d06466cc04da8c020819170a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_256.png using Guid(7d8da3d06466cc04da8c020819170a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76538edb3d77de579862944cd705c5d0') in 0.014281 seconds 
-  Import took 0.023196 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_1024.png
-  artifactKey: Guid(502d438d2584976448c3cdb146ed836d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_1024.png using Guid(502d438d2584976448c3cdb146ed836d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '648132e6d48899250587a91b8254f41c') in 0.038992 seconds 
-  Import took 0.048000 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_256.png
-  artifactKey: Guid(7d8da3d06466cc04da8c020819170a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_diffuse_roughness_256.png using Guid(7d8da3d06466cc04da8c020819170a59) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76538edb3d77de579862944cd705c5d0') in 0.006476 seconds 
-  Import took 0.010143 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000099 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_normal_1024.tif
-  artifactKey: Guid(9fb4a3be60417d043865e457a9d51e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_normal_1024.tif using Guid(9fb4a3be60417d043865e457a9d51e63) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b3b63279509e05bddbd7da054040e20') in 0.080024 seconds 
-  Import took 0.083920 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_dif.png
-  artifactKey: Guid(b1e192ef5397548b28e9549ba9e04a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_dif.png using Guid(b1e192ef5397548b28e9549ba9e04a14) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ce9a99f491002582c88b9dba862cffdc') in 0.269907 seconds 
-  Import took 0.290355 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000137 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/FF.png
-  artifactKey: Guid(5563aa34057c347499c480ea33c5d593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/FF.png using Guid(5563aa34057c347499c480ea33c5d593) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e7d88402899ae4ca968995307294e9d4') in 0.020353 seconds 
-  Import took 0.033189 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000122 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_02_dif.png
-  artifactKey: Guid(b7600ae2b00af42b3b06a37401929b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_02_dif.png using Guid(b7600ae2b00af42b3b06a37401929b21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '50c9d63c6dee41879453a5dce11bd97f') in 0.285793 seconds 
-  Import took 0.289461 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/skybox/front.jpg
-  artifactKey: Guid(dd830400beec6460ba1f963e20ea1815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/skybox/front.jpg using Guid(dd830400beec6460ba1f963e20ea1815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e2e12b16c682f567b54d58126c9f7ad3') in 0.026700 seconds 
-  Import took 0.030290 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000115 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_MAODS.png
-  artifactKey: Guid(93a2c4c0f62ae5a4c83e64393e5b8dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_MAODS.png using Guid(93a2c4c0f62ae5a4c83e64393e5b8dbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '084318bb71b37bce00bab4aadc71b025') in 1.042459 seconds 
-  Import took 1.046510 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower03.tga
-  artifactKey: Guid(c6bde8cacfa93444fa98152cb9e36815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower03.tga using Guid(c6bde8cacfa93444fa98152cb9e36815) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b1fbfbf2944d25c0635a0089b68efbbf') in 0.039686 seconds 
-  Import took 0.058822 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grass01.tga
-  artifactKey: Guid(91a1945982e98be4d9fe3e3d12fdebd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grass01.tga using Guid(91a1945982e98be4d9fe3e3d12fdebd8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3216e6e5d0d77814808776a2bffed9d1') in 0.051501 seconds 
-  Import took 0.058346 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower04.tga
-  artifactKey: Guid(5c744e80ad52c884c9ac4c9139b3aaae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower04.tga using Guid(5c744e80ad52c884c9ac4c9139b3aaae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '25b5278a04d7fc64b1c2e56993ebf4b1') in 0.038415 seconds 
-  Import took 0.042377 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground2/ground2_Normal.tga
-  artifactKey: Guid(f3b2a952874cda74583658ed78a08ef2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground2/ground2_Normal.tga using Guid(f3b2a952874cda74583658ed78a08ef2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0d4c45652eb6d7e1428a0026d91db698') in 0.066353 seconds 
-  Import took 0.070085 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_01_dif.png
-  artifactKey: Guid(47c72aea7837946679d91402f5af8665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_01_dif.png using Guid(47c72aea7837946679d91402f5af8665) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b8b0bac4aafc1dcf44888bfb04485ce') in 0.285015 seconds 
-  Import took 0.288822 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower07.tga
-  artifactKey: Guid(5afd653e4d79b7a4c9523dd543c0bead) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower07.tga using Guid(5afd653e4d79b7a4c9523dd543c0bead) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ec03a2045f70ded6edaec84c96f750b3') in 0.041957 seconds 
-  Import took 0.045570 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower05.tga
-  artifactKey: Guid(e3b33de953074bc4a88d9487f19c1202) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower05.tga using Guid(e3b33de953074bc4a88d9487f19c1202) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7efc74cb8ea37aba5f1e04b3da1b5744') in 0.032038 seconds 
-  Import took 0.035709 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000122 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground2/ground2_Diffuse.tga
-  artifactKey: Guid(ef1fbc9bae2718d4a8dbe2baaa01399c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground2/ground2_Diffuse.tga using Guid(ef1fbc9bae2718d4a8dbe2baaa01399c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'daa846c79907acac301ce3c992071341') in 0.064093 seconds 
-  Import took 0.076037 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower01.tga
-  artifactKey: Guid(5733619f617fd954cac22d3d11fd1b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower01.tga using Guid(5733619f617fd954cac22d3d11fd1b93) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f378f83e7a83e2e718397558ad156dca') in 0.052248 seconds 
-  Import took 0.055907 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower08.tga
-  artifactKey: Guid(8900a35e436818940b97df26c3a8a1aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower08.tga using Guid(8900a35e436818940b97df26c3a8a1aa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea3e8e5cc8df55abd685ff1ff394ef95') in 0.046252 seconds 
-  Import took 0.058608 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000133 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower06.tga
-  artifactKey: Guid(b3d0250e4b7a1ac4abe98a38d34d2048) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower06.tga using Guid(b3d0250e4b7a1ac4abe98a38d34d2048) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '32627e1dd6eeca27687d8e3763344f3a') in 0.045106 seconds 
-  Import took 0.049064 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground1/ground1_Ambient_Occlusion.tga
-  artifactKey: Guid(c1bc467cfaaedf540b3910d72cb62cb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground1/ground1_Ambient_Occlusion.tga using Guid(c1bc467cfaaedf540b3910d72cb62cb8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9b7d47b0712d7473aefbb15a111336b9') in 0.056705 seconds 
-  Import took 0.060470 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_Smoothness.png
-  artifactKey: Guid(9457328a7d009104e93632ba564aadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_Smoothness.png using Guid(9457328a7d009104e93632ba564aadbc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '749200e288c863f8accb42722e8e92f7') in 0.925734 seconds 
-  Import took 0.929804 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground5/ground5_Height.tga
-  artifactKey: Guid(60541731a16ad774bb3be1de36aa592f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground5/ground5_Height.tga using Guid(60541731a16ad774bb3be1de36aa592f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '290fa9ed4d78f89533adf5acd1180ff6') in 0.227924 seconds 
-  Import took 0.236652 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_msm.png
-  artifactKey: Guid(f9e3086c956ea4e31b9a07c5d9897182) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_msm.png using Guid(f9e3086c956ea4e31b9a07c5d9897182) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa72c5196933a2bbf76902567839d633') in 0.258174 seconds 
-  Import took 0.272888 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000129 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_02_nml.png
-  artifactKey: Guid(67017b977ca8e4564bb2e427adc76f21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_02_nml.png using Guid(67017b977ca8e4564bb2e427adc76f21) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '79d588fb07d285fb596ad3f4e0333286') in 0.275379 seconds 
-  Import took 0.279128 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground1/ground1_Diffuse.tga
-  artifactKey: Guid(eacec9cd0f31ea04b82121877a6cccaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground1/ground1_Diffuse.tga using Guid(eacec9cd0f31ea04b82121877a6cccaa) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ff2ec3c04b0bf39b35813878a179e719') in 0.063394 seconds 
-  Import took 0.076456 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_01_msm.png
-  artifactKey: Guid(2a6b2bd66cb8348619282685a3e7d571) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_01_msm.png using Guid(2a6b2bd66cb8348619282685a3e7d571) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10e7e9e862a25e722e1c17348be52e45') in 0.257250 seconds 
-  Import took 0.261029 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground4/ground4_Diffuse.tga
-  artifactKey: Guid(9875bf7345d4ac04ab35f3b9ed63a954) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground4/ground4_Diffuse.tga using Guid(9875bf7345d4ac04ab35f3b9ed63a954) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59b8f35b8e24650d8f996a37a26d33e8') in 0.064038 seconds 
-  Import took 0.067851 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_BaseColor.png
-  artifactKey: Guid(440c0561a5dfce84b960a60384f6b59c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_BaseColor.png using Guid(440c0561a5dfce84b960a60384f6b59c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '57ab95a4d93e693e84b6c6100f6a8728') in 0.876962 seconds 
-  Import took 0.940742 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_01_nml.png
-  artifactKey: Guid(bce2993b95d184bc09d1cf9c304086d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_01_nml.png using Guid(bce2993b95d184bc09d1cf9c304086d9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd85cd0981782d84c281e022308ded85') in 0.288010 seconds 
-  Import took 0.291592 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_02_msm.png
-  artifactKey: Guid(ed587ec08f0b14bb58a1cd80e8d4fedc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_wood_02_msm.png using Guid(ed587ec08f0b14bb58a1cd80e8d4fedc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '46fe886be4480fa7d61a396703b42462') in 0.255790 seconds 
-  Import took 0.266687 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000131 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_Roughness.png
-  artifactKey: Guid(5652ed5a13e37604bb60590d88a320ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_Roughness.png using Guid(5652ed5a13e37604bb60590d88a320ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8daeb468fcc8cfe8b913790e725b899') in 0.952610 seconds 
-  Import took 0.960459 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000125 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground6/ground6_Diffuse.tga
-  artifactKey: Guid(6dff70b1f69dbc640b854ad550b78c39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground6/ground6_Diffuse.tga using Guid(6dff70b1f69dbc640b854ad550b78c39) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'aba9549f60ba6a33092284ef2bbab901') in 0.063444 seconds 
-  Import took 0.072193 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground6/ground6_Normal.tga
-  artifactKey: Guid(7fa0035d52e52164dbe94df41517b0b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground6/ground6_Normal.tga using Guid(7fa0035d52e52164dbe94df41517b0b7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cec307401efef5ef93c5e54163df194f') in 0.238964 seconds 
-  Import took 0.242608 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000149 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground6/ground6_Metallic.tga
-  artifactKey: Guid(587f7b9aecf33ee4b8f2c5ca769cd35a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground6/ground6_Metallic.tga using Guid(587f7b9aecf33ee4b8f2c5ca769cd35a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '993516dee87247d5dea864e96ae42c01') in 0.226920 seconds 
-  Import took 0.230784 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground6/ground6_Height.tga
-  artifactKey: Guid(083decf4ef7144f4bb014384ac1044b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground6/ground6_Height.tga using Guid(083decf4ef7144f4bb014384ac1044b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c8e896e801ad161369b1ab27fec82ce2') in 0.228741 seconds 
-  Import took 0.232433 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000130 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground5/ground5_Normal.tga
-  artifactKey: Guid(219386670151bc542a3b2fd69819e13e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground5/ground5_Normal.tga using Guid(219386670151bc542a3b2fd69819e13e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '384766e602aef1dd418b7b6d9f33f4f2') in 0.238625 seconds 
-  Import took 0.242979 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grass02.tga
-  artifactKey: Guid(cf3069941001b5c46b1f13d4551d0fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grass02.tga using Guid(cf3069941001b5c46b1f13d4551d0fd9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e6e04c6d4bc6679c709d4dede7a60dc') in 0.048799 seconds 
-  Import took 0.052693 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000106 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground6/ground6_Ambient_Occlusion.tga
-  artifactKey: Guid(ebd3d1a8771ae20409976ac604480143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground6/ground6_Ambient_Occlusion.tga using Guid(ebd3d1a8771ae20409976ac604480143) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9692a887f0d9c707c1da276772cf51b2') in 0.212502 seconds 
-  Import took 0.234091 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground9/ground9_Height.tga
-  artifactKey: Guid(e9a070d57a52c914893b85e9501c4344) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground9/ground9_Height.tga using Guid(e9a070d57a52c914893b85e9501c4344) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '88487795e9481b6f3f0b2a5f45033ca6') in 0.227943 seconds 
-  Import took 0.232154 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground8/ground8_Normal.tga
-  artifactKey: Guid(2d0eaf0b58831b049afa39bf24ea07c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground8/ground8_Normal.tga using Guid(2d0eaf0b58831b049afa39bf24ea07c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83485e49445547939f4988873601d0b5') in 0.239092 seconds 
-  Import took 0.257184 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000138 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground8/ground8_Diffuse.tga
-  artifactKey: Guid(27dcac97c77064349b5278157901e387) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground8/ground8_Diffuse.tga using Guid(27dcac97c77064349b5278157901e387) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4b9f530f8f17ad706e80bdef1dbf66e8') in 0.230700 seconds 
-  Import took 0.234301 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000130 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground10/ground10_Ambient_Occlusion.tga
-  artifactKey: Guid(24681add3f24f044daca3cc8a13e6395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground10/ground10_Ambient_Occlusion.tga using Guid(24681add3f24f044daca3cc8a13e6395) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b53067fabfe5b4c3c398578710bd1e51') in 0.229742 seconds 
-  Import took 0.233550 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground10/ground10_Height.tga
-  artifactKey: Guid(4410fd6b36868554398d61186f5d8f01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground10/ground10_Height.tga using Guid(4410fd6b36868554398d61186f5d8f01) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f673fe7650f4cab48b93f21fa5c2892') in 0.227975 seconds 
-  Import took 0.231794 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000122 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground9/ground9_Normal.tga
-  artifactKey: Guid(1868fa7be7ed59c45927c480c110c8d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground9/ground9_Normal.tga using Guid(1868fa7be7ed59c45927c480c110c8d8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c2bb7560a40e9ddec8e13fdf87deac9a') in 0.238660 seconds 
-  Import took 0.242290 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000115 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground12/ground12_Ambient_Occlusion.tga
-  artifactKey: Guid(486d05903420710488646c5c8e8fd3a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground12/ground12_Ambient_Occlusion.tga using Guid(486d05903420710488646c5c8e8fd3a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a1a9cdc6158f11998f1774b57ce90cc') in 0.208710 seconds 
-  Import took 0.212347 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000122 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground11/ground11_Normal.tga
-  artifactKey: Guid(18065c20143a44f479d7c439a3455795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground11/ground11_Normal.tga using Guid(18065c20143a44f479d7c439a3455795) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8c9920ebae7b08d840ae3ced48971d8f') in 0.238464 seconds 
-  Import took 0.242393 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000114 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground12/ground12_Diffuse.tga
-  artifactKey: Guid(e5bdfc3501c76e542bf68ff5e1c84f67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground12/ground12_Diffuse.tga using Guid(e5bdfc3501c76e542bf68ff5e1c84f67) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '51d9bb2953b9546888f6054fdc9d6afa') in 0.234923 seconds 
-  Import took 0.238641 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000126 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground8/ground8_Ambient_Occlusion.tga
-  artifactKey: Guid(83f79670916b18a4cb3dd454e8c6c7e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground8/ground8_Ambient_Occlusion.tga using Guid(83f79670916b18a4cb3dd454e8c6c7e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0ff1212d426ed6778b3e9f5ad33214cc') in 0.223870 seconds 
-  Import took 0.235113 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000126 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground7/ground7_Height.tga
-  artifactKey: Guid(7675b323e40eb7d448be59ef94396cca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground7/ground7_Height.tga using Guid(7675b323e40eb7d448be59ef94396cca) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e196b6ec1a11a4c93ce8d067b7218e06') in 0.230919 seconds 
-  Import took 0.234708 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000126 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/grid_01.png
-  artifactKey: Guid(31fd698dbf26540c3b49357badd5aedd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/grid_01.png using Guid(31fd698dbf26540c3b49357badd5aedd) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '144fe921afa97a52db812a26355ffb13') in 0.151869 seconds 
-  Import took 0.166153 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000131 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground2/ground2_Height.tga
-  artifactKey: Guid(cb74fa1f447a9ed4baf1d1bce2326844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground2/ground2_Height.tga using Guid(cb74fa1f447a9ed4baf1d1bce2326844) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '002bfcecdd362a9ca9f3a7a91cb48f71') in 0.065669 seconds 
-  Import took 0.069286 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground2/ground2_Metallic.tga
-  artifactKey: Guid(05ec23c4c1d2ad54eaebfd0bf25af051) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground2/ground2_Metallic.tga using Guid(05ec23c4c1d2ad54eaebfd0bf25af051) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dac425535e9070930f57a949b9826079') in 0.051618 seconds 
-  Import took 0.055236 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground3/ground3_Diffuse.tga
-  artifactKey: Guid(c454ab598058d19449addc55a13cc73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground3/ground3_Diffuse.tga using Guid(c454ab598058d19449addc55a13cc73a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cb9abfb77259ecd11516ed99ca58e0fb') in 0.066130 seconds 
-  Import took 0.084987 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000129 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground7/ground7_Ambient_Occlusion.tga
-  artifactKey: Guid(39069846104692045a9ba8eda0dbad6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground7/ground7_Ambient_Occlusion.tga using Guid(39069846104692045a9ba8eda0dbad6d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1ede34dc859c16d58186698bf94cb309') in 0.214651 seconds 
-  Import took 0.227553 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000152 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground13/ground13_Height.tga
-  artifactKey: Guid(b7ef56f6ca2ab724e9fcf1949a7a1638) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground13/ground13_Height.tga using Guid(b7ef56f6ca2ab724e9fcf1949a7a1638) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '80d4c8ecd37c5167d7e30531e333faa9') in 0.237161 seconds 
-  Import took 0.255011 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000132 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground3/ground3_Ambient_Occlusion.tga
-  artifactKey: Guid(ffe490c725fffcb479786a6e534250b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground3/ground3_Ambient_Occlusion.tga using Guid(ffe490c725fffcb479786a6e534250b9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69bf69554e7473336cef334a38967f62') in 0.058545 seconds 
-  Import took 0.062351 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000117 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower10.tga
-  artifactKey: Guid(dcefc591c195a9f468e9157baa03eb4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower10.tga using Guid(dcefc591c195a9f468e9157baa03eb4f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd9c758172cf2472ff89fd85c5c1cb087') in 0.044905 seconds 
-  Import took 0.050635 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground2/ground2_Ambient_Occlusion.tga
-  artifactKey: Guid(cbfdc0c455424e84c94f238e9b9382ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground2/ground2_Ambient_Occlusion.tga using Guid(cbfdc0c455424e84c94f238e9b9382ec) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0a73d9a108531800bbf6cad228c02720') in 0.057566 seconds 
-  Import took 0.061464 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground1/ground1_Height.tga
-  artifactKey: Guid(2a92ec3b24546c447ae2a5f5da6f3db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground1/ground1_Height.tga using Guid(2a92ec3b24546c447ae2a5f5da6f3db8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bea1b6b6c5005bf861f5e55cca9f59d8') in 0.066789 seconds 
-  Import took 0.070591 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground14/ground14_Normal.tga
-  artifactKey: Guid(bb9441ad1e914614c84125c92ac95253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground14/ground14_Normal.tga using Guid(bb9441ad1e914614c84125c92ac95253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03ce25ba612f38096af63e3e0cd7eed4') in 0.248996 seconds 
-  Import took 0.252517 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000136 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/OculusGraffiti.tga
-  artifactKey: Guid(50eb925d2a9fd0f41983e420da3d7e4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Passthrough/Materials/OculusGraffiti.tga using Guid(50eb925d2a9fd0f41983e420da3d7e4c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd05faa023e0ca078a0a41c5b4160a963') in 0.070550 seconds 
-  Import took 0.074339 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000115 seconds.
-  path: Assets/Oculus/SampleFramework/Core/DebugUI/Textures/panel_background.PNG
-  artifactKey: Guid(d929e2a65a1cbc54dacdbdcdb33165e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Core/DebugUI/Textures/panel_background.PNG using Guid(d929e2a65a1cbc54dacdbdcdb33165e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'df30b57407b2f1e55281ba72cf0e607a') in 0.035035 seconds 
-  Import took 0.038645 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground5/ground5_Diffuse.tga
-  artifactKey: Guid(216e2729631e003468211108545a08f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground5/ground5_Diffuse.tga using Guid(216e2729631e003468211108545a08f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7823250763e3a7b2be20109ebcd87f4a') in 0.069934 seconds 
-  Import took 0.073555 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_nml.png
-  artifactKey: Guid(cee744302f4864d05a8d0d429f44e133) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_nml.png using Guid(cee744302f4864d05a8d0d429f44e133) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '272fca3af90fcb63bcfd31d07117b046') in 0.155433 seconds 
-  Import took 0.163415 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground9/ground9_Metallic.tga
-  artifactKey: Guid(e0fd2876c23733c4ebf4f3771c51dd3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground9/ground9_Metallic.tga using Guid(e0fd2876c23733c4ebf4f3771c51dd3f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7b4340740e412416431cffebee644ebc') in 0.224375 seconds 
-  Import took 0.228196 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000115 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground11/ground11_Ambient_Occlusion.tga
-  artifactKey: Guid(1c2b00545d9509e49870ddf237e576cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground11/ground11_Ambient_Occlusion.tga using Guid(1c2b00545d9509e49870ddf237e576cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '83e2a25a60481184071812c9c458eec1') in 0.217233 seconds 
-  Import took 0.229310 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000129 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground4/ground4_Height.tga
-  artifactKey: Guid(3397c7f4a7562e546bcfc9faa71e1659) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground4/ground4_Height.tga using Guid(3397c7f4a7562e546bcfc9faa71e1659) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f68912007fc12487b86e0dcea35e3c8') in 0.066419 seconds 
-  Import took 0.070172 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000126 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower02.tga
-  artifactKey: Guid(b0601839c4520064bb61d58d088810bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower02.tga using Guid(b0601839c4520064bb61d58d088810bc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a75ba6cb6a1a7aa466d21d6ec33aeabb') in 0.042765 seconds 
-  Import took 0.056136 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000125 seconds.
-  path: Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_normal_2048.png
-  artifactKey: Guid(22a046c12fc7f3c4d98a98add109fa96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Resources/FallbackTextures/fallback_normal_2048.png using Guid(22a046c12fc7f3c4d98a98add109fa96) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b19bcc08903ce99e717931f34477df9d') in 0.114867 seconds 
-  Import took 0.127517 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000145 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground7/ground7_Diffuse.tga
-  artifactKey: Guid(3d6ea8373013b3546a620f84802e06f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground7/ground7_Diffuse.tga using Guid(3d6ea8373013b3546a620f84802e06f6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '772e3b6b7ad84f5535ff2018c94fbf20') in 0.065690 seconds 
-  Import took 0.073127 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground11/ground11_Diffuse.tga
-  artifactKey: Guid(c43f9982d7a1d574f8ad78bdc6fa59b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground11/ground11_Diffuse.tga using Guid(c43f9982d7a1d574f8ad78bdc6fa59b6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ae2d8066ddb76c8858bde73717bdd331') in 0.240020 seconds 
-  Import took 0.243657 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000129 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_Normal.png
-  artifactKey: Guid(3dc1474839f839042a0fdf316cdbaf7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_Normal.png using Guid(3dc1474839f839042a0fdf316cdbaf7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '831c2cf30ca608c1d525e915b6c3f908') in 0.920000 seconds 
-  Import took 0.924091 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground12/ground12_Height.tga
-  artifactKey: Guid(b320db6f22b011142b1e27bce43eb699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground12/ground12_Height.tga using Guid(b320db6f22b011142b1e27bce43eb699) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2f2cd89fcd5e95282b664d76ebd83a7b') in 0.235513 seconds 
-  Import took 0.239106 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000123 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground13/ground13_Diffuse.tga
-  artifactKey: Guid(cce9f7be0e1b10244979707127c0bfc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground13/ground13_Diffuse.tga using Guid(cce9f7be0e1b10244979707127c0bfc5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03e9d2dab608d156d380b89c3f72cd82') in 0.245417 seconds 
-  Import took 0.254091 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground13/ground13_Metallic.tga
-  artifactKey: Guid(4d2c3481f7fceba4bb8e65a157391583) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground13/ground13_Metallic.tga using Guid(4d2c3481f7fceba4bb8e65a157391583) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b772a00ed5aff3a500c7f6207e448800') in 0.175299 seconds 
-  Import took 0.181540 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_AO.png
-  artifactKey: Guid(0be7fa60ed585d34bb04b3781437fc4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_AO.png using Guid(0be7fa60ed585d34bb04b3781437fc4b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e6b76e9accf79a60ffe6e2b7602a3f77') in 0.288980 seconds 
-  Import took 0.293318 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000119 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground14/ground14_Diffuse.tga
-  artifactKey: Guid(b0701a45fb6c40346a84f5fd65653318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground14/ground14_Diffuse.tga using Guid(b0701a45fb6c40346a84f5fd65653318) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3c9208970048c9bd0a806576cb70ba3f') in 0.239969 seconds 
-  Import took 0.246193 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000127 seconds.
-  path: Assets/Oculus/SampleFramework/Core/Locomotion/Materials/MeterGrid.png
-  artifactKey: Guid(94201fda3ed62c94fbb0e4bf717756ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Core/Locomotion/Materials/MeterGrid.png using Guid(94201fda3ed62c94fbb0e4bf717756ba) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c7a49075ced2f26dc8e2c940feb0897c') in 0.030434 seconds 
-  Import took 0.040415 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground14/ground14_Metallic.tga
-  artifactKey: Guid(65f04b330297cc244aaa78ae4015f466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground14/ground14_Metallic.tga using Guid(65f04b330297cc244aaa78ae4015f466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f3117ab1888f89e24c44d3b62b7cbd91') in 0.169506 seconds 
-  Import took 0.173235 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000114 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground4/ground4_Ambient_Occlusion.tga
-  artifactKey: Guid(1626b1dd9f03a1a4d87b2440d41208a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground4/ground4_Ambient_Occlusion.tga using Guid(1626b1dd9f03a1a4d87b2440d41208a8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2301e0d81f5ec658a43f2bfbb3bdcbee') in 0.060380 seconds 
-  Import took 0.064095 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000111 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground8/ground8_Metallic.tga
-  artifactKey: Guid(a08e6063e7e3b4a45b860146c8c613dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground8/ground8_Metallic.tga using Guid(a08e6063e7e3b4a45b860146c8c613dc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bdb86150c2fb41fbbef7638aed95796c') in 0.173382 seconds 
-  Import took 0.177142 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000116 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground9/ground9_Ambient_Occlusion.tga
-  artifactKey: Guid(60662f4bc5917c94986801d53f5ee99f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground9/ground9_Ambient_Occlusion.tga using Guid(60662f4bc5917c94986801d53f5ee99f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dd97b13e7511024b49cb3c02386effbe') in 0.229454 seconds 
-  Import took 0.236740 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000113 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground8/ground8_Height.tga
-  artifactKey: Guid(197149ea2860411408a82a7da3570ccc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground8/ground8_Height.tga using Guid(197149ea2860411408a82a7da3570ccc) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e42bcfcbb57f65011bdba8fc3364049e') in 0.228383 seconds 
-  Import took 0.232026 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground11/ground11_Metallic.tga
-  artifactKey: Guid(fdc3ee6e61750944387c2bddc6de10ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground11/ground11_Metallic.tga using Guid(fdc3ee6e61750944387c2bddc6de10ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '38fd7bc359126329dc2c2112ee55db07') in 0.226892 seconds 
-  Import took 0.230556 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Textures/Help.png
-  artifactKey: Guid(c8f5462cc092d0c40ad71773132863e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Textures/Help.png using Guid(c8f5462cc092d0c40ad71773132863e0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '49ce5f0ea55d247b8700abac935be43b') in 0.039249 seconds 
-  Import took 0.050642 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground11/ground11_Height.tga
-  artifactKey: Guid(cd4707edccbd4f549a34eebe19497b9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground11/ground11_Height.tga using Guid(cd4707edccbd4f549a34eebe19497b9a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5ebfb238e02e98b542fb832bf1e0c10b') in 0.226849 seconds 
-  Import took 0.230816 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000125 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground14/ground14_Ambient_Occlusion.tga
-  artifactKey: Guid(573c7bc99dcbc0f4ea88b3ac63b42402) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground14/ground14_Ambient_Occlusion.tga using Guid(573c7bc99dcbc0f4ea88b3ac63b42402) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dfe6f175e46597d91dade34faf27c8b0') in 0.196135 seconds 
-  Import took 0.199772 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000125 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground10/ground10_Metallic.tga
-  artifactKey: Guid(3474fc5fa2382534a9b157133916e485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground10/ground10_Metallic.tga using Guid(3474fc5fa2382534a9b157133916e485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2b609def0b969cd2eba1bcd6700f5ff8') in 0.187177 seconds 
-  Import took 0.190910 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000148 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground12/ground12_Normal.tga
-  artifactKey: Guid(817358eba3aa2e34e9a0f73eb7850fe9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground12/ground12_Normal.tga using Guid(817358eba3aa2e34e9a0f73eb7850fe9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e951a22c765e56c1bf442503be545791') in 0.236388 seconds 
-  Import took 0.240512 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000154 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground13/ground13_Normal.tga
-  artifactKey: Guid(b2fb145365da39b43bb38b3d3d3db1eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground13/ground13_Normal.tga using Guid(b2fb145365da39b43bb38b3d3d3db1eb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c77651a8610c85667f55741c479332a6') in 0.240621 seconds 
-  Import took 0.310050 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000140 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground10/ground10_Diffuse.tga
-  artifactKey: Guid(877fd89f59f209b48af33c4e3e45498d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground10/ground10_Diffuse.tga using Guid(877fd89f59f209b48af33c4e3e45498d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '39243702c1a0491a03e1ad31902f364b') in 0.231130 seconds 
-  Import took 0.234867 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/Head-2.png
-  artifactKey: Guid(49ba9bfa609aed54ea6d5d1c1390bc15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/Head-2.png using Guid(49ba9bfa609aed54ea6d5d1c1390bc15) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4fde15075ed4e240ae9b11b884e2af1b') in 0.091144 seconds 
-  Import took 0.094930 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000135 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/grid_01_dark.png
-  artifactKey: Guid(63c91ef577b9c4591bc7d6ba6be0d3a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/grid_01_dark.png using Guid(63c91ef577b9c4591bc7d6ba6be0d3a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '427e6ff867416c0c6856c6ed781a5d92') in 0.146803 seconds 
-  Import took 0.150546 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000132 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground3/ground3_Height.tga
-  artifactKey: Guid(05969a2c28cfe044cadd6d4b9d12eb3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground3/ground3_Height.tga using Guid(05969a2c28cfe044cadd6d4b9d12eb3c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f130a83385d3cd6e54ee374ed06f27fa') in 0.063909 seconds 
-  Import took 0.067503 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000112 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground3/ground3_Normal.tga
-  artifactKey: Guid(c138e91626b4607499e005102913a875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground3/ground3_Normal.tga using Guid(c138e91626b4607499e005102913a875) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '737db4f7deefe7bffbc467fe9c2e38f7') in 0.064259 seconds 
-  Import took 0.078849 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000114 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground14/ground14_Height.tga
-  artifactKey: Guid(019c9c14a59c63f40aa359f74a836a1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground14/ground14_Height.tga using Guid(019c9c14a59c63f40aa359f74a836a1f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd8288098c9e937af4b6d4f39f1117df1') in 0.225749 seconds 
-  Import took 0.229740 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000151 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/grid_01_light.png
-  artifactKey: Guid(a6bed52de01864d6e9677ef2158b2b80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/grid_01_light.png using Guid(a6bed52de01864d6e9677ef2158b2b80) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '59392e790696a74bb9735bc25a68ae91') in 0.142783 seconds 
-  Import took 0.146717 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground4/ground4_Metallic.tga
-  artifactKey: Guid(fb1c850a227a62544b63c6626cfa8ba8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground4/ground4_Metallic.tga using Guid(fb1c850a227a62544b63c6626cfa8ba8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8560838f2809bd26bb1dc24ef3417e4b') in 0.062998 seconds 
-  Import took 0.066795 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000130 seconds.
-  path: Assets/Oculus/SampleFramework/Core/DebugUI/Textures/header.png
-  artifactKey: Guid(eee045d55647138479b30e687b81c7e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Core/DebugUI/Textures/header.png using Guid(eee045d55647138479b30e687b81c7e3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5f75a59d7819c6c5281481b5204ece82') in 0.019111 seconds 
-  Import took 0.022898 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000139 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground7/ground7_Metallic.tga
-  artifactKey: Guid(e9d30098b0fc07a4887f73b87ad656f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground7/ground7_Metallic.tga using Guid(e9d30098b0fc07a4887f73b87ad656f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36846b8dd9821352ddf574d6c3e6f2c1') in 0.229433 seconds 
-  Import took 0.233155 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000134 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground7/ground7_Normal.tga
-  artifactKey: Guid(772b522eb070d9c4fa30ce003900a485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground7/ground7_Normal.tga using Guid(772b522eb070d9c4fa30ce003900a485) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f3f6c4bcdb7c6c02b546293dca835ce') in 0.236972 seconds 
-  Import took 0.240560 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Animalia/GermanShepherd/Textures/GermanShepherd_MetallicSmoothness.png
-  artifactKey: Guid(fdb43b24d24404842832eb32e0279f45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Animalia/GermanShepherd/Textures/GermanShepherd_MetallicSmoothness.png using Guid(fdb43b24d24404842832eb32e0279f45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '03ecdf56f7d67140f2cb9f96de67599a') in 0.922912 seconds 
-  Import took 0.926854 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/GrassFlowers/Textures/GrassFlowers/grassFlower09.tga
-  artifactKey: Guid(d238efbd27bc5ae4ead9839995f74830) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GrassFlowers/Textures/GrassFlowers/grassFlower09.tga using Guid(d238efbd27bc5ae4ead9839995f74830) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6108b61e56125be43bc4eb8d65eff304') in 0.039832 seconds 
-  Import took 0.043472 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground1/ground1_Normal.tga
-  artifactKey: Guid(aeff12fbe9fe2384bae4d1b436607b55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground1/ground1_Normal.tga using Guid(aeff12fbe9fe2384bae4d1b436607b55) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6eab8479c8f85fc2902a65ec973c5509') in 0.067165 seconds 
-  Import took 0.070791 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground10/ground10_Normal.tga
-  artifactKey: Guid(84794b884a1ed204f9ce92a773a3fb0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground10/ground10_Normal.tga using Guid(84794b884a1ed204f9ce92a773a3fb0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f734274e2910a62be99185aadcfe2ef') in 0.243883 seconds 
-  Import took 0.247553 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000169 seconds.
-  path: Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/ih.png
-  artifactKey: Guid(ad60c8114191fdf41aa0ea64e132add9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/LipSync/Models/RobotHead_TextureFlip/ih.png using Guid(ad60c8114191fdf41aa0ea64e132add9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6406bd800a9b64e8bfe4b2ea7df42ad5') in 0.037037 seconds 
-  Import took 0.040865 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000147 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground5/ground5_Metallic.tga
-  artifactKey: Guid(8d63b7caa4e75dd4aa5e84f4b97befa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground5/ground5_Metallic.tga using Guid(8d63b7caa4e75dd4aa5e84f4b97befa6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63b0e2890b20d0bca9a20680535a3435') in 0.240934 seconds 
-  Import took 0.244791 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000139 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground13/ground13_Ambient_Occlusion.tga
-  artifactKey: Guid(2a99c17849836234e94e4e4b040bc253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground13/ground13_Ambient_Occlusion.tga using Guid(2a99c17849836234e94e4e4b040bc253) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9ffd67a7f6fc032f66186c4f66eb9c23') in 0.208472 seconds 
-  Import took 0.212348 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000128 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Materials/MeterGrid.png
-  artifactKey: Guid(38bf306a80da8c34abb88f6a022e2df9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Materials/MeterGrid.png using Guid(38bf306a80da8c34abb88f6a022e2df9) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '205f08349fff73bdc2483c01d2f10379') in 0.028205 seconds 
-  Import took 0.032166 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000121 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground3/ground3_Metallic.tga
-  artifactKey: Guid(a55658d42f533714ebdf91ad5706ee74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground3/ground3_Metallic.tga using Guid(a55658d42f533714ebdf91ad5706ee74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '662dda9e98d0f79ad79c36154562719d') in 0.050270 seconds 
-  Import took 0.053931 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000118 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground4/ground4_Normal.tga
-  artifactKey: Guid(6711a6f408dca5b41b938ec249d8d444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground4/ground4_Normal.tga using Guid(6711a6f408dca5b41b938ec249d8d444) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5841fc4fdcea5ed395276bb8c2aa5f4c') in 0.066227 seconds 
-  Import took 0.069975 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000122 seconds.
-  path: Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Textures/GearHelp.png
-  artifactKey: Guid(0453138effcc80349b11371805f72f5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Textures/GearHelp.png using Guid(0453138effcc80349b11371805f72f5b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '54b8f511cdc6c07efb8986eea0947b7e') in 0.037592 seconds 
-  Import took 0.050714 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000114 seconds.
-  path: Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_amb.png
-  artifactKey: Guid(8ae5623890e694f06b02c6f20d2d7d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Oculus/SampleFramework/Usage/Locomotion/Textures/floor_tile_01_amb.png using Guid(8ae5623890e694f06b02c6f20d2d7d77) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd47e0cedbd79c966489c59e838c639bb') in 0.262613 seconds 
-  Import took 0.266455 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000130 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground5/ground5_Ambient_Occlusion.tga
-  artifactKey: Guid(03e262b3b2775504b8e1534cce498347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground5/ground5_Ambient_Occlusion.tga using Guid(03e262b3b2775504b8e1534cce498347) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6b8e405c261a1860dbb5389e2b69914c') in 0.223824 seconds 
-  Import took 0.227728 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000120 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground9/ground9_Diffuse.tga
-  artifactKey: Guid(9d90663c9ea0d484eae41530ee2031c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground9/ground9_Diffuse.tga using Guid(9d90663c9ea0d484eae41530ee2031c5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c100be239754c82a3faa89b4d4b7067') in 0.232247 seconds 
-  Import took 0.235807 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000142 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground12/ground12_Metallic.tga
-  artifactKey: Guid(a3aed34c5d04f4f43a8e671599061421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground12/ground12_Metallic.tga using Guid(a3aed34c5d04f4f43a8e671599061421) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ccfc862090ed1189dc7cbafaece8d6cb') in 0.186473 seconds 
-  Import took 0.209268 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000132 seconds.
-  path: Assets/ADG_Textures/ground_vol1/ground1/ground1_Metallic.tga
-  artifactKey: Guid(33d10529b8ef9af47a3d97a1c7419649) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/ground1/ground1_Metallic.tga using Guid(33d10529b8ef9af47a3d97a1c7419649) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f6054d2ec01c6a7b2240ace054fdaf2c') in 0.036322 seconds 
-  Import took 0.040034 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 910.217240 seconds.
-  path: Assets/ADG_Textures/ground_vol1/NewLayer 1.terrainlayer
-  artifactKey: Guid(10f42afd8cea4fe479f9029375ad2d6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/NewLayer 1.terrainlayer using Guid(10f42afd8cea4fe479f9029375ad2d6e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bcd9f8e37e778c19bf2ed31a76f954e') in 2.437102 seconds 
-  Import took 2.649236 seconds .
-
-========================================================================
 Received Import Request.
-  Time since last request: 0.000154 seconds.
-  path: Assets/ADG_Textures/ground_vol1/NewLayer.terrainlayer
-  artifactKey: Guid(34d0004a9ca2db64fa0540c805da81bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/ADG_Textures/ground_vol1/NewLayer.terrainlayer using Guid(34d0004a9ca2db64fa0540c805da81bf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2c23b8bb66a01b164b8f0cf580873131') in 0.579893 seconds 
-  Import took 0.741513 seconds .
+  Time since last request: 0.000483 seconds.
+  path: Assets/Scenes/New Scene.unity
+  artifactKey: Guid(cd022e2eb567f374fb54c72844582b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/New Scene.unity using Guid(cd022e2eb567f374fb54c72844582b11) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f2d83d9c2ec6ac0757348eaacacd76cf') in 0.001207 seconds 
+  Import took 0.004232 seconds .
 
