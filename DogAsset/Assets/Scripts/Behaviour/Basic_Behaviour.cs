@@ -397,20 +397,20 @@ public class Basic_Behaviour : MonoBehaviour
         }
         if (player_pos_local.z > before_dog)
         {
-            focus_2 = 0;
+            focus_2 = 1;
             if (player_pos_local.x < -beside_dog && player_pos_local.x > beside_dog)
             {
-                focus_2 = 0;
+                focus_2 = 2;
                 Debug.Log("STRAIGHT");
             }
             if (player_pos_local.x < -beside_dog)
             {
-                focus_2 = 0;
+                focus_2 = 3;
                 Debug.Log("LEFT");
             }
             if (player_pos_local.x > beside_dog)
             {
-                focus_2 = 0;
+                focus_2 = 4;
                 Debug.Log("RIGHT");
             }
         }
@@ -418,12 +418,12 @@ public class Basic_Behaviour : MonoBehaviour
         {
             if (player_pos_local.x < 0)
             {
-                focus_2 = 0;
+                focus_2 = 5;
                 Debug.Log("CLOSE L");
             }
             if (player_pos_local.x > 0)
             {
-                focus_2 = 0;
+                focus_2 = 6;
                 Debug.Log("CLOSE R");
             }
         }
@@ -488,34 +488,26 @@ public class Basic_Behaviour : MonoBehaviour
         constraint.data.sourceObjects = a;
     }
 
-    //TODO: FIX WHACKNESS
     //turning towrads target object
     Vector3 direction;
     public Quaternion rotation;
-    public float speed = 1;
+    public float speed = 0.1f;
     public Vector3 current_position;
     public Vector3 target_pos;
     public bool turning_in_place = false;
     public void TurnToTarget(GameObject target)
     {
-        direction = target.transform.position - dog.transform.position;
-        rotation = Quaternion.LookRotation(direction);
-        dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
         if (!turning_in_place)
         {
             TurnInPlace();
         }
-    }
-
-    //walking towards
-    public IEnumerator WaitBeforeWalkingTowards(GameObject target)
-    {
-        yield return new WaitForSeconds(3);
-        Debug.Log("WALK BITCH");
-        x_goal = walking_value;
-        y_acceleration = turning_y_acceleration;
-        WalkForward();
-        dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
+        direction = target.transform.position - dog.transform.position;
+        rotation = Quaternion.LookRotation(direction);
+        dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+        if(speed < 1 && y_axis > walking_slow_value)
+        {
+            speed = speed + 0.005f;
+        }
     }
 
     public void TurnInPlace()
@@ -526,8 +518,28 @@ public class Basic_Behaviour : MonoBehaviour
             anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
             y_goal = walking_value;
         }
-        TurnLeft();
+        if (GetPlayerOffset() == 4 || GetPlayerOffset() == 6)
+        {
+            WalkForward();
+        }
+        else
+        {
+            WalkForward();
+        }
+        y_acceleration = turning_y_acceleration;
         turning_in_place = true; //wo false setzen
+    }
+
+    //walking towards
+    public IEnumerator WaitBeforeWalkingTowards(GameObject target)
+    {
+        yield return new WaitForSeconds(1);
+        Debug.Log("WALK BITCH");
+        x_goal = walking_value;
+        y_acceleration = turning_y_acceleration;
+        turning_in_place = false;
+        WalkForward();
+        dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
     }
 
     // Update is called once per frame
@@ -542,7 +554,7 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
-
+        //dog position
         current_position = dog.transform.position;
 
         //Behaviour
@@ -567,7 +579,7 @@ public class Basic_Behaviour : MonoBehaviour
             player_interaction.IsCloseToRightHand();
             player_interaction.AreHandsMoving();
             //TODO uncomment
-            //friendly_behav.ApproachPlayer();
+            friendly_behav.ApproachPlayer();
         }
 
         //Change Animation on Timer depending on Behaviour
@@ -582,7 +594,7 @@ public class Basic_Behaviour : MonoBehaviour
             }
             else if (behav_switch.friendly_script.enabled)
             {//TODO uncomment
-                //friendly_behav.FriendlyBehaviour();
+                friendly_behav.FriendlyBehaviour();
                 GetPlayerOffset();
             }
             else if (behav_switch.aggressive_script.enabled)

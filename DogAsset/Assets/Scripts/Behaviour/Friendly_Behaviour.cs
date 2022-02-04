@@ -50,26 +50,6 @@ public class Friendly_Behaviour : MonoBehaviour
 
     public float touching_player_timer;
 
-
-    /*
-    *   false if dog to far away from player
-    *   true if dog sits down near the player
-    */
-    public bool escape_chance_on;
-
-    /*
-    *   If we touch the player AND we turned = true
-    *   NO FALSE STATE OTHER THAN START
-    */
-    public bool facing_player;
-
-
-    /*
-    *   On Start: friendly = false
-    *   On "first" animation change in FriendlyBehaviour: friendly = true 
-    */
-    public bool friendly;
-
     // Update is called once per frame
     void Update()
     {
@@ -112,7 +92,7 @@ public class Friendly_Behaviour : MonoBehaviour
      */
     IEnumerator WaitForRotation()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(0);
         Debug.Log("FACING player, WALKING TO IT");
         if (!started_walking && !facing_player)
         {
@@ -130,8 +110,23 @@ public class Friendly_Behaviour : MonoBehaviour
     public bool started_walking = false;
 
     /*
-     *
-     */
+    *   false if dog to far away from player
+    *   true if dog sits down near the player
+    */
+    public bool escape_chance_on;
+
+    /*
+    *   If we touch the player AND we turned = true
+    *   NO FALSE STATE OTHER THAN START
+    */
+    public bool facing_player;
+
+
+    /*
+    *   On Start: friendly = false
+    *   On "first" animation change in FriendlyBehaviour: friendly = true 
+    */
+    public bool friendly;
     public void ApproachPlayer()
     {
         Debug.Log("HElooooooooo");
@@ -144,7 +139,7 @@ public class Friendly_Behaviour : MonoBehaviour
         if (TouchingPlayer() && facing_player)
         {
             if (!escape_chance_on)
-            {
+            {//from walk to stand
                 Debug.Log("PANTING: " + dog_audio.panting_calm.isPlaying);
                 basic_behav.y_goal = basic_behav.standing_value;
                 basic_behav.x_axis = basic_behav.standing_value;
@@ -158,7 +153,7 @@ public class Friendly_Behaviour : MonoBehaviour
                 dog_audio.panting_calm.Play();
             }
             if (basic_behav.y_axis == basic_behav.standing_value && !escape_chance_on)
-            {
+            {//sit down
                 basic_behav.y_acceleration = basic_behav.default_y_acceleration;
                 anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
                 basic_behav.change_anim_timer = 10;
