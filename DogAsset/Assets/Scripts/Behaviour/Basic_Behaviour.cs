@@ -108,8 +108,8 @@ public class Basic_Behaviour : MonoBehaviour
     public float x_goal = 0f;
     public float y_goal = 0f;
 
-    public float x_acceleration = 3f;
-    public float turning_y_acceleration = 3f;
+    public float x_acceleration = 1f;
+    public float turning_y_acceleration = 1.5f;
     public float y_acceleration = 0.5f;
     public float default_y_acceleration = 0.5f;
 
@@ -382,10 +382,10 @@ public class Basic_Behaviour : MonoBehaviour
      * else if( player right of dog) min max werte pro constraint, negatives offset pro constraint
      * else if(player geradeaus fom dog) min max pro constraint, offset 0
      */
-
-    int GetPlayerOffset()
+    public int focus_2 = 0;
+    public int GetPlayerOffset()
     {
-        int focus_2 = 0;
+
         float behind_dog = 0f;
         float before_dog = 1f;
         float beside_dog = 0.6f;
@@ -395,20 +395,20 @@ public class Basic_Behaviour : MonoBehaviour
             focus_2 = 0;
             Debug.Log("BEHIND");
         }
-        if (player_pos_local.z > before_dog)
+        else if (player_pos_local.z > before_dog)
         {
             focus_2 = 1;
-            if (player_pos_local.x < -beside_dog && player_pos_local.x > beside_dog)
+            if (player_pos_local.x > -beside_dog && player_pos_local.x < beside_dog)
             {
                 focus_2 = 2;
                 Debug.Log("STRAIGHT");
             }
-            if (player_pos_local.x < -beside_dog)
+            else if (player_pos_local.x < -beside_dog)
             {
                 focus_2 = 3;
                 Debug.Log("LEFT");
             }
-            if (player_pos_local.x > beside_dog)
+            else if (player_pos_local.x > beside_dog)
             {
                 focus_2 = 4;
                 Debug.Log("RIGHT");
@@ -421,7 +421,7 @@ public class Basic_Behaviour : MonoBehaviour
                 focus_2 = 5;
                 Debug.Log("CLOSE L");
             }
-            if (player_pos_local.x > 0)
+            else if (player_pos_local.x > 0)
             {
                 focus_2 = 6;
                 Debug.Log("CLOSE R");
@@ -491,7 +491,7 @@ public class Basic_Behaviour : MonoBehaviour
     //turning towrads target object
     Vector3 direction;
     public Quaternion rotation;
-    public float speed = 0.1f;
+    public float speed = 0.1f; //reset in aggressiv behav
     public Vector3 current_position;
     public Vector3 target_pos;
     public bool turning_in_place = false;
@@ -504,9 +504,22 @@ public class Basic_Behaviour : MonoBehaviour
         direction = target.transform.position - dog.transform.position;
         rotation = Quaternion.LookRotation(direction);
         dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+        if (friendly_behav.enabled == true)
+        {
+            IncreaseSpeed(0.005f);
+        }
+        else
+        {
+            IncreaseSpeed(0.005f);
+        }
+    }
+    //make turning speed smoother--> not start fast and get way slower
+    void IncreaseSpeed(float increase)
+    {
+        Debug.Log("SPEEEEEED");
         if (speed < 1 && y_axis > walking_slow_value)
         {
-            speed = speed + 0.005f;
+            speed = speed + increase;
         }
     }
 
@@ -516,23 +529,57 @@ public class Basic_Behaviour : MonoBehaviour
         if (anim_controll.current_state != anim.aggresive_blend_tree)
         {
             anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-            y_goal = walking_value;
         }
+        x_goal = walking_value;
         WalkForward();
         y_acceleration = turning_y_acceleration;
-        turning_in_place = true; //wo false setzen
+        turning_in_place = true; //false in agressive behav und Waitbefore wlaking
     }
+
+    //triggers the walkingtowards and sets bools
+    public void TurningAndWalkingLogicHandler()
+    {
+        if (friendly_behav.enabled)
+        {
+            if (!friendly_behav.started_walking && !friendly_behav.facing_player)
+            {
+                Debug.Log("start walking - frendo");
+                StartCoroutine(WaitBeforeWalkingTowards(friendly_behav.player_target));
+                friendly_behav.started_walking = true;
+            }
+            if (friendly_behav.TouchingPlayer())
+            {
+                Debug.Log("TOUCHING - frendo");
+                friendly_behav.facing_player = true;
+                friendly_behav.started_walking = false;
+            }
+        }
+        else if (agg_behav.enabled)
+        {
+            if (!agg_behav.started_walking && !agg_behav.facing_target)
+            {
+                Debug.Log("start walking - aggro");
+                StartCoroutine(WaitBeforeWalkingTowards(agg_behav.player));
+                agg_behav.started_walking = true;
+            }
+            if (agg_behav.dist_to_target < agg_behav.reached_target)
+            {
+                Debug.Log("TOUCHING - aggro");
+                agg_behav.facing_target = true;
+                turning_in_place = false;
+                agg_behav.started_walking = false;
+            }
+        }
+    }
+
 
     //walking towards
     public IEnumerator WaitBeforeWalkingTowards(GameObject target)
     {
         yield return new WaitForSeconds(1);
         Debug.Log("WALK BITCH");
-        x_goal = walking_value;
-        y_acceleration = turning_y_acceleration;
-        turning_in_place = false;
-        WalkForward();
-        dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
+        //turning_in_place = false;
+        //dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
     }
 
     // Update is called once per frame

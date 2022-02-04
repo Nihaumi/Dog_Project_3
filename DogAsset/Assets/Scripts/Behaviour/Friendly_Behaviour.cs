@@ -12,7 +12,7 @@ public class Friendly_Behaviour : MonoBehaviour
     public GameObject dir_manager;
     public GameObject dog_sound_manager;
     public Animator animator;
-    GameObject player_target;
+    public GameObject player_target;
     Animation_Controll anim_controll;
     Animations anim;
     Turning_Direction_Handler turn_dir_handler;
@@ -67,36 +67,8 @@ public class Friendly_Behaviour : MonoBehaviour
 
         ApproachPlayer();
     }
-
-    //if not facing player turn face towards player
-    //bleib stehen für mind 10 sekunden
-    //sitz
-    //platz
-    //schlaf
-
-    /*TODO
-     * check if player left or right, turne in andre dir
-     */
-
     /* Fix Rigs --> broken neck
      */
-    IEnumerator WaitForRotation()
-    {
-        yield return new WaitForSeconds(0);
-        Debug.Log("FACING player, WALKING TO IT");
-        if (!started_walking && !facing_player)
-        {
-            Debug.Log("start walking");
-            StartCoroutine(basic_behav.WaitBeforeWalkingTowards(player_target));
-            started_walking = true;
-        }
-        if (TouchingPlayer())
-        {
-            Debug.Log("TOUCHING");
-            facing_player = true;
-            started_walking = false;
-        }
-    }
     public bool started_walking = false;
 
     /*
@@ -124,7 +96,7 @@ public class Friendly_Behaviour : MonoBehaviour
         {
             Debug.Log("working on facing player");
             basic_behav.TurnToTarget(player_target);
-            StartCoroutine(WaitForRotation());
+            basic_behav.TurningAndWalkingLogicHandler();
         }
         if (TouchingPlayer() && facing_player)
         {
@@ -190,7 +162,7 @@ public class Friendly_Behaviour : MonoBehaviour
     *       returns true if dog is inside a radius <goal_dist_to_player>
     *       resets escape_chance_on to false if dog is not inside a radius of <goal_dist_to_player> * 1.1.
     */
-    bool TouchingPlayer()
+    public bool TouchingPlayer()
     {
         double goal_dist_to_player = 1.5f;
         /* if (touching_player_timer_started)
@@ -219,12 +191,6 @@ public class Friendly_Behaviour : MonoBehaviour
         {
             escape_chance_on = false;
         }
-        return false;
-    }
-
-    //returns false;
-    bool TouchingHand()
-    {
         return false;
     }
 
@@ -343,11 +309,11 @@ public class Friendly_Behaviour : MonoBehaviour
                     basic_behav.ResetParameter();
                     if (basic_behav.random_index == 1)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;                   
+                        basic_behav.y_goal = basic_behav.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
-                        basic_behav.y_goal = basic_behav.walking_value;             
+                        basic_behav.y_goal = basic_behav.walking_value;
                     }
                     //SetBlendTreeParameters();
 
