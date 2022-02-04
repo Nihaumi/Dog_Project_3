@@ -428,7 +428,7 @@ public class Basic_Behaviour : MonoBehaviour
             }
         }
 
-        Debug.Log("player position " + player_pos_local);
+        //Debug.Log("player position " + player_pos_local);
 
         return focus_2;
     }
@@ -504,7 +504,7 @@ public class Basic_Behaviour : MonoBehaviour
         direction = target.transform.position - dog.transform.position;
         rotation = Quaternion.LookRotation(direction);
         dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
-        if(speed < 1 && y_axis > walking_slow_value)
+        if (speed < 1 && y_axis > walking_slow_value)
         {
             speed = speed + 0.005f;
         }
@@ -518,14 +518,7 @@ public class Basic_Behaviour : MonoBehaviour
             anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
             y_goal = walking_value;
         }
-        if (GetPlayerOffset() == 4 || GetPlayerOffset() == 6)
-        {
-            WalkForward();
-        }
-        else
-        {
-            WalkForward();
-        }
+        WalkForward();
         y_acceleration = turning_y_acceleration;
         turning_in_place = true; //wo false setzen
     }

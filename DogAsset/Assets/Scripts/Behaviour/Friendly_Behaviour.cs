@@ -66,16 +66,6 @@ public class Friendly_Behaviour : MonoBehaviour
         player_interaction.AreHandsMoving();
 
         ApproachPlayer();
-
-        //if hand is touching dog, make eyes look at player eyes
-        //and head facing player 
-        // bleib stehen solange berührung
-        //sitz nach 10 sekunden
-        //platz nach 10 sekunden
-        if (TouchingHand())
-        {
-            Debug.Log("touching Hand");
-        }
     }
 
     //if not facing player turn face towards player
@@ -156,7 +146,7 @@ public class Friendly_Behaviour : MonoBehaviour
             {//sit down
                 basic_behav.y_acceleration = basic_behav.default_y_acceleration;
                 anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
-                basic_behav.change_anim_timer = 10;
+                basic_behav.change_anim_timer = 20;
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
                 escape_chance_on = true;
             }
@@ -291,10 +281,13 @@ public class Friendly_Behaviour : MonoBehaviour
         }
         if (facing_player && escape_chance_on)
         {
+            Debug.Log("ENTER FRIENDLY RANDOM BEHAV");
             dog_audio.StopAllSounds();
             switch (basic_behav.dog_state)
             {
                 case Basic_Behaviour.Animation_state.friendly_walking:
+                    basic_behav.ResetParameter();
+                    Debug.Log("FRIENDLY WALKING");
                     anim_controll.ChangeAnimationState(anim.friendly_sit_to_turn_walk);
                     basic_behav.y_goal = basic_behav.walking_slow_value;
                     basic_behav.TurnRight();
@@ -350,11 +343,11 @@ public class Friendly_Behaviour : MonoBehaviour
                     basic_behav.ResetParameter();
                     if (basic_behav.random_index == 1)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = basic_behav.walking_slow_value;                   
                     }
                     if (basic_behav.random_index == 2)
                     {
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = basic_behav.walking_value;             
                     }
                     //SetBlendTreeParameters();
 

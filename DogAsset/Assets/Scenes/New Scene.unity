@@ -2281,7 +2281,7 @@ MonoBehaviour:
   friendly_timer: 60
   agressive_timer: 30
   neutral_timer: 100
-  friendly_time: 1000
+  friendly_time: 100
   agressive_time: 40
   neutral_time: 80
   dog_behaviour: 0
