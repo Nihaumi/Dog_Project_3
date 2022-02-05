@@ -382,53 +382,71 @@ public class Basic_Behaviour : MonoBehaviour
      * else if( player right of dog) min max werte pro constraint, negatives offset pro constraint
      * else if(player geradeaus fom dog) min max pro constraint, offset 0
      */
-    public int focus_2 = 0;
-    public int GetPlayerOffset()
+
+    /*float behind_dog = 0f;
+    float before_dog = 1f;
+    float beside_dog = 0.6f;*/
+    public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind)
     {
-
-        float behind_dog = 0f;
-        float before_dog = 1f;
-        float beside_dog = 0.6f;
         Vector3 player_pos_local = dog.transform.InverseTransformPoint(player.transform.position);
-        if (player_pos_local.z < behind_dog)
+        
+        float focus_2;
+        //check front or behind, hinten ist alles hinten
+        if (player_pos_local.z < behind_dog && !soft_enforce_behind)
         {
-            focus_2 = 0;
             Debug.Log("BEHIND");
-        }
-        else if (player_pos_local.z > before_dog)
-        {
-            focus_2 = 1;
-            if (player_pos_local.x > -beside_dog && player_pos_local.x < beside_dog)
-            {
-                focus_2 = 2;
-                Debug.Log("STRAIGHT");
-            }
-            else if (player_pos_local.x < -beside_dog)
-            {
-                focus_2 = 3;
-                Debug.Log("LEFT");
-            }
-            else if (player_pos_local.x > beside_dog)
-            {
-                focus_2 = 4;
-                Debug.Log("RIGHT");
-            }
-        }
-        else
-        {
-            if (player_pos_local.x < 0)
-            {
-                focus_2 = 5;
-                Debug.Log("CLOSE L");
-            }
-            else if (player_pos_local.x > 0)
-            {
-                focus_2 = 6;
-                Debug.Log("CLOSE R");
-            }
+            focus_2 = 2;
+            return focus_2;
         }
 
-        //Debug.Log("player position " + player_pos_local);
+        // Punkt rechts = (beside_dog, before_dog)
+        float m = before_dog / beside_dog;
+
+        //schnittpunkt mit linker/rechter geraden an player.x
+        float left_value = -m * player_pos_local.x;
+        float right_value = m * player_pos_local.x;
+
+        //abstand von l/r gerade zu PLayer ... in z richtung
+        float left_dif = left_value - player_pos_local.z;
+        float right_dif = right_value - player_pos_local.z;
+
+        //check if player is right on the gerade
+        if (left_dif == 0)
+        {
+            left_dif = 1;
+        }
+        if (right_dif == 0)
+        {
+            right_dif = 1;
+        }
+
+        //vorzeichen --> welche seite
+        float left_sign = Mathf.Abs(left_dif) / left_dif;
+        float right_sign = Mathf.Abs(right_dif) / right_dif;
+
+        //1 wert --> -1 = l; 0 = midde; +1 = r
+        focus_2 = (left_sign - right_sign) / 2;
+
+        if (focus_2 == 1)
+        {
+            Debug.Log("LEFT");
+        }
+        if (focus_2 == 0)
+        {
+            if (player_pos_local.z < behind_dog)
+            {
+                Debug.Log("BEHIND");
+                focus_2 = 2;
+            }
+            else
+            {
+                Debug.Log("MIDDE");
+            }
+        }
+        if (focus_2 == -1)
+        {
+            Debug.Log("RIGHT");
+        }
 
         return focus_2;
     }
@@ -594,6 +612,8 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
+         GetPlayerOffset(0, 1, 1, true);
+
         //dog position
         current_position = dog.transform.position;
 
@@ -635,7 +655,7 @@ public class Basic_Behaviour : MonoBehaviour
             else if (behav_switch.friendly_script.enabled)
             {//TODO uncomment
                 friendly_behav.FriendlyBehaviour();
-                GetPlayerOffset();
+                GetPlayerOffset(0, 1, 1, true);
             }
             else if (behav_switch.aggressive_script.enabled)
             {

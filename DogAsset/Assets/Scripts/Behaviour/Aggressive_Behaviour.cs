@@ -98,8 +98,7 @@ public class Aggressive_Behaviour : MonoBehaviour
         }else if(turn_to_player){
             Debug.Log("MOMENT");
             basic_behav.TurnToTarget(player);
-            basic_behav.GetPlayerOffset();
-            if (basic_behav.focus_2 == 2)
+            if (basic_behav.GetPlayerOffset(0, 32, 0.125f, true) == 0)
             {
                 Debug.Log("facing player");
                 facing_player = true;
