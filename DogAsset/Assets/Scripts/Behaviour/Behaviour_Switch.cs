@@ -138,7 +138,7 @@ public class Behaviour_Switch : MonoBehaviour
                 agressive = true;
             }
         }
-        if (agressive_timer <= 0 || aggressive_script.aggressive_too_close)
+        if (agressive_timer <= 0)
         {
             SetScriptsFalse();
             DisableScripts();

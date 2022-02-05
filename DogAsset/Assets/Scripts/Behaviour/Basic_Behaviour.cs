@@ -16,7 +16,8 @@ public class Basic_Behaviour : MonoBehaviour
         turning_right,
         turning_left,
         walking_after_turning,
-        friendly_walking
+        friendly_walking, 
+        after_aggression
     };
 
     public Animation_state dog_state;
@@ -31,6 +32,7 @@ public class Basic_Behaviour : MonoBehaviour
     //other script
     public GameObject dog;
     public GameObject player;
+    public GameObject player_target;
     public GameObject dog_parent;
     public GameObject dir_manager;
     public GameObject agg_position;
@@ -57,6 +59,7 @@ public class Basic_Behaviour : MonoBehaviour
         //access anim controll scipt
         dog = GameObject.Find("GermanShepherd_Prefab");
         player = GameObject.FindGameObjectWithTag("Player");
+        player_target = GameObject.Find("target");
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
         behav_manager = GameObject.Find("Behaviour_Manager");
@@ -386,10 +389,12 @@ public class Basic_Behaviour : MonoBehaviour
     /*float behind_dog = 0f;
     float before_dog = 1f;
     float beside_dog = 0.6f;*/
+    // soft enforce: behind, left behind, right behind
+    // !soft enfrce: behind
     public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind)
     {
-        Vector3 player_pos_local = dog.transform.InverseTransformPoint(player.transform.position);
-        
+        Vector3 player_pos_local = dog.transform.InverseTransformPoint(player_target.transform.position);
+
         float focus_2;
         //check front or behind, hinten ist alles hinten
         if (player_pos_local.z < behind_dog && !soft_enforce_behind)
@@ -612,7 +617,7 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
-         GetPlayerOffset(0, 1, 1, true);
+        GetPlayerOffset(0, 8, 0.5f, false);
 
         //dog position
         current_position = dog.transform.position;
