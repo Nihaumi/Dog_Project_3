@@ -356,19 +356,15 @@ public class Basic_Behaviour : MonoBehaviour
         else if (!player_interaction.AreHandsMoving())
         {   //look at Head and away from left and right Hand
             focus = 2;
+            Debug.Log("TRACK HEAD");
         }
-        else if (!player_interaction.hand_left || !player_interaction.hand_right)
-        {
-            Debug.Log("No HAND");
-            focus = 2;
-        }
-        else if (player_interaction.LeftHandCloser())
+        else if (player_interaction.GetFastes() == -1)
         {   //look at left Hand and away from Head and right Hand
             focus = 1;
             Debug.Log("TRACK LEFT");
 
         }
-        else if (!player_interaction.LeftHandCloser())
+        else if (player_interaction.GetFastes() == 1)
         {   //look at right Hand and away from Head and left Hand
             focus = 0;
 
@@ -513,6 +509,7 @@ public class Basic_Behaviour : MonoBehaviour
             default:
                 break;
         }
+        a.SetWeight(0, weight_update_right);
         a.SetWeight(1, weight_update_left);
         a.SetWeight(2, weight_update_head);
         constraint.data.sourceObjects = a;
@@ -705,6 +702,7 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
+        SetFollowObject();
         //GetPlayerOffset(0, 8, 0.5f, false);
 
         //dog position
@@ -722,15 +720,12 @@ public class Basic_Behaviour : MonoBehaviour
         }
         else if (behav_switch.friendly_script.enabled)
         {//friendly
-            SetFollowObject();
+
             Debug.Log("IS THIS THING ON?!");
             if (y_goal == trot_value)
             {
                 y_goal = walking_slow_value;
             }
-            player_interaction.IsCloseToLeftHand();
-            player_interaction.IsCloseToRightHand();
-            player_interaction.AreHandsMoving();
             //TODO uncomment
             friendly_behav.ApproachPlayer();
         }

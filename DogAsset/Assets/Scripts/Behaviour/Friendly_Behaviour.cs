@@ -46,7 +46,7 @@ public class Friendly_Behaviour : MonoBehaviour
         facing_player = false;
         escape_chance_on = false;
         friendly = false;
-        friendly_time = 1000f;
+        friendly_time = 10f;
     }
 
     public float touching_player_timer;
@@ -107,12 +107,12 @@ public class Friendly_Behaviour : MonoBehaviour
                 basic_behav.x_axis = basic_behav.standing_value;
                 basic_behav.y_acceleration = basic_behav.turning_y_acceleration;
                 dog_audio.StopAllSounds();
-            }          
+            }
             if (basic_behav.y_axis == basic_behav.standing_value && !escape_chance_on)
             {//sit down
                 basic_behav.y_acceleration = basic_behav.default_y_acceleration;
                 anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
-               StartCoroutine( dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
+                StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                 Debug.Log("PANTING: " + dog_audio.panting_calm.isPlaying);
                 basic_behav.change_anim_timer = friendly_time;
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
@@ -217,7 +217,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     }
                     else basic_behav.TurnRight();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
-                    basic_behav.SetShortTimer(5, 5);
+                    basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.standing:
 

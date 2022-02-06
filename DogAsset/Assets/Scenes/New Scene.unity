@@ -2372,13 +2372,13 @@ MonoBehaviour:
   aggressive_script: {fileID: 0}
   dist: 0
   friendly_distance: 4
-  friendly: 1
+  friendly: 0
   agressive: 0
-  neutral: 0
+  neutral: 1
   friendly_timer: 60
   agressive_timer: 30
   neutral_timer: 100
-  friendly_time: 100
+  friendly_time: 20
   agressive_time: 100
   neutral_time: 80
   dog_behaviour: 0
@@ -5071,7 +5071,7 @@ MonoBehaviour:
   dog_sound_manager: {fileID: 0}
   animator: {fileID: 0}
   player_target: {fileID: 0}
-  friendly_time: 100
+  friendly_time: 10
   touching_player_timer: 0
   started_walking: 0
   escape_chance_on: 0
@@ -9018,7 +9018,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dog: {fileID: 0}
-  follower: {fileID: 0}
+  follow_left: {fileID: 0}
+  follow_right: {fileID: 0}
   hand_left: {fileID: 0}
   hand_right: {fileID: 0}
   hands_moving: 0
@@ -9026,6 +9027,11 @@ MonoBehaviour:
   right_hand_tracked: 0
   left_hand_moving: 0
   right_hand_moving: 0
+  velocity_right: 0
+  velocity_left: 0
+  velocitimer: 0
+  velo_timer_length: 10
+  last_fastes: 0
 --- !u!1 &1735534723
 GameObject:
   m_ObjectHideFlags: 0

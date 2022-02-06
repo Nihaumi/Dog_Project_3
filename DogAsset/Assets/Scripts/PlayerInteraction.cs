@@ -69,6 +69,7 @@ public class PlayerInteraction : MonoBehaviour
         left_hand_moving = IsLeftHandMoving();
         right_hand_moving = IsRightHandMoving();
         AreHandsMoving();
+        last_fastes = WhoIsFastest();
     }
 
 
@@ -79,14 +80,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         right_hand_tracking_timer -= Time.deltaTime;
         Vector3 aim_right_hand_local_pos = aim_head.transform.InverseTransformPoint(hand_right.transform.position);
-        Debug.Log("OFFSET HAND: " + aim_right_hand_local_pos);
 
         if (Vector3.Distance(new Vector3(0.0f, 0.0f, 0.0f), aim_right_hand_local_pos) < 0.18)
         {
             right_hand_tracking_timer = tracking_timer_length;
             return false;
         }
-        if(right_hand_tracking_timer < 0)
+        if (right_hand_tracking_timer < 0)
         {
             return true;
         }
@@ -97,14 +97,13 @@ public class PlayerInteraction : MonoBehaviour
     {
         left_hand_tracking_timer -= Time.deltaTime;
         Vector3 aim_left_hand_local_pos = aim_head.transform.InverseTransformPoint(hand_left.transform.position);
-        Debug.Log("OFFSET HAND: " + aim_left_hand_local_pos);
 
         if (Vector3.Distance(new Vector3(0.0f, 0.0f, 0.0f), aim_left_hand_local_pos) < 0.18)
         {
             left_hand_tracking_timer = tracking_timer_length;
             return false;
         }
-        if(left_hand_tracking_timer < 0)
+        if (left_hand_tracking_timer < 0)
         {
             return true;
         }
@@ -132,7 +131,7 @@ public class PlayerInteraction : MonoBehaviour
         else { return false; }
     }
 
-    float hands_moving_timer = 0;
+    float hands_moving_timer = 0f;
     public bool AreHandsMoving()
     {
         return right_hand_moving || left_hand_moving;
@@ -142,10 +141,62 @@ public class PlayerInteraction : MonoBehaviour
     float right_hand_moving_timer = 0f;
     float left_hand_moving_timer = 0f;
     float moving_timer_length = 1f;
+    [SerializeField] float velocity_right;
+    [SerializeField] float velocity_left;
+
+    [SerializeField] float velocitimer = 0f;
+    [SerializeField] float velo_timer_length = 2f;
+    [SerializeField] int last_fastes = 0;
+    
+    public int GetFastes(){
+        return last_fastes;
+    }
+
+
+    public int WhoIsFastest()
+    {
+        velocitimer -= Time.deltaTime;
+
+        //timerdecay:
+        float dv = 0;
+        if(last_fastes == 1){
+            dv = velocity_left;
+        }
+        else if(last_fastes == -1)
+        {
+            dv = velocity_right;
+        }
+        velocitimer -= dv;
+
+        if (velocitimer > 0)
+        {
+            return last_fastes;
+        }
+        else if (velocity_right > velocity_left)
+        {
+            velocitimer = velo_timer_length;
+            return 1; // rechts
+        }
+        else if (velocity_right < velocity_left)
+        {
+            velocitimer = velo_timer_length;
+            return -1; // links
+        }
+        return 0;
+    }
 
     public bool IsRightHandMoving()
     {
         right_hand_moving_timer -= Time.deltaTime;
+
+
+        float distance = Vector3.Distance(hand_right.transform.position, hand_right_position);
+        hand_right_position = hand_right.transform.position;
+
+        //SPEED BERECHNUNG:
+        //v = d/t
+        velocity_right = distance / Time.deltaTime;
+
         if (!right_hand_tracked)
         {
             return false;
@@ -155,10 +206,8 @@ public class PlayerInteraction : MonoBehaviour
             return true;
         }
 
-        Vector3 displacement_right = hand_right.transform.position - hand_right_position;
-        hand_right_position = hand_right.transform.position;
 
-        if (displacement_right.magnitude > moving_value)
+        if (distance > moving_value)
         {
             right_hand_moving_timer = moving_timer_length;
             Debug.Log("Right MOVING");
@@ -169,6 +218,13 @@ public class PlayerInteraction : MonoBehaviour
 
     public bool IsLeftHandMoving()
     {
+        float distance = Vector3.Distance(hand_left.transform.position, hand_left_position);
+        hand_left_position = hand_left.transform.position;
+
+        //SPEED BERECHNUNG:
+        //v = d/t
+        velocity_left = distance / Time.deltaTime;
+
         left_hand_moving_timer -= Time.deltaTime;
         if (!left_hand_tracked)
         {
@@ -179,10 +235,7 @@ public class PlayerInteraction : MonoBehaviour
             return true;
         }
 
-        Vector3 displacement_left = hand_left.transform.position - hand_left_position;
-        hand_left_position = hand_left.transform.position;
-
-        if (displacement_left.magnitude > moving_value)
+        if (distance > moving_value)
         {
             left_hand_moving_timer = moving_timer_length;
             Debug.Log("Left MOVING");
