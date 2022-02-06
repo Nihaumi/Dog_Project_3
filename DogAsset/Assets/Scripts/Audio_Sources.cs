@@ -7,6 +7,7 @@ public class Audio_Sources : MonoBehaviour
     public AudioSource aggressive_bark;
     public AudioSource panting_calm;
     public AudioSource panting;
+    public AudioSource bite_bark;
 
     // Start is called before the first frame update
     void Start()
@@ -26,5 +27,20 @@ public class Audio_Sources : MonoBehaviour
         aggressive_bark.Stop();
         panting.Stop();
         panting_calm.Stop();
+    }
+
+    public IEnumerator PlaySoundAfterPause(AudioSource audio)
+    {
+        StopAllSounds();
+        yield return new WaitForSeconds(3);
+        audio.Play();
+    }
+    public IEnumerator PlaySoundAfterAnother(AudioSource audio1, AudioSource audio2)
+    {
+        StopAllSounds();
+        audio1.Play();
+        yield return new WaitForSeconds(1f);
+        StopAllSounds();
+        audio2.Play();
     }
 }

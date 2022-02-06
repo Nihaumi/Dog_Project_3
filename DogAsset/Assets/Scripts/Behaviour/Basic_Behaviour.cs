@@ -16,7 +16,7 @@ public class Basic_Behaviour : MonoBehaviour
         turning_right,
         turning_left,
         walking_after_turning,
-        friendly_walking, 
+        friendly_walking,
         after_aggression
     };
 
@@ -349,7 +349,7 @@ public class Basic_Behaviour : MonoBehaviour
 
         int focus = 3;
 
-        if (!friendly_behav.enabled)
+        if (!friendly_behav.enabled || GetPlayerOffset(0, 4, 1f, false) == 2)
         {
             focus = 3;
         }
@@ -357,21 +357,28 @@ public class Basic_Behaviour : MonoBehaviour
         {   //look at Head and away from left and right Hand
             focus = 2;
         }
-        else if (dist_left_hand_to_dog < dist_right_hand_to_dog)
+        else if (!player_interaction.hand_left || !player_interaction.hand_right)
+        {
+            Debug.Log("No HAND");
+            focus = 2;
+        }
+        else if (player_interaction.LeftHandCloser())
         {   //look at left Hand and away from Head and right Hand
             focus = 1;
-
             Debug.Log("TRACK LEFT");
+
         }
-        else if (dist_right_hand_to_dog < dist_left_hand_to_dog)
+        else if (!player_interaction.LeftHandCloser())
         {   //look at right Hand and away from Head and left Hand
             focus = 0;
 
             Debug.Log("TRACK RIGHT");
         }
+        SetRigValues();
         SetWeightConstraint(neck_constraint_1, focus);
         SetWeightConstraint(neck_constraint_2, focus);
         SetWeightConstraint(neck_constraint_3, focus);
+        SetWeightConstraint(neck_constraint_4, focus);
         SetWeightConstraint(head_constraint, focus);
         SetWeightConstraint(right_eye_constraint, focus);
         SetWeightConstraint(left_eye_constraint, focus);
@@ -511,6 +518,87 @@ public class Basic_Behaviour : MonoBehaviour
         constraint.data.sourceObjects = a;
     }
 
+    //Setts Rig values accoprding to player offset
+    void SetRigValues()
+    {
+
+        neck_constraint_1.data.limits = new Vector2(-12, 12);
+        neck_constraint_1.data.offset = new Vector3(0, 0, 0);
+
+        //neck2
+        neck_constraint_2.data.limits = new Vector2(-13, 13);
+        neck_constraint_2.data.offset = new Vector3(0, 0, 0);
+        //neck3
+        neck_constraint_3.data.limits = new Vector2(-8, 8);
+        neck_constraint_3.data.offset = new Vector3(0, 0, 0);
+        //neck4
+        neck_constraint_4.data.limits = new Vector2(-16, 16);
+        neck_constraint_4.data.offset = new Vector3(0, 0, 0);
+        //head
+        head_constraint.data.limits = new Vector2(-35, 35);
+        head_constraint.data.offset = new Vector3(0, 0, -40);
+
+        /*float a = 0;
+        float b = 4;
+        float c = 1;
+        bool d = false;
+        if(GetPlayerOffset(a, b, c, d) == 0)//player straight
+        {
+            Debug.Log("changing neck 1 LIMITS");//neck 1
+            neck_constraint_1.data.limits = new Vector2(-12, 12);
+            neck_constraint_1.data.offset = new Vector3(0, 0, 0);
+
+            //neck2
+            neck_constraint_2.data.limits = new Vector2(-13, 13);
+            neck_constraint_2.data.offset = new Vector3(0, 0, 0);
+            //neck3
+            neck_constraint_3.data.limits = new Vector2(-8, 8);
+            neck_constraint_3.data.offset = new Vector3(0, 0, 0);
+            //neck4
+            neck_constraint_4.data.limits = new Vector2(-16, 16);
+            neck_constraint_4.data.offset = new Vector3(0, 0, 0);
+            //head
+            head_constraint.data.limits = new Vector2(-35, 35);
+            head_constraint.data.offset = new Vector3(0, 0, -40);
+        } 
+        if(GetPlayerOffset(a, b, c, d) == -1)//player rechts
+        {
+            //neck1
+            neck_constraint_1.data.limits = new Vector2(-13, 13);
+            neck_constraint_1.data.offset = new Vector3(0, -10, 0);
+            //neck2
+            neck_constraint_2.data.limits = new Vector2(-13, 13);
+            neck_constraint_2.data.offset = new Vector3(0, -5, 0);
+            //neck3
+            neck_constraint_3.data.limits = new Vector2(-8, 8);
+            neck_constraint_3.data.offset = new Vector3(0, -5, 0);
+            //neck4
+            neck_constraint_4.data.limits = new Vector2(-40, 40);
+            neck_constraint_4.data.offset = new Vector3(0, -5, 0);
+            //head
+            head_constraint.data.limits = new Vector2(-23, 23);
+            head_constraint.data.offset = new Vector3(0, -5, 0);
+        }
+        if (GetPlayerOffset(a, b, c, d) == 1)//player links
+        {
+            //neck1
+            neck_constraint_1.data.limits = new Vector2(-13, 13);
+            neck_constraint_1.data.offset = new Vector3(0, 10, 0);
+            //neck2
+            neck_constraint_2.data.limits = new Vector2(-13, 13);
+            neck_constraint_2.data.offset = new Vector3(0, 5, 0);
+            //neck3
+            neck_constraint_3.data.limits = new Vector2(-8, 8);
+            neck_constraint_3.data.offset = new Vector3(0, 5, 0);
+            //neck4
+            neck_constraint_4.data.limits = new Vector2(-40, 40);
+            neck_constraint_4.data.offset = new Vector3(0, 5, 0);
+            //head
+            head_constraint.data.limits = new Vector2(-23, 23);
+            head_constraint.data.offset = new Vector3(0, 5, 0);
+        }*/
+    }
+
     //turning towrads target object
     Vector3 direction;
     public Quaternion rotation;
@@ -617,7 +705,7 @@ public class Basic_Behaviour : MonoBehaviour
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
 
-        GetPlayerOffset(0, 8, 0.5f, false);
+        //GetPlayerOffset(0, 8, 0.5f, false);
 
         //dog position
         current_position = dog.transform.position;
@@ -660,7 +748,7 @@ public class Basic_Behaviour : MonoBehaviour
             else if (behav_switch.friendly_script.enabled)
             {//TODO uncomment
                 friendly_behav.FriendlyBehaviour();
-                GetPlayerOffset(0, 1, 1, true);
+                //GetPlayerOffset(0, 1, 1, true);
             }
             else if (behav_switch.aggressive_script.enabled)
             {

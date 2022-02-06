@@ -174,6 +174,7 @@ public class Aggressive_Behaviour : MonoBehaviour
             //then turn away to the left
             //lay down
             case Basic_Behaviour.Animation_state.after_aggression:
+                dog_audio.StopAllSounds();
                 if (after_aggression_counter == 0)
                 {
                     basic_behav.ResetParameter();
@@ -197,6 +198,7 @@ public class Aggressive_Behaviour : MonoBehaviour
                     after_aggression_counter++;
                     basic_behav.SetLongTimer();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
+                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                 }
                 break;
             case Basic_Behaviour.Animation_state.aggressiv:
@@ -215,13 +217,13 @@ public class Aggressive_Behaviour : MonoBehaviour
                     else if (aggression_animation_counter == 0 % 3)
                     {
                         anim_controll.ChangeAnimationState(anim.bite_L);
-                        dog_audio.aggressive_bark.Play();
+                        dog_audio.StartCoroutine(dog_audio.PlaySoundAfterAnother(dog_audio.bite_bark, dog_audio.aggressive_bark));
                         aggression_animation_counter++;
                     }
                     else if (aggression_animation_counter == 2 % 3)
                     {
                         anim_controll.ChangeAnimationState(anim.bite_R);
-                        dog_audio.aggressive_bark.Play();
+                        dog_audio.StartCoroutine(dog_audio.PlaySoundAfterAnother(dog_audio.bite_bark, dog_audio.aggressive_bark));
                         aggression_animation_counter++;
                     }
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.aggressiv;

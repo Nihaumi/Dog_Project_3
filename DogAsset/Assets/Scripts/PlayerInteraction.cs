@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
-{    
+{
     //other script
     public GameObject dog;
     Basic_Behaviour basic_behav;
@@ -12,11 +12,13 @@ public class PlayerInteraction : MonoBehaviour
     GameObject aim_hand_right;
     GameObject aim_hand_left;
     GameObject aim_head;
+    public GameObject follow_left;
+    public GameObject follow_right;
 
     //target obj
     GameObject Player_eyes;
-    GameObject hand_left;
-    GameObject hand_right;
+    public GameObject hand_left;
+    public GameObject hand_right;
 
     //hand positions
     Vector3 hand_left_position;
@@ -26,6 +28,8 @@ public class PlayerInteraction : MonoBehaviour
     {
         dog = GameObject.Find("GermanShepherd_Prefab");
         basic_behav = dog.GetComponent<Basic_Behaviour>();
+        follow_left = GameObject.Find("follow_left");
+        follow_right = GameObject.Find("follow_right");
 
         //targets
         aim_hand_left = GameObject.Find("AimtargetHandLeft");
@@ -42,11 +46,71 @@ public class PlayerInteraction : MonoBehaviour
         hand_right_position = hand_right.transform.position;
     }
 
+
+
+    public bool hands_moving = false;
+    public bool left_hand_tracked = false;
+    public bool right_hand_tracked = false;
+    public bool left_hand_moving = false;
+    public bool right_hand_moving = false;
     // Update is called once per frame
     void Update()
     {
-
+        left_hand_tracked = IsLeftHandTracked();
+        right_hand_tracked = IsRightHandTracked();
+        if (left_hand_tracked)
+        {
+            follow_left.transform.position = Vector3.MoveTowards(follow_left.transform.position, hand_left.transform.position, 0.3f);
+        }
+        if (right_hand_tracked)
+        {
+            follow_right.transform.position = Vector3.MoveTowards(follow_right.transform.position, hand_right.transform.position, 0.3f);
+        }
+        left_hand_moving = IsLeftHandMoving();
+        right_hand_moving = IsRightHandMoving();
+        AreHandsMoving();
     }
+
+
+    float right_hand_tracking_timer = 0;
+    float left_hand_tracking_timer = 0;
+    float tracking_timer_length = 0.5f;
+    bool IsRightHandTracked()
+    {
+        right_hand_tracking_timer -= Time.deltaTime;
+        Vector3 aim_right_hand_local_pos = aim_head.transform.InverseTransformPoint(hand_right.transform.position);
+        Debug.Log("OFFSET HAND: " + aim_right_hand_local_pos);
+
+        if (Vector3.Distance(new Vector3(0.0f, 0.0f, 0.0f), aim_right_hand_local_pos) < 0.18)
+        {
+            right_hand_tracking_timer = tracking_timer_length;
+            return false;
+        }
+        if(right_hand_tracking_timer < 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    bool IsLeftHandTracked()
+    {
+        left_hand_tracking_timer -= Time.deltaTime;
+        Vector3 aim_left_hand_local_pos = aim_head.transform.InverseTransformPoint(hand_left.transform.position);
+        Debug.Log("OFFSET HAND: " + aim_left_hand_local_pos);
+
+        if (Vector3.Distance(new Vector3(0.0f, 0.0f, 0.0f), aim_left_hand_local_pos) < 0.18)
+        {
+            left_hand_tracking_timer = tracking_timer_length;
+            return false;
+        }
+        if(left_hand_tracking_timer < 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     public float IsCloseToLeftHand()
     {
@@ -59,36 +123,72 @@ public class PlayerInteraction : MonoBehaviour
         return basic_behav.dist_right_hand_to_dog;
     }
 
-    float hands_moving_timer = 0;
-
-    public bool AreHandsMoving()
+    public bool LeftHandCloser()
     {
-
-        hands_moving_timer -= Time.deltaTime;
-        if (hands_moving_timer > 0)
+        if (IsCloseToLeftHand() < IsCloseToRightHand())
         {
             return true;
         }
+        else { return false; }
+    }
 
-        float moving_value = 0.005f;
-        Vector3 displacement_left = hand_left.transform.position - hand_left_position;
-        hand_left_position = hand_left.transform.position;
+    float hands_moving_timer = 0;
+    public bool AreHandsMoving()
+    {
+        return right_hand_moving || left_hand_moving;
+    }
+
+    float moving_value = 0.005f;
+    float right_hand_moving_timer = 0f;
+    float left_hand_moving_timer = 0f;
+    float moving_timer_length = 1f;
+
+    public bool IsRightHandMoving()
+    {
+        right_hand_moving_timer -= Time.deltaTime;
+        if (!right_hand_tracked)
+        {
+            return false;
+        }
+        if (right_hand_moving_timer > 0)
+        {
+            return true;
+        }
 
         Vector3 displacement_right = hand_right.transform.position - hand_right_position;
         hand_right_position = hand_right.transform.position;
 
-        if (displacement_left.magnitude > moving_value || displacement_right.magnitude > moving_value)
+        if (displacement_right.magnitude > moving_value)
         {
-            hands_moving_timer = 2;
-            Debug.Log("HAND MOVING");
+            right_hand_moving_timer = moving_timer_length;
+            Debug.Log("Right MOVING");
             return true;
         }
-        else
+        else return false;
+    }
+
+    public bool IsLeftHandMoving()
+    {
+        left_hand_moving_timer -= Time.deltaTime;
+        if (!left_hand_tracked)
         {
-            Debug.Log("HAND NOT MOVING");
             return false;
         }
+        if (left_hand_moving_timer > 0)
+        {
+            return true;
+        }
 
+        Vector3 displacement_left = hand_left.transform.position - hand_left_position;
+        hand_left_position = hand_left.transform.position;
+
+        if (displacement_left.magnitude > moving_value)
+        {
+            left_hand_moving_timer = moving_timer_length;
+            Debug.Log("Left MOVING");
+            return true;
+        }
+        else return false;
     }
 
 }

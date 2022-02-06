@@ -73,12 +73,13 @@ public class Neutral_Behaviour : MonoBehaviour
                 {
                     anim_controll.ChangeAnimationState(anim.list_standing[basic_behav.random_index]);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
-                    dog_audio.panting_calm.Play();
+                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                 }
                 if (basic_behav.random_index == 1)
                 {
                     anim_controll.ChangeAnimationState(anim.list_standing[basic_behav.random_index]);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.sitting;
+                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                 }
                 if (basic_behav.random_index > 1 && basic_behav.random_index < 6)
                 {
@@ -193,7 +194,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     anim_controll.ChangeAnimationState(anim.list_sleeping[basic_behav.random_index]);
 
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
-                    dog_audio.panting_calm.Play();
+                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                 }
                 else if (basic_behav.random_index == 1)
                 {

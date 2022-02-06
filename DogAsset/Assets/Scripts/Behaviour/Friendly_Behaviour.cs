@@ -46,7 +46,7 @@ public class Friendly_Behaviour : MonoBehaviour
         facing_player = false;
         escape_chance_on = false;
         friendly = false;
-        friendly_time = 10f;
+        friendly_time = 1000f;
     }
 
     public float touching_player_timer;
@@ -102,23 +102,18 @@ public class Friendly_Behaviour : MonoBehaviour
         if (TouchingPlayer() && facing_player)
         {
             if (!escape_chance_on)
-            {//from walk to stand
-                Debug.Log("PANTING: " + dog_audio.panting_calm.isPlaying);
+            {//from walk to stand               
                 basic_behav.y_goal = basic_behav.standing_value;
                 basic_behav.x_axis = basic_behav.standing_value;
                 basic_behav.y_acceleration = basic_behav.turning_y_acceleration;
                 dog_audio.StopAllSounds();
-            }
-            //audio
-            if (anim_controll.current_state == anim.sit_00 && !dog_audio.panting_calm.isPlaying)
-            {
-                dog_audio.StopAllSounds();
-                dog_audio.panting_calm.Play();
-            }
+            }          
             if (basic_behav.y_axis == basic_behav.standing_value && !escape_chance_on)
             {//sit down
                 basic_behav.y_acceleration = basic_behav.default_y_acceleration;
                 anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
+               StartCoroutine( dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
+                Debug.Log("PANTING: " + dog_audio.panting_calm.isPlaying);
                 basic_behav.change_anim_timer = friendly_time;
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
                 escape_chance_on = true;
@@ -234,14 +229,14 @@ public class Friendly_Behaviour : MonoBehaviour
                         anim_controll.ChangeAnimationState(anim.friendly_list_standing[basic_behav.random_index]);
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
                         //audio
-                        dog_audio.panting_calm.Play();
+                        dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                     }
                     if (basic_behav.random_index == 1)
                     {
                         anim_controll.ChangeAnimationState(anim.friendly_list_standing[basic_behav.random_index]);
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.sitting;
                         //audio
-                        dog_audio.panting_calm.Play();
+                        dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                     }
                     if (basic_behav.random_index > 1 && basic_behav.random_index < 4)
                     {
@@ -278,7 +273,6 @@ public class Friendly_Behaviour : MonoBehaviour
                     {
                         basic_behav.y_goal = basic_behav.walking_value;
                     }
-                    //SetBlendTreeParameters();
 
                     basic_behav.SetShortTimer(7, 15);
                     Debug.Log("sitting list item at rndindex: " + basic_behav.random_index + "is:" + anim.friendly_list_sitting[basic_behav.random_index]);
@@ -321,9 +315,8 @@ public class Friendly_Behaviour : MonoBehaviour
                         anim_controll.ChangeAnimationState(anim.friendly_list_sleeping[basic_behav.random_index]);
 
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
-                        //audio
-                        dog_audio.StopAllSounds();
-                        dog_audio.panting_calm.Play();
+                        //audio                  
+                        dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
                     }
                     else if (basic_behav.random_index == 1)
                     {
