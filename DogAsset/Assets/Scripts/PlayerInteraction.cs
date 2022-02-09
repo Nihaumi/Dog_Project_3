@@ -46,8 +46,6 @@ public class PlayerInteraction : MonoBehaviour
         hand_right_position = hand_right.transform.position;
     }
 
-
-
     public bool hands_moving = false;
     public bool left_hand_tracked = false;
     public bool right_hand_tracked = false;
@@ -147,11 +145,11 @@ public class PlayerInteraction : MonoBehaviour
     [SerializeField] float velocitimer = 0f;
     [SerializeField] float velo_timer_length = 2f;
     [SerializeField] int last_fastes = 0;
-    
-    public int GetFastes(){
+
+    public int GetFastes()
+    {
         return last_fastes;
     }
-
 
     public int WhoIsFastest()
     {
@@ -159,10 +157,11 @@ public class PlayerInteraction : MonoBehaviour
 
         //timerdecay:
         float dv = 0;
-        if(last_fastes == 1){
+        if (last_fastes == 1)
+        {
             dv = velocity_left;
         }
-        else if(last_fastes == -1)
+        else if (last_fastes == -1)
         {
             dv = velocity_right;
         }

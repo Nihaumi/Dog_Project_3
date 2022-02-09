@@ -48,6 +48,7 @@ public class Basic_Behaviour : MonoBehaviour
     PlayerInteraction player_interaction;
     Aggressive_Behaviour agg_behav;
 
+    double neutral_goal_dist_to_player = 3f;
     private void Awake()
     {
         change_anim_timer = starting_timer;
@@ -238,6 +239,33 @@ public class Basic_Behaviour : MonoBehaviour
         }
     }
 
+    //if too close to player, turn left or right
+    void DodgePlayer()
+    {
+        if (TouchingPlayer(neutral_goal_dist_to_player))
+        {
+            float timer = 5;
+            Debug.Log("DODGE");
+            if (dog_state == Animation_state.walking)
+            {
+                if (y_goal == trot_value)
+                {
+                    timer = 3;
+                    //y_goal = walking_value;
+                }
+                if (GetPlayerOffset(0, 32, 0.12f, false) == -1)
+                {
+                    TurnLeft();
+                }
+                else TurnRight();
+            }
+            if (change_anim_timer > timer)
+            {
+                change_anim_timer = timer;
+            }
+        }
+    }
+
     //Timer
     void ResetTimerFunction()
     {
@@ -353,6 +381,10 @@ public class Basic_Behaviour : MonoBehaviour
         {
             focus = 3;
         }
+        else if (dog_state == Animation_state.walking || y_goal != standing_value || x_goal != standing_value)
+        {
+            focus = 3;
+        }
         else if (!player_interaction.AreHandsMoving())
         {   //look at Head and away from left and right Hand
             focus = 2;
@@ -370,7 +402,11 @@ public class Basic_Behaviour : MonoBehaviour
 
             Debug.Log("TRACK RIGHT");
         }
-        SetRigValues();
+        if (!are_rigs_set)
+        {
+            SetRigValues();
+            are_rigs_set = true;
+        }
         SetWeightConstraint(neck_constraint_1, focus);
         SetWeightConstraint(neck_constraint_2, focus);
         SetWeightConstraint(neck_constraint_3, focus);
@@ -379,7 +415,7 @@ public class Basic_Behaviour : MonoBehaviour
         SetWeightConstraint(right_eye_constraint, focus);
         SetWeightConstraint(left_eye_constraint, focus);
     }
-
+    bool are_rigs_set = false;
     /*TODO
      * create function or integrate into setweight constraints:
      * change the rig min max values and y offsets
@@ -535,65 +571,68 @@ public class Basic_Behaviour : MonoBehaviour
         head_constraint.data.limits = new Vector2(-35, 35);
         head_constraint.data.offset = new Vector3(0, 0, -40);
 
-        /*float a = 0;
+
+        float a = 0;
         float b = 4;
         float c = 1;
         bool d = false;
-        if(GetPlayerOffset(a, b, c, d) == 0)//player straight
-        {
-            Debug.Log("changing neck 1 LIMITS");//neck 1
-            neck_constraint_1.data.limits = new Vector2(-12, 12);
-            neck_constraint_1.data.offset = new Vector3(0, 0, 0);
 
-            //neck2
-            neck_constraint_2.data.limits = new Vector2(-13, 13);
-            neck_constraint_2.data.offset = new Vector3(0, 0, 0);
-            //neck3
-            neck_constraint_3.data.limits = new Vector2(-8, 8);
-            neck_constraint_3.data.offset = new Vector3(0, 0, 0);
-            //neck4
-            neck_constraint_4.data.limits = new Vector2(-16, 16);
-            neck_constraint_4.data.offset = new Vector3(0, 0, 0);
-            //head
-            head_constraint.data.limits = new Vector2(-35, 35);
-            head_constraint.data.offset = new Vector3(0, 0, -40);
-        } 
-        if(GetPlayerOffset(a, b, c, d) == -1)//player rechts
-        {
-            //neck1
-            neck_constraint_1.data.limits = new Vector2(-13, 13);
-            neck_constraint_1.data.offset = new Vector3(0, -10, 0);
-            //neck2
-            neck_constraint_2.data.limits = new Vector2(-13, 13);
-            neck_constraint_2.data.offset = new Vector3(0, -5, 0);
-            //neck3
-            neck_constraint_3.data.limits = new Vector2(-8, 8);
-            neck_constraint_3.data.offset = new Vector3(0, -5, 0);
-            //neck4
-            neck_constraint_4.data.limits = new Vector2(-40, 40);
-            neck_constraint_4.data.offset = new Vector3(0, -5, 0);
-            //head
-            head_constraint.data.limits = new Vector2(-23, 23);
-            head_constraint.data.offset = new Vector3(0, -5, 0);
-        }
-        if (GetPlayerOffset(a, b, c, d) == 1)//player links
-        {
-            //neck1
-            neck_constraint_1.data.limits = new Vector2(-13, 13);
-            neck_constraint_1.data.offset = new Vector3(0, 10, 0);
-            //neck2
-            neck_constraint_2.data.limits = new Vector2(-13, 13);
-            neck_constraint_2.data.offset = new Vector3(0, 5, 0);
-            //neck3
-            neck_constraint_3.data.limits = new Vector2(-8, 8);
-            neck_constraint_3.data.offset = new Vector3(0, 5, 0);
-            //neck4
-            neck_constraint_4.data.limits = new Vector2(-40, 40);
-            neck_constraint_4.data.offset = new Vector3(0, 5, 0);
-            //head
-            head_constraint.data.limits = new Vector2(-23, 23);
-            head_constraint.data.offset = new Vector3(0, 5, 0);
-        }*/
+
+        /* if(GetPlayerOffset(a, b, c, d) == 0)//player straight
+         {
+             Debug.Log("changing neck 1 LIMITS");//neck 1
+             neck_constraint_1.data.limits = new Vector2(-12, 12);
+             neck_constraint_1.data.offset = new Vector3(0, 0, 0);
+
+             //neck2
+             neck_constraint_2.data.limits = new Vector2(-13, 13);
+             neck_constraint_2.data.offset = new Vector3(0, 0, 0);
+             //neck3
+             neck_constraint_3.data.limits = new Vector2(-8, 8);
+             neck_constraint_3.data.offset = new Vector3(0, 0, 0);
+             //neck4
+             neck_constraint_4.data.limits = new Vector2(-16, 16);
+             neck_constraint_4.data.offset = new Vector3(0, 0, 0);
+             //head
+             head_constraint.data.limits = new Vector2(-35, 35);
+             head_constraint.data.offset = new Vector3(0, 0, -40);
+         } 
+         if(GetPlayerOffset(a, b, c, d) == -1)//player rechts
+         {
+             //neck1
+             neck_constraint_1.data.limits = new Vector2(-13, 13);
+             neck_constraint_1.data.offset = new Vector3(0, -10, 0);
+             //neck2
+             neck_constraint_2.data.limits = new Vector2(-13, 13);
+             neck_constraint_2.data.offset = new Vector3(0, -5, 0);
+             //neck3
+             neck_constraint_3.data.limits = new Vector2(-8, 8);
+             neck_constraint_3.data.offset = new Vector3(0, -5, 0);
+             //neck4
+             neck_constraint_4.data.limits = new Vector2(-40, 40);
+             neck_constraint_4.data.offset = new Vector3(0, -5, 0);
+             //head
+             head_constraint.data.limits = new Vector2(-23, 23);
+             head_constraint.data.offset = new Vector3(0, -5, 0);
+         }
+         if (GetPlayerOffset(a, b, c, d) == 1)//player links
+         {
+             //neck1
+             neck_constraint_1.data.limits = new Vector2(-13, 13);
+             neck_constraint_1.data.offset = new Vector3(0, 10, 0);
+             //neck2
+             neck_constraint_2.data.limits = new Vector2(-13, 13);
+             neck_constraint_2.data.offset = new Vector3(0, 5, 0);
+             //neck3
+             neck_constraint_3.data.limits = new Vector2(-8, 8);
+             neck_constraint_3.data.offset = new Vector3(0, 5, 0);
+             //neck4
+             neck_constraint_4.data.limits = new Vector2(-40, 40);
+             neck_constraint_4.data.offset = new Vector3(0, 5, 0);
+             //head
+             head_constraint.data.limits = new Vector2(-23, 23);
+             head_constraint.data.offset = new Vector3(0, 5, 0);
+         }*/
     }
 
     //turning towrads target object
@@ -643,7 +682,30 @@ public class Basic_Behaviour : MonoBehaviour
         y_acceleration = turning_y_acceleration;
         turning_in_place = true; //false in agressive behav und Waitbefore wlaking
     }
+    public float touching_player_timer;
+    public float dist_to_player;
+    public bool touching_player_timer_started = false;
 
+    /*
+    *   Calculates the distance between the player and the dog.
+    *       returns true if dog is inside a radius <goal_dist_to_player>
+    *       resets escape_chance_on to false if dog is not inside a radius of <goal_dist_to_player> * 1.1.
+    */
+    public bool TouchingPlayer(double goal_dist_to_player)
+    {
+        dist_to_player = Vector3.Distance(player.transform.position, dog.transform.position);
+        if (dist_to_player < goal_dist_to_player)
+        {
+            touching_player_timer = 10;
+            touching_player_timer_started = true;
+            return true;
+        }
+        else if (dist_to_player > goal_dist_to_player * 1.1)
+        {
+            friendly_behav.escape_chance_on = false;
+        }
+        return false;
+    }
     //triggers the walkingtowards and sets bools
     public void TurningAndWalkingLogicHandler()
     {
@@ -655,7 +717,7 @@ public class Basic_Behaviour : MonoBehaviour
                 StartCoroutine(WaitBeforeWalkingTowards(friendly_behav.player_target));
                 friendly_behav.started_walking = true;
             }
-            if (friendly_behav.TouchingPlayer())
+            if (TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
             {
                 Debug.Log("TOUCHING - frendo");
                 friendly_behav.facing_player = true;
@@ -679,7 +741,6 @@ public class Basic_Behaviour : MonoBehaviour
             }
         }
     }
-
 
     //walking towards
     public IEnumerator WaitBeforeWalkingTowards(GameObject target)
@@ -729,6 +790,7 @@ public class Basic_Behaviour : MonoBehaviour
             //TODO uncomment
             friendly_behav.ApproachPlayer();
         }
+        else DodgePlayer();
 
         //Change Animation on Timer depending on Behaviour
         if (change_anim_timer <= 0)

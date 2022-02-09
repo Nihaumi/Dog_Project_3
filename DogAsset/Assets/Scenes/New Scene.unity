@@ -366,8 +366,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 30
+  MinDistance: 1.0699797
+  MaxDistance: 3.17
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -1532,8 +1532,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 30
+  MinDistance: 1.0516703
+  MaxDistance: 3.15
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -2448,15 +2448,15 @@ MonoBehaviour:
   aggressive_script: {fileID: 0}
   dist: 0
   friendly_distance: 4
-  friendly: 1
+  friendly: 0
   agressive: 0
-  neutral: 0
+  neutral: 1
   friendly_timer: 60
   agressive_timer: 30
   neutral_timer: 100
   friendly_time: 100
   agressive_time: 100
-  neutral_time: 80
+  neutral_time: 100
   dog_behaviour: 0
   friendly_has_been_visited: 0
 --- !u!4 &541499026
@@ -2662,7 +2662,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 92e45936b22ca3440bb6a4b5836a0917, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.98
+  m_Volume: 0.386
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2671,7 +2671,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 3.42
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4618,7 +4618,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6140a7765216fc54b878f19cde670f25, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.46
+  m_Volume: 0.334
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4627,7 +4627,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 3.6
+  MaxDistance: 1.01
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -4954,6 +4954,9 @@ MonoBehaviour:
   current_position: {x: 0, y: 0, z: 0}
   target_pos: {x: 0, y: 0, z: 0}
   turning_in_place: 0
+  touching_player_timer: 0
+  dist_to_player: 0
+  touching_player_timer_started: 0
 --- !u!114 &1045705199
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5147,14 +5150,12 @@ MonoBehaviour:
   dog_sound_manager: {fileID: 0}
   animator: {fileID: 0}
   player_target: {fileID: 0}
-  friendly_time: 10
-  touching_player_timer: 0
+  friendly_time: 30
+  friendly_goal_dist_to_player: 2
   started_walking: 0
   escape_chance_on: 0
   facing_player: 0
   friendly: 0
-  dist_to_player: 0
-  touching_player_timer_started: 0
   after_friendly_anim_counter: 0
 --- !u!114 &1045705206
 MonoBehaviour:

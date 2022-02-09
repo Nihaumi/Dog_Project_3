@@ -73,13 +73,13 @@ public class Neutral_Behaviour : MonoBehaviour
                 {
                     anim_controll.ChangeAnimationState(anim.list_standing[basic_behav.random_index]);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
-                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
+                    StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                 }
                 if (basic_behav.random_index == 1)
                 {
                     anim_controll.ChangeAnimationState(anim.list_standing[basic_behav.random_index]);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.sitting;
-                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
+                    StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                 }
                 if (basic_behav.random_index > 1 && basic_behav.random_index < 6)
                 {
@@ -194,7 +194,7 @@ public class Neutral_Behaviour : MonoBehaviour
                     anim_controll.ChangeAnimationState(anim.list_sleeping[basic_behav.random_index]);
 
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
-                    dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
+                    StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                 }
                 else if (basic_behav.random_index == 1)
                 {
@@ -234,7 +234,7 @@ public class Neutral_Behaviour : MonoBehaviour
             case Basic_Behaviour.Animation_state.walking:
                 //audio
                 dog_audio.StopAllSounds();
-
+                basic_behav.WalkForward();
                 if (anim_controll.current_state != anim.blend_tree)
                 {
                     anim_controll.ChangeAnimationState(anim.blend_tree);
