@@ -47,6 +47,8 @@ public class Friendly_Behaviour : MonoBehaviour
         escape_chance_on = false;
         friendly = false;
         friendly_time = 10f;
+
+        after_friendly_anim_counter = 0;
     }
 
     public float touching_player_timer;
@@ -153,6 +155,7 @@ public class Friendly_Behaviour : MonoBehaviour
     *       Also changes the x and y goals.
     *       sets friendly
     */
+    [SerializeField] int after_friendly_anim_counter;
     public void FriendlyBehaviour()
     {
         if (!facing_player && !started_walking)
@@ -206,18 +209,51 @@ public class Friendly_Behaviour : MonoBehaviour
             switch (basic_behav.dog_state)
             {
                 case Basic_Behaviour.Animation_state.friendly_walking:
-                    basic_behav.ResetParameter();
+
                     Debug.Log("FRIENDLY WALKING");
-                    anim_controll.ChangeAnimationState(anim.friendly_sit_to_turn_walk);
-                    basic_behav.y_goal = basic_behav.walking_slow_value;
-                    //decide which direction to turn 
-                    if (basic_behav.GetPlayerOffset(0, 32, 0.12f, false) == -1)
+                    if (after_friendly_anim_counter == 0)
                     {
-                        basic_behav.TurnLeft();
+                        basic_behav.ResetParameter();
+                        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+                        basic_behav.y_goal = basic_behav.walking_value;
+                        if (basic_behav.GetPlayerOffset(0, 32, 0.12f, false) == -1)
+                        {
+                            basic_behav.TurnLeft();
+                        }
+                        else basic_behav.TurnRight();
+                        basic_behav.SetShortTimer(2, 2);
+                        after_friendly_anim_counter++;
                     }
-                    else basic_behav.TurnRight();
-                    basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
-                    basic_behav.SetShortTimer(3, 3);
+                    else if (after_friendly_anim_counter == 1)
+                    {
+                        basic_behav.WalkForward();
+                        basic_behav.y_goal = basic_behav.standing_value;
+                        basic_behav.SetShortTimer(1, 1);
+                        after_friendly_anim_counter++;
+                    }
+                    else if (after_friendly_anim_counter == 2)
+                    {
+                        basic_behav.ResetParameter();
+                        anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_01);
+                        dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
+                        basic_behav.SetLongTimer();
+                        after_friendly_anim_counter++;
+                        basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
+                    }
+                    /*else if (after_friendly_anim_counter == 3)
+                    {
+                        anim_controll.ChangeAnimationState(anim.friendly_sit_to_turn_walk);
+                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        //decide which direction to turn 
+                        if (basic_behav.GetPlayerOffset(0, 32, 0.12f, false) == -1)
+                        {
+                            basic_behav.TurnLeft();
+                        }
+                        else basic_behav.TurnRight();
+                        basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
+                        basic_behav.SetShortTimer(3, 3);
+                        after_friendly_anim_counter++;
+                    }*/
                     break;
                 case Basic_Behaviour.Animation_state.standing:
 
