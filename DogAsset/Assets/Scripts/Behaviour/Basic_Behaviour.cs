@@ -386,7 +386,7 @@ public class Basic_Behaviour : MonoBehaviour
         {
             focus = 3;
         }
-        else if (!player_interaction.AreHandsMoving())
+        else if (!player_interaction.AreHandsMoving() || (friendly_behav.GetCurrentStep() == Friendly_Behaviour.Step.WalkToTarget))
         {   //look at Head and away from left and right Hand
             focus = 2;
             Debug.Log("TRACK HEAD");
@@ -431,6 +431,26 @@ public class Basic_Behaviour : MonoBehaviour
     float beside_dog = 0.6f;*/
     // soft enforce: behind, left behind, right behind
     // !soft enfrce: behind
+
+    public void choose_direction_to_walk_into(GameObject target = null, bool away_from_target = false)
+    {
+        int dif = -1;
+        if (target == null)
+        {
+            target = player;
+        }
+
+        else if (away_from_target)
+        {
+            dif = 1;
+        }
+        if (GetPlayerOffset(0, 32, 0.125f, true, target) == dif)
+        {
+            TurnRight();
+        }
+        else
+            TurnLeft();
+    }
     public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind, GameObject target = null)
     {
         if (target == null)
@@ -724,17 +744,17 @@ public class Basic_Behaviour : MonoBehaviour
             if (!friendly_behav.started_walking /*&& !friendly_behav.facing_player*/)
             {
                 Debug.Log("start walking - frendo");
-     
+
                 StartCoroutine(WaitBeforeWalkingTowards(friendly_behav.player_target));
                 //friendly_behav.started_walking = true;
             }
-          /*  if (TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
-            {
-                Debug.Log("TOUCHING - frendo");
-                //friendly_behav.facing_player = true;
-                friendly_behav.started_walking = false;
-                turning_in_place = false;
-            }*/
+            /*  if (TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
+              {
+                  Debug.Log("TOUCHING - frendo");
+                  //friendly_behav.facing_player = true;
+                  friendly_behav.started_walking = false;
+                  turning_in_place = false;
+              }*/
         }
         else if (agg_behav.enabled)
         {
@@ -781,7 +801,7 @@ public class Basic_Behaviour : MonoBehaviour
 
             WalkForward();
             yield return new WaitForSeconds(0);
-           
+
             if (!TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
             {
                 //dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * 0.3f);
@@ -799,7 +819,7 @@ public class Basic_Behaviour : MonoBehaviour
 
         }
 
-    
+
     }
 
     // Update is called once per frame

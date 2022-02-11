@@ -32,7 +32,7 @@ public class MovementUtils : MonoBehaviour
         {
 
             if (and_start_moving)
-                start_moving(); 
+                start_moving();
             else
                 stop_turning();
             return true;
@@ -72,14 +72,10 @@ public class MovementUtils : MonoBehaviour
     {
         anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
         basic_behav.y_goal = basic_behav.walking_value;
-        if (basic_behav.GetPlayerOffset(0, 32, 0.125f, true, target) == -1)
-        {
-            basic_behav.TurnRight();
-        }
-        else
-            basic_behav.TurnLeft();
+        basic_behav.choose_direction_to_walk_into();
 
     }
+
 
     private void stop_turning()
     {

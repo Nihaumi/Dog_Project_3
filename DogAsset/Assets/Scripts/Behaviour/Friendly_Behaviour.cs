@@ -31,9 +31,15 @@ public class Friendly_Behaviour : MonoBehaviour
         Turning,
         WalkToTarget,
         SitDown,
-        Stop
+        Stop,
+        initial
     }
-    Step current_step;
+   [SerializeField] Step current_step;
+
+    public Step GetCurrentStep()
+    {
+        return current_step;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +68,7 @@ public class Friendly_Behaviour : MonoBehaviour
         friendly_time = 3f;//TODO anpassen
 
         after_friendly_anim_counter = 0;
+        current_step = Step.initial;
     }
 
 
@@ -107,7 +114,41 @@ public class Friendly_Behaviour : MonoBehaviour
     public bool friendly;
     public void ApproachPlayer()
     {
-        Debug.Log("HElooooooooo");
+        switch (current_step)
+        {
+            case Step.Turning:
+                /* 
+                 * 1. drehen
+                 * 2. wenn auf target gucken stehen
+                 */
+                bool are_we_facing_the_player = MU.turn_until_facing(player_target, true);
+
+                if (are_we_facing_the_player)
+                    current_step = Step.WalkToTarget;
+                break;
+            case Step.WalkToTarget:
+                /*
+                 * 3. laufen zum target
+                 */
+                bool are_we_touching_the_player = MU.walk_until_touching(player_target);
+
+                if (are_we_touching_the_player)
+                    current_step = Step.SitDown;
+                break;
+            case Step.SitDown:
+                MU.sit_down();
+                current_step = Step.Stop;
+                break;
+            case Step.Stop:
+                /*
+                 * 4. Do nothing
+                 */
+                break;
+            default:
+                break;
+        }
+
+        /*Debug.Log("HElooooooooo");
         if (!facing_player && friendly)
         {
             Debug.Log("working on facing player");
@@ -134,7 +175,7 @@ public class Friendly_Behaviour : MonoBehaviour
             }
 
             Debug.Log("touching player");
-        }
+        }*/
     }
 
 
@@ -146,18 +187,20 @@ public class Friendly_Behaviour : MonoBehaviour
     [SerializeField] int after_friendly_anim_counter;
     public void FriendlyBehaviour()
     {
-        if (!facing_player && !started_walking)
+        if (current_step == Step.initial)
         {
             Debug.Log("So are you gonna do itHUH");
             switch (basic_behav.dog_state)
             {
                 case Basic_Behaviour.Animation_state.standing:
+
                     basic_behav.ResetParameter();
                     dog_audio.StopAllSounds();
                     friendly = true;
-                    basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
                     current_step = Step.Turning;
                     basic_behav.SetShortTimer(10, 15);
+
                     break;
                 case Basic_Behaviour.Animation_state.pause:
                     basic_behav.ResetParameter();
@@ -199,7 +242,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     break;
             }
         }
-        if (facing_player && escape_chance_on)
+        if (current_step == Step.Stop)
         {
             Debug.Log("ENTER FRIENDLY RANDOM BEHAV");
             dog_audio.StopAllSounds();
@@ -213,11 +256,7 @@ public class Friendly_Behaviour : MonoBehaviour
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
                         basic_behav.y_goal = basic_behav.walking_value;
-                        if (basic_behav.GetPlayerOffset(0, 32, 0.12f, false) == -1)
-                        {
-                            basic_behav.TurnLeft();
-                        }
-                        else basic_behav.TurnRight();
+                        basic_behav.choose_direction_to_walk_into(player, true);
                         basic_behav.SetShortTimer(2, 2);
                         after_friendly_anim_counter++;
                     }
@@ -235,9 +274,9 @@ public class Friendly_Behaviour : MonoBehaviour
                         StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                         basic_behav.SetShortTimer(3, 3);//TODO Set time right
                         after_friendly_anim_counter++;
-                        
+
                     }
-                    else if(after_friendly_anim_counter == 3)
+                    else if (after_friendly_anim_counter == 3)
                     {
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
                         pause_behav.enter_pause = true;
