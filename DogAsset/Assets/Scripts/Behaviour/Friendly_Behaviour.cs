@@ -20,10 +20,21 @@ public class Friendly_Behaviour : MonoBehaviour
     Neutral_Behaviour neutral_behav;
     PlayerInteraction player_interaction;
     Audio_Sources dog_audio;
-
+    Pause_Behaviour pause_behav;
+    MovementUtils MU;
 
     [SerializeField] float friendly_time;
-    public double friendly_goal_dist_to_player = 2f;
+    public double friendly_goal_dist_to_player = 3f;
+
+    public enum Step
+    {
+        Turning,
+        WalkToTarget,
+        SitDown,
+        Stop
+    }
+    Step current_step;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,11 +53,13 @@ public class Friendly_Behaviour : MonoBehaviour
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
         player_interaction = player.GetComponent<PlayerInteraction>();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
+        pause_behav = dog.GetComponent<Pause_Behaviour>();
+        MU = dog.GetComponent<MovementUtils>();
 
         facing_player = false;
         escape_chance_on = false;
         friendly = false;
-        friendly_time = 30f;
+        friendly_time = 3f;//TODO anpassen
 
         after_friendly_anim_counter = 0;
     }
@@ -143,7 +156,15 @@ public class Friendly_Behaviour : MonoBehaviour
                     dog_audio.StopAllSounds();
                     friendly = true;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    current_step = Step.Turning;
                     basic_behav.SetShortTimer(10, 15);
+                    break;
+                case Basic_Behaviour.Animation_state.pause:
+                    basic_behav.ResetParameter();
+                    dog_audio.StopAllSounds();
+                    friendly = true;
+                    basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(1, 1);
                     break;
                 case Basic_Behaviour.Animation_state.sitting:
                     dog_audio.StopAllSounds();
@@ -212,9 +233,14 @@ public class Friendly_Behaviour : MonoBehaviour
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
                         StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
-                        basic_behav.SetShortTimer(100, 100);
+                        basic_behav.SetShortTimer(3, 3);//TODO Set time right
                         after_friendly_anim_counter++;
+                        
+                    }
+                    else if(after_friendly_anim_counter == 3)
+                    {
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
+                        pause_behav.enter_pause = true;
                     }
                     /*else if (after_friendly_anim_counter == 3)
                     {

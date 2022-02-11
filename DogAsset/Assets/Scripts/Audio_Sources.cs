@@ -27,6 +27,7 @@ public class Audio_Sources : MonoBehaviour
         aggressive_bark.Stop();
         panting.Stop();
         panting_calm.Stop();
+        bite_bark.Stop();
     }
 
     public IEnumerator PlaySoundAfterPause(AudioSource audio)

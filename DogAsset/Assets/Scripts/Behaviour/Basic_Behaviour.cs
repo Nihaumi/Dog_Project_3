@@ -17,7 +17,8 @@ public class Basic_Behaviour : MonoBehaviour
         turning_left,
         walking_after_turning,
         friendly_walking,
-        after_aggression
+        after_aggression,
+        pause
     };
 
     public Animation_state dog_state;
@@ -47,6 +48,7 @@ public class Basic_Behaviour : MonoBehaviour
     Turning_Behaviour turning_behav;
     PlayerInteraction player_interaction;
     Aggressive_Behaviour agg_behav;
+    Pause_Behaviour pause_behav;
 
     double neutral_goal_dist_to_player = 3f;
     private void Awake()
@@ -74,10 +76,11 @@ public class Basic_Behaviour : MonoBehaviour
         turning_behav = dog.GetComponent<Turning_Behaviour>();
         player_interaction = player.GetComponent<PlayerInteraction>();
         agg_behav = dog.GetComponent<Aggressive_Behaviour>();
+        pause_behav = dog.GetComponent<Pause_Behaviour>();
 
         //state
         anim_controll.current_state = anim.stand_02;
-        dog_state = Animation_state.standing;
+        dog_state = Animation_state.pause;//TODO put in right initial state
 
         //timer
         min_timer = starting_timer;
@@ -240,25 +243,23 @@ public class Basic_Behaviour : MonoBehaviour
     }
 
     //if too close to player, turn left or right
-    void DodgePlayer()
+    public void DodgePlayer(float timer)
     {
         if (TouchingPlayer(neutral_goal_dist_to_player))
         {
-            float timer = 5;
             Debug.Log("DODGE");
-            if (dog_state == Animation_state.walking)
+
+            if (y_goal == trot_value)
             {
-                if (y_goal == trot_value)
-                {
-                    timer = 3;
-                    //y_goal = walking_value;
-                }
-                if (GetPlayerOffset(0, 32, 0.12f, false) == -1)
-                {
-                    TurnLeft();
-                }
-                else TurnRight();
+                timer = 3;
+                //y_goal = walking_value;
             }
+            if (GetPlayerOffset(0, 32, 0.12f, false) == -1)
+            {
+                TurnLeft();
+            }
+            else TurnRight();
+
             if (change_anim_timer > timer)
             {
                 change_anim_timer = timer;
@@ -430,13 +431,16 @@ public class Basic_Behaviour : MonoBehaviour
     float beside_dog = 0.6f;*/
     // soft enforce: behind, left behind, right behind
     // !soft enfrce: behind
-    public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind)
+    public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind, GameObject target = null)
     {
-        Vector3 player_pos_local = dog.transform.InverseTransformPoint(player_target.transform.position);
+        if (target == null)
+            target = player;
+
+        Vector3 target_pos = dog.transform.InverseTransformPoint(target.transform.position);
 
         float focus_2;
         //check front or behind, hinten ist alles hinten
-        if (player_pos_local.z < behind_dog && !soft_enforce_behind)
+        if (target_pos.z < behind_dog && !soft_enforce_behind)
         {
             Debug.Log("BEHIND");
             focus_2 = 2;
@@ -447,12 +451,12 @@ public class Basic_Behaviour : MonoBehaviour
         float m = before_dog / beside_dog;
 
         //schnittpunkt mit linker/rechter geraden an player.x
-        float left_value = -m * player_pos_local.x;
-        float right_value = m * player_pos_local.x;
+        float left_value = -m * target_pos.x;
+        float right_value = m * target_pos.x;
 
         //abstand von l/r gerade zu PLayer ... in z richtung
-        float left_dif = left_value - player_pos_local.z;
-        float right_dif = right_value - player_pos_local.z;
+        float left_dif = left_value - target_pos.z;
+        float right_dif = right_value - target_pos.z;
 
         //check if player is right on the gerade
         if (left_dif == 0)
@@ -477,7 +481,7 @@ public class Basic_Behaviour : MonoBehaviour
         }
         if (focus_2 == 0)
         {
-            if (player_pos_local.z < behind_dog)
+            if (target_pos.z < behind_dog)
             {
                 Debug.Log("BEHIND");
                 focus_2 = 2;
@@ -642,6 +646,7 @@ public class Basic_Behaviour : MonoBehaviour
     public Vector3 current_position;
     public Vector3 target_pos;
     public bool turning_in_place = false;
+    public bool should_walk_to_target = false;
     public void TurnToTarget(GameObject target)
     {
         if (!turning_in_place)
@@ -650,7 +655,7 @@ public class Basic_Behaviour : MonoBehaviour
         }
         direction = target.transform.position - dog.transform.position;
         rotation = Quaternion.LookRotation(direction);
-        dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+        // dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
         if (friendly_behav.enabled == true)
         {
             IncreaseSpeed(0.005f);
@@ -661,15 +666,18 @@ public class Basic_Behaviour : MonoBehaviour
         }
     }
     //make turning speed smoother--> not start fast and get way slower
-    void IncreaseSpeed(float increase)
+    public void IncreaseSpeed(float increase)
     {
-        Debug.Log("SPEEEEEED");
         if (speed < 1 && y_axis > walking_slow_value)
         {
             speed = speed + increase;
         }
     }
-
+    /*TODO
+     * 2 Funktionen 
+     * 1 drehen
+     * 2 lauf straight
+     */
     public void TurnInPlace()
     {
         Debug.Log("turning in place");
@@ -677,8 +685,10 @@ public class Basic_Behaviour : MonoBehaviour
         {
             anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
         }
-        x_goal = walking_value;
-        WalkForward();
+        //y_goal = walking_value;
+
+        y_goal = walking_value;
+        TurnLeft();
         y_acceleration = turning_y_acceleration;
         turning_in_place = true; //false in agressive behav und Waitbefore wlaking
     }
@@ -711,18 +721,20 @@ public class Basic_Behaviour : MonoBehaviour
     {
         if (friendly_behav.enabled)
         {
-            if (!friendly_behav.started_walking && !friendly_behav.facing_player)
+            if (!friendly_behav.started_walking /*&& !friendly_behav.facing_player*/)
             {
                 Debug.Log("start walking - frendo");
+     
                 StartCoroutine(WaitBeforeWalkingTowards(friendly_behav.player_target));
-                friendly_behav.started_walking = true;
+                //friendly_behav.started_walking = true;
             }
-            if (TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
+          /*  if (TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
             {
                 Debug.Log("TOUCHING - frendo");
-                friendly_behav.facing_player = true;
+                //friendly_behav.facing_player = true;
                 friendly_behav.started_walking = false;
-            }
+                turning_in_place = false;
+            }*/
         }
         else if (agg_behav.enabled)
         {
@@ -740,15 +752,54 @@ public class Basic_Behaviour : MonoBehaviour
                 agg_behav.started_walking = false;
             }
         }
+        else if (pause_behav.enabled)
+        {
+            if (!pause_behav.started_walking && !pause_behav.facing_pause_location)
+            {
+                Debug.Log("start walking - pause");
+                pause_behav.started_walking = true;
+            }
+            if (pause_behav.dist_to_target < pause_behav.pause_goal_dist)
+            {
+                pause_behav.facing_pause_location = true;
+                turning_in_place = false;
+                pause_behav.started_walking = false;
+            }
+        }
+
     }
 
     //walking towards
     public IEnumerator WaitBeforeWalkingTowards(GameObject target)
     {
-        yield return new WaitForSeconds(1);
+
         Debug.Log("WALK BITCH");
         //turning_in_place = false;
-        //dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * speed);
+        if (GetPlayerOffset(0, 4, 1f, true) == 0)
+        {
+            Debug.Log("FACING");
+
+            WalkForward();
+            yield return new WaitForSeconds(0);
+           
+            if (!TouchingPlayer(friendly_behav.friendly_goal_dist_to_player))
+            {
+                //dog.transform.position = Vector3.MoveTowards(current_position, target.transform.position, Time.deltaTime * 0.3f);
+            }
+            else
+            {
+                Debug.Log("TOUCHING - frendo");
+                //friendly_behav.facing_player = true;
+                yield return new WaitForSeconds(0);
+                friendly_behav.facing_player = true;
+                friendly_behav.started_walking = true;
+                //friendly_behav.started_walking = false;
+                turning_in_place = false;
+            }
+
+        }
+
+    
     }
 
     // Update is called once per frame
@@ -782,7 +833,6 @@ public class Basic_Behaviour : MonoBehaviour
         else if (behav_switch.friendly_script.enabled)
         {//friendly
 
-            Debug.Log("IS THIS THING ON?!");
             if (y_goal == trot_value)
             {
                 y_goal = walking_slow_value;
@@ -790,7 +840,23 @@ public class Basic_Behaviour : MonoBehaviour
             //TODO uncomment
             friendly_behav.ApproachPlayer();
         }
-        else DodgePlayer();
+        else if (pause_behav.enabled)
+        {//pause
+            pause_behav.CalculatePauseDist();
+            if (pause_behav.go_to_location)
+            {
+                Debug.Log("Mache PAUSE");
+                pause_behav.GoToPauseLocation();
+            }
+            //DodgePlayer(5);
+        }
+        else
+        {//neutral
+            if (dog_state == Animation_state.walking)
+            {
+                DodgePlayer(5);
+            }
+        }
 
         //Change Animation on Timer depending on Behaviour
         if (change_anim_timer <= 0)
@@ -810,6 +876,10 @@ public class Basic_Behaviour : MonoBehaviour
             else if (behav_switch.aggressive_script.enabled)
             {
                 agg_behav.AggressiveBehaviour();
+            }
+            else if (behav_switch.pause_behav.enabled)
+            {
+                pause_behav.PauseBehaviour();
             }
             ResetTimerFunction();
             //Debug.Log("new state " + dog_state);

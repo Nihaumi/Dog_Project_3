@@ -16,6 +16,7 @@ public class Neutral_Behaviour : MonoBehaviour
     Turning_Direction_Handler turn_dir_handler;
     Basic_Behaviour basic_behav;
     Audio_Sources dog_audio;
+    Pause_Behaviour pause_behav;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,6 +31,8 @@ public class Neutral_Behaviour : MonoBehaviour
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
         basic_behav = dog.GetComponent<Basic_Behaviour>();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
+        pause_behav = dog.GetComponent<Pause_Behaviour>();
+
     }
 
     // Update is called once per frame

@@ -18,7 +18,7 @@ public class Aggressive_Behaviour : MonoBehaviour
     Neutral_Behaviour neutral_behav;
     PlayerInteraction player_interaction;
     Audio_Sources dog_audio;
-
+    Pause_Behaviour pause_behav;
 
 
     // Start is called before the first frame update
@@ -39,6 +39,8 @@ public class Aggressive_Behaviour : MonoBehaviour
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
         player_interaction = player.GetComponent<PlayerInteraction>();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
+        pause_behav = dog.GetComponent<Pause_Behaviour>();
+
 
         basic_behav.turning_in_place = false;
         facing_player = false;
@@ -57,7 +59,6 @@ public class Aggressive_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("AGGROOO");
 
     }
     //on start false
@@ -150,11 +151,13 @@ public class Aggressive_Behaviour : MonoBehaviour
     {
         if (facing_player)
         {
-            if (dist_to_player < close_enough_to_player)
+            if (dist_to_player < close_enough_to_player || aggression_animation_counter > 3)
             {
+                Debug.Log("STOP");
                 dog_audio.StopAllSounds();
                 anim_controll.ChangeAnimationState(anim.trans_agg_to_stand);
                 basic_behav.dog_state = Basic_Behaviour.Animation_state.after_aggression;
+                basic_behav.change_anim_timer = 4;
                 facing_player = false;
                 //tell behav switch to switch to neutral/friendly
                 aggressive_too_close = true;
@@ -175,23 +178,29 @@ public class Aggressive_Behaviour : MonoBehaviour
             //lay down
             case Basic_Behaviour.Animation_state.after_aggression:
                 dog_audio.StopAllSounds();
+                Debug.Log("AFTER AGGRO");
                 if (after_aggression_counter == 0)
                 {
                     basic_behav.ResetParameter();
                     anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
                     basic_behav.y_goal = basic_behav.walking_value;
-                    basic_behav.TurnLeft();
-                    basic_behav.SetShortTimer(2, 2);
+                    basic_behav.DodgePlayer(4);
                     after_aggression_counter++;
                 }
                 else if (after_aggression_counter == 1)
                 {
                     basic_behav.WalkForward();
-                    basic_behav.y_goal = basic_behav.standing_value;
                     after_aggression_counter++;
-                    basic_behav.SetShortTimer(1, 1);
+                    basic_behav.SetShortTimer(4, 4);
+
                 }
                 else if (after_aggression_counter == 2)
+                {
+                    basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
+                    basic_behav.SetShortTimer(2, 2);
+                    pause_behav.enter_pause = true;
+                }
+                /*else if (after_aggression_counter == 2)
                 {
                     anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_01);
                     basic_behav.ResetParameter();
@@ -199,7 +208,8 @@ public class Aggressive_Behaviour : MonoBehaviour
                     basic_behav.SetLongTimer();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
                     dog_audio.PlaySoundAfterPause(dog_audio.panting_calm);
-                }
+                }*/
+                basic_behav.SetShortTimer(4, 4);
                 break;
             case Basic_Behaviour.Animation_state.aggressiv:
                 aggressive = true;
@@ -227,7 +237,7 @@ public class Aggressive_Behaviour : MonoBehaviour
                         aggression_animation_counter++;
                     }
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.aggressiv;
-                    basic_behav.SetShortTimer(10, 10);
+                    basic_behav.SetShortTimer(1, 1); //TODO set times to 10
                 }
                 break;
             case Basic_Behaviour.Animation_state.standing:

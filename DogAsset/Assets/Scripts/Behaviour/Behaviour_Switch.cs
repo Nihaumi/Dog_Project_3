@@ -11,7 +11,9 @@ public class Behaviour_Switch : MonoBehaviour
     public Neutral_Behaviour neutral_script;
     public Basic_Behaviour basic_script;
     public Aggressive_Behaviour aggressive_script;
+    public Pause_Behaviour pause_behav;
     Turning_Behaviour turning_behav;
+
 
     //get Player
     GameObject player;
@@ -23,12 +25,16 @@ public class Behaviour_Switch : MonoBehaviour
     [SerializeField] bool friendly;
     [SerializeField] bool agressive;
     [SerializeField] bool neutral;
+    [SerializeField] bool paused;
     [SerializeField] float friendly_timer;
     [SerializeField] float agressive_timer;
     [SerializeField] float neutral_timer;
+    [SerializeField] float pause_timer;
     [SerializeField] float friendly_time = 60f;
     [SerializeField] float agressive_time = 60f;
     [SerializeField] float neutral_time = 30f;
+    [SerializeField] float pause_time = 30f;
+    [SerializeField] float initial_pause_time = 20f;
 
 
     //behaviour states
@@ -38,6 +44,7 @@ public class Behaviour_Switch : MonoBehaviour
         friendly,
         neutral,
         aggressive,
+        paused
     }
     public Behaviour_state dog_behaviour;
 
@@ -53,6 +60,7 @@ public class Behaviour_Switch : MonoBehaviour
         basic_script = dog.GetComponent<Basic_Behaviour>();
         aggressive_script = dog.GetComponent<Aggressive_Behaviour>();
         turning_behav = dog.GetComponent<Turning_Behaviour>();
+        pause_behav = dog.GetComponent<Pause_Behaviour>();
 
         //set scripts
         DisableScripts();
@@ -64,7 +72,10 @@ public class Behaviour_Switch : MonoBehaviour
         // is updated immediately on first call to Up
         dog_behaviour = Behaviour_state.initial;
 
+        visited_behaviours_count = 0;
+
         ResetTimers();
+        pause_timer = initial_pause_time;
     }
 
     float GetDistanceToObject(GameObject obj_1, GameObject obj_2)
@@ -72,13 +83,14 @@ public class Behaviour_Switch : MonoBehaviour
         dist = Vector3.Distance(obj_1.transform.position, obj_2.transform.position);
         return dist;
     }
-   void  ResetTimers()
+    void ResetTimers()
     {
         friendly_timer = friendly_time;
         neutral_timer = neutral_time;
         agressive_timer = agressive_time;
+        pause_timer = pause_time;
     }
-  
+
     // Update is called once per frame
     void Update()
     {
@@ -90,6 +102,7 @@ public class Behaviour_Switch : MonoBehaviour
         }
         if (friendly)
         {
+            Debug.Log("FRIEND ON");
             DisableScripts();
             turning_behav.enabled = true;
             friendly_script.enabled = true;
@@ -97,6 +110,7 @@ public class Behaviour_Switch : MonoBehaviour
         }
         else if (neutral)
         {
+            Debug.Log("NEUTRAL ON");
             DisableScripts();
             turning_behav.enabled = true;
             neutral_script.enabled = true;
@@ -109,41 +123,83 @@ public class Behaviour_Switch : MonoBehaviour
             aggressive_script.enabled = true;
             agressive_timer = agressive_timer - Time.deltaTime * 1;
         }
-        ChangeBehavioursOnZero();
+        else if (paused)
+        {
+            Debug.Log("PAUSED ON");
+            DisableScripts();
+            turning_behav.enabled = false;
+            pause_behav.enabled = true;
+            pause_timer = pause_timer - Time.deltaTime * 1;
+        }
+        ChangeBehaviours();
     }
 
-    [SerializeField] bool friendly_has_been_visited = false;
+    [SerializeField] int visited_behaviours_count;
 
-    void ChangeBehavioursOnZero()
+    void ChangeBehaviours()
     {
-        if (friendly_timer <= 0)
+        if (/*friendly_timer <= 0 || */pause_behav.enter_pause)
         {
+            Debug.Log("FRINED DOWN");
             SetScriptsFalse();
             DisableScripts();
             ResetTimers();
-            friendly_has_been_visited = true;
-            neutral = true;
+            visited_behaviours_count++;
+            paused = true;
+            pause_behav.enter_pause = false;
         }
         if (neutral_timer <= 0)
         {
+            Debug.Log("NEUTRAL DOWN");
             SetScriptsFalse();
             DisableScripts();
             ResetTimers();
-            if(!friendly_has_been_visited)
+            visited_behaviours_count++;
+            if (visited_behaviours_count == 1 % 5)
             {
                 friendly = true;
             }
-            else
+            else if (visited_behaviours_count == 3 % 5)
             {
-                agressive = true;
+                pause_time = 10f;
+                paused = true;
             }
+            else paused = true;
+
         }
-        if (agressive_timer <= 0)
+        if (/*agressive_timer <= 0 || */pause_behav.enter_pause)
         {
             SetScriptsFalse();
             DisableScripts();
             ResetTimers();
-            neutral = true;
+            visited_behaviours_count++;
+            paused = true;
+            pause_behav.enter_pause = false;
+        }
+        if (pause_behav.end_pause)
+        {
+            Debug.Log("PAUSED DOWN");
+            SetScriptsFalse();
+            DisableScripts();
+            ResetTimers();
+            if (visited_behaviours_count == 0 % 5)
+            {
+                neutral = true;
+            }
+            else if (visited_behaviours_count == 2 % 5)
+            {
+                neutral = true;
+                neutral_timer = 20f;
+            }
+            else if (visited_behaviours_count == 3 % 5)
+            {
+                agressive = true;
+            }
+            else if (visited_behaviours_count == 4 % 5)
+            {
+                neutral = true;
+            }
+            pause_behav.end_pause = false;
         }
     }
 
@@ -152,6 +208,7 @@ public class Behaviour_Switch : MonoBehaviour
         agressive = false;
         neutral = false;
         friendly = false;
+        paused = false;
     }
 
     public void DisableScripts()
@@ -159,6 +216,7 @@ public class Behaviour_Switch : MonoBehaviour
         friendly_script.enabled = false;
         aggressive_script.enabled = false;
         neutral_script.enabled = false;
+        pause_behav.enabled = false;
     }
 
 }
