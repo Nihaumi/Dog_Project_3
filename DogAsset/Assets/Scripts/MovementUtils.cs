@@ -25,6 +25,10 @@ public class MovementUtils : MonoBehaviour
     {
         anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
     }
+    public void lay_down()
+    {
+        anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
+    }
     //moon.Transform.rotation=Quaternion.RotateTowards(moon.Transform.rotation,target.Transform.rotation,float time)
     public bool turn_until_facing(GameObject target, bool and_start_moving = false)
     {
@@ -72,7 +76,7 @@ public class MovementUtils : MonoBehaviour
     {
         anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
         basic_behav.y_goal = basic_behav.walking_value;
-        basic_behav.choose_direction_to_walk_into();
+        basic_behav.choose_direction_to_walk_into(target);
 
     }
 
