@@ -8,7 +8,7 @@ public class MovementUtils : MonoBehaviour
     Animation_Controll anim_controll;
     Animations anim;
     Basic_Behaviour basic_behav;
-    float speed = 0.1f;
+    float speed = 10f;
 
     Vector3 direction;
     Quaternion rotation;
@@ -57,7 +57,8 @@ public class MovementUtils : MonoBehaviour
         else
         {
             //start_moving();
-
+            Debug.Log("LOOKING DIRECTLY");
+            looking_directly_at(target);
             return false;
         }
     }
@@ -69,23 +70,31 @@ public class MovementUtils : MonoBehaviour
 
     private bool is_looking_at(GameObject target)
     {
-        return basic_behav.GetPlayerOffset(0, 64, 0.125f, true, target) == 0;
+        return basic_behav.GetPlayerOffset(0, 32, 0.125f, true, target) == 0;
     }
 
     public bool looking_directly_at(GameObject target)
     {
-        if (basic_behav.GetPlayerOffset(0, 32, 0.125f, true, target) != 0)
+        Vector3 target_pos = dog.transform.InverseTransformPoint(target.transform.position);
+        if(target_pos.x == 0.0f)
         {
-            direction = target.transform.position - dog.transform.position;
-            rotation = Quaternion.LookRotation(direction);
-            dog.transform.rotation = Quaternion.Lerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+            Debug.Log("True MIDDLE");
+            return true;
+        }
 
-            basic_behav.IncreaseSpeed(0.005f);
+        else
+        {
+            Debug.Log("TRAGET LOCAL POS: " + target_pos);
+            Debug.Log("CORRECTING COURSE");
+            direction = (target.transform.position - dog.transform.position).normalized;
+            rotation = Quaternion.LookRotation(direction);
+            dog.transform.rotation = Quaternion.Slerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
+
+            basic_behav.x_goal = basic_behav.walking_value;
             basic_behav.WalkForward();
             basic_behav.y_acceleration = 2f;
             return false;
         }
-        else return true;
     }
 
     private void start_turning_towards(GameObject target)
@@ -111,8 +120,9 @@ public class MovementUtils : MonoBehaviour
         basic_behav.y_acceleration = 2f;
     }
 
-    private void stop_moving()
+    public  void stop_moving()
     {
         basic_behav.y_goal = basic_behav.standing_value;
+        basic_behav.x_goal = basic_behav.standing_value;
     }
 }

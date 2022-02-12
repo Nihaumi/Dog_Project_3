@@ -30,6 +30,7 @@ public class Aggressive_Behaviour : MonoBehaviour
         WalkToPos,
         LayDown,
         TurnToPlayer,
+        FindTarget,
         Stop
     }
 
@@ -132,7 +133,18 @@ public class Aggressive_Behaviour : MonoBehaviour
                 bool are_we_facing_the_player = MU.turn_until_facing(player);
 
                 if (are_we_facing_the_player)
+                {
+                    current_step = Step.FindTarget;
+                }
+
+                break;
+            case Step.FindTarget:
+                if (MU.looking_directly_at(player))
+                {
+                    MU.stop_moving();
                     current_step = Step.Stop;
+                }
+
                 break;
             case Step.Stop:
                 /*

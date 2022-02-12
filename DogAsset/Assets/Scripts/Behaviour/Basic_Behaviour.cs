@@ -454,7 +454,9 @@ public class Basic_Behaviour : MonoBehaviour
     public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind, GameObject target = null)
     {
         if (target == null)
+        {
             target = player;
+        }
 
         Vector3 target_pos = dog.transform.InverseTransformPoint(target.transform.position);
 
