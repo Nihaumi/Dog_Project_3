@@ -123,6 +123,14 @@ public class Friendly_Behaviour : MonoBehaviour
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
+                if (!MU.walk_until_complete_speed(0.9999f))
+                {
+                    MU.start_moving();
+
+                    return;
+                }
+
+                MU.reset_acceleration();
                 bool are_we_facing_the_player = MU.turn_until_facing(player_target, true);
 
                 if (are_we_facing_the_player)
@@ -141,6 +149,7 @@ public class Friendly_Behaviour : MonoBehaviour
                 if (!MU.walk_until_complete_speed(0))
                 {
                     MU.sit_down();
+                    basic_behav.change_anim_timer = 3f; //TODO anpassen
                     current_step = Step.Stop;
                 }
 
@@ -149,41 +158,12 @@ public class Friendly_Behaviour : MonoBehaviour
                 /*
                  * 4. Do nothing
                  */
+
                 break;
             default:
                 break;
         }
-
-        /*Debug.Log("HElooooooooo");
-        if (!facing_player && friendly)
-        {
-            Debug.Log("working on facing player");
-            basic_behav.TurnToTarget(player_target);
-            basic_behav.TurningAndWalkingLogicHandler();
-        }
-        if (basic_behav.TouchingPlayer(friendly_goal_dist_to_player) && facing_player)
-        {
-            if (!escape_chance_on)
-            {//from walk to stand               
-                basic_behav.y_goal = basic_behav.standing_value;
-                basic_behav.x_axis = basic_behav.standing_value;
-                basic_behav.y_acceleration = basic_behav.turning_y_acceleration;
-                dog_audio.StopAllSounds();
-            }
-            if (basic_behav.y_axis == basic_behav.standing_value && !escape_chance_on)
-            {//sit down
-                basic_behav.y_acceleration = basic_behav.default_y_acceleration;
-                anim_controll.ChangeAnimationState(anim.friendly_trans_stand_to_sitting);
-                StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
-                basic_behav.change_anim_timer = friendly_time;
-                basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
-                escape_chance_on = true;
-            }
-
-            Debug.Log("touching player");
-        }*/
     }
-
 
     /*
     *   Changes the dog behaviour between standing, sitting, lying, sleeping and walking.
@@ -260,20 +240,28 @@ public class Friendly_Behaviour : MonoBehaviour
                     if (after_friendly_anim_counter == 0)
                     {
                         basic_behav.ResetParameter();
-                        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+                        anim_controll.ChangeAnimationState(anim.trans_sitting_to_stand_agg);
+                        basic_behav.y_goal = Basic_Behaviour.standing_value;
+                        basic_behav.SetShortTimer(3, 3);
+                        after_friendly_anim_counter++;
+                    }
+                    else if (after_friendly_anim_counter == 1)
+                    {
+                        basic_behav.ResetParameter();
+                        //anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
                         basic_behav.y_goal = Basic_Behaviour.walking_value;
                         basic_behav.choose_direction_to_walk_into(player, true);
                         basic_behav.SetShortTimer(2, 2);
                         after_friendly_anim_counter++;
                     }
-                    else if (after_friendly_anim_counter == 1)
+                    else if (after_friendly_anim_counter == 2)
                     {
                         basic_behav.WalkForward();
                         basic_behav.y_goal = Basic_Behaviour.standing_value;
                         basic_behav.SetShortTimer(1, 1);
                         after_friendly_anim_counter++;
                     }
-                    else if (after_friendly_anim_counter == 2)
+                    else if (after_friendly_anim_counter == 3)
                     {
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
@@ -282,7 +270,7 @@ public class Friendly_Behaviour : MonoBehaviour
                         after_friendly_anim_counter++;
 
                     }
-                    else if (after_friendly_anim_counter == 3)
+                    else if (after_friendly_anim_counter == 4)
                     {
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
                         pause_behav.enter_pause = true;

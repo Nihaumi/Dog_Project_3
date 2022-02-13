@@ -49,7 +49,8 @@ public class Animations : MonoBehaviour
     public string stand_00 = "Stand_00";
     public string stand_01 = "Stand_01";
     public string trans_lying_to_stand_01 = "Trans_Lying_to_Stand_01";
-    public string trans_sitting_to_stand_01 = "Trans_Lying_to_Stand_01";
+    public string trans_sitting_to_stand_agg = "Trans_Sitting_to_Stand_agg";
+    //public string trans_sitting_to_stand_01 = "Trans_Lying_to_Stand_01";
     public string trans_sleeping_to_lying_to_stand_02 = "Trans_Sleeping_to_Lying_to_Stand_02";
     public string stand_02 = "Stand_02";
     public string trans_lying_to_stand_02 = "Trans_Lying_to_Stand_02";

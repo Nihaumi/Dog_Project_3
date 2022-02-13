@@ -122,12 +122,9 @@ public class Aggressive_Behaviour : MonoBehaviour
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
-
-                // x_goal = -1
-
                 if (!MU.walk_until_complete_speed(0.75f))
                 {
-                    MU.start_moving();
+                    MU.start_moving_straight();
 
                     return;
                 }

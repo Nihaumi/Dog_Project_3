@@ -2452,7 +2452,7 @@ MonoBehaviour:
   friendly: 0
   agressive: 0
   neutral: 0
-  paused: 0
+  paused: 1
   friendly_timer: 60
   agressive_timer: 30
   neutral_timer: 100
@@ -5006,6 +5006,7 @@ MonoBehaviour:
   agg_position: {fileID: 0}
   animator: {fileID: 0}
   dog_sound_manager: {fileID: 0}
+  timer: 0
   enter_pause: 0
   go_to_location: 0
   facing_pause_location: 0
@@ -5156,7 +5157,7 @@ MonoBehaviour:
   stand_00: Stand_00
   stand_01: Stand_01
   trans_lying_to_stand_01: Trans_Lying_to_Stand_01
-  trans_sitting_to_stand_01: Trans_Lying_to_Stand_01
+  trans_sitting_to_stand_agg: Trans_Sitting_to_Stand_agg
   trans_sleeping_to_lying_to_stand_02: Trans_Sleeping_to_Lying_to_Stand_02
   stand_02: Stand_02
   trans_lying_to_stand_02: Trans_Lying_to_Stand_02
@@ -5429,7 +5430,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1045705193}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a71e656a7955b4a4ba81037731e4ef1c, type: 3}
   m_Name: 

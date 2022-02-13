@@ -35,16 +35,14 @@ public class MovementUtils : MonoBehaviour
         Debug.Log("TURN GOAL: " + basic_behav.x_goal);
         if (is_looking_at(target))
         {
-
             if (and_start_moving)
-                start_moving();
+                start_moving_straight();
             else
                 stop_turning();
             return true;
         }
         else
         {
-
             start_turning_towards(target);
             return false;
         }
@@ -109,7 +107,6 @@ public class MovementUtils : MonoBehaviour
 
     private void start_turning_towards(GameObject target)
     {
-
         change_blend_tree_if_necessary(false);
         basic_behav.choose_direction_to_walk_into(target);
     }
@@ -134,8 +131,15 @@ public class MovementUtils : MonoBehaviour
     public void start_moving()
     {
         //stop_turning();
-        change_blend_tree_if_necessary(false);
+        change_blend_tree_if_necessary(true);
         //basic_behav.y_goal = basic_behav.walking_value;
+        basic_behav.WalkForward();
+        basic_behav.y_acceleration = 2f;
+    }
+
+    public void start_moving_straight()
+    {
+        change_blend_tree_if_necessary(false);
         basic_behav.WalkForward();
         basic_behav.y_acceleration = 2f;
     }
