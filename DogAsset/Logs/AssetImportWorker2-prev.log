@@ -395,3 +395,4 @@ Received Import Request.
 Start importing Assets/Animalia/GermanShepherd/Meshes/GermanShepherd_AnimationController.controller using Guid(d1472f202f6354c4c9857efa8b826ce1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '73a25eb90d5a29a4007091ce130a8cf0') in 1.083361 seconds 
   Import took 1.110090 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

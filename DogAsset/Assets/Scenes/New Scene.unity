@@ -3574,7 +3574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 742694230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.42, y: 0, z: 8.03}
+  m_LocalPosition: {x: 4.57, y: 0, z: 5.95}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -5006,7 +5006,8 @@ MonoBehaviour:
   agg_position: {fileID: 0}
   animator: {fileID: 0}
   dog_sound_manager: {fileID: 0}
-  timer: 0
+  timer: 2
+  current_step: 0
   enter_pause: 0
   go_to_location: 0
   facing_pause_location: 0
@@ -5058,12 +5059,15 @@ MonoBehaviour:
   animator: {fileID: 0}
   x_axis: 0
   y_axis: 0
+  z_axis: 0
   x_goal: 0
   y_goal: 0
+  z_goal: 0
   x_acceleration: 1
   turning_y_acceleration: 1.5
   y_acceleration: 0.5
   default_y_acceleration: 0.5
+  z_acceleration: 0.5
   neck_constraint_1: {fileID: 0}
   neck_constraint_2: {fileID: 0}
   neck_constraint_3: {fileID: 0}
@@ -5154,6 +5158,7 @@ MonoBehaviour:
   turn_trot_tree: Blend_Tree_Turn_Trot
   blend_tree_seek: Blend_Tree_Seeking
   blend_tree_MU: MU no standing
+  blending_BT: Blend_blend_tree
   stand_00: Stand_00
   stand_01: Stand_01
   trans_lying_to_stand_01: Trans_Lying_to_Stand_01

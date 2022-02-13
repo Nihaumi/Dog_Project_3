@@ -29,7 +29,6 @@ public class MovementUtils : MonoBehaviour
     {
         anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
     }
-    //moon.Transform.rotation=Quaternion.RotateTowards(moon.Transform.rotation,target.Transform.rotation,float time)
     public bool turn_until_facing(GameObject target, bool and_start_moving = false)
     {
         Debug.Log("TURN GOAL: " + basic_behav.x_goal);
@@ -113,7 +112,19 @@ public class MovementUtils : MonoBehaviour
 
     public bool walk_until_complete_speed(float speed = 0.25f)
     {
-        if (Mathf.Abs(basic_behav.y_axis) + Mathf.Abs(basic_behav.x_axis) > speed)
+        if (speed < 0.01f)
+        {
+            reset_acceleration();
+            if (Mathf.Abs(basic_behav.y_axis) + Mathf.Abs(basic_behav.x_axis) < speed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        else if (Mathf.Abs(basic_behav.y_axis) + Mathf.Abs(basic_behav.x_axis) > speed)
         {
             return true;
         }
@@ -182,20 +193,17 @@ public class MovementUtils : MonoBehaviour
 
     private void change_blend_tree_if_necessary(bool standing)
     {
+        if (anim_controll.current_state != anim.blending_BT)
+        {
+            anim_controll.ChangeAnimationState(anim.blending_BT);
+        }
         if (standing)
         {
-            if (anim_controll.current_state != anim.aggresive_blend_tree)
-            {
-                anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-            }
-
+            basic_behav.ChangeBlendingBT(Basic_Behaviour.blending_bt_standing);
         }
         else
         {
-            if (anim_controll.current_state != anim.blend_tree_MU)
-            {
-                anim_controll.ChangeAnimationState(anim.blend_tree_MU);
-            }
+            basic_behav.ChangeBlendingBT(Basic_Behaviour.blending_bt_no_standing);
 
         }
     }

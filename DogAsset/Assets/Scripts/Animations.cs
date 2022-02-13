@@ -44,6 +44,7 @@ public class Animations : MonoBehaviour
     public string turn_trot_tree = "Blend_Tree_Turn_Trot";
     public string blend_tree_seek = "Blend_Tree_Seeking";
     public string blend_tree_MU = "MU no standing";
+    public string blending_BT = "Blend_blend_tree";
 
     //standing
     public string stand_00 = "Stand_00";

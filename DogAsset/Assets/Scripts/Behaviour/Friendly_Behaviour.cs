@@ -140,13 +140,13 @@ public class Friendly_Behaviour : MonoBehaviour
                 /*
                  * 3. laufen zum target
                  */
-                bool are_we_touching_the_player = MU.walk_until_touching(player_target);
+                bool are_we_touching_the_player = MU.walk_until_touching(player_target, 2f);
 
                 if (are_we_touching_the_player)
                     current_step = Step.SitDown;
                 break;
             case Step.SitDown:
-                if (!MU.walk_until_complete_speed(0))
+                if (MU.walk_until_complete_speed(0.001f))
                 {
                     MU.sit_down();
                     basic_behav.change_anim_timer = 3f; //TODO anpassen
@@ -163,6 +163,7 @@ public class Friendly_Behaviour : MonoBehaviour
             default:
                 break;
         }
+
     }
 
     /*
@@ -174,7 +175,7 @@ public class Friendly_Behaviour : MonoBehaviour
     public void FriendlyBehaviour()
     {
         if (current_step == Step.initial)
-        {
+        {//3 seconds to go from one state to another
             Debug.Log("So are you gonna do itHUH");
             switch (basic_behav.dog_state)
             {
@@ -193,25 +194,28 @@ public class Friendly_Behaviour : MonoBehaviour
                     dog_audio.StopAllSounds();
                     friendly = true;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
-                    basic_behav.SetShortTimer(1, 1);
+                    basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.sitting:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
                     anim_controll.ChangeAnimationState(anim.friendly_trans_sitting_to_stand);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.lying:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
                     anim_controll.ChangeAnimationState(anim.friendly_trans_lying_to_stand);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.sleeping:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
                     anim_controll.ChangeAnimationState(anim.friendly_trans_sleep_to_stand);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.walking:
                     Debug.Log("friends and walking");
@@ -223,6 +227,7 @@ public class Friendly_Behaviour : MonoBehaviour
                         basic_behav.y_goal = Basic_Behaviour.standing_value;
                     }
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(3, 3);
                     break;
                 default:
                     break;

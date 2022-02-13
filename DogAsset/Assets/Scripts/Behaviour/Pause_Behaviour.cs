@@ -20,8 +20,8 @@ public class Pause_Behaviour : MonoBehaviour
     MovementUtils MU;
 
 
-    [SerializeField] float timer = 0f;
-    public enum Step
+    [SerializeField] float timer = 2f;
+    [SerializeField] public enum Step
     {
         Turning,
         WalkToTarget,
@@ -32,7 +32,7 @@ public class Pause_Behaviour : MonoBehaviour
         initial
     }
 
-    Step current_step;
+    [SerializeField] Step current_step;
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +76,13 @@ public class Pause_Behaviour : MonoBehaviour
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
+                if (!MU.walk_until_complete_speed(0.9999f))
+                {
+                    MU.start_moving();
+
+                    return;
+                }
+                MU.reset_acceleration();
                 bool are_we_facing_the_pause_target = MU.turn_until_facing(pause_target, true);
 
                 if (are_we_facing_the_pause_target)
@@ -85,21 +92,28 @@ public class Pause_Behaviour : MonoBehaviour
                 /*
                  * 3. laufen zum target = pause location
                  */
-                bool are_we_touching_the_player = MU.walk_until_touching(pause_target);
+                bool are_we_touching_the_player = MU.walk_until_touching(pause_target, 1, false);
 
                 if (are_we_touching_the_player)
                     current_step = Step.TurnAround;
                 break;
             case Step.TurnAround:
                 //drehen Sie sich bitte zum Player um! ein stück weit
-                bool are_we_facing_the_player = MU.turn_until_facing(player_target);
+                if (!MU.walk_until_complete_speed(0.9999f))
+                {
+                    MU.start_moving();
 
-                if (are_we_facing_the_player)
+                    return;
+                }
+
+                MU.reset_acceleration();
+
+                if (MU.turn_until_facing(player_target))
                     current_step = Step.WaitASecond;
                 break;
             case Step.WaitASecond:
 
-                if (!MU.walk_until_complete_speed(0))
+                if (MU.walk_until_complete_speed(0.001f))
                 {
                     timer -= Time.deltaTime;
                     if (timer < 0)

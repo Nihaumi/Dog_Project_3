@@ -50,6 +50,13 @@ public class Test002_pause : MonoBehaviour
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
+                if (!MU.walk_until_complete_speed(0.9999f))
+                {
+                    MU.start_moving();
+
+                    return;
+                }
+                MU.reset_acceleration();
                 bool are_we_facing_the_pause_target = MU.turn_until_facing(pause_target, true);
 
                 if (are_we_facing_the_pause_target)
@@ -59,13 +66,21 @@ public class Test002_pause : MonoBehaviour
                 /*
                  * 3. laufen zum target = pause location
                  */
-                bool are_we_touching_the_player = MU.walk_until_touching(pause_target);
+                bool are_we_touching_the_player = MU.walk_until_touching(pause_target, 1, false);
 
                 if (are_we_touching_the_player)
                     current_step = Step.TurnAround;
                 break;
             case Step.TurnAround:
                 //drehen Sie sich bitte zum Player um! ein stück weit
+                if (!MU.walk_until_complete_speed(0.9999f))
+                {
+                    MU.start_moving();
+
+                    return;
+                }
+
+                MU.reset_acceleration();
                 bool are_we_facing_the_player = MU.turn_until_facing(player_target);
 
                 if (are_we_facing_the_player)
@@ -73,7 +88,7 @@ public class Test002_pause : MonoBehaviour
                 break;
             case Step.WaitASecond:
            
-                if (!MU.walk_until_complete_speed(0))
+                if (MU.walk_until_complete_speed(0.001f))
                 {
                     timer -= Time.deltaTime;
                     if(timer < 0)

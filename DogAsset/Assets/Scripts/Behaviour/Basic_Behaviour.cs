@@ -79,7 +79,10 @@ public class Basic_Behaviour : MonoBehaviour
         pause_behav = dog.GetComponent<Pause_Behaviour>();
 
         //state
-        anim_controll.current_state = anim.stand_02;
+        anim_controll.current_state = anim.blending_BT;
+        z_goal = 1;
+        y_goal = 0;
+        x_goal = 0;
         dog_state = Animation_state.pause;//TODO put in right initial state
 
         //timer
@@ -112,19 +115,24 @@ public class Basic_Behaviour : MonoBehaviour
     //coodinates in Blend Tree
     public float x_axis = 0f;
     public float y_axis = 0f;
+    public float z_axis = 0f;
     public float x_goal = 0f;
-    public float y_goal = 0f;
+    public float y_goal = 1f;
+    public float z_goal = 0f;
 
     public float x_acceleration = 1f;
     public float turning_y_acceleration = 1.5f;
     public float y_acceleration = 0.5f;
     public float default_y_acceleration = 0.5f;
+    public float z_acceleration = 1f;
 
     public const float standing_value = 0;
     public const float walking_slow_value = 0.25f;
     public const float seek_value = 0.5f;
     public const float walking_value = 1f;
     public const float trot_value = 1.5f;
+    public const float blending_bt_standing = 1f;
+    public const float blending_bt_no_standing = 0f;
 
     //constraint gedöns
     GameObject neck_4;
@@ -156,6 +164,7 @@ public class Basic_Behaviour : MonoBehaviour
     {
         animator.SetFloat("X", x_axis);
         animator.SetFloat("Y", y_axis);
+        animator.SetFloat("Z", z_axis);
     }
 
     public void ResetParameter()
@@ -164,6 +173,11 @@ public class Basic_Behaviour : MonoBehaviour
         y_axis = 0;
         y_goal = 0;
         x_goal = 0;
+    }
+    public void ResetZParameter()
+    {
+        z_goal = 0;
+        z_axis = 0;
     }
 
     //increases X axis until specific walking animation is reached
@@ -207,6 +221,33 @@ public class Basic_Behaviour : MonoBehaviour
             y_axis = Mathf.Max(y_axis, value);
 
         }
+    }
+    //increases Z axis until specific walking animation is reached
+    public void IncreaseZAxisToValue(float value)
+    {
+        if (z_axis < value)
+        {
+
+            z_axis += Time.deltaTime * z_acceleration;
+            z_axis = Mathf.Min(z_axis, value);
+        }
+    }
+
+    //decreases Y axis until specific walking animation is reached
+    public void DecreaseZAxisToValue(float value)
+    {
+        if (z_axis > value)
+        {
+
+            z_axis -= Time.deltaTime * z_acceleration;
+            z_axis = Mathf.Max(z_axis, value);
+
+        }
+    }
+
+    public void ChangeBlendingBT(float z_value)
+    {
+        z_goal = z_value;
     }
 
     public void TurnLeft(float walking_speed = walking_value)
@@ -452,7 +493,7 @@ public class Basic_Behaviour : MonoBehaviour
             target = player;
         }
 
-        else if (away_from_target)
+        if (away_from_target)
         {
             dif = 1;
         }
@@ -465,14 +506,18 @@ public class Basic_Behaviour : MonoBehaviour
     }
 
     // returns values for angles in the range of (0, 180)
-    public float GetPlayerOffsetAngle(float behind_dog, float angle, bool soft_enforce_behind, GameObject target = null){
+    public float GetPlayerOffsetAngle(float behind_dog, float angle, bool soft_enforce_behind, GameObject target = null)
+    {
 
-        if(angle <= 0){
+        if (angle <= 0)
+        {
             angle = 0.0001f;
-        }else if(angle >= 180){
+        }
+        else if (angle >= 180)
+        {
             angle = 180 - 0.0001f;
         }
-        return GetPlayerOffset(behind_dog, 1, Mathf.Tan(angle/2),soft_enforce_behind, target);
+        return GetPlayerOffset(behind_dog, 1, Mathf.Tan(angle / 2), soft_enforce_behind, target);
     }
 
 
@@ -860,6 +905,8 @@ public class Basic_Behaviour : MonoBehaviour
         DecreaseYAxisToValue(y_goal);
         IncreaseXAxisToValue(x_goal);
         DecreaseXAxisToValue(x_goal);
+        IncreaseZAxisToValue(z_goal);
+        DecreaseZAxisToValue(z_goal);
 
         SetFollowObject();
         //GetPlayerOffset(0, 8, 0.5f, false);
