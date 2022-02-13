@@ -122,9 +122,12 @@ public class Aggressive_Behaviour : MonoBehaviour
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
+
+                // x_goal = -1
+
                 if (!MU.walk_until_complete_speed(0.75f))
                 {
-                    MU.start_moving_straight();
+                    MU.start_moving();
 
                     return;
                 }
@@ -169,7 +172,10 @@ public class Aggressive_Behaviour : MonoBehaviour
                 break;
             case Step.WaitASecond:
                 timer -= Time.deltaTime;
-                current_step = Step.DistanceFromTarget;
+                if (timer < 0)
+                {
+                    current_step = Step.DistanceFromTarget;
+                }
                 break;
             case Step.DistanceFromTarget:
                 if (MU.distance_from_target(player))
@@ -185,62 +191,6 @@ public class Aggressive_Behaviour : MonoBehaviour
             default:
                 break;
         }
-
-
-        /*Debug.Log("entering MOVING POS");
-        if (!facing_target && aggressive)
-        {//turnto and walk to position
-            Debug.Log("Walk To POS");
-            basic_behav.TurnToTarget(basic_behav.agg_position);
-            basic_behav.TurningAndWalkingLogicHandler();
-            turn_to_player = false;
-            //StartCoroutine(basic_behav.WaitBeforeWalkingTowards(basic_behav.agg_position));
-        }
-        else if (turn_to_player)
-        {//turn to player
-            Debug.Log("MOMENT");
-            basic_behav.TurnToTarget(player);
-            if (basic_behav.GetPlayerOffset(0, 32, 0.125f, true) == 0) //dog looks straight at player
-            {
-                Debug.Log("facing player");
-                facing_player = true;
-                turn_to_player = false;
-                //walk to stand
-                basic_behav.y_goal = basic_behav.standing_value;
-                basic_behav.x_goal = basic_behav.standing_value;
-                basic_behav.change_anim_timer = 2;
-            }
-        }
-        //check if dog is on position
-        if (dist_to_target < reached_target && facing_target)
-        {
-            Debug.Log("position reached");
-            if (!escape_chance && !timer_started)
-            {//walk to stand
-                Debug.Log("standing");
-                basic_behav.y_goal = basic_behav.standing_value;
-                basic_behav.x_goal = basic_behav.standing_value;
-                basic_behav.y_acceleration = basic_behav.turning_y_acceleration;
-            }
-            if (basic_behav.y_axis == basic_behav.standing_value && !escape_chance)
-            {
-                turn_to_player = true;
-                Debug.Log("ready to turn to PLAyer");
-                //turn to player preperation
-                if (!facing_player)
-                {
-                    if (!timer_started)
-                    {
-                        basic_behav.speed = 0.1f;
-                        Debug.Log("WALK Y_VAL: " + basic_behav.y_goal);
-                        basic_behav.change_anim_timer = 1;
-                        timer_started = true;
-                    }
-
-                }
-            }
-
-        }*/
     }
 
     public float dist_to_player;
@@ -271,6 +221,7 @@ public class Aggressive_Behaviour : MonoBehaviour
     {
         if (current_step == Step.initial)
         {
+            basic_behav.z_goal = 1;
             switch (basic_behav.dog_state)
             {
                 //after agressive: stand
@@ -298,7 +249,7 @@ public class Aggressive_Behaviour : MonoBehaviour
                     break;
                 case Basic_Behaviour.Animation_state.pause:
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.blend_tree);
+                    anim_controll.ChangeAnimationState(anim.blending_BT);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(2, 2);
                     break;
@@ -310,14 +261,14 @@ public class Aggressive_Behaviour : MonoBehaviour
                     break;
                 case Basic_Behaviour.Animation_state.walking:
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.blend_tree);
+                    anim_controll.ChangeAnimationState(anim.blending_BT);
                     basic_behav.y_goal = Basic_Behaviour.standing_value;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(2, 2);
                     break;
                 case Basic_Behaviour.Animation_state.standing:
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.blend_tree);
+                    anim_controll.ChangeAnimationState(anim.blending_BT);
                     basic_behav.ResetParameter();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.aggressiv;
                     current_step = Step.TurnToPos;

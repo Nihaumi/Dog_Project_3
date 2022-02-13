@@ -83,7 +83,7 @@ public class Basic_Behaviour : MonoBehaviour
         z_goal = 1;
         y_goal = 0;
         x_goal = 0;
-        dog_state = Animation_state.pause;//TODO put in right initial state
+        //dog_state = Animation_state.pause;//TODO put in right initial state
 
         //timer
         min_timer = starting_timer;
