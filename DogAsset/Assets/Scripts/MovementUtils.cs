@@ -193,9 +193,9 @@ public class MovementUtils : MonoBehaviour
 
     private void change_blend_tree_if_necessary(bool standing)
     {
-        if (anim_controll.current_state != anim.blending_BT)
+        if (anim_controll.current_state != anim.bbt)
         {
-            anim_controll.ChangeAnimationState(anim.blending_BT);
+            anim_controll.ChangeAnimationState(anim.bbt);
         }
         if (standing)
         {

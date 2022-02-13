@@ -44,7 +44,13 @@ public class Animations : MonoBehaviour
     public string turn_trot_tree = "Blend_Tree_Turn_Trot";
     public string blend_tree_seek = "Blend_Tree_Seeking";
     public string blend_tree_MU = "MU no standing";
-    public string blending_BT = "Blend_blend_tree";
+    public string bbt = "Blend_blend_tree";
+
+    //transition x to standing in bleding BT
+    public string bbt_trans_sleep_to_stand = "trans_sleep_to_stand_BBT";
+    public string bbt_trans_lying_to_stand = "trans_lying_to_stand_BBT";
+    public string bbt_trans_sit_to_stand = "trans_sit_to_stand_BBT";
+    public string bbt_trans_aggro_to_stand = "Trans_Agressive_to_Stand_BBT";
 
     //standing
     public string stand_00 = "Stand_00";
@@ -170,19 +176,19 @@ public class Animations : MonoBehaviour
 
         //fill friendly list
         //siting
-        friendly_list_sitting.Add(friendly_trans_sitting_to_stand);
+        friendly_list_sitting.Add(friendly_trans_sitting_to_stand);//TODO bbt
         friendly_list_sitting.Add(walk_slow);
         friendly_list_sitting.Add(walk);
 
         //lying
         friendly_list_lying.Add(trans_lying_to_sleep);
-        friendly_list_lying.Add(friendly_trans_lying_to_stand);
+        friendly_list_lying.Add(bbt_trans_lying_to_stand);
         friendly_list_lying.Add(walk_slow);//walkSlow
         friendly_list_lying.Add(walk);//walk
 
         //sleeping
         friendly_list_sleeping.Add(friendly_trans_sleep_to_lying);
-        friendly_list_sleeping.Add(friendly_trans_sleep_to_stand);
+        friendly_list_sleeping.Add(bbt_trans_sleep_to_stand);
         friendly_list_sleeping.Add(walk_slow);//walkSlow
         friendly_list_sleeping.Add(walk);//walk
 
@@ -199,7 +205,7 @@ public class Animations : MonoBehaviour
         friendly_list_walking.Add(walk);//walk
 
 
-        //fill lists
+        //fill lists neutral
         list_standing.Add(trans_stand_to_lying_00);//0
         list_standing.Add(trans_stand_to_sit_00);//1
         list_standing.Add(walk_slow);//2

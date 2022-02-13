@@ -23,7 +23,7 @@ public class Audio_Sources : MonoBehaviour
     }
 
     public void StopAllSounds()
-    {
+    {   
         aggressive_bark.Stop();
         panting.Stop();
         panting_calm.Stop();

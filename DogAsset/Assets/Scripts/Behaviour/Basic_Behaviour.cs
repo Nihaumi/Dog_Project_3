@@ -79,7 +79,7 @@ public class Basic_Behaviour : MonoBehaviour
         pause_behav = dog.GetComponent<Pause_Behaviour>();
 
         //state
-        anim_controll.current_state = anim.blending_BT;
+        anim_controll.current_state = anim.bbt;
         z_goal = 1;
         y_goal = 0;
         x_goal = 0;
@@ -435,7 +435,7 @@ public class Basic_Behaviour : MonoBehaviour
         {
             focus = 3;
         }
-        else if (dog_state == Animation_state.walking || y_goal != standing_value || x_goal != standing_value)
+        else if (dog_state == Animation_state.walking || y_goal != standing_value || x_goal != standing_value || anim_controll.current_state == anim.sleep)
         {
             focus = 3;
         }
@@ -940,7 +940,7 @@ public class Basic_Behaviour : MonoBehaviour
             if (pause_behav.go_to_location)
             {
                 Debug.Log("Mache PAUSE");
-                pause_behav.GoToPauseLocation();
+               pause_behav.GoToPauseLocation();
             }
             //DodgePlayer(5);
         }

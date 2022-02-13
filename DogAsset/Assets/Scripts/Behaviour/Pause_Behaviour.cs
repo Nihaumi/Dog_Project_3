@@ -11,17 +11,20 @@ public class Pause_Behaviour : MonoBehaviour
     public GameObject dog_parent;
     public GameObject dir_manager;
     public GameObject agg_position;
+    GameObject behav_manager;
     public Animator animator;
     public GameObject dog_sound_manager;
     Audio_Sources dog_audio;
     Basic_Behaviour basic_behav;
+    Behaviour_Switch behav_switch;
     Animation_Controll anim_controll;
     Animations anim;
     MovementUtils MU;
 
 
     [SerializeField] float timer = 2f;
-    [SerializeField] public enum Step
+    [SerializeField]
+    public enum Step
     {
         Turning,
         WalkToTarget,
@@ -44,7 +47,10 @@ public class Pause_Behaviour : MonoBehaviour
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
         dog_sound_manager = GameObject.Find("Dog_sound_manager");
+        behav_manager = GameObject.Find("Behaviour_Manager");
+        dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
         basic_behav = dog.GetComponent<Basic_Behaviour>();
+        behav_switch = behav_manager.GetComponent<Behaviour_Switch>();
         animator = dog.GetComponent<Animator>();
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
@@ -119,64 +125,29 @@ public class Pause_Behaviour : MonoBehaviour
                     if (timer < 0)
                     {
                         current_step = Step.LayDown;
+
                     }
 
                 }
+
                 break;
             case Step.LayDown:
 
                 MU.lay_down();
                 current_step = Step.Stop;
+                basic_behav.change_anim_timer = 3;//TODO anpassen
 
                 break;
             case Step.Stop:
                 /*
                  * 4. Do nothing
                  */
+            
                 break;
             default:
                 break;
         }
 
-
-        /* if (!facing_pause_location)
-         {
-             Debug.Log("PAUSE WALKTO");
-             basic_behav.TurnToTarget(pause_target);
-             basic_behav.TurningAndWalkingLogicHandler();
-         }
-         if (facing_pause_location)
-         {//turn to player
-             if (!facing_player)
-             {
-                 basic_behav.TurnToTarget(player_target);
-                 basic_behav.TurningAndWalkingLogicHandler();
-                 if (basic_behav.GetPlayerOffset(0, 4, 2f, true) == 0)
-                 {
-                     Debug.Log("Player FRONT");
-                     facing_player = true;
-                 }
-             }
-             if (facing_player)
-             {
-                 if (!lying_down)
-                 {// lay down
-                     Debug.Log("PAUSE LAYDOWN");
-                     basic_behav.y_goal = basic_behav.standing_value;
-                     basic_behav.x_goal = basic_behav.standing_value;
-                     basic_behav.y_acceleration = basic_behav.turning_y_acceleration;
-                 }
-                 if (basic_behav.y_axis == basic_behav.standing_value && !lying_down)
-                 {
-                     basic_behav.y_acceleration = basic_behav.default_y_acceleration;
-                     anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_02);
-                     StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
-                     basic_behav.SetShortTimer(3, 3);//TODO anpassen
-                     lying_down = true;
-                 }
-
-             }
-         }*/
     }
 
     public bool facing_pause_location;
@@ -195,7 +166,7 @@ public class Pause_Behaviour : MonoBehaviour
                 case Basic_Behaviour.Animation_state.pause:
                     //1. turn towárds pause location 
                     //2. walk towards pause location
-                    //3. if distmace to walk location < value lay down
+                    //3. if distmace to walk location < value lay down 
                     go_to_location = true;//bei goto function aufruf grbraucht
                     /*if (lying_down)
                     {
@@ -206,35 +177,36 @@ public class Pause_Behaviour : MonoBehaviour
                     }*/
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
                     current_step = Step.Turning;
-
+                    basic_behav.SetShortTimer(3, 3);
                     Debug.Log("PAUSE BEHAV");
                     break;
                 case Basic_Behaviour.Animation_state.lying:
                     Debug.Log("PAUSE LYING ");
-                    ResetBools();
-                    if (!lying_down)
-                    {
-                        Debug.Log("PAUSE LYING 2");
-                        dog_audio.StopAllSounds();
-                        basic_behav.ResetParameter();
-                        anim_controll.ChangeAnimationState(anim.friendly_trans_lying_to_stand);
-                        basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
-                        basic_behav.SetShortTimer(3, 3);
-                    }
+                    //ResetBools();
+
+                    Debug.Log("PAUSE LYING 2");
+                    dog_audio.StopAllSounds();
+                    basic_behav.ResetParameter();
+                    anim_controll.ChangeAnimationState(anim.bbt_trans_lying_to_stand);
+                    basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
+                    basic_behav.SetShortTimer(3, 3);
+
                     break;
                 case Basic_Behaviour.Animation_state.standing:
                     Debug.Log("PAUSE Standing");
-                    ResetBools();
+                    //ResetBools();
                     basic_behav.ResetParameter();
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+                    anim_controll.ChangeAnimationState(anim.bbt);
+                    basic_behav.z_goal = Basic_Behaviour.blending_bt_standing;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.pause;
                     basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.walking:
                     Debug.Log("PAUSE Walking");
-                    ResetBools();
-                    anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+                    //ResetBools();
+                    anim_controll.ChangeAnimationState(anim.bbt);
+                    basic_behav.z_goal = Basic_Behaviour.blending_bt_standing;
                     basic_behav.y_goal = Basic_Behaviour.standing_value;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.pause;
                     basic_behav.SetShortTimer(3, 3);
@@ -242,6 +214,10 @@ public class Pause_Behaviour : MonoBehaviour
                 default:
                     break;
             }
+        }
+        if (current_step == Step.Stop)
+        {
+            end_pause = true;
         }
     }
     void ResetBools()

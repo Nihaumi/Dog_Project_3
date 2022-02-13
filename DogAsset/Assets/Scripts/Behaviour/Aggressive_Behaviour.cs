@@ -249,7 +249,7 @@ public class Aggressive_Behaviour : MonoBehaviour
                     break;
                 case Basic_Behaviour.Animation_state.pause:
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.blending_BT);
+                    anim_controll.ChangeAnimationState(anim.bbt);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(2, 2);
                     break;
@@ -261,14 +261,14 @@ public class Aggressive_Behaviour : MonoBehaviour
                     break;
                 case Basic_Behaviour.Animation_state.walking:
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.blending_BT);
+                    anim_controll.ChangeAnimationState(anim.bbt);
                     basic_behav.y_goal = Basic_Behaviour.standing_value;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(2, 2);
                     break;
                 case Basic_Behaviour.Animation_state.standing:
                     dog_audio.StopAllSounds();
-                    anim_controll.ChangeAnimationState(anim.blending_BT);
+                    anim_controll.ChangeAnimationState(anim.bbt);
                     basic_behav.ResetParameter();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.aggressiv;
                     current_step = Step.TurnToPos;
