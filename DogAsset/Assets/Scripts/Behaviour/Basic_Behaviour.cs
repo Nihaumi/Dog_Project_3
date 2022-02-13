@@ -120,11 +120,11 @@ public class Basic_Behaviour : MonoBehaviour
     public float y_acceleration = 0.5f;
     public float default_y_acceleration = 0.5f;
 
-    public float standing_value = 0;
-    public float walking_slow_value = 0.25f;
-    public float seek_value = 0.5f;
-    public float walking_value = 1f;
-    public float trot_value = 1.5f;
+    public const float standing_value = 0;
+    public const float walking_slow_value = 0.25f;
+    public const float seek_value = 0.5f;
+    public const float walking_value = 1f;
+    public const float trot_value = 1.5f;
 
     //constraint gedöns
     GameObject neck_4;
@@ -209,7 +209,7 @@ public class Basic_Behaviour : MonoBehaviour
         }
     }
 
-    public void TurnLeft()
+    public void TurnLeft(float walking_speed = walking_value)
     {
         if (y_goal != 0)
         {
@@ -218,9 +218,13 @@ public class Basic_Behaviour : MonoBehaviour
             //x_axis = -y_axis;
             //y_axis = 0;
         }
+        else
+        {
+            x_goal = -walking_speed;
+        }
     }
 
-    public void TurnRight()
+    public void TurnRight(float walking_speed = walking_value)
     {
         if (y_goal != 0)
         {
@@ -229,9 +233,13 @@ public class Basic_Behaviour : MonoBehaviour
             //x_axis = y_axis;
             //y_axis = 0;
         }
+        else
+        {
+            x_goal = walking_speed;
+        }
     }
 
-    public void WalkForward()
+    public void WalkForward(float walking_speed = walking_value)
     {
         if (x_goal != 0)
         {
@@ -239,6 +247,10 @@ public class Basic_Behaviour : MonoBehaviour
             x_goal = 0;
             //y_axis = Mathf.Abs(x_axis);
             //x_axis = 0;
+        }
+        else
+        {
+            y_goal = walking_speed;
         }
     }
 
@@ -451,6 +463,19 @@ public class Basic_Behaviour : MonoBehaviour
         else
             TurnLeft();
     }
+
+    // returns values for angles in the range of (0, 180)
+    public float GetPlayerOffsetAngle(float behind_dog, float angle, bool soft_enforce_behind, GameObject target = null){
+
+        if(angle <= 0){
+            angle = 0.0001f;
+        }else if(angle >= 180){
+            angle = 180 - 0.0001f;
+        }
+        return GetPlayerOffset(behind_dog, 1, Mathf.Tan(angle/2),soft_enforce_behind, target);
+    }
+
+
     public float GetPlayerOffset(float behind_dog, float before_dog, float beside_dog, bool soft_enforce_behind, GameObject target = null)
     {
         if (target == null)

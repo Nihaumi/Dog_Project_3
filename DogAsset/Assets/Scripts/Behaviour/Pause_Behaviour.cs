@@ -19,12 +19,15 @@ public class Pause_Behaviour : MonoBehaviour
     Animations anim;
     MovementUtils MU;
 
+
+    [SerializeField] float timer = 0f;
     public enum Step
     {
         Turning,
         WalkToTarget,
         LayDown,
         TurnAround,
+        WaitASecond,
         Stop,
         initial
     }
@@ -92,11 +95,25 @@ public class Pause_Behaviour : MonoBehaviour
                 bool are_we_facing_the_player = MU.turn_until_facing(player_target);
 
                 if (are_we_facing_the_player)
-                    current_step = Step.LayDown;
+                    current_step = Step.WaitASecond;
+                break;
+            case Step.WaitASecond:
+
+                if (!MU.walk_until_complete_speed(0))
+                {
+                    timer -= Time.deltaTime;
+                    if (timer < 0)
+                    {
+                        current_step = Step.LayDown;
+                    }
+
+                }
                 break;
             case Step.LayDown:
+
                 MU.lay_down();
                 current_step = Step.Stop;
+
                 break;
             case Step.Stop:
                 /*
@@ -204,7 +221,7 @@ public class Pause_Behaviour : MonoBehaviour
                     Debug.Log("PAUSE Walking");
                     ResetBools();
                     anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-                    basic_behav.y_goal = basic_behav.standing_value;
+                    basic_behav.y_goal = Basic_Behaviour.standing_value;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.pause;
                     basic_behav.SetShortTimer(3, 3);
                     break;

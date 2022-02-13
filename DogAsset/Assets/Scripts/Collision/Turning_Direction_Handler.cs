@@ -106,7 +106,7 @@ public class Turning_Direction_Handler : MonoBehaviour
     {
         if(basic_behav.dog_state == Basic_Behaviour.Animation_state.standing && (LeftCollided() || RightCollided()))
         {
-            basic_behav.y_goal = basic_behav.walking_slow_value;
+            basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
         }
         //if collision with corner turn 90 degrees left/right
         if (col_det_left.hit_corner || col_det_left_trot.hit_corner)

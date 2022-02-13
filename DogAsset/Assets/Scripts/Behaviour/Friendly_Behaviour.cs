@@ -30,11 +30,13 @@ public class Friendly_Behaviour : MonoBehaviour
     {
         Turning,
         WalkToTarget,
+        LookDirectlyAtTarget,
         SitDown,
         Stop,
         initial
     }
-   [SerializeField] Step current_step;
+
+    [SerializeField] Step current_step;
 
     public Step GetCurrentStep()
     {
@@ -78,9 +80,9 @@ public class Friendly_Behaviour : MonoBehaviour
     {
         Debug.Log("IS THIS THING ON?!");
         //stop trotting
-        if (basic_behav.y_goal == basic_behav.trot_value)
+        if (basic_behav.y_goal == Basic_Behaviour.trot_value)
         {
-            basic_behav.y_goal = basic_behav.walking_slow_value;
+            basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
         }
 
         //maybe in own update
@@ -136,8 +138,12 @@ public class Friendly_Behaviour : MonoBehaviour
                     current_step = Step.SitDown;
                 break;
             case Step.SitDown:
-                MU.sit_down();
-                current_step = Step.Stop;
+                if (!MU.walk_until_complete_speed(0))
+                {
+                    MU.sit_down();
+                    current_step = Step.Stop;
+                }
+
                 break;
             case Step.Stop:
                 /*
@@ -232,9 +238,9 @@ public class Friendly_Behaviour : MonoBehaviour
                     dog_audio.StopAllSounds();
                     basic_behav.WalkForward();
                     anim_controll.ChangeAnimationState(anim.friendly_blend_tree);
-                    if (basic_behav.y_goal == basic_behav.trot_value)
+                    if (basic_behav.y_goal == Basic_Behaviour.trot_value)
                     {
-                        basic_behav.y_goal = basic_behav.standing_value;
+                        basic_behav.y_goal = Basic_Behaviour.standing_value;
                     }
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     break;
@@ -255,7 +261,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     {
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_value;
                         basic_behav.choose_direction_to_walk_into(player, true);
                         basic_behav.SetShortTimer(2, 2);
                         after_friendly_anim_counter++;
@@ -263,7 +269,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     else if (after_friendly_anim_counter == 1)
                     {
                         basic_behav.WalkForward();
-                        basic_behav.y_goal = basic_behav.standing_value;
+                        basic_behav.y_goal = Basic_Behaviour.standing_value;
                         basic_behav.SetShortTimer(1, 1);
                         after_friendly_anim_counter++;
                     }
@@ -320,11 +326,11 @@ public class Friendly_Behaviour : MonoBehaviour
                         anim_controll.ChangeAnimationState(anim.friendly_blend_tree);
                         if (basic_behav.random_index == 2)
                         {
-                            basic_behav.y_goal = basic_behav.walking_slow_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                         }
                         if (basic_behav.random_index == 3)
                         {
-                            basic_behav.y_goal = basic_behav.walking_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_value;
                         }
                         //SetBlendTreeParameters();
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
@@ -344,11 +350,11 @@ public class Friendly_Behaviour : MonoBehaviour
                     basic_behav.ResetParameter();
                     if (basic_behav.random_index == 1)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_value;
                     }
 
                     basic_behav.SetShortTimer(7, 15);
@@ -370,11 +376,11 @@ public class Friendly_Behaviour : MonoBehaviour
 
                         if (basic_behav.random_index == 2)
                         {
-                            basic_behav.y_goal = basic_behav.walking_slow_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                         }
                         if (basic_behav.random_index == 3)
                         {
-                            basic_behav.y_goal = basic_behav.walking_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_value;
                         }
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
                     }
@@ -406,11 +412,11 @@ public class Friendly_Behaviour : MonoBehaviour
                         anim_controll.ChangeAnimationState(anim.friendly_trans_sleep_to_stand);
                         if (basic_behav.random_index == 2)
                         {
-                            basic_behav.y_goal = basic_behav.walking_slow_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                         }
                         if (basic_behav.random_index == 3)
                         {
-                            basic_behav.y_goal = basic_behav.walking_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_value;
                         }
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
                     }
@@ -430,19 +436,19 @@ public class Friendly_Behaviour : MonoBehaviour
                     if (basic_behav.random_index == 0)
                     {
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
-                        basic_behav.y_goal = basic_behav.standing_value;
+                        basic_behav.y_goal = Basic_Behaviour.standing_value;
                     }
                     else
                     {
                         if (basic_behav.random_index == 1)
                         {
 
-                            basic_behav.y_goal = basic_behav.walking_slow_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                         }
                         if (basic_behav.random_index == 2)
                         {
 
-                            basic_behav.y_goal = basic_behav.walking_value;
+                            basic_behav.y_goal = Basic_Behaviour.walking_value;
                         }
 
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;

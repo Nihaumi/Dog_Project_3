@@ -29,7 +29,8 @@ public class Neutral_Behaviour : MonoBehaviour
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
-        basic_behav = dog.GetComponent<Basic_Behaviour>();
+        //basic_behav = dog.GetComponent<Basic_Behaviour>();
+        basic_behav = new Basic_Behaviour();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
         pause_behav = dog.GetComponent<Pause_Behaviour>();
 
@@ -89,23 +90,23 @@ public class Neutral_Behaviour : MonoBehaviour
                     anim_controll.ChangeAnimationState(anim.blend_tree);
                     if (basic_behav.random_index == 2)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                     }
                     if (basic_behav.random_index == 3)
                     {
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_value;
                     }
                     if (basic_behav.random_index == 4)
                     {
                         anim_controll.ChangeAnimationState(anim.blend_tree);
-                        basic_behav.y_goal = basic_behav.seek_value;
+                        basic_behav.y_goal = Basic_Behaviour.seek_value;
                         //audio
                         dog_audio.StopAllSounds();
                         dog_audio.panting.Play();
                     }
                     if (basic_behav.random_index == 5)
                     {
-                        basic_behav.y_goal = basic_behav.trot_value;
+                        basic_behav.y_goal = Basic_Behaviour.trot_value;
                     }
                     //SetBlendTreeParameters();
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
@@ -123,20 +124,20 @@ public class Neutral_Behaviour : MonoBehaviour
                 SetBoolForWalkingBT();
                 if (basic_behav.random_index == 0)
                 {
-                    basic_behav.y_goal = basic_behav.walking_slow_value;
+                    basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                 }
                 if (basic_behav.random_index == 1)
                 {
-                    basic_behav.y_goal = basic_behav.walking_value;
+                    basic_behav.y_goal = Basic_Behaviour.walking_value;
                 }
                 if (basic_behav.random_index == 2)
                 {
                     SetBoolForSeekBT();
-                    basic_behav.y_goal = basic_behav.seek_value;
+                    basic_behav.y_goal = Basic_Behaviour.seek_value;
                 }
                 if (basic_behav.random_index == 3)
                 {
-                    basic_behav.y_goal = basic_behav.trot_value;
+                    basic_behav.y_goal = Basic_Behaviour.trot_value;
                     //audio
                     dog_audio.StopAllSounds();
                     dog_audio.panting.Play();
@@ -164,20 +165,20 @@ public class Neutral_Behaviour : MonoBehaviour
                     SetBoolForWalkingBT();
                     if (basic_behav.random_index == 1)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_value;
                     }
                     if (basic_behav.random_index == 3)
                     {
                         SetBoolForSeekBT();
-                        basic_behav.y_goal = basic_behav.seek_value;
+                        basic_behav.y_goal = Basic_Behaviour.seek_value;
                     }
                     if (basic_behav.random_index == 4)
                     {
-                        basic_behav.y_goal = basic_behav.trot_value;
+                        basic_behav.y_goal = Basic_Behaviour.trot_value;
                         //audio
                         dog_audio.StopAllSounds();
                         dog_audio.panting.Play();
@@ -210,20 +211,20 @@ public class Neutral_Behaviour : MonoBehaviour
                     anim_controll.ChangeAnimationState(anim.trans_sleeping_to_lying_to_stand_02);
                     if (basic_behav.random_index == 2)
                     {
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                     }
                     if (basic_behav.random_index == 3)
                     {
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_value;
                     }
                     if (basic_behav.random_index == 4)
                     {
                         SetBoolForSeekBT();
-                        basic_behav.y_goal = basic_behav.seek_value;
+                        basic_behav.y_goal = Basic_Behaviour.seek_value;
                     }
                     if (basic_behav.random_index == 5)
                     {
-                        basic_behav.y_goal = basic_behav.trot_value;
+                        basic_behav.y_goal = Basic_Behaviour.trot_value;
                         //audio
                         dog_audio.StopAllSounds();
                         dog_audio.panting.Play();
@@ -246,7 +247,7 @@ public class Neutral_Behaviour : MonoBehaviour
                 if (basic_behav.random_index == 0)
                 {
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
-                    basic_behav.y_goal = basic_behav.standing_value;
+                    basic_behav.y_goal = Basic_Behaviour.standing_value;
                 }
                 else
                 {
@@ -257,7 +258,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         {
                             SwitchToOrFromSeekingBehaviour(anim.blend_tree);
                         }
-                        basic_behav.y_goal = basic_behav.walking_slow_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
@@ -265,7 +266,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         {
                             SwitchToOrFromSeekingBehaviour(anim.blend_tree);
                         }
-                        basic_behav.y_goal = basic_behav.walking_value;
+                        basic_behav.y_goal = Basic_Behaviour.walking_value;
                     }
                     if (basic_behav.random_index == 3)
                     {
@@ -273,7 +274,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         {
                             SwitchToOrFromSeekingBehaviour(anim.blend_tree_seek);
                         }
-                        basic_behav.y_goal = basic_behav.seek_value;
+                        basic_behav.y_goal = Basic_Behaviour.seek_value;
                     }
                     if (basic_behav.random_index == 4)
                     {
@@ -291,7 +292,7 @@ public class Neutral_Behaviour : MonoBehaviour
                             {
                                 SwitchToOrFromSeekingBehaviour(anim.blend_tree);
                             }
-                            basic_behav.y_goal = basic_behav.trot_value;
+                            basic_behav.y_goal = Basic_Behaviour.trot_value;
                             basic_behav.SetShortTimer(0.1f, 1f);
                         }
 
@@ -321,8 +322,8 @@ public class Neutral_Behaviour : MonoBehaviour
     {
         basic_behav.SetShortTimer(4, 5);
         //basic_behav.y_acceleration = 2;
-        basic_behav.y_goal = basic_behav.standing_value;
-        if (basic_behav.y_axis == basic_behav.standing_value)
+        basic_behav.y_goal = Basic_Behaviour.standing_value;
+        if (basic_behav.y_axis == Basic_Behaviour.standing_value)
         {
             anim_controll.ChangeAnimationState(tree);
         }

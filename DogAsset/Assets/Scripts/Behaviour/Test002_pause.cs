@@ -9,13 +9,16 @@ public class Test002_pause : MonoBehaviour
     GameObject player_target;
     GameObject pause_target;
 
+    [SerializeField] float timer = 0f;
     public enum Step
     {
         Turning,
         WalkToTarget,
         LayDown,
         TurnAround,
-        Stop
+        WaitASecond,
+        Stop,
+        initial
     }
 
     Step current_step;
@@ -66,11 +69,25 @@ public class Test002_pause : MonoBehaviour
                 bool are_we_facing_the_player = MU.turn_until_facing(player_target);
 
                 if (are_we_facing_the_player)
-                    current_step = Step.LayDown;
+                    current_step = Step.WaitASecond;
+                break;
+            case Step.WaitASecond:
+           
+                if (!MU.walk_until_complete_speed(0))
+                {
+                    timer -= Time.deltaTime;
+                    if(timer < 0)
+                    {
+                        current_step = Step.LayDown;
+                    }
+
+                }
                 break;
             case Step.LayDown:
+            
                 MU.lay_down();
                 current_step = Step.Stop;
+                
                 break;
             case Step.Stop:
                 /*

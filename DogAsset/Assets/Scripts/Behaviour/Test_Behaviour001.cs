@@ -11,8 +11,10 @@ public class Test_Behaviour001 : MonoBehaviour
     {
         Turning,
         WalkToTarget,
+        LookDirectlyAtTarget,
         SitDown,
-        Stop
+        Stop,
+        initial
     }
 
     GameObject player_target;
@@ -58,8 +60,12 @@ public class Test_Behaviour001 : MonoBehaviour
                     current_step = Step.SitDown;
                 break;
             case Step.SitDown:
-                MU.sit_down();
-                current_step = Step.Stop;
+                if (!MU.walk_until_complete_speed(0))
+                {
+                    MU.sit_down();
+                    current_step = Step.Stop;
+                }
+
                 break;
             case Step.Stop:
                 /*

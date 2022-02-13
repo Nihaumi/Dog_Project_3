@@ -32,6 +32,7 @@ public class MovementUtils : MonoBehaviour
     //moon.Transform.rotation=Quaternion.RotateTowards(moon.Transform.rotation,target.Transform.rotation,float time)
     public bool turn_until_facing(GameObject target, bool and_start_moving = false)
     {
+        Debug.Log("TURN GOAL: " + basic_behav.x_goal);
         if (is_looking_at(target))
         {
 
@@ -43,15 +44,19 @@ public class MovementUtils : MonoBehaviour
         }
         else
         {
+
             start_turning_towards(target);
             return false;
         }
     }
-    public bool walk_until_touching(GameObject target, float dist = 1f)
+    public bool walk_until_touching(GameObject target, float dist = 1f, bool stopping = true)
     {
         if (is_touching(target, dist))
         {
-            stop_moving();
+            if (stopping)
+            {
+                stop_moving();
+            }
             return true;
         }
         else
@@ -64,19 +69,25 @@ public class MovementUtils : MonoBehaviour
     }
     private bool is_touching(GameObject target, float distance = 1f)
     {
-        float dist = Vector3.Distance(dog.transform.position, target.transform.position);
+        float dist = get_dist_to_target(target);
         return dist <= distance;
+    }
+
+    private float get_dist_to_target(GameObject target)
+    {
+        float dist = Vector3.Distance(dog.transform.position, target.transform.position);
+        return dist;
     }
 
     private bool is_looking_at(GameObject target)
     {
-        return basic_behav.GetPlayerOffset(0, 32, 0.125f, true, target) == 0;
+        return basic_behav.GetPlayerOffset(0, 16, 0.25f, true, target) == 0;
     }
 
     public bool looking_directly_at(GameObject target)
     {
         Vector3 target_pos = dog.transform.InverseTransformPoint(target.transform.position);
-        if(target_pos.x == 0.0f)
+        if (Mathf.Round(target_pos.x * 10000) / 10000f == 0.0f)
         {
             Debug.Log("True MIDDLE");
             return true;
@@ -84,13 +95,12 @@ public class MovementUtils : MonoBehaviour
 
         else
         {
-            Debug.Log("TRAGET LOCAL POS: " + target_pos);
-            Debug.Log("CORRECTING COURSE");
+            //Debug.Log("TRAGET LOCAL POS: " + target_pos);
+            //Debug.Log("CORRECTING COURSE");
             direction = (target.transform.position - dog.transform.position).normalized;
             rotation = Quaternion.LookRotation(direction);
             dog.transform.rotation = Quaternion.Slerp(dog.transform.rotation, rotation, speed * Time.deltaTime);
 
-            basic_behav.x_goal = basic_behav.walking_value;
             basic_behav.WalkForward();
             basic_behav.y_acceleration = 2f;
             return false;
@@ -99,30 +109,90 @@ public class MovementUtils : MonoBehaviour
 
     private void start_turning_towards(GameObject target)
     {
-        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
-        basic_behav.y_goal = basic_behav.walking_value;
-        basic_behav.choose_direction_to_walk_into(target);
 
+        change_blend_tree_if_necessary(false);
+        basic_behav.choose_direction_to_walk_into(target);
     }
 
+    public bool walk_until_complete_speed(float speed = 0.25f)
+    {
+        if (Mathf.Abs(basic_behav.y_axis) + Mathf.Abs(basic_behav.x_axis) > speed)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     private void stop_turning()
     {
-        basic_behav.x_goal = basic_behav.standing_value;
+        basic_behav.x_goal = Basic_Behaviour.standing_value;
+        change_blend_tree_if_necessary(true);
     }
-    private void start_moving()
+    public void start_moving()
     {
         //stop_turning();
-        Debug.Log("START MOVING FOWARD");
-        anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+        change_blend_tree_if_necessary(false);
         //basic_behav.y_goal = basic_behav.walking_value;
         basic_behav.WalkForward();
         basic_behav.y_acceleration = 2f;
     }
 
-    public  void stop_moving()
+    public void stop_moving()
     {
-        basic_behav.y_goal = basic_behav.standing_value;
-        basic_behav.x_goal = basic_behav.standing_value;
+        change_blend_tree_if_necessary(true);
+        basic_behav.y_goal = Basic_Behaviour.standing_value;
+        basic_behav.x_goal = Basic_Behaviour.standing_value;
+    }
+
+    public bool distance_from_target(GameObject target, float dist = 7f)
+    {
+        if (get_dist_to_target(target) < dist)
+        {
+            //Debug.Log("PLAYER DIST: " + get_dist_to_target(target));
+            walk_back();
+            //start_turning_towards(target); --> makes him dance
+            return false;
+        }
+        else
+        {
+            stop_moving();
+            return true;
+        }
+    }
+
+    public void reset_acceleration()
+    {
+        basic_behav.y_acceleration = basic_behav.default_y_acceleration;
+        basic_behav.x_acceleration = 1f;
+    }
+
+    public void walk_back()
+    {
+        change_blend_tree_if_necessary(true);
+        basic_behav.x_goal = Basic_Behaviour.standing_value;
+        basic_behav.y_goal = -Basic_Behaviour.walking_value;
+    }
+
+    private void change_blend_tree_if_necessary(bool standing)
+    {
+        if (standing)
+        {
+            if (anim_controll.current_state != anim.aggresive_blend_tree)
+            {
+                anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
+            }
+
+        }
+        else
+        {
+            if (anim_controll.current_state != anim.blend_tree_MU)
+            {
+                anim_controll.ChangeAnimationState(anim.blend_tree_MU);
+            }
+
+        }
     }
 }

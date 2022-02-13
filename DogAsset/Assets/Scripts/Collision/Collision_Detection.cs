@@ -57,7 +57,7 @@ public class Collision_Detection : MonoBehaviour
             if (gameObject.name == "left_trot" || gameObject.name == "right_trot")
             {
                 trot_collider_touching_wall = true;
-                if (basic_behav.y_goal == basic_behav.trot_value)
+                if (basic_behav.y_goal == Basic_Behaviour.trot_value)
                 {
 
                     collided = true;
@@ -69,7 +69,7 @@ public class Collision_Detection : MonoBehaviour
                     }
                 }
             }
-            else if (basic_behav.y_goal != basic_behav.trot_value && !collided)
+            else if (basic_behav.y_goal != Basic_Behaviour.trot_value && !collided)
             {
                 collided = true;
                 GetCollidedObject(this.gameObject);

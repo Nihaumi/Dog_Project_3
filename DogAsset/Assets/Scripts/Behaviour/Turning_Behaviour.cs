@@ -56,19 +56,19 @@ public class Turning_Behaviour : MonoBehaviour
                 //audio
                 dog_audio.StopAllSounds();
 
-                if (basic_behav.y_goal == basic_behav.walking_slow_value)
+                if (basic_behav.y_goal == Basic_Behaviour.walking_slow_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_walk_slow_tree);
                 }
-                if (basic_behav.y_goal == basic_behav.seek_value)
+                if (basic_behav.y_goal == Basic_Behaviour.seek_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_seek_tree);
                 }
-                if (basic_behav.y_goal == basic_behav.walking_value)
+                if (basic_behav.y_goal == Basic_Behaviour.walking_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_walk_tree);
                 }
-                if (basic_behav.y_goal == basic_behav.trot_value)
+                if (basic_behav.y_goal == Basic_Behaviour.trot_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
                     dog_audio.panting.Play();
@@ -81,19 +81,19 @@ public class Turning_Behaviour : MonoBehaviour
                 dog_audio.StopAllSounds();
                 Debug.Log("TURN RIGHT!");
 
-                if (basic_behav.y_goal == basic_behav.walking_slow_value)
+                if (basic_behav.y_goal == Basic_Behaviour.walking_slow_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_walk_slow_tree);
                 }
-                if (basic_behav.y_goal == basic_behav.seek_value)
+                if (basic_behav.y_goal == Basic_Behaviour.seek_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_seek_tree);
                 }
-                if (basic_behav.y_goal == basic_behav.walking_value)
+                if (basic_behav.y_goal == Basic_Behaviour.walking_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_walk_tree);
                 }
-                if (basic_behav.y_goal == basic_behav.trot_value)
+                if (basic_behav.y_goal == Basic_Behaviour.trot_value)
                 {
                     anim_controll.ChangeAnimationState(anim.turn_trot_tree);
                     basic_behav.SetShortTimer(0.3f, 0.6f);
@@ -107,7 +107,7 @@ public class Turning_Behaviour : MonoBehaviour
 
                 basic_behav.SetLongTimer();
                 basic_behav.WalkForward();
-                if(Mathf.Abs(basic_behav.x_goal) == basic_behav.trot_value)
+                if(Mathf.Abs(basic_behav.x_goal) == Basic_Behaviour.trot_value)
                 {
                     basic_behav.SetShortTimer(0.2f, 0.5f);
                     dog_audio.panting.Play();
