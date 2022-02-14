@@ -124,7 +124,7 @@ public class Basic_Behaviour : MonoBehaviour
     public float z_axis = 0f;
     public float zx_axis = 0f;
     public float x_goal = 0f;
-    public float y_goal = 1f;
+    public float y_goal = 0f;
     public float z_goal = 0f;
     public float zx_goal = 0f;
 
@@ -132,7 +132,7 @@ public class Basic_Behaviour : MonoBehaviour
     public float turning_y_acceleration = 1.5f;
     public float y_acceleration = 0.5f;
     public float default_y_acceleration = 0.5f;
-    public float z_acceleration = 1f;
+    public float z_acceleration = 1.5f;
 
     //y
     public const float standing_value = 0;
@@ -202,13 +202,6 @@ public class Basic_Behaviour : MonoBehaviour
         y_axis = 0;
         y_goal = 0;
         x_goal = 0;
-    }
-    public void ResetZParameter()
-    {
-        z_goal = 0;
-        z_axis = 0;
-        zx_goal = 0;
-        zx_axis = 0;
     }
 
     //increases X axis until specific walking animation is reached
@@ -630,7 +623,7 @@ public class Basic_Behaviour : MonoBehaviour
         float curent_weight_left = a.GetWeight(1); //leftHand
         float curent_weight_head = a.GetWeight(2); //head
 
-        float weight_change_rate = 1f;
+        float weight_change_rate = 1.5f;
         float weight_update_right = 0, weight_update_left = 0, weight_update_head = 0;
 
         switch (focus)
@@ -979,8 +972,9 @@ public class Basic_Behaviour : MonoBehaviour
         {//neutral
             if (dog_state == Animation_state.walking)
             {
-                if (MU.DodgePlayer(player, 5)) //TODO enable
+                if (MU.DodgePlayer(player, 3)) //TODO enable
                 {
+                    Debug.Log("DODgING IN NEUTRAL");
                     MU.change_blend_tree_if_necessary(false);
                 }
             }

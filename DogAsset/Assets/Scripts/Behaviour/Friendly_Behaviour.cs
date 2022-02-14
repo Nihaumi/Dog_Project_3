@@ -149,7 +149,7 @@ public class Friendly_Behaviour : MonoBehaviour
                 if (MU.walk_until_complete_speed(0.001f))
                 {
                     MU.sit_down();
-                    basic_behav.change_anim_timer = 3f; //TODO anpassen
+                    basic_behav.change_anim_timer = 300f; //TODO anpassen
                     current_step = Step.Stop;
                 }
 
@@ -199,7 +199,6 @@ public class Friendly_Behaviour : MonoBehaviour
                 case Basic_Behaviour.Animation_state.sitting:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
-                    basic_behav.ResetZParameter();
                     anim_controll.ChangeAnimationState(anim.bbt_trans_sit_to_stand);
                     basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
@@ -208,7 +207,6 @@ public class Friendly_Behaviour : MonoBehaviour
                 case Basic_Behaviour.Animation_state.lying:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
-                    basic_behav.ResetZParameter();
                     anim_controll.ChangeAnimationState(anim.bbt_trans_lying_to_stand);
                     basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
@@ -217,7 +215,6 @@ public class Friendly_Behaviour : MonoBehaviour
                 case Basic_Behaviour.Animation_state.sleeping:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
-                    basic_behav.ResetZParameter();
                     anim_controll.ChangeAnimationState(anim.bbt_trans_sleep_to_stand);
                     basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
@@ -277,7 +274,6 @@ public class Friendly_Behaviour : MonoBehaviour
                     else if (after_friendly_anim_counter == 3)
                     {
                         basic_behav.ResetParameter();
-                        basic_behav.ResetZParameter();
                         anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
                         StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                         basic_behav.SetShortTimer(3, 3);//TODO Set time right

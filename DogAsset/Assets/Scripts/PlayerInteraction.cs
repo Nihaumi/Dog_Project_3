@@ -73,7 +73,7 @@ public class PlayerInteraction : MonoBehaviour
 
     float right_hand_tracking_timer = 0;
     float left_hand_tracking_timer = 0;
-    float tracking_timer_length = 0.5f;
+    float tracking_timer_length = 2f;
     bool IsRightHandTracked()
     {
         right_hand_tracking_timer -= Time.deltaTime;
@@ -138,7 +138,7 @@ public class PlayerInteraction : MonoBehaviour
     float moving_value = 0.005f;
     float right_hand_moving_timer = 0f;
     float left_hand_moving_timer = 0f;
-    float moving_timer_length = 1f;
+    float moving_timer_length = 1.5f;
     [SerializeField] float velocity_right;
     [SerializeField] float velocity_left;
 
