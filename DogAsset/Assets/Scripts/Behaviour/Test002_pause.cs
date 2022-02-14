@@ -18,10 +18,11 @@ public class Test002_pause : MonoBehaviour
         TurnAround,
         WaitASecond,
         Stop,
-        initial
+        initial,
+        dodge
     }
 
-    Step current_step;
+    [SerializeField] Step current_step;
 
     // Start is called before the first frame update
     void Start()
@@ -45,16 +46,28 @@ public class Test002_pause : MonoBehaviour
     {
         switch (current_step)
         {
+            case Step.dodge:
+                Debug.Log("DODGING PLAYER IN ENUM");
+                bool doging = MU.DodgePlayer(player_target, 2f);
+                if(!doging){
+                    current_step = Step.Turning;
+                }
+                break;
             case Step.Turning:
                 /* 
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
+                if(MU.DodgePlayer(player_target, 2f))
+                {
+                    Debug.Log("YO LISTEN UP HERE IS A STORY!");
+                    current_step = Step.dodge;
+                    break;
+                }
                 if (!MU.walk_until_complete_speed(0.9999f))
                 {
                     MU.start_moving();
-
-                    return;
+                    break;
                 }
                 MU.reset_acceleration();
                 bool are_we_facing_the_pause_target = MU.turn_until_facing(pause_target, true);
@@ -66,6 +79,11 @@ public class Test002_pause : MonoBehaviour
                 /*
                  * 3. laufen zum target = pause location
                  */
+                if (MU.DodgePlayer(player_target, 2f))
+                {
+                    current_step = Step.dodge;
+                    break;
+                }
                 bool are_we_touching_the_player = MU.walk_until_touching(pause_target, 1, false);
 
                 if (are_we_touching_the_player)
@@ -76,8 +94,7 @@ public class Test002_pause : MonoBehaviour
                 if (!MU.walk_until_complete_speed(0.9999f))
                 {
                     MU.start_moving();
-
-                    return;
+                    break;
                 }
 
                 MU.reset_acceleration();

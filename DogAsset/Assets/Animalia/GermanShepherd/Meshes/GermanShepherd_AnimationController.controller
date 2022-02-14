@@ -201,7 +201,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Trans_Agressive_to_Stand 0
+  m_Name: Trans_Agressive_to_Stand_BBT
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -4415,22 +4415,22 @@ AnimatorStateMachine:
     m_Position: {x: 400, y: 750, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3488396998415175806}
-    m_Position: {x: 410, y: 1010, z: 0}
+    m_Position: {x: 3050, y: 950, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3115125545413194137}
     m_Position: {x: 620, y: 670, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8499910665661751922}
-    m_Position: {x: 120, y: 1060, z: 0}
+    m_Position: {x: 2760, y: 1000, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -6395369383491815544}
-    m_Position: {x: 80, y: 910, z: 0}
+    m_Position: {x: 2720, y: 850, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 65529870757825120}
-    m_Position: {x: 120, y: 960, z: 0}
+    m_Position: {x: 2760, y: 900, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7888395229490935881}
-    m_Position: {x: 120, y: 1010, z: 0}
+    m_Position: {x: 2760, y: 950, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -4440,7 +4440,7 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 9135138998287063222}
+  m_DefaultState: {fileID: -3488396998415175806}
 --- !u!1101 &3929760810573604659
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

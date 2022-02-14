@@ -42,6 +42,7 @@ public class MovementUtils : MonoBehaviour
         }
         else
         {
+            
             start_turning_towards(target);
             return false;
         }
@@ -64,7 +65,8 @@ public class MovementUtils : MonoBehaviour
             return false;
         }
     }
-    private bool is_touching(GameObject target, float distance = 1f)
+    
+    public bool is_touching(GameObject target, float distance = 1f)
     {
         float dist = get_dist_to_target(target);
         return dist <= distance;
@@ -193,18 +195,68 @@ public class MovementUtils : MonoBehaviour
 
     private void change_blend_tree_if_necessary(bool standing)
     {
+        //Debug.Log("WHY?!");
+        //Debug.Log("CURRENT STATE: " + anim_controll.current_state);
+        
+        anim_controll.ChangeAnimationState(anim.bbt);
         if (anim_controll.current_state != anim.bbt)
         {
+            //Debug.Log("NOT TH ERIGHT TREE");
             anim_controll.ChangeAnimationState(anim.bbt);
         }
         if (standing)
         {
+            //Debug.Log("Z value should be " + Basic_Behaviour.blending_bt_standing + " but is " + basic_behav.z_axis);
             basic_behav.ChangeBlendingBT(Basic_Behaviour.blending_bt_standing);
         }
         else
         {
+            //Debug.Log("Z value should be " + Basic_Behaviour.blending_bt_no_standing + " but is " + basic_behav.z_axis);
             basic_behav.ChangeBlendingBT(Basic_Behaviour.blending_bt_no_standing);
 
+        }
+    }
+
+    //if too close to player, turn left or right
+    //returns true if player gets doged
+    //        otherwise false
+    [SerializeField] float timer = 2f;
+    [SerializeField] float timer_walk = 2f;
+    const float default_walk_timer = 3f; 
+    public bool DodgePlayer(GameObject player, float timera = 5f)
+    {
+        if (is_touching(player, 3f) && basic_behav.GetPlayerOffsetAngle(0, 100, true, player) == 0)//TODO distance und timing anpassen UND turning speed auf walk
+        {
+            timer = 1f;
+            Debug.Log("DODGE");
+
+            if (basic_behav.y_goal == Basic_Behaviour.trot_value)
+            {
+                timera = 3;
+                //y_goal = walking_value;
+            }
+            basic_behav.choose_direction_to_walk_into(player, true);
+            if (basic_behav.change_anim_timer > timer)
+            {
+                basic_behav.change_anim_timer = timera;
+            }
+            return true;
+        }
+        else
+        {
+            if(timer > 0){
+                timer -= Time.deltaTime;
+                timer_walk = default_walk_timer;
+                return true;
+            }else if(timer_walk == default_walk_timer){
+                basic_behav.WalkForward();
+                timer_walk -= Time.deltaTime;
+                return true;
+            }else if(timer_walk > 0){
+                timer_walk -= Time.deltaTime;
+                return true;
+            }
+            return false;
         }
     }
 }

@@ -75,6 +75,7 @@ public class Pause_Behaviour : MonoBehaviour
 
     public void GoToPauseLocation()
     {//turn and walk to location
+
         switch (current_step)
         {
             case Step.Turning:

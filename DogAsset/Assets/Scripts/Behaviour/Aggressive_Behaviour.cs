@@ -291,7 +291,7 @@ public class Aggressive_Behaviour : MonoBehaviour
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.aggresive_blend_tree);
                         basic_behav.y_goal = Basic_Behaviour.walking_value;
-                        basic_behav.DodgePlayer(4);
+                        MU.DodgePlayer(player, 4);
                         after_aggression_counter++;
                     }
                     else if (after_aggression_counter == 1)

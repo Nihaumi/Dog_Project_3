@@ -49,6 +49,7 @@ public class Basic_Behaviour : MonoBehaviour
     PlayerInteraction player_interaction;
     Aggressive_Behaviour agg_behav;
     Pause_Behaviour pause_behav;
+    MovementUtils MU;
 
     double neutral_goal_dist_to_player = 3f;
     private void Awake()
@@ -77,6 +78,7 @@ public class Basic_Behaviour : MonoBehaviour
         player_interaction = player.GetComponent<PlayerInteraction>();
         agg_behav = dog.GetComponent<Aggressive_Behaviour>();
         pause_behav = dog.GetComponent<Pause_Behaviour>();
+        MU = dog.GetComponent<MovementUtils>();
 
         //state
         anim_controll.current_state = anim.bbt;
@@ -227,7 +229,6 @@ public class Basic_Behaviour : MonoBehaviour
     {
         if (z_axis < value)
         {
-
             z_axis += Time.deltaTime * z_acceleration;
             z_axis = Mathf.Min(z_axis, value);
         }
@@ -292,31 +293,6 @@ public class Basic_Behaviour : MonoBehaviour
         else
         {
             y_goal = walking_speed;
-        }
-    }
-
-    //if too close to player, turn left or right
-    public void DodgePlayer(float timer)
-    {
-        if (TouchingPlayer(neutral_goal_dist_to_player))
-        {
-            Debug.Log("DODGE");
-
-            if (y_goal == trot_value)
-            {
-                timer = 3;
-                //y_goal = walking_value;
-            }
-            if (GetPlayerOffset(0, 32, 0.12f, false) == -1)
-            {
-                TurnLeft();
-            }
-            else TurnRight();
-
-            if (change_anim_timer > timer)
-            {
-                change_anim_timer = timer;
-            }
         }
     }
 
@@ -497,12 +473,15 @@ public class Basic_Behaviour : MonoBehaviour
         {
             dif = 1;
         }
+        
         if (GetPlayerOffset(0, 32, 0.125f, true, target) == dif)
         {
             TurnRight();
         }
         else
+        {
             TurnLeft();
+        }
     }
 
     // returns values for angles in the range of (0, 180)
@@ -940,7 +919,7 @@ public class Basic_Behaviour : MonoBehaviour
             if (pause_behav.go_to_location)
             {
                 Debug.Log("Mache PAUSE");
-               pause_behav.GoToPauseLocation();
+                pause_behav.GoToPauseLocation();
             }
             //DodgePlayer(5);
         }
@@ -948,7 +927,7 @@ public class Basic_Behaviour : MonoBehaviour
         {//neutral
             if (dog_state == Animation_state.walking)
             {
-                DodgePlayer(5);
+               MU.DodgePlayer(player, 5);
             }
         }
 
