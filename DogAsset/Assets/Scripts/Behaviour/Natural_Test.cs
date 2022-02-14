@@ -2,29 +2,52 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Neutral_Behaviour : MonoBehaviour
+public class Natural_Test : MonoBehaviour
 {
     //other script
     public GameObject dog;
+    public GameObject player;
     public GameObject dog_parent;
     public GameObject dir_manager;
-    public Animator animator;
     public GameObject dog_sound_manager;
-
+    public Animator animator;
+    public GameObject player_target;
     Animation_Controll anim_controll;
     Animations anim;
     Turning_Direction_Handler turn_dir_handler;
     Basic_Behaviour basic_behav;
+    Neutral_Behaviour neutral_behav;
+    PlayerInteraction player_interaction;
     Audio_Sources dog_audio;
     Pause_Behaviour pause_behav;
+    MovementUtils MU;
+
+    [SerializeField] float friendly_time;
+    public double friendly_goal_dist_to_player = 3f;
+
+    public enum Step
+    {
+        Turning,
+        WalkToTarget,
+        LayDown,
+        TurnAround,
+        WaitASecond,
+        Stop,
+        initial,
+        dodge
+    }
+
+    [SerializeField] Step current_step;
+
     // Start is called before the first frame update
     void Start()
     {
         //access anim controll scipt
         dog = GameObject.Find("GermanShepherd_Prefab");
-        dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
         dog_sound_manager = GameObject.Find("Dog_sound_manager");
+        dog_parent = GameObject.Find("DOg");
+
         animator = dog.GetComponent<Animator>();
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
@@ -32,13 +55,44 @@ public class Neutral_Behaviour : MonoBehaviour
         basic_behav = dog.GetComponent<Basic_Behaviour>();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
         pause_behav = dog.GetComponent<Pause_Behaviour>();
+        MU = dog.GetComponent<MovementUtils>();
 
+        current_step = Step.dodge;
     }
-
+   
     // Update is called once per frame
     void Update()
     {
+        switch (current_step)
+        {
+            case Step.dodge:
 
+                Debug.Log("ONE - SITTING");
+                anim_controll.ChangeAnimationState(anim.sit_02);
+                basic_behav.dog_state = Basic_Behaviour.Animation_state.friendly_walking;
+                current_step = Step.Turning;
+
+                break;
+            case Step.Turning:
+                Debug.Log("TWO - LYING");
+                MU.start_moving();
+                basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
+
+                if (basic_behav.y_axis == 1)
+                    current_step = Step.WalkToTarget;
+                break;
+            case Step.WalkToTarget:
+                /*
+                 * 3. laufen zum target = pause location
+                 */
+                Debug.Log("THREE - WALKING");
+                basic_behav.TurnLeft();
+                basic_behav.dog_state = Basic_Behaviour.Animation_state.walking;
+                break;
+            default:
+                Debug.Log("I GOT NOTHIN");
+                break;
+        }
     }
 
 
@@ -54,7 +108,7 @@ public class Neutral_Behaviour : MonoBehaviour
         animator.SetBool("go_seek", false);
     }
 
-    public void NeutralBehaviour()
+    /*public void NeutralBehaviour()
     {
         switch (basic_behav.dog_state)
         {
@@ -250,9 +304,8 @@ public class Neutral_Behaviour : MonoBehaviour
                 {
                     anim_controll.ChangeAnimationState(anim.bbt);
                 }
-
-                basic_behav.SetLongTimer();
                 basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_all_walks_value);
+                basic_behav.SetLongTimer();
                 if (basic_behav.random_index == 0)
                 {
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
@@ -267,7 +320,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         {
                             SwitchToOrFromSeekingBehaviour(anim.blend_tree);
                         }*/
-                        basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
+               /*         basic_behav.y_goal = Basic_Behaviour.walking_slow_value;
                     }
                     if (basic_behav.random_index == 2)
                     {
@@ -292,7 +345,7 @@ public class Neutral_Behaviour : MonoBehaviour
                         {
                             if (anim_controll.current_state == anim.blend_tree_seek)
                             {
-                                SwitchToOrFromSeekingBehaviour(anim.bbt);
+                                SwitchToOrFromSeekingBehaviour(anim.blend_tree);
                             }
                             basic_behav.y_goal = Basic_Behaviour.trot_value;
                             basic_behav.SetShortTimer(0.1f, 1f);
@@ -309,7 +362,7 @@ public class Neutral_Behaviour : MonoBehaviour
                 return;
         }
 
-    }
+    }*/
 
 
     /*

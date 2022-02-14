@@ -82,14 +82,18 @@ public class Basic_Behaviour : MonoBehaviour
 
         //state
         anim_controll.current_state = anim.bbt;
-        z_goal = 1;
+        z_goal = 0;
+        zx_goal = 0;
         y_goal = 0;
         x_goal = 0;
-        //dog_state = Animation_state.pause;//TODO put in right initial state
+        dog_state = Animation_state.standing;//TODO put in right initial state
 
         //timer
         min_timer = starting_timer;
         max_timer = min_timer;
+
+        //index
+        random_index = 1;
 
         //rig layer obj
         neck_1 = GameObject.Find("NeckAim1");
@@ -118,9 +122,11 @@ public class Basic_Behaviour : MonoBehaviour
     public float x_axis = 0f;
     public float y_axis = 0f;
     public float z_axis = 0f;
+    public float zx_axis = 0f;
     public float x_goal = 0f;
     public float y_goal = 1f;
     public float z_goal = 0f;
+    public float zx_goal = 0f;
 
     public float x_acceleration = 1f;
     public float turning_y_acceleration = 1.5f;
@@ -128,13 +134,34 @@ public class Basic_Behaviour : MonoBehaviour
     public float default_y_acceleration = 0.5f;
     public float z_acceleration = 1f;
 
+    //y
     public const float standing_value = 0;
     public const float walking_slow_value = 0.25f;
     public const float seek_value = 0.5f;
     public const float walking_value = 1f;
     public const float trot_value = 1.5f;
-    public const float blending_bt_standing = 1f;
-    public const float blending_bt_no_standing = 0f;
+    //z
+    public const float bbt_standing_value = 0f;
+    public const float bbt_no_standing_value = 1f;
+    public const float bbt_all_walks_value = -1f;
+    //zx
+    public const float bbt_seek_value = -1f;
+
+    public void set_bbt_values(bool seek, float z_value)
+    {
+        if (seek)
+        {
+            Debug.Log("SEEK");
+            zx_goal = bbt_seek_value;//-1
+            z_goal = bbt_standing_value;//0
+        }
+        else if(!seek)
+        {
+            Debug.Log("Not SEEK");
+            zx_goal = 0;
+            z_goal = z_value;
+        }
+    }
 
     //constraint gedöns
     GameObject neck_4;
@@ -180,6 +207,8 @@ public class Basic_Behaviour : MonoBehaviour
     {
         z_goal = 0;
         z_axis = 0;
+        zx_goal = 0;
+        zx_axis = 0;
     }
 
     //increases X axis until specific walking animation is reached
@@ -245,10 +274,31 @@ public class Basic_Behaviour : MonoBehaviour
 
         }
     }
+    public void IncreaseZXAxisToValue(float value)
+    {
+        if (zx_axis < value)
+        {
+            zx_axis += Time.deltaTime * z_acceleration;
+            zx_axis = Mathf.Min(zx_axis, value);
+        }
+    }
 
-    public void ChangeBlendingBT(float z_value)
+    //decreases Y axis until specific walking animation is reached
+    public void DecreaseZXAxisToValue(float value)
+    {
+        if (zx_axis > value)
+        {
+
+            zx_axis -= Time.deltaTime * z_acceleration;
+            zx_axis = Mathf.Max(zx_axis, value);
+
+        }
+    }
+
+    public void SetZValues(float z_value, float zx_value)
     {
         z_goal = z_value;
+        zx_goal = zx_value;
     }
 
     public void TurnLeft(float walking_speed = walking_value)
@@ -324,7 +374,7 @@ public class Basic_Behaviour : MonoBehaviour
     }
 
     //choosing random index of animation lists
-    public int random_index = 0;
+    public int random_index;
     int ChooseRandomIndex()
     {
         switch (dog_state)
@@ -473,7 +523,7 @@ public class Basic_Behaviour : MonoBehaviour
         {
             dif = 1;
         }
-        
+
         if (GetPlayerOffset(0, 32, 0.125f, true, target) == dif)
         {
             TurnRight();
@@ -886,6 +936,8 @@ public class Basic_Behaviour : MonoBehaviour
         DecreaseXAxisToValue(x_goal);
         IncreaseZAxisToValue(z_goal);
         DecreaseZAxisToValue(z_goal);
+        IncreaseZXAxisToValue(zx_goal);
+        DecreaseZXAxisToValue(zx_goal);
 
         SetFollowObject();
         //GetPlayerOffset(0, 8, 0.5f, false);
@@ -927,7 +979,10 @@ public class Basic_Behaviour : MonoBehaviour
         {//neutral
             if (dog_state == Animation_state.walking)
             {
-               MU.DodgePlayer(player, 5);
+                if (MU.DodgePlayer(player, 5)) //TODO enable
+                {
+                    MU.change_blend_tree_if_necessary(false);
+                }
             }
         }
 
@@ -938,20 +993,21 @@ public class Basic_Behaviour : MonoBehaviour
             turning_behav.TurningBehaviour();
             //behaviours
             if (behav_switch.neutral_script.enabled && !turning_behav.walking_after_turning_on)
-            {
+            {//neutral
                 neutral_behav.NeutralBehaviour();
             }
             else if (behav_switch.friendly_script.enabled)
-            {//TODO uncomment
+            {//friendly
+                //TODO uncomment
                 friendly_behav.FriendlyBehaviour();
                 //GetPlayerOffset(0, 1, 1, true);
             }
             else if (behav_switch.aggressive_script.enabled)
-            {
+            {//aggresive
                 agg_behav.AggressiveBehaviour();
             }
             else if (behav_switch.pause_behav.enabled)
-            {
+            {//pause
                 pause_behav.PauseBehaviour();
             }
             ResetTimerFunction();

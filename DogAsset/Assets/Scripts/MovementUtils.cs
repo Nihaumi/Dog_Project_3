@@ -193,7 +193,7 @@ public class MovementUtils : MonoBehaviour
         basic_behav.y_goal = -Basic_Behaviour.walking_value;
     }
 
-    private void change_blend_tree_if_necessary(bool standing)
+    public void change_blend_tree_if_necessary(bool standing)
     {
         //Debug.Log("WHY?!");
         //Debug.Log("CURRENT STATE: " + anim_controll.current_state);
@@ -207,12 +207,12 @@ public class MovementUtils : MonoBehaviour
         if (standing)
         {
             //Debug.Log("Z value should be " + Basic_Behaviour.blending_bt_standing + " but is " + basic_behav.z_axis);
-            basic_behav.ChangeBlendingBT(Basic_Behaviour.blending_bt_standing);
+            basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
         }
         else
         {
             //Debug.Log("Z value should be " + Basic_Behaviour.blending_bt_no_standing + " but is " + basic_behav.z_axis);
-            basic_behav.ChangeBlendingBT(Basic_Behaviour.blending_bt_no_standing);
+            basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_no_standing_value);
 
         }
     }
@@ -235,8 +235,9 @@ public class MovementUtils : MonoBehaviour
                 timera = 3;
                 //y_goal = walking_value;
             }
+            //change_blend_tree_if_necessary(false);
             basic_behav.choose_direction_to_walk_into(player, true);
-            if (basic_behav.change_anim_timer > timer)
+            if (basic_behav.change_anim_timer > timera)
             {
                 basic_behav.change_anim_timer = timera;
             }

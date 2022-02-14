@@ -45,6 +45,9 @@ public class Animations : MonoBehaviour
     public string blend_tree_seek = "Blend_Tree_Seeking";
     public string blend_tree_MU = "MU no standing";
     public string bbt = "Blend_blend_tree";
+    public string all_walks_bt = "All Walking BT";
+    public string seek_bt = "Seek BT";
+
 
     //transition x to standing in bleding BT
     public string bbt_trans_sleep_to_stand = "trans_sleep_to_stand_BBT";
@@ -62,6 +65,7 @@ public class Animations : MonoBehaviour
     public string stand_02 = "Stand_02";
     public string trans_lying_to_stand_02 = "Trans_Lying_to_Stand_02";
     public string trans_sitting_to_stand_02 = "Trans_Sitting_to_Stand_02";
+
     //sitting
     public string sit_00 = "Sitting_00";
     public string trans_stand_to_sit_00 = "Trans_Stand_to_Sitting_00";
@@ -206,6 +210,7 @@ public class Animations : MonoBehaviour
 
 
         //fill lists neutral
+        //stand
         list_standing.Add(trans_stand_to_lying_00);//0
         list_standing.Add(trans_stand_to_sit_00);//1
         list_standing.Add(walk_slow);//2
@@ -216,18 +221,21 @@ public class Animations : MonoBehaviour
                                 //list_standing.Add(turn_right_seek);//7
                                 //list_standing.Add(run);
 
+        //sit
         list_sitting.Add(trans_sit_to_stand_to_walk_slow);
         list_sitting.Add(trans_sit_to_stand_to_walk);
         list_sitting.Add(trans_sit_to_stand_to_seek);
         list_sitting.Add(trans_sit_to_stand_to_trot);
         //list_sitting.Add(trans_sit_to_stand_to_run);
 
+        //run
         list_running.Add(stand_02);
         list_running.Add(trans_lying_to_stand_to_seek);
         list_running.Add(trans_lying_to_stand_to_trot);
         list_running.Add(trans_lying_to_stand_to_walk);
         list_running.Add(trans_lying_to_stand_to_walk_slow);
 
+        //lying
         list_lying.Add(trans_lying_to_sleep);
         list_lying.Add(trans_lying_to_stand_to_walk_slow);
         list_lying.Add(trans_lying_to_stand_to_walk);
@@ -235,17 +243,18 @@ public class Animations : MonoBehaviour
         list_lying.Add(trans_lying_to_stand_to_trot);
         //list_lying.Add(trans_lying_to_stand_to_run);
 
+        //sleep
         list_sleeping.Add(trans_sleep_to_lying);
-        list_sleeping.Add(trans_sleeping_to_lying_to_stand_02);
-        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk_slow);
-        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_walk);
-        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_seek);
-        list_sleeping.Add(trans_sleep_to_lying_to_stand_to_trot);
+        list_sleeping.Add(bbt_trans_sleep_to_stand);
+        list_sleeping.Add(bbt_trans_sleep_to_stand);
+        list_sleeping.Add(bbt_trans_sleep_to_stand);
+        list_sleeping.Add(bbt_trans_sleep_to_stand);
+        list_sleeping.Add(bbt_trans_sleep_to_stand);
         //list_sleeping.Add(trans_sleep_to_lying_to_stand_to_run);
 
 
-
-        list_walking.Add(stand_02);//0
+        //walk
+        list_walking.Add(bbt);//0
         list_walking.Add(walk_slow);//1
         list_walking.Add(walk);//2
         list_walking.Add(seek);//3
@@ -254,6 +263,7 @@ public class Animations : MonoBehaviour
                                //list_walking.Add(seek_L);//6
                                //list_walking.Add(seek_R);//7
 
+        //after turning
         list_walking_after_turning.Add(seek);
         list_walking_after_turning.Add(walk);
         list_walking_after_turning.Add(walk_slow);

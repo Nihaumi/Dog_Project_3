@@ -78,7 +78,7 @@ public class Friendly_Behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("IS THIS THING ON?!");
+        //Debug.Log("IS THIS THING ON?!");
         //stop trotting
         if (basic_behav.y_goal == Basic_Behaviour.trot_value)
         {
@@ -199,21 +199,27 @@ public class Friendly_Behaviour : MonoBehaviour
                 case Basic_Behaviour.Animation_state.sitting:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
+                    basic_behav.ResetZParameter();
                     anim_controll.ChangeAnimationState(anim.bbt_trans_sit_to_stand);
+                    basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.lying:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
+                    basic_behav.ResetZParameter();
                     anim_controll.ChangeAnimationState(anim.bbt_trans_lying_to_stand);
+                    basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(3, 3);
                     break;
                 case Basic_Behaviour.Animation_state.sleeping:
                     dog_audio.StopAllSounds();
                     basic_behav.ResetParameter();
+                    basic_behav.ResetZParameter();
                     anim_controll.ChangeAnimationState(anim.bbt_trans_sleep_to_stand);
+                    basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.standing;
                     basic_behav.SetShortTimer(3, 3);
                     break;
@@ -222,6 +228,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     dog_audio.StopAllSounds();
                     basic_behav.WalkForward();
                     anim_controll.ChangeAnimationState(anim.bbt);
+                    basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     if (basic_behav.y_goal == Basic_Behaviour.trot_value)
                     {
                         basic_behav.y_goal = Basic_Behaviour.standing_value;
@@ -246,6 +253,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     {
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.bbt_trans_sit_to_stand);
+                        basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                         basic_behav.y_goal = Basic_Behaviour.standing_value;
                         basic_behav.SetShortTimer(3, 3);
                         after_friendly_anim_counter++;
@@ -269,6 +277,7 @@ public class Friendly_Behaviour : MonoBehaviour
                     else if (after_friendly_anim_counter == 3)
                     {
                         basic_behav.ResetParameter();
+                        basic_behav.ResetZParameter();
                         anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
                         StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
                         basic_behav.SetShortTimer(3, 3);//TODO Set time right

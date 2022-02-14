@@ -199,7 +199,7 @@ public class Pause_Behaviour : MonoBehaviour
                     basic_behav.ResetParameter();
                     dog_audio.StopAllSounds();
                     anim_controll.ChangeAnimationState(anim.bbt);
-                    basic_behav.z_goal = Basic_Behaviour.blending_bt_standing;
+                    basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.pause;
                     basic_behav.SetShortTimer(3, 3);
                     break;
@@ -207,7 +207,7 @@ public class Pause_Behaviour : MonoBehaviour
                     Debug.Log("PAUSE Walking");
                     //ResetBools();
                     anim_controll.ChangeAnimationState(anim.bbt);
-                    basic_behav.z_goal = Basic_Behaviour.blending_bt_standing;
+                    basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
                     basic_behav.y_goal = Basic_Behaviour.standing_value;
                     basic_behav.dog_state = Basic_Behaviour.Animation_state.pause;
                     basic_behav.SetShortTimer(3, 3);
