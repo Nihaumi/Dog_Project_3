@@ -194,6 +194,7 @@ public class Basic_Behaviour : MonoBehaviour
         animator.SetFloat("X", x_axis);
         animator.SetFloat("Y", y_axis);
         animator.SetFloat("Z", z_axis);
+        animator.SetFloat("Zx", zx_axis);
     }
 
     public void ResetParameter()

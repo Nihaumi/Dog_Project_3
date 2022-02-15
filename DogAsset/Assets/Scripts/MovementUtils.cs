@@ -220,8 +220,8 @@ public class MovementUtils : MonoBehaviour
     //if too close to player, turn left or right
     //returns true if player gets doged
     //        otherwise false
-    [SerializeField] float timer = 2f;
-    [SerializeField] float timer_walk = 2f;
+    [SerializeField] float timer = 0f;
+    [SerializeField] float timer_walk = 0f;
     const float default_walk_timer = 3f; 
     public bool DodgePlayer(GameObject player, float timera = 5f)
     {

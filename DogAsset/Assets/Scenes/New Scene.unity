@@ -3810,9 +3810,9 @@ MonoBehaviour:
   pause_behav: {fileID: 0}
   dist: 0
   friendly_distance: 4
-  friendly: 1
+  friendly: 0
   agressive: 0
-  neutral: 0
+  neutral: 1
   paused: 0
   friendly_timer: 60
   agressive_timer: 30
@@ -7618,8 +7618,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3e2a58c4bf1994ca9b332ff648b5e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 2
-  timer_walk: 2
+  timer: 0
+  timer_walk: 0
 --- !u!114 &1045705201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9607,8 +9607,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1607974487}
-  - {fileID: 1748498365}
   - {fileID: 930911687}
+  - {fileID: 1748498365}
   - {fileID: 1376688332}
   - {fileID: 2038465893}
   m_Father: {fileID: 789740028}
