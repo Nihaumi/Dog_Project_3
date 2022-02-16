@@ -4,9 +4,8 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
   m_Name: 05-Green Fields
   m_Shader: {fileID: 108, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _MAPPING_LATITUDE_LONGITUDE_LAYOUT
@@ -24,12 +23,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Exposure: 1.55
+    - _Exposure: 1
     - _ImageType: 0
     - _Layout: 2
     - _Mapping: 1
     - _MirrorOnBack: 0
-    - _Rotation: 39
+    - _Rotation: 90
     m_Colors:
     - _Tint: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}
-  m_BuildTextureStacks: []
