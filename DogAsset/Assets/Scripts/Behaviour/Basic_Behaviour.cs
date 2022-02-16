@@ -155,7 +155,7 @@ public class Basic_Behaviour : MonoBehaviour
             zx_goal = bbt_seek_value;//-1
             z_goal = bbt_standing_value;//0
         }
-        else if(!seek)
+        else if (!seek)
         {
             Debug.Log("Not SEEK");
             zx_goal = 0;
@@ -204,7 +204,24 @@ public class Basic_Behaviour : MonoBehaviour
         y_goal = 0;
         x_goal = 0;
     }
-
+    public float IncreaseAxis(float goal, float current, float acceleration, bool overridden = false)
+    {
+        if (current < goal && ((z_axis == z_goal && zx_goal == zx_axis) || overridden))
+        {
+            current += Time.deltaTime * acceleration;
+            current = Mathf.Min(current, goal);
+        }
+        return current;
+    }
+    public float DecreaseAxis(float goal, float current, float acceleration, bool overridden = false)
+    {
+        if (current > goal && ((z_axis == z_goal && zx_goal == zx_axis) || overridden))
+        {
+            current -= Time.deltaTime * acceleration;
+            current = Mathf.Max(current, goal);
+        }
+        return current;
+    }
     //increases X axis until specific walking animation is reached
     public void IncreaseXAxisToValue(float value)
     {
@@ -297,6 +314,10 @@ public class Basic_Behaviour : MonoBehaviour
 
     public void TurnLeft(float walking_speed = walking_value)
     {
+        if(zx_goal + z_goal == -1){
+            Debug.Log("HE IS DEAD JIM!");
+            set_bbt_values(false, bbt_no_standing_value);
+        }
         if (y_goal != 0)
         {
             x_goal = -y_goal;
@@ -312,6 +333,10 @@ public class Basic_Behaviour : MonoBehaviour
 
     public void TurnRight(float walking_speed = walking_value)
     {
+        if(zx_goal + z_goal == -1){
+            Debug.Log("HE IS DEAD JIM!");
+            set_bbt_values(false, bbt_no_standing_value);
+        }
         if (y_goal != 0)
         {
             x_goal = y_goal;
@@ -442,6 +467,7 @@ public class Basic_Behaviour : MonoBehaviour
 
     public void GetRandomIndexFromList(List<string> list)
     {
+        //random_index = random_index ==1 ? 0 : 1;
         random_index = Random.Range(0, list.Count);
     }
 
@@ -924,14 +950,15 @@ public class Basic_Behaviour : MonoBehaviour
 
         //Blend Tree Animation
         SetBlendTreeParameters();
-        IncreaseYAxisToValue(y_goal);
-        DecreaseYAxisToValue(y_goal);
-        IncreaseXAxisToValue(x_goal);
-        DecreaseXAxisToValue(x_goal);
-        IncreaseZAxisToValue(z_goal);
-        DecreaseZAxisToValue(z_goal);
-        IncreaseZXAxisToValue(zx_goal);
-        DecreaseZXAxisToValue(zx_goal);
+        x_axis = IncreaseAxis(x_goal, x_axis, x_acceleration);
+        y_axis = IncreaseAxis(y_goal, y_axis, y_acceleration);
+        z_axis = IncreaseAxis(z_goal, z_axis, z_acceleration, true);
+        zx_axis = IncreaseAxis(zx_goal, zx_axis, z_acceleration, true);
+
+        x_axis = DecreaseAxis(x_goal, x_axis, x_acceleration);
+        y_axis = DecreaseAxis(y_goal, y_axis, y_acceleration);
+        z_axis = DecreaseAxis(z_goal, z_axis, z_acceleration, true);
+        zx_axis = DecreaseAxis(zx_goal, zx_axis, z_acceleration, true);
 
         SetFollowObject();
         //GetPlayerOffset(0, 8, 0.5f, false);
@@ -975,8 +1002,9 @@ public class Basic_Behaviour : MonoBehaviour
             {
                 if (MU.DodgePlayer(player, 3)) //TODO enable
                 {
+                    set_bbt_values(false, bbt_no_standing_value);
                     Debug.Log("DODgING IN NEUTRAL");
-                    MU.change_blend_tree_if_necessary(false);
+                    //MU.change_blend_tree_if_necessary(false);
                 }
             }
         }

@@ -19,7 +19,7 @@ public class Test_Behaviour001 : MonoBehaviour
     }
 
     GameObject player_target;
-    Step current_step;
+  [SerializeField] Step current_step;
 
     // Start is called before the first frame update
     void Start()

@@ -32,7 +32,8 @@ public class Pause_Behaviour : MonoBehaviour
         TurnAround,
         WaitASecond,
         Stop,
-        initial
+        initial,
+        dodge
     }
 
     [SerializeField] Step current_step;
@@ -78,16 +79,29 @@ public class Pause_Behaviour : MonoBehaviour
 
         switch (current_step)
         {
+            case Step.dodge:
+                Debug.Log("DODGING PLAYER IN ENUM");
+                bool doging = MU.DodgePlayer(player_target, 2f);
+                if (!doging)
+                {
+                    current_step = Step.Turning;
+                }
+                break;
             case Step.Turning:
                 /* 
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
-                if (!MU.walk_until_complete_speed(0.9999f))
+                if (MU.DodgePlayer(player_target, 2f))
+                {
+                    Debug.Log("YO LISTEN UP HERE IS A STORY!");
+                    current_step = Step.dodge;
+                    break;
+                }
+                if (!MU.walk_until_complete_speed(0.85f))
                 {
                     MU.start_moving();
-
-                    return;
+                    break;
                 }
                 MU.reset_acceleration();
                 bool are_we_facing_the_pause_target = MU.turn_until_facing(pause_target, true);
@@ -99,6 +113,11 @@ public class Pause_Behaviour : MonoBehaviour
                 /*
                  * 3. laufen zum target = pause location
                  */
+                if (MU.DodgePlayer(player_target, 2f))
+                {
+                    current_step = Step.dodge;
+                    break;
+                }
                 bool are_we_touching_the_player = MU.walk_until_touching(pause_target, 1, false);
 
                 if (are_we_touching_the_player)
@@ -106,16 +125,16 @@ public class Pause_Behaviour : MonoBehaviour
                 break;
             case Step.TurnAround:
                 //drehen Sie sich bitte zum Player um! ein stück weit
-                if (!MU.walk_until_complete_speed(0.9999f))
+                if (!MU.walk_until_complete_speed(0.85f))
                 {
                     MU.start_moving();
-
-                    return;
+                    break;
                 }
 
                 MU.reset_acceleration();
+                bool are_we_facing_the_player = MU.turn_until_facing(player_target);
 
-                if (MU.turn_until_facing(player_target))
+                if (are_we_facing_the_player)
                     current_step = Step.WaitASecond;
                 break;
             case Step.WaitASecond:
@@ -126,29 +145,24 @@ public class Pause_Behaviour : MonoBehaviour
                     if (timer < 0)
                     {
                         current_step = Step.LayDown;
-
                     }
 
                 }
-
                 break;
             case Step.LayDown:
 
                 MU.lay_down();
                 current_step = Step.Stop;
-                basic_behav.change_anim_timer = 3;//TODO anpassen
 
                 break;
             case Step.Stop:
                 /*
                  * 4. Do nothing
                  */
-            
                 break;
             default:
                 break;
         }
-
     }
 
     public bool facing_pause_location;
@@ -221,7 +235,7 @@ public class Pause_Behaviour : MonoBehaviour
             end_pause = true;
         }
     }
-    void ResetBools()
+    public void ResetBools()
     {
         Debug.Log("BOOL RESET");
         facing_pause_location = false;
@@ -231,5 +245,6 @@ public class Pause_Behaviour : MonoBehaviour
         enter_pause = false;
         end_pause = false;
         go_to_location = false;
+        current_step = Step.initial;
     }
 }

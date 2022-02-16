@@ -13,6 +13,7 @@ public class Friendly_Behaviour : MonoBehaviour
     public GameObject dog_sound_manager;
     public Animator animator;
     public GameObject player_target;
+
     Animation_Controll anim_controll;
     Animations anim;
     Turning_Direction_Handler turn_dir_handler;
@@ -22,6 +23,8 @@ public class Friendly_Behaviour : MonoBehaviour
     Audio_Sources dog_audio;
     Pause_Behaviour pause_behav;
     MovementUtils MU;
+    Behaviour_Switch behav_switch;
+    GameObject behaviour_manager;
 
     [SerializeField] float friendly_time;
     public double friendly_goal_dist_to_player = 3f;
@@ -53,11 +56,14 @@ public class Friendly_Behaviour : MonoBehaviour
         dog_parent = GameObject.Find("DOg");
         dir_manager = GameObject.Find("Direction_Manager");
         dog_sound_manager = GameObject.Find("Dog_sound_manager");
+        behaviour_manager = GameObject.Find("Behaviour_Manager");
+        behav_switch = behaviour_manager.GetComponent<Behaviour_Switch>();
         animator = dog.GetComponent<Animator>();
         anim_controll = dog.GetComponent<Animation_Controll>();
         anim = dog.GetComponent<Animations>();
         turn_dir_handler = dir_manager.GetComponent<Turning_Direction_Handler>();
         basic_behav = dog.GetComponent<Basic_Behaviour>();
+     
         neutral_behav = dog.GetComponent<Neutral_Behaviour>();
         player_interaction = player.GetComponent<PlayerInteraction>();
         dog_audio = dog_sound_manager.GetComponent<Audio_Sources>();
@@ -123,13 +129,12 @@ public class Friendly_Behaviour : MonoBehaviour
                  * 1. drehen
                  * 2. wenn auf target gucken stehen
                  */
-                if (!MU.walk_until_complete_speed(0.9999f))
+                if (!MU.walk_until_complete_speed(0.85f))
                 {
                     MU.start_moving();
 
                     return;
                 }
-
                 MU.reset_acceleration();
                 bool are_we_facing_the_player = MU.turn_until_facing(player_target, true);
 
@@ -149,7 +154,7 @@ public class Friendly_Behaviour : MonoBehaviour
                 if (MU.walk_until_complete_speed(0.001f))
                 {
                     MU.sit_down();
-                    basic_behav.change_anim_timer = 300f; //TODO anpassen
+                    basic_behav.change_anim_timer = 30f; //TODO anpassen
                     current_step = Step.Stop;
                 }
 
@@ -276,14 +281,14 @@ public class Friendly_Behaviour : MonoBehaviour
                         basic_behav.ResetParameter();
                         anim_controll.ChangeAnimationState(anim.trans_stand_to_lying_00);
                         StartCoroutine(dog_audio.PlaySoundAfterPause(dog_audio.panting_calm));
-                        basic_behav.SetShortTimer(3, 3);//TODO Set time right
+                        basic_behav.SetShortTimer(10, 10);//TODO Set time right
                         after_friendly_anim_counter++;
 
                     }
                     else if (after_friendly_anim_counter == 4)
                     {
                         basic_behav.dog_state = Basic_Behaviour.Animation_state.lying;
-                        pause_behav.enter_pause = true;
+                        behav_switch.enter_pause = true;
                     }
                     /*else if (after_friendly_anim_counter == 3)
                     {

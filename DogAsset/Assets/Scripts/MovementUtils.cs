@@ -183,7 +183,7 @@ public class MovementUtils : MonoBehaviour
     public void reset_acceleration()
     {
         basic_behav.y_acceleration = basic_behav.default_y_acceleration;
-        basic_behav.x_acceleration = 1f;
+        basic_behav.x_acceleration = 1.5f;
     }
 
     public void walk_back()
@@ -204,16 +204,17 @@ public class MovementUtils : MonoBehaviour
             //Debug.Log("NOT TH ERIGHT TREE");
             anim_controll.ChangeAnimationState(anim.bbt);
         }
-        if (standing)
+        if (standing && (basic_behav.z_goal != Basic_Behaviour.bbt_standing_value || basic_behav.zx_goal == Basic_Behaviour.bbt_seek_value))
         {
+            Debug.Log("I WANT TO STAND IN MU!");
             //Debug.Log("Z value should be " + Basic_Behaviour.blending_bt_standing + " but is " + basic_behav.z_axis);
             basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_standing_value);
         }
-        else
+        else if(!standing && (basic_behav.z_goal != Basic_Behaviour.bbt_no_standing_value || basic_behav.zx_goal == Basic_Behaviour.bbt_seek_value))
         {
+            Debug.Log("I WANT TO WALK IN MU!");
             //Debug.Log("Z value should be " + Basic_Behaviour.blending_bt_no_standing + " but is " + basic_behav.z_axis);
             basic_behav.set_bbt_values(false, Basic_Behaviour.bbt_no_standing_value);
-
         }
     }
 

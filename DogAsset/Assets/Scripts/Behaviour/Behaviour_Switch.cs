@@ -36,7 +36,7 @@ public class Behaviour_Switch : MonoBehaviour
     [SerializeField] float pause_time = 30f;
     [SerializeField] float initial_pause_time = 20f;
 
-
+    public bool enter_pause = false;
     //behaviour states
     public enum Behaviour_state
     {
@@ -104,7 +104,7 @@ public class Behaviour_Switch : MonoBehaviour
         {
             Debug.Log("FRIEND ON");
             DisableScripts();
-            turning_behav.enabled = true;
+            turning_behav.enabled = false;
             friendly_script.enabled = true;
             friendly_timer = friendly_timer - Time.deltaTime * 1;
         }
@@ -138,7 +138,7 @@ public class Behaviour_Switch : MonoBehaviour
 
     void ChangeBehaviours()
     {
-        if (/*friendly_timer <= 0 || */pause_behav.enter_pause)
+        if (/*friendly_timer <= 0 || */enter_pause)
         {
             Debug.Log("FRINED DOWN");
             SetScriptsFalse();
@@ -146,7 +146,7 @@ public class Behaviour_Switch : MonoBehaviour
             ResetTimers();
             visited_behaviours_count++;
             paused = true;
-            pause_behav.enter_pause = false;
+            enter_pause = false;
         }
         if (neutral_timer <= 0)
         {
@@ -167,18 +167,19 @@ public class Behaviour_Switch : MonoBehaviour
             else paused = true;
 
         }
-        if (/*agressive_timer <= 0 || */pause_behav.enter_pause)
+        if (/*agressive_timer <= 0 || */enter_pause)
         {
             SetScriptsFalse();
             DisableScripts();
             ResetTimers();
             visited_behaviours_count++;
             paused = true;
-            pause_behav.enter_pause = false;
+            enter_pause = false;
         }
         if (pause_behav.end_pause)
         {
             Debug.Log("PAUSED DOWN");
+            pause_behav.ResetBools();
             SetScriptsFalse();
             DisableScripts();
             ResetTimers();
