@@ -7568,8 +7568,8 @@ MonoBehaviour:
   x_acceleration: 1.5
   turning_y_acceleration: 1.5
   y_acceleration: 0.5
-  default_y_acceleration: 0.25
-  z_acceleration: 3
+  default_y_acceleration: 0.5
+  z_acceleration: 6
   neck_constraint_1: {fileID: 0}
   neck_constraint_2: {fileID: 0}
   neck_constraint_3: {fileID: 0}
